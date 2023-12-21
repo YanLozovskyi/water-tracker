@@ -1,7 +1,7 @@
-export default function SignInForm() {
+export const SignInForm = () => {
   return (
     <>
       <div>SignInForm</div>
     </>
   );
-}
+};

@@ -1,3 +1,9 @@
-export default function Welcome() {
-  return <div>Welcome</div>;
-}
+const Welcome = () => {
+  return (
+    <>
+      <div>Welcome</div>
+    </>
+  );
+};
+
+export default Welcome;

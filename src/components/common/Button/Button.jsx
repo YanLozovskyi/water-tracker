@@ -1,3 +1,3 @@
-export default function Button() {
+export const Button = () => {
   return <div>button</div>;
-}
+};

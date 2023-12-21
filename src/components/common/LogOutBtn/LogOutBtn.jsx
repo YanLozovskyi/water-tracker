@@ -1,7 +1,7 @@
-export default function LogOutBtn(props) {
+export const LogOutBtn = props => {
   return (
     <>
       <div>LogOutBtn</div>
     </>
   );
-}
+};

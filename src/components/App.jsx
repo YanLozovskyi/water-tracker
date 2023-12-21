@@ -1,12 +1,12 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import WelcomePage from '../pages/Welcome/Welcome';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
-import Loader from './common/Loader/Loader';
+import { Loader } from './common/Loader/Loader';
 
 import SharedLayout from './SharedLayout';
 
+const WelcomePage = lazy(() => import('../pages/Welcome/Welcome'));
 const HomePage = lazy(() => import('../pages/Home/Home'));
 const SigninPage = lazy(() => import('../pages/SignIn/SignIn'));
 const SignUpPage = lazy(() => import('../pages/SignUp/SignUp'));

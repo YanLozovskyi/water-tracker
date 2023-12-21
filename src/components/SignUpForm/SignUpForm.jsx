@@ -1,7 +1,7 @@
-export default function SignUpForm() {
+export const SignUpForm = () => {
   return (
     <>
       <div>SignUpForm</div>
     </>
   );
-}
+};

@@ -1,7 +1,7 @@
 import { ThreeDots } from 'react-loader-spinner';
 import { WrapThreeDotsDiv } from './Loader.styled';
 
-export default function Loader() {
+export const Loader = () => {
   return (
     <WrapThreeDotsDiv>
       <ThreeDots
@@ -15,4 +15,4 @@ export default function Loader() {
       />
     </WrapThreeDotsDiv>
   );
-}
+};
