@@ -7,7 +7,7 @@ import { Global, ThemeProvider } from '@emotion/react';
 
 import { GlobalStyles, theme } from './styles';
 
-import App from 'components/App';
+import App from './components/App';
 // import Loader from './components/common/Loader/Loader';
 import { BrowserRouter } from 'react-router-dom';
 

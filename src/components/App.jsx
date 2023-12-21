@@ -5,7 +5,7 @@ import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
 import Loader from './common/Loader/Loader';
 
-import SharedLayout from './sharedLayout';
+import SharedLayout from './SharedLayout';
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
 const SigninPage = lazy(() => import('../pages/Signin/SignIn'));
