@@ -10,4 +10,5 @@ export default defineConfig({
       pages: '/src/pages',
     },
   },
+  base: '/water-tracker/',
 });
