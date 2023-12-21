@@ -8,7 +8,7 @@ import Loader from './common/Loader/Loader';
 import SharedLayout from './SharedLayout';
 
 const HomePage = lazy(() => import('../pages/Home/Home'));
-const SigninPage = lazy(() => import('../pages/Signin/SignIn'));
+const SigninPage = lazy(() => import('../pages/SignIn/SignIn'));
 const SignUpPage = lazy(() => import('../pages/SignUp/SignUp'));
 const ErrorPage = lazy(() => import('../pages/Error/Error'));
 const ForgotPassPage = lazy(() =>
