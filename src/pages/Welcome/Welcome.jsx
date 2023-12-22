@@ -1,7 +1,9 @@
+import { MainContent } from '../../components/Welcome/Main/MainContent';
+
 const Welcome = () => {
   return (
     <>
-      <div>Welcome</div>
+      <MainContent />
     </>
   );
 };
