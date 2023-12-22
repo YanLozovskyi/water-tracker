@@ -54,24 +54,22 @@ export const BaseModalStyled = styled.div`
 `;
 
 export const CloseButton = styled.button`
-  background: none;
   width: 24px;
   height: 24px;
+  color: ${props => props.theme.color.black};
+  background-color: transparent;
   padding: 0;
+  font-size: 24px;
 
-  a {
-    stroke: ${props => props.theme.color.accent};
+  &:hover,
+  &:focus {
     color: ${props => props.theme.color.accent};
   }
-  svg {
-    width: 100%;
-    height: 100%;
-    background: yellow;
-    stroke: ${props => props.theme.color.accent};
-    fill: ${props => props.theme.color.accent};
-  }
-
-  /* &:hover {
-    color: ${props => props.theme.color.accent};
-  } */
 `;
+
+// export const CloseIcon = styled.svg`
+//   width: 100%;
+//   height: 100%;
+//   /* fill: ${props => props.theme.color.accent}; */
+//   stroke: currentColor;
+// `;

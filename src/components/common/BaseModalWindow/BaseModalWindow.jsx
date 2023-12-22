@@ -1,50 +1,69 @@
 import { useEffect, useRef } from 'react';
-import { BaseModalStyled, CloseButton } from './BaseModalWindow.styled';
+import PropTypes from 'prop-types';
+import {
+  BaseModalStyled,
+  CloseButton,
+  // CloseIcon,
+} from './BaseModalWindow.styled';
+// import sprite from 'src/assets/images/sprite/sprite.svg';
 
-export const BaseModalWindow = ({ children, title, onClose }) => {
+export const BaseModalWindow = ({
+  onShow = true,
+  type,
+  children,
+  title,
+  onClose,
+}) => {
+  const modalRoot = document.querySelector('#modal-root');
+
+  const modalContainerRef = useRef(null);
+  const backdropRef = useRef(null);
+
   useEffect(() => {
+    if (!onShow) return;
+
+    const bodyScroll = disable => {
+      document.body.style.overflow = disable ? 'hidden' : 'auto';
+    };
+
+    if (onShow || modalRoot.children.length !== 0) {
+      bodyScroll(true);
+    }
+
     const handleEsc = e => {
       if (e.code === 'Escape') {
         onClose();
       }
     };
 
-    const handleClickOutside = event => {
-      if (!modalContainerRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-
     window.addEventListener('keydown', handleEsc);
-    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
       window.removeEventListener('keydown', handleEsc);
-      document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [onClose]);
-
-  const modalContainerRef = useRef(null);
+  }, [modalRoot.children.length, onShow, onClose]);
 
   return (
-    <BaseModalStyled>
-      <div
-        className="modal-content"
-        onClick={e => e.stopPropagation()}
-        ref={modalContainerRef}
-      >
+    <BaseModalStyled onClick={onClose} ref={backdropRef}>
+      <div className="modal-content" type={type} ref={modalContainerRef}>
         <div className="modal-header">
           <h2>{title}</h2>
           <CloseButton onClick={onClose}>
-            <a href="#">
-              <svg width="24" height="24">
-                <use href="/assets/images/sprite/symbol-defs.svg#icon-outline"></use>
-              </svg>
-            </a>
+            &times;
+            {/* <CloseIcon>
+              <use href={`${sprite}#icon-outline`}></use>
+            </CloseIcon> */}
           </CloseButton>
         </div>
         <div>{children}</div>
       </div>
     </BaseModalStyled>
   );
+};
+
+BaseModalWindow.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  onShow: PropTypes.bool,
+  title: PropTypes.string.isRequired,
 };
