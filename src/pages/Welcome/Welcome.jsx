@@ -1,4 +1,4 @@
-import { MainContent } from '../../components/Welcome/Main/MainContent';
+import { MainContent } from 'components';
 
 const Welcome = () => {
   return (

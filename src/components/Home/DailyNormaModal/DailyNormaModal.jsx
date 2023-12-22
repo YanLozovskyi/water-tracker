@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import { BaseModalWindow } from '../../common/BaseModalWindow/BaseModalWindow';
+import { BaseModalWindow } from 'components';
 
-const DailyNormaModal = ({ onClose }) => {
+export const DailyNormaModal = ({ onClose }) => {
   const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('');
   const [activityTime, setActivityTime] = useState('');
@@ -111,8 +111,6 @@ const DailyNormaModal = ({ onClose }) => {
     </BaseModalWindow>
   );
 };
-
-export default DailyNormaModal;
 
 DailyNormaModal.propTypes = {
   onClose: PropTypes.func.isRequired,

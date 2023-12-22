@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import DailyNormaModal from '../DailyNormaModal/DailyNormaModal';
+import { DailyNormaModal } from 'components';
 
-const DailyNorma = ({ userWaterIntake }) => {
+export const DailyNorma = ({ userWaterIntake }) => {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -21,5 +21,3 @@ const DailyNorma = ({ userWaterIntake }) => {
     </div>
   );
 };
-
-export default DailyNorma;

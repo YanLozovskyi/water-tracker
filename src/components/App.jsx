@@ -2,7 +2,7 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
-import { Loader } from './common/Loader/Loader';
+import { Loader } from 'components';
 
 import SharedLayout from './SharedLayout';
 

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Modal from './Modal';
-import DailyNorma from '../../components/Home/DailyNorma/DailyNorma';
+import { DailyNorma } from 'components';
 
 const Home = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -24,9 +24,3 @@ const Home = () => {
 };
 
 export default Home;
-
-// const Home = () => {
-//   return <div>Home</div>;
-// };
-
-// export default Home;
