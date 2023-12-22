@@ -23,6 +23,12 @@ export const theme = {
     black: '#2F2F2F',
     white: '#FFFFFF',
     accent: '#407BFF',
+
+    secondaryWhite: "#ecf2ff",
+    secondaryRed: "#ef5050",
+    secondaryLightBlue: "#9ebbff",
+    secondaryYellow: "#ff9d43",
+    secondaryPowderBlue: "#d7e3ff",
   },
 
   // Breakpoints
