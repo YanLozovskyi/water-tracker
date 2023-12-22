@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import PropTypes from 'prop-types';
 import {
   BaseModalStyled,
   CloseButton,
-  // CloseIcon,
+  CloseIcon,
 } from './BaseModalWindow.styled';
-// import sprite from 'src/assets/images/sprite/sprite.svg';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export const BaseModalWindow = ({
   onShow = true,
@@ -43,21 +44,26 @@ export const BaseModalWindow = ({
     };
   }, [modalRoot.children.length, onShow, onClose]);
 
-  return (
+  return createPortal(
     <BaseModalStyled onClick={onClose} ref={backdropRef}>
-      <div className="modal-content" type={type} ref={modalContainerRef}>
+      <div
+        className="modal-content"
+        type={type}
+        onClick={e => e.stopPropagation()}
+        ref={modalContainerRef}
+      >
         <div className="modal-header">
           <h2>{title}</h2>
           <CloseButton onClick={onClose}>
-            &times;
-            {/* <CloseIcon>
+            <CloseIcon>
               <use href={`${sprite}#icon-outline`}></use>
-            </CloseIcon> */}
+            </CloseIcon>
           </CloseButton>
         </div>
         <div>{children}</div>
       </div>
-    </BaseModalStyled>
+    </BaseModalStyled>,
+    modalRoot,
   );
 };
 
