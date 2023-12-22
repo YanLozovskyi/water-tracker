@@ -51,5 +51,8 @@
 <path stroke-linejoin="miter" stroke-linecap="butt" stroke-miterlimit="4" stroke-width="1.3333" d="M31.333 16c0 8.468-6.865 15.333-15.333 15.333s-15.333-6.865-15.333-15.333c0-8.468 6.865-15.333 15.333-15.333s15.333 6.865 15.333 15.333z"></path>
 <path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.3333" d="M20.001 9.436c0 1.088-0.421 2.132-1.172 2.901s-1.768 1.202-2.829 1.202c-1.061 0-2.079-0.432-2.829-1.202s-1.172-1.813-1.172-2.901c0-1.088 0.421-2.132 1.172-2.901s1.768-1.202 2.829-1.202c1.061 0 2.079 0.432 2.829 1.202s1.172 1.813 1.172 2.901zM8 24.881c0.034-2.153 0.892-4.205 2.389-5.715s3.512-2.356 5.611-2.356c2.099 0 4.115 0.846 5.611 2.356s2.355 3.562 2.389 5.715c-2.51 1.18-5.239 1.789-8 1.785-2.855 0-5.564-0.639-8-1.785z"></path>
 </symbol>
+<symbol id="icon-outline" viewBox="0 0 32 32">
+<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2" d="M8 24l16-16M8 8l16 16"></path>
+</symbol>
 </defs>
 </svg>
