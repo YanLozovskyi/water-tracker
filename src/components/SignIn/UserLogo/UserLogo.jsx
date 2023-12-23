@@ -1,3 +1,3 @@
-export const UserAuth = () => {
-  return <div>userAuth</div>;
+export const UserLogo = () => {
+  return <div>UserLogo</div>;
 };
