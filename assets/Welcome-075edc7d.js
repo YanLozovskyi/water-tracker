@@ -1,0 +1,1 @@
+import{j as r}from"./index-0be62cd9.js";const n=()=>r.jsx("div",{children:"WaterConsumptionTracker"}),t=()=>r.jsx("div",{children:"WhyDrinkWater"}),e=()=>r.jsxs(r.Fragment,{children:[r.jsx(n,{}),r.jsx(t,{})]}),o=()=>r.jsx(r.Fragment,{children:r.jsx(e,{})});export{o as default};
