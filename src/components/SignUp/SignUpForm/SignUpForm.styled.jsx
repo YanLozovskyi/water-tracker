@@ -41,6 +41,9 @@ export const SignUpContainer = styled.div`
     color: ${props => props.theme.color.secondaryLightBlue};
     margin-bottom: 16px;
   }
+  .sign-up-form-container input:focus {
+    outline: none;
+  }
   .sign-up-form-container input::placeholder {
     color: ${props => props.theme.color.secondaryLightBlue};
   }
@@ -67,4 +70,9 @@ export const SignUpContainer = styled.div`
       color: ${props => props.theme.color.secondaryYellow};
     }
   }
+`;
+export const SignUpContainericon = styled.svg`
+  width: 100%;
+  height: 100%;
+  stroke: ${props => props.theme.color.black};
 `;

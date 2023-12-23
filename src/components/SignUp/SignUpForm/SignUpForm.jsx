@@ -1,4 +1,5 @@
-import { SignUpContainer } from './SignUpForm.styled.jsx';
+import { SignUpContainer, SignUpContainericon } from './SignUpForm.styled.jsx';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 export const SignUpForm = () => {
   return (
     <>
@@ -12,11 +13,22 @@ export const SignUpForm = () => {
             </div>
             <div className="sign-up-form-container">
               <label>Enter your password</label>
-              <input placeholder="Password"></input>
+              <input
+                autoComplete="off"
+                type="password"
+                placeholder="Password"
+              ></input>
+              <SignUpContainericon>
+                <use href={`${sprite}#icon-settings`}></use>
+              </SignUpContainericon>
             </div>
             <div className="sign-up-form-container">
               <label>Repeat password</label>
-              <input placeholder="Repeat password"></input>
+              <input
+                autoComplete="off"
+                type="password"
+                placeholder="Repeat password"
+              ></input>
             </div>
           </form>
           <button type="button" className="sign-up-button">
