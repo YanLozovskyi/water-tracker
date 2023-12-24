@@ -1,7 +1,7 @@
-import { SignInForm } from "components";
+import { SignInForm, Section } from "components";
 
 const SignIn = () => {
-  return <><SignInForm /></>;
+  return <Section><SignInForm /></Section>
 };
 
 export default SignIn;

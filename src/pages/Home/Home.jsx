@@ -1,13 +1,13 @@
-import { DailyNorma, WaterRatioPanel, MonthStatsTable } from 'components';
+import { DailyNorma, WaterRatioPanel, MonthStatsTable, Section } from 'components';
 
 const Home = () => {
   return (
-    <div>
+    <Section>
       <h1>Home</h1>
       <DailyNorma />
       <MonthStatsTable />
       <WaterRatioPanel />
-    </div >
+    </Section>
   );
 };
 

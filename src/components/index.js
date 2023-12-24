@@ -4,8 +4,9 @@ export * from './common/BaseModalWindow/BaseModalWindow';
 export * from './common/Button/Button';
 export * from './common/Container/Container';
 export * from './common/Loader/Loader';
-export * from './common/Logo/Logo';
 export * from './common/LogOutBtn/LogOutBtn';
+export * from './common/Logo/Logo';
+export * from './common/Section/Section';
 
 // Basic
 
