@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   Title,
@@ -14,7 +14,7 @@ import {
 } from './WaterConsumptionTracker.styled';
 
 export const WaterConsumptionTracker = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const benefits = [
     {
@@ -32,7 +32,7 @@ export const WaterConsumptionTracker = () => {
   ];
 
   function handleClick() {
-    history.push('/register');
+    navigate('/signup');
   }
 
   return (

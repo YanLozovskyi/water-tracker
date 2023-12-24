@@ -32,11 +32,10 @@ export const WelcomePageStyle = styled.div`
 
 export const Background = styled.div`
   background-position: center bottom;
-  position: relative;
   background-image: -webkit-image-set(url(${imgMob1x}) 1x, url(${imgMob2x}) 2x);
   background-size: cover;
   background-repeat: no-repeat;
-  z-index: -2;
+ 
 
   width: 100%;
 
@@ -57,7 +56,6 @@ export const Background = styled.div`
 
     &::before {
       content: '';
-      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
@@ -69,7 +67,6 @@ export const Background = styled.div`
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
-      z-index: -1;
     }
   }
 `;
