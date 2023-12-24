@@ -1,5 +1,6 @@
 import { DailyNorma } from 'components';
 import MonthStatsTable from '../../components/Home/MonthStatsTable/MonthStatsTable';
+import { DailyNorma, WaterRatioPanel } from 'components';
 
 const Home = () => {
   return (
@@ -7,7 +8,10 @@ const Home = () => {
       <h1>Home</h1>
       <DailyNorma />
       <MonthStatsTable />
-    </div>
+      <WaterRatioPanel />
+      <button onClick={openModal}>Open Modal</button>
+
+    </div >
   );
 };
 
