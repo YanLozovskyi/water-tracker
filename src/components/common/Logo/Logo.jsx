@@ -4,7 +4,7 @@ import { LogoImg } from './Logo.styled';
 import { useState } from 'react';
 
 export const Logo = () => {
-  const [isAuthorized, setAuthorized] = useState(true);
+  const [isAuthorized, setAuthorized] = useState(false);
   return (
     <div>
       {isAuthorized ? (

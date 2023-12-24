@@ -6,7 +6,7 @@ import { Logo } from '../common/Logo/Logo';
 import { ContainerHeader } from './Header.styled';
 
 export const Header = () => {
-  const [isAuthorized, setAuthorized] = useState(true);
+  const [isAuthorized, setAuthorized] = useState(false);
   return (
     <Container>
       <ContainerHeader>
