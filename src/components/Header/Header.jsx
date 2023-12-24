@@ -3,7 +3,7 @@ import { Container, Logo, UserLogo, UserAuth } from 'components';
 import { ContainerHeader } from './Header.styled';
 
 export const Header = () => {
-  const [isAuthorized, setAuthorized] = useState(false);
+  const [isAuthorized, setAuthorized] = useState(true);
   return (
     <Container>
       <ContainerHeader>
