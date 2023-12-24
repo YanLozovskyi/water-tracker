@@ -1,0 +1,1 @@
+import{j as n}from"./index-e97987d7.js";import{S as r}from"./Section-5c57a3a7.js";const t=()=>n.jsx(n.Fragment,{children:n.jsx("div",{children:"SignInForm"})}),s=()=>n.jsx(r,{children:n.jsx(t,{})});export{s as default};
