@@ -1,6 +1,18 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { BaseModalWindow } from 'components';
+import {
+  Formula,
+  Form,
+  FormRadio,
+  TitleModal,
+  Paragraph,
+  Input,
+  ButtonSave,
+  InputRadio,
+  Comment,
+  BoxModal,
+} from './DailyNormaModal.styled';
 
 export const DailyNormaModal = ({ onClose }) => {
   const [gender, setGender] = useState('female');
@@ -30,62 +42,68 @@ export const DailyNormaModal = ({ onClose }) => {
   };
   return (
     <BaseModalWindow onClose={onClose} title="My daily norma">
-      <div>
+      <BoxModal>
         {
           <div>
-            <p>For girl: V=(M*0,03) + (T*0,4)</p>
-            <p>For man: V=(M*0,04) + (T*0,6)</p>
-            <p>
-              * V is the volume of the water norm in liters per day, M is your
-              body weight, T is the time of active sports, or another type of
-              activity commensurate in terms of loads (in the absence of these,
-              you must set 0)
-            </p>
+            <Formula>
+              <Paragraph>
+                For girl: <span>V=(M*0,03) + (T*0,4)</span>
+              </Paragraph>
+              <Paragraph>
+                For man: <span>V=(M*0,04) + (T*0,6)</span>
+              </Paragraph>
+            </Formula>
+            <Comment>
+              <span>*</span> V is the volume of the water norm in liters per
+              day, M is your body weight, T is the time of active sports, or
+              another type of activity commensurate in terms of loads (in the
+              absence of these, you must set 0)
+            </Comment>
           </div>
         }
         {
           <div>
-            <form>
-              <div className="form-group">
-                <h3>Calculate your rate:</h3>
+            <Form>
+              <FormRadio>
+                <TitleModal>Calculate your rate:</TitleModal>
                 <label>
-                  <input
+                  <InputRadio
                     type="radio"
                     name="gender"
                     value="female"
                     checked={gender === 'female'}
                     onChange={() => setGender('female')}
                   />
-                  For girl
+                  <span>For girl</span>
                 </label>
                 <label>
-                  <input
+                  <InputRadio
                     type="radio"
                     name="gender"
                     value="male"
                     checked={gender === 'male'}
                     onChange={() => setGender('male')}
                   />
-                  For boy
+                  <span>For boy</span>
                 </label>
-              </div>
+              </FormRadio>
               <div className="form-group">
-                <p>Your weight in kilograms:</p>
-                <input
+                <Paragraph>Your weight in kilograms:</Paragraph>
+                <Input
                   type="number"
-                  placeholder="kg"
+                  placeholder="0"
                   value={weight}
                   onChange={e => setWeight(e.target.value)}
                 />
               </div>
               <div className="form-group">
-                <p>
+                <Paragraph>
                   Time of active participation in sports or other activities
                   with a high physical load:
-                </p>
-                <input
+                </Paragraph>
+                <Input
                   type="number"
-                  placeholder="Time"
+                  placeholder="0"
                   value={activityTime}
                   onChange={e => setActivityTime(e.target.value)}
                 />
@@ -95,19 +113,21 @@ export const DailyNormaModal = ({ onClose }) => {
                 <strong>{dailyIntake} L</strong>
               </div>
               <div className="form-group">
-                <p>Write down how much water you will drink:</p>
-                <input
+                <TitleModal>
+                  Write down how much water you will drink:
+                </TitleModal>
+                <Input
                   type="number"
-                  placeholder="L"
+                  placeholder="0"
                   value={intakeGoal}
                   onChange={e => setIntakeGoal(e.target.value)}
                 />
               </div>
-              <button onClick={handleSave}>Save</button>
-            </form>
+              <ButtonSave onClick={handleSave}>Save</ButtonSave>
+            </Form>
           </div>
         }
-      </div>
+      </BoxModal>
     </BaseModalWindow>
   );
 };
