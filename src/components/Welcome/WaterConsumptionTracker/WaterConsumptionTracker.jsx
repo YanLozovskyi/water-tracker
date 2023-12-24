@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import {
   Title,
@@ -14,6 +14,8 @@ import {
 } from './WaterConsumptionTracker.styled';
 
 export const WaterConsumptionTracker = () => {
+  const history = useHistory();
+
   const benefits = [
     {
       text: 'Habit drive',
@@ -29,9 +31,9 @@ export const WaterConsumptionTracker = () => {
     },
   ];
 
-  // function handleClick() {
-  //   history.push('/register');
-  // }
+  function handleClick() {
+    history.push('/register');
+  }
 
   return (
     <Tracker>
@@ -54,10 +56,7 @@ export const WaterConsumptionTracker = () => {
         ))}
       </Benefits>
 
-      <Button
-        type="button"
-        // onClick={handleClick}
-      >
+      <Button type="button" onClick={handleClick}>
         Try tracker
       </Button>
     </Tracker>

@@ -99,15 +99,15 @@ export const Button = styled.button`
   font-size: 16px;
   line-height: 20px;
   background-color: ${({ theme }) => theme.color.accent};
-  box-shadow: 0 4px 8px rgba(64, 123, 255, 0.34);
+  box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
   border-radius: 10px;
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 4px 14px rgba(64, 123, 255, 0.54);
+    box-shadow: ${({ theme }) => theme.boxShadowforButton.hoverButton};
   }
   &:active {
-    box-shadow: none;
+    box-shadow: ${({ theme }) => theme.boxShadowforButton.activeButton};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
