@@ -1,4 +1,46 @@
 import styled from '@emotion/styled';
+
+export const SignImgBubble = styled.img`
+  position: absolute;
+  width: 1404px;
+  height: 582px;
+  pointer-events: none;
+`;
+
+export const SignImgButle = styled.img`
+  position: absolute;
+  width: 916px;
+  height: 680px;
+  pointer-events: none;
+
+  /* @media screen and (min-width: 768px) {
+    .SignImgBubble {
+      width: 768px;
+      height: 680px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    .SignImgButle {
+      width: 736px;
+      height: 548px;
+    }
+  }
+
+  @media screen and (min-width: 480px) {
+    .SignImgBubble {
+      width: 320px;
+      height: 680px;
+    }
+  }
+  @media screen and (min-width: 480px) {
+    .SignImgButle {
+      width: 280px;
+      height: 210px;
+    }
+  } */
+`;
+
 export const SignUpContainer = styled.div`
   width: 1404px;
   height: 582px;
@@ -19,34 +61,6 @@ export const SignUpContainer = styled.div`
     color: ${props => props.theme.color.black};
   }
 
-  .sign-up-form-container label {
-    display: block;
-    width: 384px;
-    margin-bottom: 8px;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    color: ${props => props.theme.color.black};
-  }
-  .sign-up-form-container input {
-    width: 384px;
-    border-radius: 6px;
-    border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
-    display: flex;
-    padding: 12px 10px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-    color: ${props => props.theme.color.secondaryLightBlue};
-    margin-bottom: 16px;
-  }
-  .sign-up-form-container input:focus {
-    outline: none;
-  }
-  .sign-up-form-container input::placeholder {
-    color: ${props => props.theme.color.secondaryLightBlue};
-  }
   .sign-up-button {
     width: 100%;
     padding: 10px 30px 10px 30px;
@@ -71,8 +85,45 @@ export const SignUpContainer = styled.div`
     }
   }
 `;
-export const SignUpContainericon = styled.svg`
-  width: 100%;
-  height: 100%;
-  stroke: ${props => props.theme.color.black};
+export const SignStyledLabel = styled.label`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 384px;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px;
+  color: ${props => props.theme.color.black};
+`;
+
+export const SignStyledInput = styled.input`
+  width: 384px;
+  border-radius: 6px;
+  border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
+  display: flex;
+  padding: 12px 10px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 16px;
+
+  &:focus-within {
+    outline: none;
+  }
+  &::placeholder {
+    color: ${props => props.theme.color.secondaryLightBlue};
+  }
+`;
+
+export const EyeSlashIcon = styled.svg`
+  width: 16px;
+  height: 16px;
+  border: 1px;
+  stroke: ${props => props.theme.color.accent};
+  fill: ${props => props.theme.color.white};
+  position: absolute;
+  right: 10px;
+  top: 38px;
 `;
