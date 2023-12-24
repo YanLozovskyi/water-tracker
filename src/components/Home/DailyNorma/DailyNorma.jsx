@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { DailyNormaModal } from 'components';
+import { DailyBox } from './DailyNorma.styled';
 
 export const DailyNorma = ({ userWaterIntake }) => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -13,11 +14,14 @@ export const DailyNorma = ({ userWaterIntake }) => {
   };
 
   return (
-    <div className="daily-norma">
-      <p>Daily Water Norm: {userWaterIntake || '2.0 L'}</p>
-      <button onClick={openModal}>Edit</button>
+    <DailyBox>
+      <h2>My daily norma: </h2>
+      <div>
+        <p>{userWaterIntake || '2.0 L'}</p>
+        <button onClick={openModal}>Edit</button>
+      </div>
 
       {isModalOpen && <DailyNormaModal onClose={closeModal} />}
-    </div>
+    </DailyBox>
   );
 };
