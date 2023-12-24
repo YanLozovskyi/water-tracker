@@ -41,7 +41,7 @@ const formatMonth = monthYearString => {
   return monthNames[month - 1];
 };
 
-const MonthStatsTable = () => {
+export const MonthStatsTable = () => {
   const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
   const [dailyStats, setDailyStats] = useState([]);
   const [selectedDayStats, setSelectedDayStats] = useState(null);
@@ -163,5 +163,3 @@ const MonthStatsTable = () => {
     </BoxMonth>
   );
 };
-
-export default MonthStatsTable;
