@@ -1,3 +1,15 @@
+import { useState } from 'react';
+import { Container, Logo, UserLogo, UserAuth } from 'components';
+import { ContainerHeader } from './Header.styled';
+
 export const Header = () => {
-  return <div>Logo</div>;
+  const [isAuthorized, setAuthorized] = useState(false);
+  return (
+    <Container>
+      <ContainerHeader>
+        <Logo />
+        {isAuthorized ? <UserLogo /> : <UserAuth />}
+      </ContainerHeader>
+    </Container>
+  );
 };
