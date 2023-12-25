@@ -1,13 +1,22 @@
-import { DailyNorma, WaterRatioPanel, MonthStatsTable, Section } from 'components';
+import {
+  DailyNorma,
+  MonthStatsTable,
+  TodayWaterList,
+  WaterRatioPanel,
+} from 'components';
+
+import { BoxHome, HomeSection } from './Home.styled';
 
 const Home = () => {
   return (
-    <Section>
-      <h1>Home</h1>
-      <DailyNorma />
-      <MonthStatsTable />
-      <WaterRatioPanel />
-    </Section>
+    <HomeSection>
+      <BoxHome>
+        <DailyNorma />
+        <WaterRatioPanel />
+        <TodayWaterList />
+        <MonthStatsTable />
+      </BoxHome>
+    </HomeSection>
   );
 };
 
