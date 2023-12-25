@@ -20,15 +20,15 @@ export const WaterConsumptionTracker = () => {
   const benefits = [
     {
       text: 'Habit drive',
-      id: '#icon-calendar',
+      id: `${sprite}#icon-calendar`,
     },
     {
       text: 'View statistics',
-      id: '#icon-statistic',
+      id: `${sprite}#icon-statistic`,
     },
     {
       text: 'Personal rate setting',
-      id: '#icon-instrument',
+      id: `${sprite}#icon-instrument`,
     },
   ];
 
@@ -45,8 +45,8 @@ export const WaterConsumptionTracker = () => {
       <Benefits>
         {benefits.map(({ id, text }, index) => (
           <Item key={index}>
-            <Image width="32px" height="32px">
-              <use href={`${sprite}${id}`}></use>
+            <Image>
+              <use href={id}></use>
             </Image>
             {text}
           </Item>

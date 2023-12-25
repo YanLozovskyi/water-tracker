@@ -71,7 +71,7 @@ export const Tracker = styled.div`
 `;
 
 export const Image = styled.svg`
-  color: ${({ theme }) => theme.color.accent};
+  stroke: #407bff;
   fill: none;
   width: 32px;
   height: 32px;
