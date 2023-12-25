@@ -1,5 +1,7 @@
+import { Section } from "components";
+
 const Error = () => {
-  return <div>Error</div>;
+  return <Section><div>Error</div></Section>;
 };
 
 export default Error;
