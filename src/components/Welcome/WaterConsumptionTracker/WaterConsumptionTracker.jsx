@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 
 import {
   Title,
@@ -19,15 +20,15 @@ export const WaterConsumptionTracker = () => {
   const benefits = [
     {
       text: 'Habit drive',
-      id: 'icon-calendar',
+      id: '#icon-calendar',
     },
     {
       text: 'View statistics',
-      id: 'icon-statistic',
+      id: '#icon-statistic',
     },
     {
       text: 'Personal rate setting',
-      id: 'icon-instrument',
+      id: '#icon-instrument',
     },
   ];
 
@@ -44,12 +45,8 @@ export const WaterConsumptionTracker = () => {
       <Benefits>
         {benefits.map(({ id, text }, index) => (
           <Item key={index}>
-            <Image
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="currentColor"
-            >
-              <use xlinkHref={`/src/assets/images/sprite/sprite.svg#${id}`} />
+            <Image width="32px" height="32px">
+              <use href={`${sprite}${id}`}></use>
             </Image>
             {text}
           </Item>

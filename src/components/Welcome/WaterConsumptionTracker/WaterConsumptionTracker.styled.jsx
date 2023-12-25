@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const HiddenTitle = styled.h2`
+export const HiddenTitle = styled.h1`
   display: none;
 `;
 
