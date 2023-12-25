@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import { UserLogoModal } from '../UserLogoModal/UserLogoModal';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { UserLogoBtn, UserModalIcon, UserAvatar } from './UserLogo.styled';
+import {
+  UserLogoBtn,
+  UserModalIcon,
+  UserAvatar,
+  UserDefaultAvatar,
+} from './UserLogo.styled';
 
 export const UserLogo = () => {
   const [userName, setUserName] = useState('');
@@ -37,7 +42,11 @@ export const UserLogo = () => {
     <div>
       <UserLogoBtn onClick={showModal}>
         <p>{name}</p>
-        <UserAvatar src={avatar} alt="" />
+        {userAvatar ? (
+          <UserAvatar src={avatar} alt="" />
+        ) : (
+          <UserDefaultAvatar>{avatar}</UserDefaultAvatar>
+        )}
         <UserModalIcon>
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
