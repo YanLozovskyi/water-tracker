@@ -17,6 +17,7 @@ export const WelcomeStyle = styled(Section)`
   background-repeat: no-repeat;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    height: 100vh;
     background-image: -webkit-image-set(
       url(${imgTab1x}) 1x,
       url(${imgTab2x}) 2x
