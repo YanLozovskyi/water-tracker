@@ -7,11 +7,17 @@ export const UserAuthBtn = styled.button`
   font-size: 18px;
   line-height: 1.33em;
   background-color: transparent;
+  padding: 0px;
   color: ${({ theme }) => theme.color.accent};
 
   &:hover,
   &:focus {
     color: ${props => props.theme.color.secondaryYellow};
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    font-size: 16px;
+    line-height: 1.25em;
   }
 `;
 
