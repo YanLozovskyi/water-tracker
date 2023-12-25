@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UserLogoModal } from '../UserLogoModal/UserLogoModal';
+import { UserLogoModal } from 'components';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   UserLogoBtn,
@@ -17,6 +17,8 @@ export const UserLogo = () => {
     setModalIsOpen(!modalIsOpen);
   };
 
+  const firstLetter = userName ? userName.charAt(0).toUpperCase() : 'V';
+
   const getUserInfo = () => {
     if (userName && userAvatar) {
       return {
@@ -26,12 +28,12 @@ export const UserLogo = () => {
     } else if (userName) {
       return {
         name: userName,
-        avatar: userName.charAt(0).toUpperCase(),
+        avatar: firstLetter,
       };
     } else {
       return {
-        name: 'V',
-        avatar: 'V',
+        name: firstLetter,
+        avatar: firstLetter,
       };
     }
   };
