@@ -42,26 +42,25 @@ export const HeaderMonth = styled.div`
       line-height: 1.2;
     }
   }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-  }
 `;
 
 export const ButtonPaginator = styled.button`
   width: 14px;
   height: 14px;
   background: transparent;
-`;
+  color: ${props =>
+    props.active
+      ? props.theme.color.accent
+      : props.theme.color.secondaryLightBlue};
 
-export const IconPaginator = styled.svg`
-  width: 100%;
-  height: 100%;
-  stroke: ${props => props.theme.color.accent};
+  &:hover {
+    color: ${props => props.theme.color.accent};
+  }
 `;
 
 export const Paginator = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   position: relative;
   color: ${props => props.theme.color.accent};
   column-gap: 12px;
