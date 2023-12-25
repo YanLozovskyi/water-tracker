@@ -2,9 +2,24 @@ import styled from '@emotion/styled';
 
 export const SignImgBubble = styled.img`
   position: absolute;
+  background-size: cover;
+  background-position: center;
   width: 1404px;
   height: 582px;
   pointer-events: none;
+  @media (max-width: 768px) {
+    width: 768px;
+    height: 680px;
+  }
+  @media (max-width: 480px) {
+    width: 320px;
+    height: 842px;
+    display: inline-flex;
+    padding-bottom: 2.302px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 `;
 
 export const SignImgButle = styled.img`
@@ -12,33 +27,18 @@ export const SignImgButle = styled.img`
   width: 916px;
   height: 680px;
   pointer-events: none;
-
-  /* @media screen and (min-width: 768px) {
-    .SignImgBubble {
-      width: 768px;
-      height: 680px;
-    }
+  @media (max-width: 768px) {
+    width: 736px;
+    height: 548px;
+    margin-top: 52px;
+    margin-left: 112px;
   }
-
-  @media screen and (min-width: 768px) {
-    .SignImgButle {
-      width: 736px;
-      height: 548px;
-    }
+  @media (max-width: 480px) {
+    width: 280px;
+    height: 210px;
+    margin-top: 394px;
+    margin-left: 20px;
   }
-
-  @media screen and (min-width: 480px) {
-    .SignImgBubble {
-      width: 320px;
-      height: 680px;
-    }
-  }
-  @media screen and (min-width: 480px) {
-    .SignImgButle {
-      width: 280px;
-      height: 210px;
-    }
-  } */
 `;
 
 export const SignUpContainer = styled.div`
@@ -50,10 +50,37 @@ export const SignUpContainer = styled.div`
   .sign-up-forms-container {
     padding: 148px 198px 30px 822px;
   }
+  @media (max-width: 768px) {
+    .sign-up-forms-container {
+      padding: 40px 368px 172px 32px;
+    }
+  }
+  @media (max-width: 480px) {
+    .sign-up-forms-container {
+      padding: 28px 20px 476px 20px;
+    }
+  }
+  .aboba {
+    width: 384px;
+    height: 404px;
+  }
+
+  @media (max-width: 768px) {
+    .aboba {
+      width: 336px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .aboba {
+      width: 280px;
+      height: 396px;
+    }
+  }
 
   .sign-up-forms-container h2 {
     margin-bottom: 16px;
-    width: 384px;
+    width: 100%;
     font-size: 26px;
     font-style: normal;
     font-weight: 500;
@@ -74,7 +101,7 @@ export const SignUpContainer = styled.div`
     margin-bottom: 16px;
   }
   .sign-up-link {
-    width: 384px;
+    width: 100%;
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -89,7 +116,7 @@ export const SignStyledLabel = styled.label`
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 384px;
+  width: 100%
   margin-bottom: 8px;
   font-size: 18px;
   font-style: normal;
@@ -99,7 +126,7 @@ export const SignStyledLabel = styled.label`
 `;
 
 export const SignStyledInput = styled.input`
-  width: 384px;
+  width: 100%;
   border-radius: 6px;
   border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
   display: flex;
