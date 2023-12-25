@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 import {
   SignUpContainer,
   EyeSlashIcon,
@@ -18,6 +19,15 @@ export const SignUpForm = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const [iconStatus, setIconStatus] = useState(false);
+
+  const linkClick = e => {};
+  useEffect(() => {
+    validatePassword();
+  }, [password]);
+
+  useEffect(() => {
+    validateConfirmPassword();
+  }, [confirmPassword]);
   const validateEmail = () => {
     // console.log(email);
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
@@ -28,15 +38,15 @@ export const SignUpForm = () => {
     }
   };
   const validatePassword = () => {
-    if (password.length < 8) {
+    if (password && password.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
     } else {
       setPasswordError('');
     }
   };
   const validateConfirmPassword = () => {
-    if (confirmPassword !== password) {
-      setConfirmPasswordError('Paswords do not match');
+    if (password && confirmPassword && confirmPassword !== password) {
+      setConfirmPasswordError('Passwords do not match');
     } else {
       setConfirmPasswordError('');
     }
@@ -67,8 +77,6 @@ export const SignUpForm = () => {
   };
 
   const buttonDisabled = emailError || passwordError || confirmPasswordError;
-
-  const linkClick = e => {};
 
   return (
     <>
