@@ -1,8 +1,4 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { Formik } from 'formik';
-
 import {
   SignUpContainer,
   EyeSlashIcon,
@@ -13,60 +9,66 @@ import {
 } from './SignUpForm.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
-const ValidationInput = values => {
-  const errors = {};
-
-  if (!values.email) {
-    errors.email = 'This field is required';
-  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)) {
-    errors.email = 'Enter a valid Email';
-    toast.error('Email must contain the "@" symbol');
-  }
-
-  if (!values.password) {
-    errors.password = 'This field is required';
-  } else if (values.password.length < 8) {
-    errors.password = 'Password must be at least 8 characters long';
-  }
-
-  if (!values.confirmPassword) {
-    errors.confirmPassword = 'This field is required';
-  } else if (values.confirmPassword.length < 8) {
-    errors.confirmPassword = 'Password must be at least 8 characters long';
-  } else if (values.password !== values.confirmPassword) {
-    errors.confirmPassword = 'Passwords do not match';
-    toast.error('Please, enter correct password');
-  }
-
-  return errors;
-};
-
 export const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const [iconStatus, setIconStatus] = useState(false);
-  // console.log(iconStatus);
+  const validateEmail = () => {
+    // console.log(email);
+    const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setEmailError('please enter a valid email address');
+    } else {
+      setEmailError('');
+    }
+  };
+  const validatePassword = () => {
+    if (password.length < 8) {
+      setPasswordError('Password must be at least 8 characters long');
+    } else {
+      setPasswordError('');
+    }
+  };
+  const validateConfirmPassword = () => {
+    if (confirmPassword !== password) {
+      setConfirmPasswordError('Paswords do not match');
+    } else {
+      setConfirmPasswordError('');
+    }
+  };
+  const handleEmailChange = e => {
+    setEmail(e.target.value);
+    validateEmail();
+    // console.log(e.target.value);
+  };
 
-  const handleInputChange = e => {
-    console.log('inputChange');
+  const handlePasswordChange = e => {
+    setPassword(e.target.value);
+    validatePassword();
+    // console.log(e.target.value);
+  };
+  const handleConfirmPasswordChange = e => {
+    setConfirmPassword(e.target.value);
+    validateConfirmPassword();
+    // console.log(e.target.value);
   };
 
   const iconClick = e => {
     iconStatus ? setIconStatus(false) : setIconStatus(true);
-    console.log('click');
-    console.log(iconStatus);
   };
 
   const buttonClick = e => {
-    console.log('clickMyBut');
+    console.log('send request');
   };
 
-  const linkClick = e => {
-    console.log('clickMyLink');
-  };
+  const buttonDisabled = emailError || passwordError || confirmPasswordError;
+
+  const linkClick = e => {};
 
   return (
     <>
@@ -100,28 +102,40 @@ export const SignUpForm = () => {
       </picture>
       <SignUpContainer>
         <div className="sign-up-forms-container">
-          <div className="aboba">
+          <div className="adaptation-container">
             <h2>Sign Up</h2>
             <form>
               <div className="sign-up-form-container">
                 <SignStyledLabel>
                   Enter your email
                   <SignStyledInput
-                    onChange={handleInputChange}
+                    className={emailError ? 'input-with-error' : null}
+                    onChange={handleEmailChange}
                     placeholder="E-mail"
                     type="email"
+                    value={email}
                   />
+                  {emailError && (
+                    <span className="sign-up-error-message">{emailError}</span>
+                  )}
                 </SignStyledLabel>
               </div>
               <div className="sign-up-form-container">
                 <SignStyledLabel>
                   Enter your password
                   <SignStyledInput
-                    onChange={handleInputChange}
+                    className={passwordError ? 'input-with-error' : null}
+                    onChange={handlePasswordChange}
                     autoComplete="off"
                     type={iconStatus ? 'text' : 'password'}
                     placeholder="Password"
+                    value={password}
                   />
+                  {passwordError && (
+                    <span className="sign-up-error-message">
+                      {passwordError}
+                    </span>
+                  )}
                   {iconStatus === false ? (
                     <EyeSlashIcon onClick={iconClick}>
                       <use href={`${sprite}#icon-to-hide`}></use>
@@ -137,11 +151,18 @@ export const SignUpForm = () => {
                 <SignStyledLabel>
                   Repeat password
                   <SignStyledInput
-                    onChange={handleInputChange}
+                    className={confirmPasswordError ? 'input-with-error' : null}
+                    onChange={handleConfirmPasswordChange}
                     autoComplete="off"
                     type={iconStatus ? 'text' : 'password'}
                     placeholder="Repeat password"
+                    value={confirmPassword}
                   />
+                  {confirmPasswordError && (
+                    <span className="sign-up-error-message">
+                      {confirmPasswordError}
+                    </span>
+                  )}
                   {iconStatus === false ? (
                     <EyeSlashIcon onClick={iconClick}>
                       <use href={`${sprite}#icon-to-hide`}></use>
@@ -156,8 +177,13 @@ export const SignUpForm = () => {
             </form>
             <button
               onClick={buttonClick}
-              type="button"
-              className="sign-up-button"
+              type="submit"
+              className={
+                buttonDisabled
+                  ? 'sign-up-button sign-up-button-disabled'
+                  : 'sign-up-button'
+              }
+              disabled={buttonDisabled}
             >
               Sign Up
             </button>

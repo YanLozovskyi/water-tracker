@@ -60,19 +60,19 @@ export const SignUpContainer = styled.div`
       padding: 28px 20px 476px 20px;
     }
   }
-  .aboba {
+  .adaptation-container {
     width: 384px;
     height: 404px;
   }
 
   @media (max-width: 768px) {
-    .aboba {
+    .adaptation-container {
       width: 336px;
     }
   }
 
   @media (max-width: 480px) {
-    .aboba {
+    .adaptation-container {
       width: 280px;
       height: 396px;
     }
@@ -100,6 +100,10 @@ export const SignUpContainer = styled.div`
     background-color: ${props => props.theme.color.accent};
     margin-bottom: 16px;
   }
+
+  .sign-up-button-disabled {
+    background-color: ${props => props.theme.color.secondaryPowderBlue};
+  }
   .sign-up-link {
     width: 100%;
     font-size: 16px;
@@ -111,12 +115,19 @@ export const SignUpContainer = styled.div`
       color: ${props => props.theme.color.secondaryYellow};
     }
   }
+  .input-with-error {
+    color: red;
+    border: 1px solid ${props => props.theme.color.secondaryRed};
+  }
+  .sign-up-error-message {
+    color: red;
+  }
 `;
 export const SignStyledLabel = styled.label`
   display: flex;
   flex-direction: column;
   position: relative;
-  width: 100%
+  width: 100%;
   margin-bottom: 8px;
   font-size: 18px;
   font-style: normal;
