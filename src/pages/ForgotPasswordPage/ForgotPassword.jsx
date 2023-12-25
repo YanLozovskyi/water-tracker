@@ -1,10 +1,8 @@
-import { ForgotPasswordForm } from 'components';
+import { ForgotPasswordForm, Section } from 'components';
 
 const ForgotPassword = () => {
   return (
-    <>
-      <ForgotPasswordForm />
-    </>
+    <Section>  <ForgotPasswordForm /></Section>
   );
 };
 

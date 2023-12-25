@@ -1,3 +1,19 @@
+import { Container, Logo, UserLogo, UserAuth } from 'components';
+import { ContainerHeader } from './Header.styled';
+import { useSelector } from 'react-redux';
+import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
+
 export const Header = () => {
-  return <div>Logo</div>;
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  // const isLoggedIn = true;
+  return (
+    <header>
+      <Container>
+        <ContainerHeader>
+          <Logo />
+          {isLoggedIn ? <UserLogo /> : <UserAuth />}
+        </ContainerHeader>
+      </Container>
+    </header>
+  );
 };
