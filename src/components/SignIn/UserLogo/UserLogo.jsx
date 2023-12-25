@@ -6,12 +6,15 @@ import {
   UserModalIcon,
   UserAvatar,
   UserDefaultAvatar,
+  UserLogoTitle,
+  UserLogoContainer,
 } from './UserLogo.styled';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/authSelectors';
 
 export const UserLogo = () => {
-  const [userName, setUserName] = useState('');
-  const [userAvatar, setUserAvatar] = useState('');
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  const { userName, avatarURL } = useSelector(selectUser);
 
   const showModal = () => {
     setModalIsOpen(!modalIsOpen);
@@ -20,10 +23,10 @@ export const UserLogo = () => {
   const firstLetter = userName ? userName.charAt(0).toUpperCase() : 'V';
 
   const getUserInfo = () => {
-    if (userName && userAvatar) {
+    if (userName && avatarURL) {
       return {
         name: userName,
-        avatar: userAvatar,
+        avatar: avatarURL,
       };
     } else if (userName) {
       return {
@@ -41,10 +44,10 @@ export const UserLogo = () => {
   const { name, avatar } = getUserInfo();
 
   return (
-    <div>
+    <UserLogoContainer>
+      <UserLogoTitle>{name}</UserLogoTitle>
       <UserLogoBtn onClick={showModal}>
-        <p>{name}</p>
-        {userAvatar ? (
+        {avatarURL ? (
           <UserAvatar src={avatar} alt="" />
         ) : (
           <UserDefaultAvatar>{avatar}</UserDefaultAvatar>
@@ -54,6 +57,6 @@ export const UserLogo = () => {
         </UserModalIcon>
       </UserLogoBtn>
       {modalIsOpen && <UserLogoModal onClose={showModal} />}
-    </div>
+    </UserLogoContainer>
   );
 };
