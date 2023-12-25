@@ -141,13 +141,16 @@ export const MonthStatsTable = () => {
           </ButtonPaginator>
         </Paginator>
       </HeaderMonth>
+
       {selectedDayStats && (
-        <DaysGeneralStats day={selectedDayStats.day} stats={selectedDayStats} />
+        <DaysGeneralStats day={selectedDayStats.day} month={selectedMonth} stats={selectedDayStats} />
       )}
+     
 
       <DaysList>
         {daysWithData.map(({ day, percentage, isHighlighted }) => (
-          <div key={day}>
+          <div  key={day}>
+      
             <DaysPercentage>
               <DaysButton
                 onClick={() => onDayClick(day)}
