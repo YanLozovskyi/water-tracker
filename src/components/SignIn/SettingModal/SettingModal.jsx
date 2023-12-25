@@ -2,6 +2,22 @@ import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { BaseModalWindow } from 'components';
+import {
+  DownloadWrap,
+  FormText,
+  HiddenInput,
+  IconDownload,
+  StyledLabel,
+  DownloadBtn,
+  DownloadBtnText,
+  FormField,
+  GenderText,
+  RadioBtn,
+  RadioBtnWrap,
+  RadioBtnText,
+  RadioBtnLabel,
+  Input,
+} from './SettingModal.styled';
 
 const defaultAvatar = 'src/assets/images/default_avatar_to_download.jpg';
 
@@ -18,7 +34,7 @@ export const SettingModal = ({ onClose }) => {
 
   const filePicker = useRef(null);
 
-  const handleDownload = () => {
+  const handleDownloadAvatar = () => {
     filePicker.current.click();
   };
 
@@ -45,63 +61,70 @@ export const SettingModal = ({ onClose }) => {
         <div>
           {
             <form>
-              <div>
-                <p>Your photo</p>
-                {
-                  <img
-                    src={avatar ? avatar : defaultAvatar}
-                    alt="user avatar"
-                    width="80px"
-                    height="80px"
-                  />
-                }
+              <FormField>
+                <FormText>Your photo</FormText>
+                <DownloadWrap>
+                  {
+                    <img
+                      src={avatar ? avatar : defaultAvatar}
+                      alt="user avatar"
+                      width="80px"
+                      height="80px"
+                    />
+                  }
 
-                <label>
-                  <input
-                    ref={filePicker}
-                    type="file"
-                    name="avatar"
-                    accept="image/png, image/jpeg"
-                    onChange={event => {
-                      if (event.target.files && event.target.files.length > 0) {
-                        setFiles(event.target.files);
-                      }
-                    }}
-                  />
-                  <button type="button" onClick={handleDownload}>
-                    <svg>
-                      <use href={`${sprite}#icon-arrow-up`}></use>
-                    </svg>
-                    <span>Upload a photo</span>
-                  </button>
-                </label>
-              </div>
-              <div>
-                <p>Your gender identity</p>
-                <label>
-                  Girl
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Girl"
-                    checked={gender === 'Girl'}
-                    onChange={event => setGender(event.target.value)}
-                  />
-                </label>
-                <label>
-                  Man
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Man"
-                    checked={gender === 'Man'}
-                    onChange={event => setGender(event.target.value)}
-                  />
-                </label>
-              </div>
-              <div>
-                <label htmlFor="username">Your name</label>
-                <input
+                  <label>
+                    <HiddenInput
+                      ref={filePicker}
+                      type="file"
+                      name="avatar"
+                      accept="image/png, image/jpeg"
+                      onChange={event => {
+                        if (
+                          event.target.files &&
+                          event.target.files.length > 0
+                        ) {
+                          setFiles(event.target.files);
+                        }
+                      }}
+                    />
+                    <DownloadBtn type="button" onClick={handleDownloadAvatar}>
+                      <IconDownload>
+                        <use href={`${sprite}#icon-arrow-up`}></use>
+                      </IconDownload>
+                      <DownloadBtnText>Upload a photo</DownloadBtnText>
+                    </DownloadBtn>
+                  </label>
+                </DownloadWrap>
+              </FormField>
+              <FormField>
+                <GenderText>Your gender identity</GenderText>
+                <RadioBtnWrap>
+                  <RadioBtnLabel>
+                    <RadioBtn
+                      type="radio"
+                      name="gender"
+                      value="Girl"
+                      checked={gender === 'Girl'}
+                      onChange={event => setGender(event.target.value)}
+                    />
+                    <RadioBtnText>Girl</RadioBtnText>
+                  </RadioBtnLabel>
+                  <RadioBtnLabel>
+                    <RadioBtn
+                      type="radio"
+                      name="gender"
+                      value="Man"
+                      checked={gender === 'Man'}
+                      onChange={event => setGender(event.target.value)}
+                    />
+                    <RadioBtnText>Man</RadioBtnText>
+                  </RadioBtnLabel>
+                </RadioBtnWrap>
+              </FormField>
+              <FormField>
+                <StyledLabel htmlFor="username">Your name</StyledLabel>
+                <Input
                   type="text"
                   id="username"
                   name="username"
@@ -109,10 +132,10 @@ export const SettingModal = ({ onClose }) => {
                   placeholder={username}
                   onChange={event => setUserName(event.target.value)}
                 />
-              </div>
-              <div>
-                <label htmlFor="email">E-mail</label>
-                <input
+              </FormField>
+              <FormField>
+                <StyledLabel htmlFor="email">E-mail</StyledLabel>
+                <Input
                   type="email"
                   id="email"
                   name="email"
@@ -120,8 +143,8 @@ export const SettingModal = ({ onClose }) => {
                   placeholder={email}
                   onChange={event => setEmail(event.target.value)}
                 />
-              </div>
-              <p>Password</p>
+              </FormField>
+              <FormText>Password</FormText>
               <div>
                 <label htmlFor="oldPassword">Outdated password:</label>
                 <div>
