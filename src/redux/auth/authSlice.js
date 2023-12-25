@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  editUserInfoThunk,
   logInThunk,
   logOutThunk,
   refreshUserThunk,
@@ -12,6 +13,7 @@ import {
   handleRefreshFulfield,
   handleRefreshPending,
   handleRefreshReject,
+  handlerEditUserInfo,
   handlerUpdateAvatar,
 } from './handlers';
 
@@ -38,6 +40,7 @@ const authSlice = createSlice({
       .addCase(logOutThunk.fulfilled, handleLogout)
       .addCase(updateAvatarThunk.fulfilled, handlerUpdateAvatar)
       .addCase(refreshUserThunk.fulfilled, handleRefreshFulfield)
+      .addCase(editUserInfoThunk.fulfilled, handlerEditUserInfo)
       .addCase(refreshUserThunk.pending, handleRefreshPending)
       .addCase(refreshUserThunk.rejected, handleRefreshReject);
   },
