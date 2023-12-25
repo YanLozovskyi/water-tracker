@@ -1,5 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { logout, refreshUser, signin, signup, updateAvatar } from '../Api/api';
+import {
+  editUserInfo,
+  logout,
+  refreshUser,
+  signin,
+  signup,
+  updateAvatar,
+} from '../Api/api';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
@@ -71,6 +78,18 @@ export const updateAvatarThunk = createAsyncThunk(
     try {
       const avatarURL = await updateAvatar(newPhotoFile);
       return avatarURL;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const editUserInfoThunk = createAsyncThunk(
+  'user/edit',
+  async (body, { rejectWithValue }) => {
+    try {
+      const data = await editUserInfo(body);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
