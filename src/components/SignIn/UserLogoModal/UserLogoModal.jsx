@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { SettingModal } from '../SettingModal/SettingModal';
+import { UserLogoutModal } from '../UserLogoutModal/UserLogoutModal';
 import {
   IconSettings,
   StyledBtn,
@@ -39,6 +40,7 @@ export const UserLogoModal = ({ onClose }) => {
               </IconSettings>
               <StyledBtn type="button" onClick={openModal}>
                 Log out
+                {isModalOpen && <UserLogoutModal onClose={closeModal} />}
               </StyledBtn>
             </StyledListItem>
           </ul>
