@@ -26,8 +26,14 @@ export const signin = async body => {
 };
 
 export const logout = async () => {
-  const { data } = await axios.post('/auth/logout');
+  await axios.post('/auth/logout');
   token.unset();
+};
+
+export const refreshUser = async token => {
+  token.set(token);
+  const { data } = await axios.get('/user/current');
+  return data;
 };
 
 // User
@@ -35,7 +41,7 @@ export const logout = async () => {
 export const updateAvatar = async newPhotoFile => {
   const {
     data: { avatarURL },
-  } = await axios.patch('/users/avatars', newPhotoFile, {
+  } = await axios.post('/user/avatar', newPhotoFile, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
