@@ -1,17 +1,20 @@
 import styled from '@emotion/styled';
 
+import { Section } from 'components';
+import imgHomeDesk1x from '../../assets/images/background/homePage/desktop/bubbleDesk.png';
+import imgHomeDesk2x from '../../assets/images/background/homePage/desktop/bubbleDesk@2x.png';
 import imgHomeMob1x from '../../assets/images/background/homePage/mobile/bubbleMob.png';
 import imgHomeMob2x from '../../assets/images/background/homePage/mobile/bubbleMob@2x.png';
 import imgHomeTabl1x from '../../assets/images/background/homePage/tablet/bubbleTablet.png';
 import imgHomeTabl2x from '../../assets/images/background/homePage/tablet/bubbleTablet@2x.png';
-import imgHomeDesk1x from '../../assets/images/background/homePage/desktop/bubbleDesk.png';
-import imgHomeDesk2x from '../../assets/images/background/homePage/desktop/bubbleDesk@2x.png';
+
+export const HomeSection = styled(Section)`background-color: black;`
 
 export const BoxHome = styled.div`
   background-position: center center;
   background-image: -webkit-image-set(
     url(${imgHomeMob1x}) 1x,
-    url(${imgHomeMob2x}) 2x
+    url(${imgHomeMob2x}) 2xf
   );
   background-size: contain;
   background-repeat: no-repeat;
@@ -35,5 +38,9 @@ export const BoxHome = styled.div`
     display: flex;
     /* flex-direction: row;
     flex-wrap: wrap; */
+  }
+
+  &.your-custom-class {
+    background-color: black;
   }
 `;
