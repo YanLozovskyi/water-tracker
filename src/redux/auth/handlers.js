@@ -27,3 +27,7 @@ export const handleRefreshReject = state => {
 export const handlerUpdateAvatar = (state, { payload }) => {
   state.user.avatarURL = payload;
 };
+
+export const handlerEditUserInfo = (state, { payload }) => {
+  state.user = payload;
+};
