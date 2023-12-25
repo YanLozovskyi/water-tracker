@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { BaseModalWindow } from 'components';
@@ -15,6 +15,12 @@ export const SettingModal = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+
+  const filePicker = useRef(null);
+
+  const handleDownload = () => {
+    filePicker.current.click();
+  };
 
   const handlePasswordVisibility = () => {
     setIsPasswordShown(previsPasswordShown => !previsPasswordShown);
@@ -49,11 +55,11 @@ export const SettingModal = ({ onClose }) => {
                     height="80px"
                   />
                 }
-                <label htmlFor="avatar">Upload a photo</label>
-                <div>
+
+                <label>
                   <input
+                    ref={filePicker}
                     type="file"
-                    id="avatar"
                     name="avatar"
                     accept="image/png, image/jpeg"
                     onChange={event => {
@@ -62,10 +68,13 @@ export const SettingModal = ({ onClose }) => {
                       }
                     }}
                   />
-                  <svg>
-                    <use href={`${sprite}#icon-arrow-up`}></use>
-                  </svg>
-                </div>
+                  <button type="button" onClick={handleDownload}>
+                    <svg>
+                      <use href={`${sprite}#icon-arrow-up`}></use>
+                    </svg>
+                    <span>Upload a photo</span>
+                  </button>
+                </label>
               </div>
               <div>
                 <p>Your gender identity</p>
