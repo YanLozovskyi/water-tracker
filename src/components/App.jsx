@@ -5,6 +5,8 @@ import RestrictedRoute from './RestrictedRoute';
 import { Loader } from 'components';
 
 import SharedLayout from './SharedLayout';
+// import { useSelector } from 'react-redux';
+// import { selectIsRefreshing } from '../redux/auth/authSelectors';
 
 const WelcomePage = lazy(() => import('../pages/Welcome/Welcome'));
 const HomePage = lazy(() => import('../pages/Home/Home'));
@@ -16,6 +18,7 @@ const ForgotPassPage = lazy(() =>
 );
 
 const App = () => {
+  // const isRefreshing = useSelector(selectIsRefreshing)
   const isRefreshing = false;
 
   return !isRefreshing ? (

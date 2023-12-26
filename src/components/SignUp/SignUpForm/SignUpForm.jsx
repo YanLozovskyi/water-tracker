@@ -1,26 +1,28 @@
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
-  SignUpContainer,
   EyeSlashIcon,
-  SignStyledLabel,
-  SignStyledInput,
   SignImgBubble,
   SignImgButle,
+  SignStyledInput,
+  SignStyledLabel,
+  SignUpContainer,
+  SignUpLink
 } from './SignUpForm.styled';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+import { registerThunk } from '../../../redux/auth/authOperations';
 
 export const SignUpForm = () => {
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const [iconStatus, setIconStatus] = useState(false);
 
-  const linkClick = e => {};
   useEffect(() => {
     validatePassword();
   }, [password]);
@@ -28,6 +30,7 @@ export const SignUpForm = () => {
   useEffect(() => {
     validateConfirmPassword();
   }, [confirmPassword]);
+
   const validateEmail = () => {
     // console.log(email);
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
@@ -37,6 +40,7 @@ export const SignUpForm = () => {
       setEmailError('');
     }
   };
+
   const validatePassword = () => {
     if (password && password.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
@@ -44,6 +48,7 @@ export const SignUpForm = () => {
       setPasswordError('');
     }
   };
+
   const validateConfirmPassword = () => {
     if (password && confirmPassword && confirmPassword !== password) {
       setConfirmPasswordError('Passwords do not match');
@@ -51,29 +56,35 @@ export const SignUpForm = () => {
       setConfirmPasswordError('');
     }
   };
-  const handleEmailChange = e => {
-    setEmail(e.target.value);
-    validateEmail();
-    // console.log(e.target.value);
+
+  const handleChange = ({ target: { name, value } }) => {
+    switch (name) {
+      case 'email':
+        setEmail(value);
+        validateEmail();
+        return;
+      case 'password':
+        setPassword(value);
+        validatePassword();
+        return;
+      case 'confirmPassword':
+        setConfirmPassword(value);
+        validateConfirmPassword();
+        return;
+      default:
+        return;
+    }
   };
 
-  const handlePasswordChange = e => {
-    setPassword(e.target.value);
-    validatePassword();
-    // console.log(e.target.value);
-  };
-  const handleConfirmPasswordChange = e => {
-    setConfirmPassword(e.target.value);
-    validateConfirmPassword();
-    // console.log(e.target.value);
-  };
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(registerThunk({ email, password }));
+    setEmail('');
+    setPassword('');
+  }
 
   const iconClick = e => {
     iconStatus ? setIconStatus(false) : setIconStatus(true);
-  };
-
-  const buttonClick = e => {
-    console.log('send request');
   };
 
   const buttonDisabled = emailError || passwordError || confirmPasswordError;
@@ -112,15 +123,16 @@ export const SignUpForm = () => {
         <div className="sign-up-forms-container">
           <div className="adaptation-container">
             <h2>Sign Up</h2>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="sign-up-form-container">
                 <SignStyledLabel>
                   Enter your email
                   <SignStyledInput
                     className={emailError ? 'input-with-error' : null}
-                    onChange={handleEmailChange}
+                    onChange={handleChange}
                     placeholder="E-mail"
                     type="email"
+                    name='email'
                     value={email}
                   />
                   {emailError && (
@@ -133,10 +145,11 @@ export const SignUpForm = () => {
                   Enter your password
                   <SignStyledInput
                     className={passwordError ? 'input-with-error' : null}
-                    onChange={handlePasswordChange}
+                    onChange={handleChange}
                     autoComplete="off"
                     type={iconStatus ? 'text' : 'password'}
                     placeholder="Password"
+                    name="password"
                     value={password}
                   />
                   {passwordError && (
@@ -160,10 +173,11 @@ export const SignUpForm = () => {
                   Repeat password
                   <SignStyledInput
                     className={confirmPasswordError ? 'input-with-error' : null}
-                    onChange={handleConfirmPasswordChange}
+                    onChange={handleChange}
                     autoComplete="off"
                     type={iconStatus ? 'text' : 'password'}
                     placeholder="Repeat password"
+                    name='confirmPassword'
                     value={confirmPassword}
                   />
                   {confirmPasswordError && (
@@ -181,27 +195,25 @@ export const SignUpForm = () => {
                     </EyeSlashIcon>
                   )}
                 </SignStyledLabel>
+                <button
+                  type="submit"
+                  className={
+                    buttonDisabled
+                      ? 'sign-up-button sign-up-button-disabled'
+                      : 'sign-up-button'
+                  }
+                  disabled={buttonDisabled}
+                >
+                  Sign Up
+                </button>
               </div>
             </form>
-            <button
-              onClick={buttonClick}
-              type="submit"
-              className={
-                buttonDisabled
-                  ? 'sign-up-button sign-up-button-disabled'
-                  : 'sign-up-button'
-              }
-              disabled={buttonDisabled}
-            >
-              Sign Up
-            </button>
-            <a
-              onClick={linkClick}
-              className="sign-up-link"
-              href="./src/components/Home/DailyNorma/DailyNorma.jsx"
+
+            <SignUpLink
+              to="/signin"
             >
               Sign in
-            </a>
+            </SignUpLink>
           </div>
         </div>
       </SignUpContainer>

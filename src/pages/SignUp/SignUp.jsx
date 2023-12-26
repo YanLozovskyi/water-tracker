@@ -1,7 +1,8 @@
-import { SignUpForm, Section } from "components";
+import { SignUpForm } from "components";
+import { SignUpSection } from "./SignUp.styled";
 
 const SignUp = () => {
-  return <Section> <SignUpForm /></Section>
+  return <SignUpSection><SignUpForm /></SignUpSection>
 };
 
 export default SignUp;
