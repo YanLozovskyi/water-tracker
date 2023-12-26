@@ -1,7 +1,6 @@
+import { SettingModal, UserLogoutModal } from 'components';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { SettingModal } from '../SettingModal/SettingModal';
-import { UserLogoutModal } from '../UserLogoutModal/UserLogoutModal';
 import {
   IconSettings,
   StyledBtn,
@@ -9,7 +8,7 @@ import {
   StyledLogoModal,
 } from './UserLogoModal.styled';
 
-export const UserLogoModal = ({ onClose }) => {
+export const UserLogoModal = () => {
   const [isFirstModalOpen, setFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setSecondModalOpen] = useState(false);
 
