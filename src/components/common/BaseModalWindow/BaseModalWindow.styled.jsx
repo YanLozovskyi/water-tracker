@@ -15,6 +15,10 @@ export const BaseModalStyled = styled.div`
   background: rgba(0, 0, 0, 0.8);
   z-index: 1;
 
+  @media (min-width: ${props => props.theme.breakpoint.mobile}) {
+    overflow-y: scroll;
+  }
+
   .modal-content {
     transform: translate(-50%, -50%);
     position: absolute;
@@ -34,6 +38,10 @@ export const BaseModalStyled = styled.div`
     @media (min-width: ${props => props.theme.breakpoint.tablet}) {
       max-width: 704px;
     }
+
+    /* @media (min-width: ${props => props.theme.breakpoint.desktop}) {
+      max-width: 1008px;
+    } */
   }
 
   .modal-header {
@@ -45,6 +53,11 @@ export const BaseModalStyled = styled.div`
     padding-right: 24px;
     padding-top: 32px;
     color: ${props => props.theme.color.black};
+
+    /* @media (min-width: ${props => props.theme.breakpoint.tablet}) {
+      padding-left: 24px;
+      padding-right: 24px;
+    } */
 
     h2 {
       font-weight: 500;
