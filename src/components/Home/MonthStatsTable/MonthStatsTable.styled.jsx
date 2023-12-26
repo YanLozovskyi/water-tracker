@@ -1,25 +1,25 @@
 import styled from '@emotion/styled';
 
-export const BoxMonth = styled.div`
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-bottom: 24px;
-  padding-top: 24px;
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
-  background: ${props => props.theme.color.secondaryWhite};
-  max-width: 280px;
+// export const BoxMonth = styled.div`
+//   padding-left: 8px;
+//   padding-right: 8px;
+//   padding-bottom: 24px;
+//   padding-top: 24px;
+//   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+//   background: ${props => props.theme.color.secondaryWhite};
+//   max-width: 280px;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 32px;
-    max-width: 704px;
-  }
+//   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+//     padding-left: 24px;
+//     padding-right: 24px;
+//     padding-bottom: 32px;
+//     max-width: 704px;
+//   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    max-width: 592px;
-  }
-`;
+//   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+//     max-width: 592px;
+//   }
+// `;
 
 export const HeaderMonth = styled.div`
   display: flex;

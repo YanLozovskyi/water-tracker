@@ -5,16 +5,20 @@ import {
   WaterRatioPanel,
 } from 'components';
 
-import { BoxHome, HomeSection } from './Home.styled';
+import { BoxHome, HomeSection, HomeStatistics } from './Home.styled';
 
 const Home = () => {
   return (
     <HomeSection>
       <BoxHome>
-        <DailyNorma />
-        <WaterRatioPanel />
-        <TodayWaterList />
-        <MonthStatsTable />
+        <div>
+          <DailyNorma />
+          <WaterRatioPanel />
+        </div>
+        <HomeStatistics>
+          <TodayWaterList />
+          <MonthStatsTable />
+        </HomeStatistics>
       </BoxHome>
     </HomeSection>
   );
