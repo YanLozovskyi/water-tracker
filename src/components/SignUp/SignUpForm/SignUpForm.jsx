@@ -11,6 +11,7 @@ import {
   SignUpLink
 } from './SignUpForm.styled';
 import { registerThunk } from '../../../redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -20,19 +21,19 @@ export const SignUpForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
-
   const [iconStatus, setIconStatus] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    validatePassword();
+    validatePassword(password);
   }, [password]);
 
   useEffect(() => {
-    validateConfirmPassword();
-  }, [confirmPassword]);
+    validateConfirmPassword(confirmPassword, password);
+  }, [confirmPassword, password]);
 
   const validateEmail = () => {
-    // console.log(email);
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setEmailError('please enter a valid email address');
@@ -41,7 +42,7 @@ export const SignUpForm = () => {
     }
   };
 
-  const validatePassword = () => {
+  const validatePassword = (password) => {
     if (password && password.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
     } else {
@@ -49,7 +50,7 @@ export const SignUpForm = () => {
     }
   };
 
-  const validateConfirmPassword = () => {
+  const validateConfirmPassword = (confirmPassword, password) => {
     if (password && confirmPassword && confirmPassword !== password) {
       setConfirmPasswordError('Passwords do not match');
     } else {
@@ -78,9 +79,10 @@ export const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(registerThunk({ email, password }));
+    dispatch(registerThunk({ email, password })).then((data) => { if (!data.error) navigate('/signin'); });
     setEmail('');
     setPassword('');
+    setConfirmPassword('');
   }
 
   const iconClick = e => {

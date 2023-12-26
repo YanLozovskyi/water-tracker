@@ -12,7 +12,7 @@ export const registerThunk = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await signup(credentials);
+      const data = await signup(credentials);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -24,7 +24,7 @@ export const logInThunk = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await signin(credentials);
+      const data = await signin(credentials);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
