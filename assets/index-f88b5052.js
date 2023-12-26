@@ -761,6 +761,7 @@ template {
   flex-direction: column;
   margin-top: 24px;
   margin-bottom: 16px;
+  position: relative;
 `,Y_=C.div`
   background-position: center;
   background-image: -webkit-image-set(
@@ -777,7 +778,6 @@ template {
       url(${e_}) 1x,
       url(${t_}) 2x
     );
-    position: relative;
     height: 386px;
   }
 
@@ -786,7 +786,7 @@ template {
       url(${n_}) 1x,
       url(${r_}) 2x
     );
-    width: 680px;
+    width: 592px;
     height: 548px;
   }
 `,q_=C.div`
@@ -835,8 +835,8 @@ template {
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     position: absolute;
-    top: 25%;
-    left: 15%;
+    top: 12%;
+    left: 12%;
     transform: translate(-50%, -50%);
     z-index: 1;
 
@@ -846,9 +846,7 @@ template {
   }
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
-    top: 27%;
-    left: 14%;
-    transform: translate(-50%, -50%);
+    top: 20%;
     max-width: 180px;
   }
 `,o_=C.div`
@@ -1048,17 +1046,17 @@ color: ${({theme:e})=>e.color.accent};
   padding-top: 24px;
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   background: ${e=>e.theme.color.secondaryWhite};
-  max-width: 280px;
+  width: 280px;
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 32px;
-    max-width: 704px;
+    width: 704px;
   }
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
-    max-width: 592px;
+    width: 592px;
   }
 `,rO=C.div`
   display: flex;
@@ -1935,4 +1933,4 @@ color: ${({theme:e})=>e.color.accent};
 `,FO=C.ul`
   list-style-type: none;
   padding-left: 0;
-`,z_="modulepreload",I_=function(e){return"/water-tracker/"+e},im={},Vr=function(t,n,r){if(!n||n.length===0)return t();const o=document.getElementsByTagName("link");return Promise.all(n.map(i=>{if(i=I_(i),i in im)return;im[i]=!0;const a=i.endsWith(".css"),l=a?'[rel="stylesheet"]':"";if(!!r)for(let f=o.length-1;f>=0;f--){const c=o[f];if(c.href===i&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${i}"]${l}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":z_,a||(u.as="script",u.crossOrigin=""),u.href=i,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${i}`)))})})).then(()=>t()).catch(i=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=i,window.dispatchEvent(a),!a.defaultPrevented)throw i})},D_=({component:e,redirectTo:t="/home"})=>S.jsx(e,{}),Ai=({component:e,redirectTo:t="/"})=>e,M_=()=>S.jsxs(S.Fragment,{children:[S.jsx(XP,{}),S.jsx("main",{children:S.jsx(b.Suspense,{fallback:S.jsx(Wv,{}),children:S.jsx($P,{})})})]}),F_=b.lazy(()=>Vr(()=>import("./Welcome-0cbad4b8.js"),["assets/Welcome-0cbad4b8.js","assets/Section-31695169.js"])),U_=b.lazy(()=>Vr(()=>import("./Home-8144416b.js"),["assets/Home-8144416b.js","assets/Section-31695169.js"])),B_=b.lazy(()=>Vr(()=>import("./SignIn-6fd9cf33.js"),["assets/SignIn-6fd9cf33.js","assets/Section-31695169.js"])),W_=b.lazy(()=>Vr(()=>import("./SignUp-904ef97f.js"),["assets/SignUp-904ef97f.js","assets/Section-31695169.js"])),H_=b.lazy(()=>Vr(()=>import("./Error-6d43ce08.js"),["assets/Error-6d43ce08.js","assets/Section-31695169.js"])),V_=b.lazy(()=>Vr(()=>import("./ForgotPassword-70ca42b1.js"),["assets/ForgotPassword-70ca42b1.js","assets/Section-31695169.js"])),G_=()=>S.jsx(NP,{children:S.jsxs(sn,{path:"/",element:S.jsx(M_,{}),children:[S.jsx(sn,{index:!0,element:S.jsx(Ai,{component:S.jsx(F_,{}),redirectTo:"/home"})}),S.jsx(sn,{path:"home",element:S.jsx(D_,{component:U_})}),S.jsx(sn,{path:"signin",element:S.jsx(Ai,{component:S.jsx(B_,{}),redirectTo:"/home"})}),S.jsx(sn,{path:"signup",element:S.jsx(Ai,{component:S.jsx(W_,{}),redirectTo:"/home"})}),S.jsx(sn,{path:"forgot-password",element:S.jsx(Ai,{component:S.jsx(V_,{}),redirectTo:"/signin"})}),S.jsx(sn,{path:"*",element:S.jsx(H_,{})})]})}),K_=Is.createRoot(document.getElementById("root"));K_.render(S.jsx(Te.StrictMode,{children:S.jsxs($m,{theme:Wu,children:[S.jsx(Tm,{styles:z2}),S.jsx(vS,{store:_v,children:S.jsx(Gy,{loading:S.jsx(Wv,{}),persistor:R2,children:S.jsx(FP,{basename:"/water-tracker",children:S.jsx(G_,{})})})})]})}));export{PO as $,uO as A,LO as B,zl as C,Q_ as D,cO as E,pO as F,dO as G,CO as H,TO as I,fO as J,gO as K,FO as L,hO as M,mO as N,vO as O,RO as P,wO as Q,yO as R,SS as S,NO as T,xO as U,SO as V,OO as W,bO as X,aO as Y,kO as Z,EO as _,jO as a,_O as a0,h2 as a1,X2 as a2,$O as b,AO as c,zO as d,MO as e,IO as f,DO as g,q_ as h,f_ as i,S as j,Y_ as k,X_ as l,J_ as m,C as n,Z_ as o,tO as p,eO as q,b as r,gn as s,nO as t,hP as u,rO as v,iO as w,oO as x,lO as y,sO as z};
+`,z_="modulepreload",I_=function(e){return"/water-tracker/"+e},im={},Vr=function(t,n,r){if(!n||n.length===0)return t();const o=document.getElementsByTagName("link");return Promise.all(n.map(i=>{if(i=I_(i),i in im)return;im[i]=!0;const a=i.endsWith(".css"),l=a?'[rel="stylesheet"]':"";if(!!r)for(let f=o.length-1;f>=0;f--){const c=o[f];if(c.href===i&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${i}"]${l}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":z_,a||(u.as="script",u.crossOrigin=""),u.href=i,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${i}`)))})})).then(()=>t()).catch(i=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=i,window.dispatchEvent(a),!a.defaultPrevented)throw i})},D_=({component:e,redirectTo:t="/home"})=>S.jsx(e,{}),Ai=({component:e,redirectTo:t="/"})=>e,M_=()=>S.jsxs(S.Fragment,{children:[S.jsx(XP,{}),S.jsx("main",{children:S.jsx(b.Suspense,{fallback:S.jsx(Wv,{}),children:S.jsx($P,{})})})]}),F_=b.lazy(()=>Vr(()=>import("./Welcome-ab9b78b4.js"),["assets/Welcome-ab9b78b4.js","assets/Section-32efca98.js"])),U_=b.lazy(()=>Vr(()=>import("./Home-0cad3fa7.js"),["assets/Home-0cad3fa7.js","assets/Section-32efca98.js"])),B_=b.lazy(()=>Vr(()=>import("./SignIn-f15b1f07.js"),["assets/SignIn-f15b1f07.js","assets/Section-32efca98.js"])),W_=b.lazy(()=>Vr(()=>import("./SignUp-76171597.js"),["assets/SignUp-76171597.js","assets/Section-32efca98.js"])),H_=b.lazy(()=>Vr(()=>import("./Error-83281c1a.js"),["assets/Error-83281c1a.js","assets/Section-32efca98.js"])),V_=b.lazy(()=>Vr(()=>import("./ForgotPassword-6b93c3c3.js"),["assets/ForgotPassword-6b93c3c3.js","assets/Section-32efca98.js"])),G_=()=>S.jsx(NP,{children:S.jsxs(sn,{path:"/",element:S.jsx(M_,{}),children:[S.jsx(sn,{index:!0,element:S.jsx(Ai,{component:S.jsx(F_,{}),redirectTo:"/home"})}),S.jsx(sn,{path:"home",element:S.jsx(D_,{component:U_})}),S.jsx(sn,{path:"signin",element:S.jsx(Ai,{component:S.jsx(B_,{}),redirectTo:"/home"})}),S.jsx(sn,{path:"signup",element:S.jsx(Ai,{component:S.jsx(W_,{}),redirectTo:"/home"})}),S.jsx(sn,{path:"forgot-password",element:S.jsx(Ai,{component:S.jsx(V_,{}),redirectTo:"/signin"})}),S.jsx(sn,{path:"*",element:S.jsx(H_,{})})]})}),K_=Is.createRoot(document.getElementById("root"));K_.render(S.jsx(Te.StrictMode,{children:S.jsxs($m,{theme:Wu,children:[S.jsx(Tm,{styles:z2}),S.jsx(vS,{store:_v,children:S.jsx(Gy,{loading:S.jsx(Wv,{}),persistor:R2,children:S.jsx(FP,{basename:"/water-tracker",children:S.jsx(G_,{})})})})]})}));export{PO as $,uO as A,LO as B,zl as C,Q_ as D,cO as E,pO as F,dO as G,CO as H,TO as I,fO as J,gO as K,FO as L,hO as M,mO as N,vO as O,RO as P,wO as Q,yO as R,SS as S,NO as T,xO as U,SO as V,OO as W,bO as X,aO as Y,kO as Z,EO as _,jO as a,_O as a0,h2 as a1,X2 as a2,$O as b,AO as c,zO as d,MO as e,IO as f,DO as g,q_ as h,f_ as i,S as j,Y_ as k,X_ as l,J_ as m,C as n,Z_ as o,tO as p,eO as q,b as r,gn as s,nO as t,hP as u,rO as v,iO as w,oO as x,lO as y,sO as z};
