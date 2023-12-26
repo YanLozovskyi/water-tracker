@@ -7,17 +7,17 @@ import styled from '@emotion/styled';
 //   padding-top: 24px;
 //   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
 //   background: ${props => props.theme.color.secondaryWhite};
-//   max-width: 280px;
+//   width: 280px;
 
 //   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
 //     padding-left: 24px;
 //     padding-right: 24px;
 //     padding-bottom: 32px;
-//     max-width: 704px;
+//     width: 704px;
 //   }
 
 //   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-//     max-width: 592px;
+//     width: 592px;
 //   }
 // `;
 
@@ -123,9 +123,9 @@ export const DaysButton = styled.button`
   background-color: ${props => props.theme.color.white};
   border: 1px solid
     ${props =>
-      props.isHighlighted
-        ? props.theme.color.secondaryYellow
-        : props.theme.color.white};
+    props.isHighlighted
+      ? props.theme.color.secondaryYellow
+      : props.theme.color.white};
   color: ${props => props.theme.color.black};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
