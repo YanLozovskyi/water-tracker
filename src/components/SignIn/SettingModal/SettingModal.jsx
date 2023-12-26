@@ -30,6 +30,7 @@ import {
   DesktopPasswordWrap,
   LastFormField,
   GenderFormField,
+  SettingModalContent,
 } from './SettingModal.styled';
 
 const defaultAvatar = 'src/assets/images/default_avatar_to_download.jpg';
