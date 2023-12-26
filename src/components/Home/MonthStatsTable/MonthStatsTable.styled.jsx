@@ -7,17 +7,17 @@ export const BoxMonth = styled.div`
   padding-top: 24px;
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   background: ${props => props.theme.color.secondaryWhite};
-  max-width: 280px;
+  width: 280px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 32px;
-    max-width: 704px;
+    width: 704px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    max-width: 592px;
+    width: 592px;
   }
 `;
 

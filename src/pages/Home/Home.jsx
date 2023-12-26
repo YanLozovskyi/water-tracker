@@ -11,10 +11,14 @@ const Home = () => {
   return (
     <HomeSection>
       <BoxHome>
-        <DailyNorma />
-        <WaterRatioPanel />
-        <TodayWaterList />
-        <MonthStatsTable />
+        <div>
+          <DailyNorma />
+          <WaterRatioPanel />
+        </div>
+        <div>
+          <TodayWaterList />
+          <MonthStatsTable />
+        </div>
       </BoxHome>
     </HomeSection>
   );
