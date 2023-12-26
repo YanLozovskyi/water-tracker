@@ -24,15 +24,14 @@ export const SignUpForm = () => {
   const [iconStatus, setIconStatus] = useState(false);
 
   useEffect(() => {
-    validatePassword();
+    validatePassword(password);
   }, [password]);
 
   useEffect(() => {
-    validateConfirmPassword();
-  }, [confirmPassword]);
+    validateConfirmPassword(confirmPassword, password);
+  }, [confirmPassword, password]);
 
   const validateEmail = () => {
-    // console.log(email);
     const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       setEmailError('please enter a valid email address');
@@ -41,7 +40,7 @@ export const SignUpForm = () => {
     }
   };
 
-  const validatePassword = () => {
+  const validatePassword = (password) => {
     if (password && password.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
     } else {
@@ -49,7 +48,7 @@ export const SignUpForm = () => {
     }
   };
 
-  const validateConfirmPassword = () => {
+  const validateConfirmPassword = (confirmPassword, password) => {
     if (password && confirmPassword && confirmPassword !== password) {
       setConfirmPasswordError('Passwords do not match');
     } else {
