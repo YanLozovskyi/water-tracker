@@ -79,8 +79,13 @@ export const DailyNormaStyled = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
-    color: #8baeff;
+    color: ${props => props.theme.color.accent};
     background: transparent;
+
+    &:hover,
+    &:focus {
+      color: ${props => props.theme.color.secondaryYellow};
+    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -88,6 +93,7 @@ export const DailyNormaStyled = styled.div`
     top: 25%;
     left: 15%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 
     p {
       font-size: 24px;

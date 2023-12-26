@@ -12,6 +12,7 @@ import {
   InputRadio,
   Comment,
   BoxModal,
+  FormResult,
 } from './DailyNormaModal.styled';
 
 export const DailyNormaModal = ({ onClose }) => {
@@ -54,10 +55,12 @@ export const DailyNormaModal = ({ onClose }) => {
               </Paragraph>
             </Formula>
             <Comment>
-              <span>*</span> V is the volume of the water norm in liters per
-              day, M is your body weight, T is the time of active sports, or
-              another type of activity commensurate in terms of loads (in the
-              absence of these, you must set 0)
+              <p>
+                <span>*</span> V is the volume of the water norm in liters per
+                day, M is your body weight, T is the time of active sports, or
+                another type of activity commensurate in terms of loads (in the
+                absence of these, you must set 0)
+              </p>
             </Comment>
           </div>
         }
@@ -87,37 +90,37 @@ export const DailyNormaModal = ({ onClose }) => {
                   <span>For boy</span>
                 </label>
               </FormRadio>
-              <div className="form-group">
+              <div>
                 <Paragraph>Your weight in kilograms:</Paragraph>
                 <Input
-                  type="number"
+                  type="text"
                   placeholder="0"
                   value={weight}
                   onChange={e => setWeight(e.target.value)}
                 />
               </div>
-              <div className="form-group">
+              <div>
                 <Paragraph>
                   Time of active participation in sports or other activities
                   with a high physical load:
                 </Paragraph>
                 <Input
-                  type="number"
+                  type="text"
                   placeholder="0"
                   value={activityTime}
                   onChange={e => setActivityTime(e.target.value)}
                 />
               </div>
-              <div className="form-result">
+              <FormResult>
                 The required amount of water in liters per day:{' '}
-                <strong>{dailyIntake} L</strong>
-              </div>
-              <div className="form-group">
+                <strong>{dailyIntake}L</strong>
+              </FormResult>
+              <div>
                 <TitleModal>
                   Write down how much water you will drink:
                 </TitleModal>
                 <Input
-                  type="number"
+                  type="text"
                   placeholder="0"
                   value={intakeGoal}
                   onChange={e => setIntakeGoal(e.target.value)}
