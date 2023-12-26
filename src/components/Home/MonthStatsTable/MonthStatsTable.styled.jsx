@@ -1,26 +1,5 @@
 import styled from '@emotion/styled';
 
-// export const BoxMonth = styled.div`
-//   padding-left: 8px;
-//   padding-right: 8px;
-//   padding-bottom: 24px;
-//   padding-top: 24px;
-//   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
-//   background: ${props => props.theme.color.secondaryWhite};
-//   width: 280px;
-
-//   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-//     padding-left: 24px;
-//     padding-right: 24px;
-//     padding-bottom: 32px;
-//     width: 704px;
-//   }
-
-//   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-//     width: 592px;
-//   }
-// `;
-
 export const HeaderMonth = styled.div`
   display: flex;
   justify-content: space-between;
@@ -123,9 +102,9 @@ export const DaysButton = styled.button`
   background-color: ${props => props.theme.color.white};
   border: 1px solid
     ${props =>
-    props.isHighlighted
-      ? props.theme.color.secondaryYellow
-      : props.theme.color.white};
+      props.isHighlighted
+        ? props.theme.color.secondaryYellow
+        : props.theme.color.white};
   color: ${props => props.theme.color.black};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -133,6 +112,7 @@ export const DaysButton = styled.button`
     padding: 7px;
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+  &:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
 `;

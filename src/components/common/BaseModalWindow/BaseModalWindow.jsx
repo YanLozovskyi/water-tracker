@@ -12,7 +12,6 @@ import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export const BaseModalWindow = ({
   onShow = true,
-  type,
   children,
   title,
   onClose,
@@ -48,11 +47,7 @@ export const BaseModalWindow = ({
 
   return createPortal(
     <BaseModalStyled onClick={onClose} ref={backdropRef}>
-      <ModalContent
-        type={type}
-        onClick={e => e.stopPropagation()}
-        ref={modalContainerRef}
-      >
+      <ModalContent onClick={e => e.stopPropagation()} ref={modalContainerRef}>
         <ModalHeader>
           <h2>{title}</h2>
           <CloseButton onClick={onClose}>
