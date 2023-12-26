@@ -1,13 +1,10 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import sprite from 'src/assets/images/sprite/sprite.svg';
 import { DaysGeneralStats } from '../DaysGeneralStats/DaysGeneralStats';
 
 import {
   Paginator,
   ButtonPaginator,
-  IconPaginator,
   HeaderMonth,
-  BoxMonth,
   DaysList,
   DaysButton,
   DaysPercentage,
@@ -46,6 +43,7 @@ export const MonthStatsTable = () => {
   const [dailyStats, setDailyStats] = useState([]);
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [activeButton, setActiveButton] = useState(null);
 
   // Функція, яка повертає кількість днів у місяці
   const daysInMonth = month => {
@@ -72,12 +70,25 @@ export const MonthStatsTable = () => {
   // Функція для зміни місяця
   const changeMonth = direction => {
     const date = new Date(selectedMonth);
+
     if (direction === 'prev') {
       date.setMonth(date.getMonth() - 1);
     } else {
       date.setMonth(date.getMonth() + 1);
     }
-    setSelectedMonth(`${date.getFullYear()}-${date.getMonth() + 1}`);
+
+    const newMonth = `${date.getFullYear()}-${String(
+      date.getMonth() + 1,
+    ).padStart(2, '0')}`;
+    setSelectedMonth(newMonth);
+
+    // Перевіряємо, чи новий місяць є поточним місяцем
+    const currentMonth = getCurrentMonth();
+    if (newMonth === currentMonth) {
+      setActiveButton(null); // Скидаємо активну кнопку
+    } else {
+      setActiveButton(direction); // Встановлюємо активну кнопку
+    }
   };
 
   // Функція для завантаження даних за місяць
@@ -120,29 +131,36 @@ export const MonthStatsTable = () => {
   }, [dailyStats, selectedMonth]);
 
   return (
-    <BoxMonth>
+    <div>
       <HeaderMonth>
         <h2>Month</h2>
         <Paginator
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
-          <ButtonPaginator onClick={() => changeMonth('prev')}>
-            <IconPaginator>
-              <use href={`${sprite}#icon-solidL`}></use>
-            </IconPaginator>
+          <ButtonPaginator
+            onClick={() => changeMonth('prev')}
+            active={activeButton === 'next'}
+          >
+            &lt;
           </ButtonPaginator>
           <span>{formatMonth(selectedMonth)}</span>
           {isHovering && <Year>{selectedMonth.split('-')[0]}</Year>}
-          <ButtonPaginator onClick={() => changeMonth('next')}>
-            <IconPaginator>
-              <use href={`${sprite}#icon-solidR`}></use>
-            </IconPaginator>
+          <ButtonPaginator
+            onClick={() => changeMonth('next')}
+            active={activeButton === 'prev'}
+          >
+            &gt;
           </ButtonPaginator>
         </Paginator>
       </HeaderMonth>
+
       {selectedDayStats && (
-        <DaysGeneralStats day={selectedDayStats.day} stats={selectedDayStats} />
+        <DaysGeneralStats
+          day={selectedDayStats.day}
+          month={selectedMonth}
+          stats={selectedDayStats}
+        />
       )}
 
       <DaysList>
@@ -160,6 +178,6 @@ export const MonthStatsTable = () => {
           </div>
         ))}
       </DaysList>
-    </BoxMonth>
+    </div>
   );
 };

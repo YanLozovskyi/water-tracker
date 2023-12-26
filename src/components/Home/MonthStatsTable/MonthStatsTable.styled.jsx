@@ -1,25 +1,25 @@
 import styled from '@emotion/styled';
 
-export const BoxMonth = styled.div`
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-bottom: 24px;
-  padding-top: 24px;
-  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
-  background: ${props => props.theme.color.secondaryWhite};
-  max-width: 280px;
+// export const BoxMonth = styled.div`
+//   padding-left: 8px;
+//   padding-right: 8px;
+//   padding-bottom: 24px;
+//   padding-top: 24px;
+//   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+//   background: ${props => props.theme.color.secondaryWhite};
+//   width: 280px;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    padding-left: 24px;
-    padding-right: 24px;
-    padding-bottom: 32px;
-    max-width: 704px;
-  }
+//   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+//     padding-left: 24px;
+//     padding-right: 24px;
+//     padding-bottom: 32px;
+//     width: 704px;
+//   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    max-width: 592px;
-  }
-`;
+//   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+//     width: 592px;
+//   }
+// `;
 
 export const HeaderMonth = styled.div`
   display: flex;
@@ -42,26 +42,25 @@ export const HeaderMonth = styled.div`
       line-height: 1.2;
     }
   }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-  }
 `;
 
 export const ButtonPaginator = styled.button`
   width: 14px;
   height: 14px;
   background: transparent;
-`;
+  color: ${props =>
+    props.active
+      ? props.theme.color.accent
+      : props.theme.color.secondaryLightBlue};
 
-export const IconPaginator = styled.svg`
-  width: 100%;
-  height: 100%;
-  stroke: ${props => props.theme.color.accent};
+  &:hover {
+    color: ${props => props.theme.color.accent};
+  }
 `;
 
 export const Paginator = styled.div`
   display: flex;
-  align-items: center;
+  align-items: baseline;
   position: relative;
   color: ${props => props.theme.color.accent};
   column-gap: 12px;
@@ -124,9 +123,9 @@ export const DaysButton = styled.button`
   background-color: ${props => props.theme.color.white};
   border: 1px solid
     ${props =>
-      props.isHighlighted
-        ? props.theme.color.secondaryYellow
-        : props.theme.color.white};
+    props.isHighlighted
+      ? props.theme.color.secondaryYellow
+      : props.theme.color.white};
   color: ${props => props.theme.color.black};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {

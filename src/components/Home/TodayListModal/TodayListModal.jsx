@@ -1,9 +1,13 @@
-import { BaseModalWindow } from "components";
+import { BaseModalWindow } from 'components';
 
 export const TodayListModal = ({ onClose }) => {
   return (
     <BaseModalWindow onClose={onClose} title="Add water">
-      <div>{/* Form and other elements */}</div>
+      <div>
+        <h2>Edit the entered amount of water</h2>
+
+        <button>Save</button>
+      </div>
     </BaseModalWindow>
   );
 };

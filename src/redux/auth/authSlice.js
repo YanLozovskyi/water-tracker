@@ -8,16 +8,17 @@ import {
   updateAvatarThunk,
 } from './authOperations';
 import {
-  handleAuth,
+  handleLogin,
   handleLogout,
   handleRefreshFulfield,
   handleRefreshPending,
   handleRefreshReject,
+  handleRegister,
   handlerEditUserInfo,
   handlerUpdateAvatar,
 } from './handlers';
 
-const initialState = {
+export const initialState = {
   user: {
     email: '',
     avatarURL: '',
@@ -35,8 +36,8 @@ const authSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder
-      .addCase(registerThunk.fulfilled, handleAuth)
-      .addCase(logInThunk.fulfilled, handleAuth)
+      .addCase(registerThunk.fulfilled, handleRegister)
+      .addCase(logInThunk.fulfilled, handleLogin)
       .addCase(logOutThunk.fulfilled, handleLogout)
       .addCase(updateAvatarThunk.fulfilled, handlerUpdateAvatar)
       .addCase(refreshUserThunk.fulfilled, handleRefreshFulfield)

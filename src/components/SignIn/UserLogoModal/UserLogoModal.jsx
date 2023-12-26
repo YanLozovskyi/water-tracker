@@ -1,7 +1,6 @@
+import { SettingModal, UserLogoutModal } from 'components';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { SettingModal } from '../SettingModal/SettingModal';
-import { UserLogoutModal } from '../UserLogoutModal/UserLogoutModal';
 import {
   Backdrop,
   IconSettings,

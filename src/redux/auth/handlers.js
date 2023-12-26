@@ -1,14 +1,20 @@
-export const handleAuth = (state, { payload }) => {
+import { initialState } from './authSlice';
+
+export const handleRegister = (state, { payload }) => {
+  state.user = payload;
+};
+
+export const handleLogin = (state, { payload }) => {
   state.user = payload.user;
   state.token = payload.token;
   state.isLoggedIn = true;
 };
 
 export const handleLogout = state => {
-  state.user = {};
-  state.token = null;
-  state.isLoggedIn = false;
+  state = initialState;
 };
+
+// export const handleLogout = () => initialState;
 
 export const handleRefreshFulfield = (state, { payload }) => {
   state.user = payload;
