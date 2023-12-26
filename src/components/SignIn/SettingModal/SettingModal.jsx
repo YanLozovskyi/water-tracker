@@ -17,6 +17,20 @@ import {
   RadioBtnText,
   RadioBtnLabel,
   Input,
+  Avatar,
+  ModalWrap,
+  PasswordText,
+  PasswordLabel,
+  PasswordFormField,
+  IconBtn,
+  PasswordIcon,
+  PasswordInputWrap,
+  SaveBtn,
+  DesktopFormWrap,
+  DesktopPasswordWrap,
+  LastFormField,
+  GenderFormField,
+  SettingModalContent,
 } from './SettingModal.styled';
 
 const defaultAvatar = 'src/assets/images/default_avatar_to_download.jpg';
@@ -58,14 +72,14 @@ export const SettingModal = ({ onClose }) => {
   return (
     <>
       <BaseModalWindow onClose={onClose} title="Setting">
-        <div>
+        <ModalWrap>
           {
             <form>
               <FormField>
                 <FormText>Your photo</FormText>
                 <DownloadWrap>
                   {
-                    <img
+                    <Avatar
                       src={avatar ? avatar : defaultAvatar}
                       alt="user avatar"
                       width="80px"
@@ -97,112 +111,144 @@ export const SettingModal = ({ onClose }) => {
                   </label>
                 </DownloadWrap>
               </FormField>
-              <FormField>
-                <GenderText>Your gender identity</GenderText>
-                <RadioBtnWrap>
-                  <RadioBtnLabel>
-                    <RadioBtn
-                      type="radio"
-                      name="gender"
-                      value="Girl"
-                      checked={gender === 'Girl'}
-                      onChange={event => setGender(event.target.value)}
+              <DesktopFormWrap>
+                <DesktopPasswordWrap>
+                  <GenderFormField>
+                    <GenderText>Your gender identity</GenderText>
+                    <RadioBtnWrap>
+                      <RadioBtnLabel>
+                        <RadioBtn
+                          type="radio"
+                          name="gender"
+                          value="Girl"
+                          checked={gender === 'Girl'}
+                          onChange={event => setGender(event.target.value)}
+                        />
+                        <RadioBtnText>Girl</RadioBtnText>
+                      </RadioBtnLabel>
+                      <RadioBtnLabel>
+                        <RadioBtn
+                          type="radio"
+                          name="gender"
+                          value="Man"
+                          checked={gender === 'Man'}
+                          onChange={event => setGender(event.target.value)}
+                        />
+                        <RadioBtnText>Man</RadioBtnText>
+                      </RadioBtnLabel>
+                    </RadioBtnWrap>
+                  </GenderFormField>
+                  <FormField>
+                    <StyledLabel htmlFor="username">Your name</StyledLabel>
+                    <Input
+                      type="text"
+                      id="username"
+                      name="username"
+                      value={username}
+                      placeholder={username}
+                      onChange={event => setUserName(event.target.value)}
                     />
-                    <RadioBtnText>Girl</RadioBtnText>
-                  </RadioBtnLabel>
-                  <RadioBtnLabel>
-                    <RadioBtn
-                      type="radio"
-                      name="gender"
-                      value="Man"
-                      checked={gender === 'Man'}
-                      onChange={event => setGender(event.target.value)}
+                  </FormField>
+                  <LastFormField>
+                    <StyledLabel htmlFor="email">E-mail</StyledLabel>
+                    <Input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={email}
+                      placeholder={email}
+                      onChange={event => setEmail(event.target.value)}
                     />
-                    <RadioBtnText>Man</RadioBtnText>
-                  </RadioBtnLabel>
-                </RadioBtnWrap>
-              </FormField>
-              <FormField>
-                <StyledLabel htmlFor="username">Your name</StyledLabel>
-                <Input
-                  type="text"
-                  id="username"
-                  name="username"
-                  value={username}
-                  placeholder={username}
-                  onChange={event => setUserName(event.target.value)}
-                />
-              </FormField>
-              <FormField>
-                <StyledLabel htmlFor="email">E-mail</StyledLabel>
-                <Input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={email}
-                  placeholder={email}
-                  onChange={event => setEmail(event.target.value)}
-                />
-              </FormField>
-              <FormText>Password</FormText>
-              <div>
-                <label htmlFor="oldPassword">Outdated password:</label>
-                <div>
-                  <input
-                    type={isPasswordShown ? 'text' : 'password'}
-                    id="oldPassword"
-                    name="oldPassword"
-                    value={oldPassword}
-                    placeholder="Password"
-                    onChange={event => setOldPassword(event.target.value)}
-                  />
-                  <button type="button" onClick={handlePasswordVisibility}>
-                    <svg>
-                      <use href={`${sprite}#icon-to-hide`}></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div>
-                <label htmlFor="password">New Password:</label>
-                <div>
-                  <input
-                    type={isPasswordShown ? 'text' : 'password'}
-                    id="password"
-                    name="newPassword"
-                    value={password}
-                    placeholder="Password"
-                    onChange={event => setPassword(event.target.value)}
-                  />
-                  <button type="button" onClick={handlePasswordVisibility}>
-                    <svg>
-                      <use href={`${sprite}#icon-to-hide`}></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <div>
-                <label htmlFor="repeatedPassword">Repeat new password:</label>
-                <div>
-                  <input
-                    type={isPasswordShown ? 'text' : 'password'}
-                    id="repeatedPassword"
-                    name="repeatedPassword"
-                    value={repeatedPassword}
-                    placeholder="Password"
-                    onChange={event => setRepeatedPassword(event.target.value)}
-                  />
-                  <button type="button" onClick={handlePasswordVisibility}>
-                    <svg>
-                      <use href={`${sprite}#icon-to-hide`}></use>
-                    </svg>
-                  </button>
-                </div>
-              </div>
-              <button type="submit">Save</button>
+                  </LastFormField>
+                </DesktopPasswordWrap>
+                <DesktopPasswordWrap>
+                  <PasswordText>Password</PasswordText>
+                  <PasswordFormField>
+                    <PasswordLabel htmlFor="oldPassword">
+                      Outdated password:
+                    </PasswordLabel>
+                    <PasswordInputWrap>
+                      <Input
+                        type={isPasswordShown ? 'text' : 'password'}
+                        id="oldPassword"
+                        name="oldPassword"
+                        value={oldPassword}
+                        placeholder="Password"
+                        onChange={event => setOldPassword(event.target.value)}
+                      />
+                      <IconBtn type="button" onClick={handlePasswordVisibility}>
+                        {isPasswordShown ? (
+                          <PasswordIcon>
+                            <use href={`${sprite}#icon-to-open`}></use>
+                          </PasswordIcon>
+                        ) : (
+                          <PasswordIcon>
+                            <use href={`${sprite}#icon-to-hide`}></use>
+                          </PasswordIcon>
+                        )}
+                      </IconBtn>
+                    </PasswordInputWrap>
+                  </PasswordFormField>
+                  <PasswordFormField>
+                    <PasswordLabel htmlFor="password">
+                      New Password:
+                    </PasswordLabel>
+                    <PasswordInputWrap>
+                      <Input
+                        type={isPasswordShown ? 'text' : 'password'}
+                        id="password"
+                        name="newPassword"
+                        value={password}
+                        placeholder="Password"
+                        onChange={event => setPassword(event.target.value)}
+                      />
+                      <IconBtn type="button" onClick={handlePasswordVisibility}>
+                        {isPasswordShown ? (
+                          <PasswordIcon>
+                            <use href={`${sprite}#icon-to-open`}></use>
+                          </PasswordIcon>
+                        ) : (
+                          <PasswordIcon>
+                            <use href={`${sprite}#icon-to-hide`}></use>
+                          </PasswordIcon>
+                        )}
+                      </IconBtn>
+                    </PasswordInputWrap>
+                  </PasswordFormField>
+                  <LastFormField>
+                    <PasswordLabel htmlFor="repeatedPassword">
+                      Repeat new password:
+                    </PasswordLabel>
+                    <PasswordInputWrap>
+                      <Input
+                        type={isPasswordShown ? 'text' : 'password'}
+                        id="repeatedPassword"
+                        name="repeatedPassword"
+                        value={repeatedPassword}
+                        placeholder="Password"
+                        onChange={event =>
+                          setRepeatedPassword(event.target.value)
+                        }
+                      />
+                      <IconBtn type="button" onClick={handlePasswordVisibility}>
+                        {isPasswordShown ? (
+                          <PasswordIcon>
+                            <use href={`${sprite}#icon-to-open`}></use>
+                          </PasswordIcon>
+                        ) : (
+                          <PasswordIcon>
+                            <use href={`${sprite}#icon-to-hide`}></use>
+                          </PasswordIcon>
+                        )}
+                      </IconBtn>
+                    </PasswordInputWrap>
+                  </LastFormField>
+                </DesktopPasswordWrap>
+              </DesktopFormWrap>
+              <SaveBtn type="submit">Save</SaveBtn>
             </form>
           }
-        </div>
+        </ModalWrap>
       </BaseModalWindow>
     </>
   );

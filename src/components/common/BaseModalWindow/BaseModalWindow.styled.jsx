@@ -17,45 +17,45 @@ export const BaseModalStyled = styled.div`
 `;
 
 export const ModalContent = styled.div`
- transform: translate(-50%, -50%);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 280px;
-    max-height: 100%;
-    background: ${props => props.theme.color.white};
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: all ${props => props.theme.transition.modal};
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 280px;
+  max-height: 100%;
+  background: ${props => props.theme.color.white};
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all ${props => props.theme.transition.modal};
 
-    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-      min-width: 704px;
-    }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    min-width: 704px;
+  }
 
-    @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-      max-width: 544px;
-    }
-    `
+  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    max-width: 544px;
+  } */
+`;
 
-export const ModalHeader = styled.div` 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 24px 12px;
-    color: ${props => props.theme.color.black};
+export const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 12px;
+  color: ${props => props.theme.color.black};
 
-    h2 {
-      font-weight: 500;
-      font-size: 26px;
-      line-height: 1.2;
-    }
+  h2 {
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 1.2;
+  }
 
-    @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-      padding-left: 24px;
-      padding-right: 24px;
-      padding-top: 32px;
-    }
-    `
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-top: 32px;
+  }
+`;
 
 export const CloseButton = styled.button`
   width: 24px;
