@@ -16,6 +16,7 @@ export const BaseModalWindow = ({
   children,
   title,
   onClose,
+  className,
 }) => {
   const modalRoot = document.querySelector('#modal-root');
 
@@ -49,6 +50,7 @@ export const BaseModalWindow = ({
   return createPortal(
     <BaseModalStyled onClick={onClose} ref={backdropRef}>
       <ModalContent
+        className={className}
         type={type}
         onClick={e => e.stopPropagation()}
         ref={modalContainerRef}

@@ -1,4 +1,8 @@
 import styled from '@emotion/styled';
+import {
+  ModalContent,
+  ModalHeader,
+} from '../../common/BaseModalWindow/BaseModalWindow.styled';
 export const HiddenInput = styled.input`
   position: absolute;
   overflow: hidden;
@@ -243,3 +247,13 @@ export const GenderFormField = styled.div`
     margin-bottom: 52px;
   }
 `;
+
+export const SettingModalContent = styled(ModalContent)`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    max-width: 1008px;
+  }
+`;
+
+// export const SettingModalHeader = styled(ModalHeader)`
+
+// `;
