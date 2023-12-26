@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { NavLink } from 'react-router-dom';
 
 export const SignImgBubble = styled.img`
   position: absolute;
@@ -104,17 +105,7 @@ export const SignUpContainer = styled.div`
   .sign-up-button-disabled {
     background-color: ${props => props.theme.color.secondaryPowderBlue};
   }
-  .sign-up-link {
-    width: 100%;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 20px;
-    color: ${props => props.theme.color.accent};
-    &:hover {
-      color: ${props => props.theme.color.secondaryYellow};
-    }
-  }
+  
   .input-with-error {
     color: red;
     border: 1px solid ${props => props.theme.color.secondaryRed};
@@ -165,3 +156,15 @@ export const EyeSlashIcon = styled.svg`
   right: 10px;
   top: 38px;
 `;
+
+export const SignUpLink = styled(NavLink)` 
+  width: 100%;
+  font-size: 16px;
+  font-style: normal; 
+  font-weight: 400;
+  line-height: 20px;
+  color: ${props => props.theme.color.accent};
+    &:hover {
+    color: ${props => props.theme.color.secondaryYellow};
+  }`
+
