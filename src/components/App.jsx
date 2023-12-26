@@ -5,6 +5,8 @@ import RestrictedRoute from './RestrictedRoute';
 import { Loader } from 'components';
 
 import SharedLayout from './SharedLayout';
+// import { useDispatch } from 'react-redux';
+// import { refreshUserThunk } from '../redux/auth/authOperations';
 // import { useSelector } from 'react-redux';
 // import { selectIsRefreshing } from '../redux/auth/authSelectors';
 
@@ -18,8 +20,13 @@ const ForgotPassPage = lazy(() =>
 );
 
 const App = () => {
+  // const dispatch = useDispatch();
   // const isRefreshing = useSelector(selectIsRefreshing)
   const isRefreshing = false;
+
+  // useEffect(() => {
+  //   dispatch(refreshUserThunk());
+  // }, [dispatch]);
 
   return !isRefreshing ? (
     <Routes>

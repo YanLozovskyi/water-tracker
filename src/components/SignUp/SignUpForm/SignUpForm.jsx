@@ -11,6 +11,7 @@ import {
   SignUpLink
 } from './SignUpForm.styled';
 import { registerThunk } from '../../../redux/auth/authOperations';
+import { useNavigate } from 'react-router-dom';
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -20,8 +21,9 @@ export const SignUpForm = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
-
   const [iconStatus, setIconStatus] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     validatePassword(password);
@@ -77,9 +79,10 @@ export const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(registerThunk({ email, password }));
+    dispatch(registerThunk({ email, password })).then((data) => { if (!data.error) navigate('/signin'); });
     setEmail('');
     setPassword('');
+    setConfirmPassword('');
   }
 
   const iconClick = e => {
