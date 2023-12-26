@@ -14,9 +14,10 @@ export const BaseModalStyled = styled.div`
   height: 100%;
   background: rgba(0, 0, 0, 0.8);
   z-index: 1;
+`;
 
-  .modal-content {
-    transform: translate(-50%, -50%);
+export const ModalContent = styled.div`
+ transform: translate(-50%, -50%);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -34,9 +35,9 @@ export const BaseModalStyled = styled.div`
     @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
       max-width: 544px;
     }
-  }
+    `
 
-  .modal-header {
+export const ModalHeader = styled.div` 
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -54,8 +55,7 @@ export const BaseModalStyled = styled.div`
       padding-right: 24px;
       padding-top: 32px;
     }
-  }
-`;
+    `
 
 export const CloseButton = styled.button`
   width: 24px;

@@ -5,7 +5,6 @@ import {
   Paginator,
   ButtonPaginator,
   HeaderMonth,
-  BoxMonth,
   DaysList,
   DaysButton,
   DaysPercentage,
@@ -132,7 +131,7 @@ export const MonthStatsTable = () => {
   }, [dailyStats, selectedMonth]);
 
   return (
-    <BoxMonth>
+    <div>
       <HeaderMonth>
         <h2>Month</h2>
         <Paginator
@@ -157,14 +156,16 @@ export const MonthStatsTable = () => {
       </HeaderMonth>
 
       {selectedDayStats && (
-        <DaysGeneralStats day={selectedDayStats.day} month={selectedMonth} stats={selectedDayStats} />
+        <DaysGeneralStats
+          day={selectedDayStats.day}
+          month={selectedMonth}
+          stats={selectedDayStats}
+        />
       )}
-     
 
       <DaysList>
         {daysWithData.map(({ day, percentage, isHighlighted }) => (
-          <div  key={day}>
-      
+          <div key={day}>
             <DaysPercentage>
               <DaysButton
                 onClick={() => onDayClick(day)}
@@ -177,6 +178,6 @@ export const MonthStatsTable = () => {
           </div>
         ))}
       </DaysList>
-    </BoxMonth>
+    </div>
   );
 };

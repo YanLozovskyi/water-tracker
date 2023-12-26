@@ -5,6 +5,8 @@ import {
   BaseModalStyled,
   CloseButton,
   CloseIcon,
+  ModalContent,
+  ModalHeader,
 } from './BaseModalWindow.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
@@ -46,22 +48,21 @@ export const BaseModalWindow = ({
 
   return createPortal(
     <BaseModalStyled onClick={onClose} ref={backdropRef}>
-      <div
-        className="modal-content"
+      <ModalContent
         type={type}
         onClick={e => e.stopPropagation()}
         ref={modalContainerRef}
       >
-        <div className="modal-header">
+        <ModalHeader>
           <h2>{title}</h2>
           <CloseButton onClick={onClose}>
             <CloseIcon>
               <use href={`${sprite}#icon-outline`}></use>
             </CloseIcon>
           </CloseButton>
-        </div>
+        </ModalHeader>
         <div>{children}</div>
-      </div>
+      </ModalContent>
     </BaseModalStyled>,
     modalRoot,
   );

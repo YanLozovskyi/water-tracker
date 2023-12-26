@@ -43,6 +43,24 @@ export const BoxHome = styled.div`
   align-items: center;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    display: flex;
+    flex-direction: row;
+  }
+`;
+
+export const HomeStatistics = styled.div`
+  padding: 24px 8px;
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  background: ${props => props.theme.color.secondaryWhite};
+  max-width: 280px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    padding: 32px 24px;
+    max-width: 704px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    max-width: 592px;
     flex-direction: row;
   }
 `;

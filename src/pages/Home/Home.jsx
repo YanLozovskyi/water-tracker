@@ -5,7 +5,7 @@ import {
   WaterRatioPanel,
 } from 'components';
 
-import { BoxHome, HomeSection } from './Home.styled';
+import { BoxHome, HomeSection, HomeStatistics } from './Home.styled';
 
 const Home = () => {
   return (
@@ -15,10 +15,10 @@ const Home = () => {
           <DailyNorma />
           <WaterRatioPanel />
         </div>
-        <div>
+        <HomeStatistics>
           <TodayWaterList />
           <MonthStatsTable />
-        </div>
+        </HomeStatistics>
       </BoxHome>
     </HomeSection>
   );
