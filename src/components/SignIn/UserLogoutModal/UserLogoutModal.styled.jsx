@@ -14,13 +14,17 @@ export const LogOutBtn = styled.button`
   border: none;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.secondaryRed};
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${({ theme }) => theme.color.white};
   text-align: center;
   font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px; /* 133.333% */
+  transition: box-shadow ${props => props.theme.transition.main};
+
+  &:is(:hover, :focus) {
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     padding: 8px 30px;
@@ -50,6 +54,11 @@ export const CancelBtn = styled.button`
   font-size: 18px;
   font-weight: 500;
   line-height: 24px; /* 133.333% */
+  transition: box-shadow ${props => props.theme.transition.main};
+
+  &:is(:hover, :focus) {
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     padding: 8px 30px;

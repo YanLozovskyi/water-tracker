@@ -10,14 +10,23 @@ import {
 } from './UserLogoModal.styled';
 
 export const UserLogoModal = ({ onClose }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [isFirstModalOpen, setFirstModalOpen] = useState(false);
+  const [isSecondModalOpen, setSecondModalOpen] = useState(false);
 
-  const openModal = () => {
-    setModalOpen(true);
+  const openFirstModal = () => {
+    setFirstModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeFirstModal = () => {
+    setFirstModalOpen(false);
+  };
+
+  const openSecondModal = () => {
+    setSecondModalOpen(true);
+  };
+
+  const closeSecondModal = () => {
+    setSecondModalOpen(false);
   };
 
   return (
@@ -29,18 +38,20 @@ export const UserLogoModal = ({ onClose }) => {
               <IconSettings width="16px" height="16px">
                 <use href={`${sprite}#icon-settings`}></use>
               </IconSettings>
-              <StyledBtn type="button" onClick={openModal}>
+              <StyledBtn type="button" onClick={openFirstModal}>
                 Setting
-                {isModalOpen && <SettingModal onClose={closeModal} />}
+                {isFirstModalOpen && <SettingModal onClose={closeFirstModal} />}
               </StyledBtn>
             </StyledListItem>
             <StyledListItem>
               <IconSettings width="16px" height="16px">
                 <use href={`${sprite}#icon-exit`}></use>
               </IconSettings>
-              <StyledBtn type="button" onClick={openModal}>
+              <StyledBtn type="button" onClick={openSecondModal}>
                 Log out
-                {isModalOpen && <UserLogoutModal onClose={closeModal} />}
+                {isSecondModalOpen && (
+                  <UserLogoutModal onClose={closeSecondModal} />
+                )}
               </StyledBtn>
             </StyledListItem>
           </ul>
