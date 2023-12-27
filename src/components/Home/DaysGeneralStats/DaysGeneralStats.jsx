@@ -31,6 +31,7 @@ export const DaysGeneralStats = ({
   stats: { norma, full, servings },
   month,
   position,
+  onShow,
 }) => {
   const modalRef = useRef(null);
 
@@ -39,15 +40,14 @@ export const DaysGeneralStats = ({
 
     const { top, left, width } = position;
     const modal = modalRef.current;
-
     const modalWidth = modal.offsetWidth;
     const isMobile = window.innerWidth <= 320;
 
     if (isMobile) {
-      modal.style.width = '100%';
+      modal.style.width = `100%`;
       modal.style.left = '0';
-      modal.style.top = `${top}px`;
-      modal.style.transform = 'none';
+      modal.style.top = `${top - modal.offsetHeight}px`;
+      modal.style.transform = `translateX(0)`;
     } else {
       // Логіка для планшетів та десктопів
       const spaceToLeft = left; // Відстань від елемента до лівого краю екрана
@@ -65,7 +65,6 @@ export const DaysGeneralStats = ({
       else {
         modal.style.left = '50%';
         modal.style.transform = 'translateX(-50%)';
-        modal.style.width = '';
       }
 
       // Позиціонувати модальне вікно над елементом
@@ -74,7 +73,10 @@ export const DaysGeneralStats = ({
   }, [position]);
 
   return (
-    <DaysGeneralStatsModal ref={modalRef}>
+    <DaysGeneralStatsModal
+      ref={modalRef}
+      style={{ visibility: onShow ? 'visible' : 'hidden' }}
+    >
       <DaysGeneralStatsList>
         <DaysGeneralStatsItem>
           <DaysGeneralStatsData>

@@ -45,6 +45,7 @@ export const MonthStatsTable = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [activeButton, setActiveButton] = useState(null);
   const [dayPosition, setDayPosition] = useState({ top: 0, left: 0, width: 0 });
+  const [modalVisible, setModalVisible] = useState(false);
 
   // Функція, яка повертає кількість днів у місяці
   const daysInMonth = month => {
@@ -101,6 +102,7 @@ export const MonthStatsTable = () => {
 
   // Обробник кліка по дню
   const onDayClick = day => {
+    setModalVisible(true);
     // Якщо модальне вікно вже відкрите то закриваємо його
     if (selectedDayStats && selectedDayStats.day === day) {
       setSelectedDayStats(null);
@@ -168,6 +170,7 @@ export const MonthStatsTable = () => {
   const dayRefs = useRef({});
 
   const handleCloseModal = () => {
+    setModalVisible(false);
     setSelectedDayStats(null);
   };
 
@@ -203,6 +206,7 @@ export const MonthStatsTable = () => {
           stats={selectedDayStats}
           position={dayPosition}
           onClose={handleCloseModal}
+          onShow={modalVisible}
         />
       )}
 

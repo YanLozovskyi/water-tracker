@@ -22,7 +22,7 @@ export const BaseModalWindow = ({
   const backdropRef = useRef(null);
 
   useEffect(() => {
-    if (!onShow) return;
+    // if (!onShow) return;
 
     const bodyScroll = disable => {
       document.body.style.overflow = disable ? 'hidden' : 'auto';
@@ -41,6 +41,7 @@ export const BaseModalWindow = ({
     window.addEventListener('keydown', handleEsc);
 
     return () => {
+      bodyScroll(false);
       window.removeEventListener('keydown', handleEsc);
     };
   }, [modalRoot.children.length, onShow, onClose]);
