@@ -2,15 +2,19 @@ import { SettingModal, UserLogoutModal } from 'components';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
+  Backdrop,
   IconSettings,
   StyledBtn,
   StyledListItem,
   StyledLogoModal,
 } from './UserLogoModal.styled';
+import { createPortal } from 'react-dom';
 
 export const UserLogoModal = () => {
   const [isFirstModalOpen, setFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setSecondModalOpen] = useState(false);
+
+  const modalRoot = document.querySelector('#modal-root');
 
   const openFirstModal = () => {
     setFirstModalOpen(true);
@@ -28,9 +32,9 @@ export const UserLogoModal = () => {
     setSecondModalOpen(false);
   };
 
-  return (
+  return createPortal(
     <>
-      <div>
+      <Backdrop>
         <StyledLogoModal>
           <ul>
             <StyledListItem>
@@ -55,7 +59,8 @@ export const UserLogoModal = () => {
             </StyledListItem>
           </ul>
         </StyledLogoModal>
-      </div>
-    </>
+      </Backdrop>
+    </>,
+    modalRoot,
   );
 };
