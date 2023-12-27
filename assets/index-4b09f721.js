@@ -459,19 +459,22 @@ template {
   top: 50%;
   left: 50%;
   min-width: 280px;
+  max-height: 90vh;
   max-height: 100%;
+
   background: ${e=>e.theme.color.white};
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all ${e=>e.theme.transition.modal};
+  overflow-y: auto;
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     min-width: 704px;
   }
 
-  /* @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     max-width: 544px;
-  } */
+  }
 `,oE=_.div`
   display: flex;
   justify-content: space-between;
@@ -504,7 +507,7 @@ template {
   &:focus {
     stroke: ${e=>e.theme.color.secondaryYellow};
   }
-`,Pt="/water-tracker/assets/sprite-45727ddf.svg",Dl=({onShow:e=!0,type:t,children:n,title:r,onClose:o})=>{const i=document.querySelector("#modal-root"),a=b.useRef(null),l=b.useRef(null);return b.useEffect(()=>{if(!e)return;const s=f=>{document.body.style.overflow=f?"hidden":"auto"};(e||i.children.length!==0)&&s(!0);const u=f=>{f.code==="Escape"&&o()};return window.addEventListener("keydown",u),()=>{window.removeEventListener("keydown",u)}},[i.children.length,e,o]),xl.createPortal(x.jsx(rE,{onClick:o,ref:l,children:x.jsxs(Dv,{type:t,onClick:s=>s.stopPropagation(),ref:a,children:[x.jsxs(oE,{children:[x.jsx("h2",{children:r}),x.jsx(iE,{onClick:o,children:x.jsx(aE,{children:x.jsx("use",{href:`${Pt}#icon-outline`})})})]}),x.jsx("div",{children:n})]})}),i)};Dl.propTypes={onClose:fo.func.isRequired,children:fo.node.isRequired,onShow:fo.bool,title:fo.string.isRequired};const lE=_.div`
+`,Pt="/water-tracker/assets/sprite-45727ddf.svg",Dl=({onShow:e=!0,children:t,title:n,onClose:r})=>{const o=document.querySelector("#modal-root"),i=b.useRef(null),a=b.useRef(null);return b.useEffect(()=>{if(!e)return;const l=u=>{document.body.style.overflow=u?"hidden":"auto"};(e||o.children.length!==0)&&l(!0);const s=u=>{u.code==="Escape"&&r()};return window.addEventListener("keydown",s),()=>{window.removeEventListener("keydown",s)}},[o.children.length,e,r]),xl.createPortal(x.jsx(rE,{onClick:r,ref:a,children:x.jsxs(Dv,{onClick:l=>l.stopPropagation(),ref:i,children:[x.jsxs(oE,{children:[x.jsx("h2",{children:n}),x.jsx(iE,{onClick:r,children:x.jsx(aE,{children:x.jsx("use",{href:`${Pt}#icon-outline`})})})]}),x.jsx("div",{children:t})]})}),o)};Dl.propTypes={onClose:fo.func.isRequired,children:fo.node.isRequired,onShow:fo.bool,title:fo.string.isRequired};const lE=_.div`
   margin: 0 auto;
   padding-right: 20px;
   padding-left: 20px;
@@ -1014,27 +1017,33 @@ template {
     width: 160px;
   }
 `,S_=({onClose:e})=>{const[t,n]=b.useState("female"),[r,o]=b.useState(""),[i,a]=b.useState(""),[l,s]=b.useState("2.0"),[u,f]=b.useState(""),c=()=>{const v=t==="female"?.03:.04,g=t==="female"?.4:.6,m=(r*v+i/60*g).toFixed(2);s(m)},h=async()=>{c()};return x.jsx(Dl,{onClose:e,title:"My daily norma",children:x.jsxs(h_,{children:[x.jsxs("div",{children:[x.jsxs(m_,{children:[x.jsxs(Ai,{children:["For girl: ",x.jsx("span",{children:"V=(M*0,03) + (T*0,4)"})]}),x.jsxs(Ai,{children:["For man: ",x.jsx("span",{children:"V=(M*0,04) + (T*0,6)"})]})]}),x.jsx(y_,{children:x.jsxs("p",{children:[x.jsx("span",{children:"*"})," V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)"]})})]}),x.jsx("div",{children:x.jsxs(g_,{children:[x.jsxs(v_,{children:[x.jsx(Zh,{children:"Calculate your rate:"}),x.jsxs("label",{children:[x.jsx(em,{type:"radio",name:"gender",value:"female",checked:t==="female",onChange:()=>n("female")}),x.jsx("span",{children:"For girl"})]}),x.jsxs("label",{children:[x.jsx(em,{type:"radio",name:"gender",value:"male",checked:t==="male",onChange:()=>n("male")}),x.jsx("span",{children:"For boy"})]})]}),x.jsxs("div",{children:[x.jsx(Ai,{children:"Your weight in kilograms:"}),x.jsx(As,{type:"text",placeholder:"0",value:r,onChange:v=>o(v.target.value)})]}),x.jsxs("div",{children:[x.jsx(Ai,{children:"Time of active participation in sports or other activities with a high physical load:"}),x.jsx(As,{type:"text",placeholder:"0",value:i,onChange:v=>a(v.target.value)})]}),x.jsxs(w_,{children:["The required amount of water in liters per day:"," ",x.jsxs("strong",{children:[l,"L"]})]}),x.jsxs("div",{children:[x.jsx(Zh,{children:"Write down how much water you will drink:"}),x.jsx(As,{type:"text",placeholder:"0",value:u,onChange:v=>f(v.target.value)})]}),x.jsx(x_,{onClick:h,children:"Save"})]})})]})})};S_.propTypes={onClose:fo.func.isRequired};const pO=_.div`
-    position: absolute;
-    top: 0;
-    right:0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: ${({theme:e})=>e.color.white};
+  border-radius: 10px;
+  padding: 24px 16px;
 
-    background-color: ${({theme:e})=>e.color.white};
-    border-radius: 10px;
-    padding: 24px 16px;
+  background-color: ${({theme:e})=>e.color.white};
+  border-radius: 10px;
+  padding: 24px 16px;
 
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
+    /* position: absolute; */
+  }
 `,hO=_.ul`
-    display: flex;
-    gap: 16px;
-    flex-direction: column;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
 `,mO=_.li`
-    display: flex;
-    gap: 6px;
+  display: flex;
+  gap: 6px;
 `,gO=_.span`
-    color: ${({theme:e})=>e.color.accent};
-    font-size: 18px;
-    font-weight: 500;
+  color: ${({theme:e})=>e.color.accent};
+  font-size: 18px;
+  font-weight: 500;
 `,yO=_.p`
-color: ${({theme:e})=>e.color.accent};
+  color: ${({theme:e})=>e.color.accent};
 `,vO=_.div`
   display: flex;
   justify-content: space-between;
@@ -1129,7 +1138,8 @@ color: ${({theme:e})=>e.color.accent};
     padding: 7px;
   }
 
-  @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
+  &:hover {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   }
 `,PO=_.div`
   margin-bottom: 24px;
@@ -2141,4 +2151,4 @@ color: ${({theme:e})=>e.color.accent};
 `,pC=_.ul`
   list-style-type: none;
   padding-left: 0;
-`,J_="modulepreload",Z_=function(e){return"/water-tracker/"+e},dm={},Gr=function(t,n,r){if(!n||n.length===0)return t();const o=document.getElementsByTagName("link");return Promise.all(n.map(i=>{if(i=Z_(i),i in dm)return;dm[i]=!0;const a=i.endsWith(".css"),l=a?'[rel="stylesheet"]':"";if(!!r)for(let f=o.length-1;f>=0;f--){const c=o[f];if(c.href===i&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${i}"]${l}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":J_,a||(u.as="script",u.crossOrigin=""),u.href=i,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${i}`)))})})).then(()=>t()).catch(i=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=i,window.dispatchEvent(a),!a.defaultPrevented)throw i})},eO=({component:e,redirectTo:t="/home"})=>x.jsx(e,{}),Li=({component:e,redirectTo:t="/"})=>e,tO=()=>x.jsxs(x.Fragment,{children:[x.jsx(l_,{}),x.jsx("main",{children:x.jsx(b.Suspense,{fallback:x.jsx(Xv,{}),children:x.jsx(UP,{})})})]}),nO=b.lazy(()=>Gr(()=>import("./Welcome-b2747565.js"),["assets/Welcome-b2747565.js","assets/Section-3298ec8a.js"])),rO=b.lazy(()=>Gr(()=>import("./Home-94a5cadd.js"),["assets/Home-94a5cadd.js","assets/Section-3298ec8a.js"])),oO=b.lazy(()=>Gr(()=>import("./SignIn-dcb619a9.js"),["assets/SignIn-dcb619a9.js","assets/Section-3298ec8a.js"])),iO=b.lazy(()=>Gr(()=>import("./SignUp-a5e2fb62.js"),["assets/SignUp-a5e2fb62.js","assets/Section-3298ec8a.js"])),aO=b.lazy(()=>Gr(()=>import("./Error-76b64e28.js"),["assets/Error-76b64e28.js","assets/Section-3298ec8a.js"])),lO=b.lazy(()=>Gr(()=>import("./ForgotPassword-ac711711.js"),["assets/ForgotPassword-ac711711.js","assets/Section-3298ec8a.js"])),sO=()=>x.jsx(WP,{children:x.jsxs(un,{path:"/",element:x.jsx(tO,{}),children:[x.jsx(un,{index:!0,element:x.jsx(Li,{component:x.jsx(nO,{}),redirectTo:"/home"})}),x.jsx(un,{path:"home",element:x.jsx(eO,{component:rO})}),x.jsx(un,{path:"signin",element:x.jsx(Li,{component:x.jsx(oO,{}),redirectTo:"/home"})}),x.jsx(un,{path:"signup",element:x.jsx(Li,{component:x.jsx(iO,{}),redirectTo:"/home"})}),x.jsx(un,{path:"forgot-password",element:x.jsx(Li,{component:x.jsx(lO,{}),redirectTo:"/signin"})}),x.jsx(un,{path:"*",element:x.jsx(aO,{})})]})}),uO=Bs.createRoot(document.getElementById("root"));uO.render(x.jsx(Te.StrictMode,{children:x.jsxs(Dm,{theme:Qu,children:[x.jsx(Mm,{styles:V2}),x.jsx(OS,{store:Nv,children:x.jsx(Zy,{loading:x.jsx(Xv,{}),persistor:M2,children:x.jsx(qP,{basename:"/water-tracker",children:x.jsx(sO,{})})})})]})}));export{WO as $,Dl as A,sC as B,PO as C,cO as D,CO as E,jO as F,_O as G,tC as H,iC as I,OO as J,TO as K,pC as L,$O as M,RO as N,NO as O,rC as P,AO as Q,LO as R,zO as S,aC as T,IO as U,FO as V,eC as W,MO as X,SO as Y,DO as Z,UO as _,nC as a,BO as a0,HO as a1,VO as a2,GO as a3,$S as a4,KO as a5,QO as a6,YO as a7,qO as a8,XO as a9,JO as aa,ZO as ab,k2 as ac,lE as ad,oC as b,lC as c,uC as d,dC as e,cC as f,fC as g,dO as h,S_ as i,x as j,fO as k,pO as l,hO as m,_ as n,mO as o,yO as p,gO as q,b as r,Pt as s,vO as t,EP as u,xO as v,wO as w,bO as x,kO as y,EO as z};
+`,J_="modulepreload",Z_=function(e){return"/water-tracker/"+e},dm={},Gr=function(t,n,r){if(!n||n.length===0)return t();const o=document.getElementsByTagName("link");return Promise.all(n.map(i=>{if(i=Z_(i),i in dm)return;dm[i]=!0;const a=i.endsWith(".css"),l=a?'[rel="stylesheet"]':"";if(!!r)for(let f=o.length-1;f>=0;f--){const c=o[f];if(c.href===i&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${i}"]${l}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":J_,a||(u.as="script",u.crossOrigin=""),u.href=i,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${i}`)))})})).then(()=>t()).catch(i=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=i,window.dispatchEvent(a),!a.defaultPrevented)throw i})},eO=({component:e,redirectTo:t="/home"})=>x.jsx(e,{}),Li=({component:e,redirectTo:t="/"})=>e,tO=()=>x.jsxs(x.Fragment,{children:[x.jsx(l_,{}),x.jsx("main",{children:x.jsx(b.Suspense,{fallback:x.jsx(Xv,{}),children:x.jsx(UP,{})})})]}),nO=b.lazy(()=>Gr(()=>import("./Welcome-ed3b81ae.js"),["assets/Welcome-ed3b81ae.js","assets/Section-66e653b1.js"])),rO=b.lazy(()=>Gr(()=>import("./Home-7364d18e.js"),["assets/Home-7364d18e.js","assets/Section-66e653b1.js"])),oO=b.lazy(()=>Gr(()=>import("./SignIn-3e2e743b.js"),["assets/SignIn-3e2e743b.js","assets/Section-66e653b1.js"])),iO=b.lazy(()=>Gr(()=>import("./SignUp-3b3e0c29.js"),["assets/SignUp-3b3e0c29.js","assets/Section-66e653b1.js"])),aO=b.lazy(()=>Gr(()=>import("./Error-8d5b7ce7.js"),["assets/Error-8d5b7ce7.js","assets/Section-66e653b1.js"])),lO=b.lazy(()=>Gr(()=>import("./ForgotPassword-7909676b.js"),["assets/ForgotPassword-7909676b.js","assets/Section-66e653b1.js"])),sO=()=>x.jsx(WP,{children:x.jsxs(un,{path:"/",element:x.jsx(tO,{}),children:[x.jsx(un,{index:!0,element:x.jsx(Li,{component:x.jsx(nO,{}),redirectTo:"/home"})}),x.jsx(un,{path:"home",element:x.jsx(eO,{component:rO})}),x.jsx(un,{path:"signin",element:x.jsx(Li,{component:x.jsx(oO,{}),redirectTo:"/home"})}),x.jsx(un,{path:"signup",element:x.jsx(Li,{component:x.jsx(iO,{}),redirectTo:"/home"})}),x.jsx(un,{path:"forgot-password",element:x.jsx(Li,{component:x.jsx(lO,{}),redirectTo:"/signin"})}),x.jsx(un,{path:"*",element:x.jsx(aO,{})})]})}),uO=Bs.createRoot(document.getElementById("root"));uO.render(x.jsx(Te.StrictMode,{children:x.jsxs(Dm,{theme:Qu,children:[x.jsx(Mm,{styles:V2}),x.jsx(OS,{store:Nv,children:x.jsx(Zy,{loading:x.jsx(Xv,{}),persistor:M2,children:x.jsx(qP,{basename:"/water-tracker",children:x.jsx(sO,{})})})})]})}));export{WO as $,Dl as A,sC as B,PO as C,cO as D,CO as E,jO as F,_O as G,tC as H,iC as I,OO as J,TO as K,pC as L,$O as M,RO as N,NO as O,rC as P,AO as Q,LO as R,zO as S,aC as T,IO as U,FO as V,eC as W,MO as X,SO as Y,DO as Z,UO as _,nC as a,BO as a0,HO as a1,VO as a2,GO as a3,$S as a4,KO as a5,QO as a6,YO as a7,qO as a8,XO as a9,JO as aa,ZO as ab,k2 as ac,lE as ad,oC as b,lC as c,uC as d,dC as e,cC as f,fC as g,dO as h,S_ as i,x as j,fO as k,pO as l,hO as m,_ as n,mO as o,yO as p,gO as q,b as r,Pt as s,vO as t,EP as u,xO as v,wO as w,bO as x,kO as y,EO as z};
