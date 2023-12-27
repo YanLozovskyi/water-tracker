@@ -10,27 +10,18 @@ export const StyledLogoModal = styled.div`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
   transition: all ${props => props.theme.transition.modal};
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     right: 7%;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     right: 4%;
-  }
+  } */
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     top: 56px;
-    right: 8.5%;
+    /* right: 8.5%; */
   }
-`;
-
-export const Backdrop = styled.div`
-  /* position: relative; */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
 `;
 
 export const IconSettings = styled.svg`
