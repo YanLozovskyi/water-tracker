@@ -6,6 +6,7 @@ export const WaterRatioPanelContainer = styled.div`
   justify-content: center;
   flex-direction: column;
   gap: 8px;
+  margin-bottom: 40px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 704px;
@@ -21,16 +22,16 @@ export const WaterRatioPanelContainer = styled.div`
 `;
 
 export const WaterRange = styled.input`
-   &[type='range'] {
+  &[type='range'] {
     appearance: none;
     width: 100%;
-   border-radius: 10px;
-   background-color: ${({ theme }) => theme.color.secondaryPowderBlue};
-   background-image: linear-gradient(
-     ${({ theme }) => theme.color.secondaryLightBlue},
-     ${({ theme }) => theme.color.secondaryLightBlue}
-   );
-   background-repeat: no-repeat;
+    border-radius: 10px;
+    background-color: ${({ theme }) => theme.color.secondaryPowderBlue};
+    background-image: linear-gradient(
+      ${({ theme }) => theme.color.secondaryLightBlue},
+      ${({ theme }) => theme.color.secondaryLightBlue}
+    );
+    background-repeat: no-repeat;
   }
 
   &[type='range']:focus {
@@ -171,6 +172,6 @@ export const AddWaterButton = styled.button`
 export const AddIcon = styled.svg`
   width: 24px;
   height: 24px;
-  fill:transparent;
+  fill: transparent;
   stroke: ${props => props.theme.color.white};
 `;

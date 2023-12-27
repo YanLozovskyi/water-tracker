@@ -2,19 +2,15 @@ import styled from '@emotion/styled';
 
 export const DaysGeneralStatsModal = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 10px;
   padding: 24px 16px;
+  transform: translate(-50% -50%);
+  width: 280px;
 
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 10px;
   padding: 24px 16px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    /* position: absolute; */
-  }
 `;
 
 export const DaysGeneralStatsList = styled.ul`

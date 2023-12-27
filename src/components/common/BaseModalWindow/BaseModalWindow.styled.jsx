@@ -23,13 +23,11 @@ export const ModalContent = styled.div`
   left: 50%;
   min-width: 280px;
   max-height: 90vh;
-  max-height: 100%;
-
   background: ${props => props.theme.color.white};
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all ${props => props.theme.transition.modal};
-  overflow-y: auto;
+  overflow: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     min-width: 704px;

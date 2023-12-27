@@ -10,7 +10,6 @@ import imgHome2Desk2x from '../../../assets/images/background/homePage/desktop/b
 export const DailyBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 24px;
   margin-bottom: 16px;
   position: relative;
 `;
@@ -52,7 +51,7 @@ export const DailyNormaStyled = styled.div`
   border: 1px solid ${props => props.theme.color.secondaryWhite};
   box-shadow: 0px 4px 8px 0px rgba(158, 187, 255, 0.12);
   background: ${props => props.theme.color.white};
-  max-width: 170px;
+  max-width: 172px;
 
   div {
     display: flex;
@@ -90,7 +89,7 @@ export const DailyNormaStyled = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     position: absolute;
-    top: 12%;
+    top: 13%;
     left: 12%;
     transform: translate(-50%, -50%);
     z-index: 1;
@@ -102,6 +101,7 @@ export const DailyNormaStyled = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     top: 20%;
+    left: 14%;
     max-width: 180px;
   }
 `;

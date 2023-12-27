@@ -34,13 +34,14 @@ export const HomeSection = styled(Section)`
 `;
 
 export const BoxHome = styled.div`
-  margin: 0;
+  margin-top: 24px;
   padding: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 8px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     display: flex;
