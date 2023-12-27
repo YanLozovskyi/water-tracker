@@ -22,19 +22,22 @@ export const ModalContent = styled.div`
   top: 50%;
   left: 50%;
   min-width: 280px;
+  max-height: 90vh;
   max-height: 100%;
+
   background: ${props => props.theme.color.white};
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all ${props => props.theme.transition.modal};
+  overflow-y: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     min-width: 704px;
   }
 
-  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     max-width: 544px;
-  } */
+  }
 `;
 
 export const ModalHeader = styled.div`
