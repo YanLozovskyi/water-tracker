@@ -1,81 +1,46 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
-export const SignImgBubble = styled.img`
-  position: absolute;
-  background-size: cover;
-  background-position: center;
-  width: 1404px;
-  height: 582px;
-  pointer-events: none;
-  @media (max-width: 768px) {
+export const SignUpContainer = styled.div`
+  width: 320px;
+  height: 680px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 768px;
     height: 680px;
   }
-  @media (max-width: 480px) {
-    width: 320px;
-    height: 842px;
-    display: inline-flex;
-    padding-bottom: 2.302px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    width: 1404px;
+    height: 582px;
   }
-`;
-
-export const SignImgButle = styled.img`
-  position: absolute;
-  width: 916px;
-  height: 680px;
-  pointer-events: none;
-  @media (max-width: 768px) {
-    width: 736px;
-    height: 548px;
-    margin-top: 52px;
-    margin-left: 112px;
-  }
-  @media (max-width: 480px) {
-    width: 280px;
-    height: 210px;
-    margin-top: 394px;
-    margin-left: 20px;
-  }
-`;
-
-export const SignUpContainer = styled.div`
-  width: 1404px;
-  height: 582px;
-  top: 52px;
-  left: 18px;
 
   .sign-up-forms-container {
-    padding: 148px 198px 30px 822px;
+    padding: 28px 20px 0px 20px;
+    position: relative;
   }
-  @media (max-width: 768px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     .sign-up-forms-container {
       padding: 40px 368px 172px 32px;
     }
   }
-  @media (max-width: 480px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     .sign-up-forms-container {
-      padding: 28px 20px 476px 20px;
+      padding: 148px 198px 30px 822px;
     }
   }
-  .adaptation-container {
-    width: 384px;
-    height: 404px;
-  }
 
-  @media (max-width: 768px) {
+  .adaptation-container {
+    width: 280px;
+    height: 396px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     .adaptation-container {
       width: 336px;
     }
   }
-
-  @media (max-width: 480px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     .adaptation-container {
-      width: 280px;
-      height: 396px;
+      width: 384px;
+      height: 404px;
     }
   }
 
@@ -105,7 +70,7 @@ export const SignUpContainer = styled.div`
   .sign-up-button-disabled {
     background-color: ${props => props.theme.color.secondaryPowderBlue};
   }
-  
+
   .input-with-error {
     color: red;
     border: 1px solid ${props => props.theme.color.secondaryRed};
@@ -157,14 +122,14 @@ export const EyeSlashIcon = styled.svg`
   top: 38px;
 `;
 
-export const SignUpLink = styled(NavLink)` 
+export const SignUpLink = styled(NavLink)`
   width: 100%;
   font-size: 16px;
-  font-style: normal; 
+  font-style: normal;
   font-weight: 400;
   line-height: 20px;
   color: ${props => props.theme.color.accent};
-    &:hover {
+  &:hover {
     color: ${props => props.theme.color.secondaryYellow};
-  }`
-
+  }
+`;

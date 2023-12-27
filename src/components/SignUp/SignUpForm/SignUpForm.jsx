@@ -3,12 +3,10 @@ import { useDispatch } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   EyeSlashIcon,
-  SignImgBubble,
-  SignImgButle,
   SignStyledInput,
   SignStyledLabel,
   SignUpContainer,
-  SignUpLink
+  SignUpLink,
 } from './SignUpForm.styled';
 import { registerThunk } from '../../../redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +40,7 @@ export const SignUpForm = () => {
     }
   };
 
-  const validatePassword = (password) => {
+  const validatePassword = password => {
     if (password && password.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
     } else {
@@ -79,11 +77,13 @@ export const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(registerThunk({ email, password })).then((data) => { if (!data.error) navigate('/signin'); });
+    dispatch(registerThunk({ email, password })).then(data => {
+      if (!data.error) navigate('/signin');
+    });
     setEmail('');
     setPassword('');
     setConfirmPassword('');
-  }
+  };
 
   const iconClick = e => {
     iconStatus ? setIconStatus(false) : setIconStatus(true);
@@ -93,34 +93,6 @@ export const SignUpForm = () => {
 
   return (
     <>
-      <picture>
-        <SignImgBubble
-          src="src/assets/images/background/homePage/desktop/bgHomeBubbleDesc.png"
-          media="(max-width: 1440px)"
-        ></SignImgBubble>
-        <source
-          srcSet="src/assets/images/background/homePage/tablet/bgHomeTabBubble.png"
-          media="(max-width: 768px)"
-        />
-        <source
-          srcSet="src/assets/images/background/homePage/mobile/bgHomePhoneBubble.png"
-          media="(max-width: 480px)"
-        />
-      </picture>
-      <picture>
-        <SignImgButle
-          src="src/assets/images/background/homePage/desktop/bgHomeButleDesc.png"
-          media="(max-width: 1440px)"
-        ></SignImgButle>
-        <source
-          srcSet="src/assets/images/background/homePage/tablet/bgHomeTabButle.png"
-          media="(max-width: 768px)"
-        />
-        <source
-          srcSet="src/assets/images/background/homePage/mobile/bgHomePhoneButle.png"
-          media="(max-width: 480px)"
-        />
-      </picture>
       <SignUpContainer>
         <div className="sign-up-forms-container">
           <div className="adaptation-container">
@@ -134,7 +106,7 @@ export const SignUpForm = () => {
                     onChange={handleChange}
                     placeholder="E-mail"
                     type="email"
-                    name='email'
+                    name="email"
                     value={email}
                   />
                   {emailError && (
@@ -179,7 +151,7 @@ export const SignUpForm = () => {
                     autoComplete="off"
                     type={iconStatus ? 'text' : 'password'}
                     placeholder="Repeat password"
-                    name='confirmPassword'
+                    name="confirmPassword"
                     value={confirmPassword}
                   />
                   {confirmPasswordError && (
@@ -211,11 +183,7 @@ export const SignUpForm = () => {
               </div>
             </form>
 
-            <SignUpLink
-              to="/signin"
-            >
-              Sign in
-            </SignUpLink>
+            <SignUpLink to="/signin">Sign in</SignUpLink>
           </div>
         </div>
       </SignUpContainer>
