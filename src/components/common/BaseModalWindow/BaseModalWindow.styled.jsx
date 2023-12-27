@@ -33,9 +33,9 @@ export const ModalContent = styled.div`
     min-width: 704px;
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     max-width: 544px;
-  }
+  } */
 `;
 
 export const ModalHeader = styled.div`
