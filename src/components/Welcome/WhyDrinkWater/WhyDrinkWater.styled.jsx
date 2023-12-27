@@ -36,10 +36,15 @@ export const Item = styled.li`
     list-style-position: inside;
   }
 `;
-
-export const Tab = styled.div`
+export const OutlineContainer = styled.div`
   display: inline-block;
-  max-width: 280px;
+  margin: 0;
+`;
+
+export const Container = styled.div`
+  display: inline-block;
+  width: auto;
+
   padding: 24px 16px;
   background-color: ${({ theme }) => theme.color.secondaryWhite};
   box-shadow: 0 4px 14px rgba(64, 123, 255, 0.3);
@@ -48,8 +53,7 @@ export const Tab = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 32px 24px;
-    min-width: 494px;
-    height: 332px;
+
     list-style-position: inside;
     margin: 0;
   }
