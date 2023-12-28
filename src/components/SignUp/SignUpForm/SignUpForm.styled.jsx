@@ -64,7 +64,8 @@ export const BootleImg = styled.div`
       url(${imgHome2Tabl1x}) 1x,
       url(${imgHome2Tabl2x}) 2x
     );
-    height: 386px;
+    width: 736px;
+    height: 548px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
@@ -117,9 +118,7 @@ export const SignUpContainer = styled.div`
     }
   }
 
-  .input-with-error {
-  
-  }
+ 
   */
 `;
 
@@ -139,19 +138,6 @@ export const SignButton = styled.button`
   background-color: ${props => props.theme.color.accent};
 `;
 
-export const SignButtonDisabled = styled(SignButton)`
-  background-color: ${props => props.theme.color.secondaryPowderBlue};
-  cursor: not-allowed;
-`;
-
-export const FormTitle = styled.h2`
-  width: 100%;
-  font-size: 26px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 32px;
-  color: ${props => props.theme.color.black};
-`;
 export const SignStyledLabel = styled.label`
   display: flex;
   flex-direction: column;
@@ -163,6 +149,11 @@ export const SignStyledLabel = styled.label`
   font-weight: 400;
   line-height: 24px;
   color: ${props => props.theme.color.black};
+
+  .input-with-error {
+    color: red;
+    border: 1px solid ${props => props.theme.color.secondaryRed};
+  }
 `;
 
 export const SignStyledInput = styled.input`
@@ -183,17 +174,36 @@ export const SignStyledInput = styled.input`
   }
 `;
 
-export const SignStyledInputError = styled(SignStyledInput)`
-  color: red;
-  border: 1px solid ${props => props.theme.color.secondaryRed};
-`;
-
 export const SignForm = styled.form`
-  min-width: 384px;
-  min-height: 312px;
   display: flex;
   flex-direction: column;
+  min-width: 280px;
+  min-height: 304px;
   gap: 16px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    min-width: 336px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    min-width: 384px;
+    min-height: 312px;
+    gap: 16px;
+  }
+`;
+
+export const SignButtonDisabled = styled(SignButton)`
+  background-color: ${props => props.theme.color.secondaryPowderBlue};
+  cursor: not-allowed;
+`;
+
+export const FormTitle = styled.h2`
+  width: 100%;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 32px;
+  color: ${props => props.theme.color.black};
 `;
 
 export const EyeSlashIcon = styled.svg`
@@ -204,7 +214,7 @@ export const EyeSlashIcon = styled.svg`
   fill: ${props => props.theme.color.white};
   position: absolute;
   right: 10px;
-  top: 38px;
+  top: 44px;
 `;
 
 export const SignUpLink = styled(NavLink)`

@@ -10,7 +10,6 @@ import {
   SignButtonDisabled,
   SignForm,
   SignStyledInput,
-  SignStyledInputError,
   SignStyledLabel,
   SignUpContainer,
   SignUpLink,
@@ -106,46 +105,27 @@ export const SignUpForm = () => {
           <FormTitle>Sign Up</FormTitle>
           <SignStyledLabel>
             Enter your email
-            {emailError ? (
-              <SignStyledInputError
-                onChange={handleChange}
-                placeholder="E-mail"
-                type="email"
-                name="email"
-                value={email}
-              />
-            ) : (
-              <SignStyledInput
-                onChange={handleChange}
-                placeholder="E-mail"
-                type="email"
-                name="email"
-                value={email}
-              />
-            )}
+            <SignStyledInput
+              onChange={handleChange}
+              className={emailError ? 'input-with-error' : null}
+              placeholder="E-mail"
+              type="email"
+              name="email"
+              value={email}
+            />
             {emailError && <ErrorSpan>{emailError}</ErrorSpan>}
           </SignStyledLabel>
           <SignStyledLabel>
             Enter your password
-            {passwordError ? (
-              <SignStyledInputError
-                onChange={handleChange}
-                autoComplete="off"
-                type={iconStatus ? 'text' : 'password'}
-                placeholder="Password"
-                name="password"
-                value={password}
-              />
-            ) : (
-              <SignStyledInput
-                onChange={handleChange}
-                autoComplete="off"
-                type={iconStatus ? 'text' : 'password'}
-                placeholder="Password"
-                name="password"
-                value={password}
-              />
-            )}
+            <SignStyledInput
+              className={emailError ? 'input-with-error' : null}
+              onChange={handleChange}
+              autoComplete="off"
+              type={iconStatus ? 'text' : 'password'}
+              placeholder="Password"
+              name="password"
+              value={password}
+            />
             {passwordError && <ErrorSpan>{passwordError}</ErrorSpan>}
             {iconStatus === false ? (
               <EyeSlashIcon onClick={iconClick}>
@@ -160,25 +140,15 @@ export const SignUpForm = () => {
 
           <SignStyledLabel>
             Repeat password
-            {confirmPasswordError ? (
-              <SignStyledInputError
-                onChange={handleChange}
-                autoComplete="off"
-                type={iconStatus ? 'text' : 'password'}
-                placeholder="Repeat password"
-                name="confirmPassword"
-                value={confirmPassword}
-              />
-            ) : (
-              <SignStyledInput
-                onChange={handleChange}
-                autoComplete="off"
-                type={iconStatus ? 'text' : 'password'}
-                placeholder="Repeat password"
-                name="confirmPassword"
-                value={confirmPassword}
-              />
-            )}
+            <SignStyledInput
+              className={emailError ? 'input-with-error' : null}
+              onChange={handleChange}
+              autoComplete="off"
+              type={iconStatus ? 'text' : 'password'}
+              placeholder="Repeat password"
+              name="confirmPassword"
+              value={confirmPassword}
+            />
             {confirmPasswordError && (
               <ErrorSpan>{confirmPasswordError}</ErrorSpan>
             )}
