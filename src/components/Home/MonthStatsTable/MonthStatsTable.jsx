@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { DaysGeneralStats } from '../DaysGeneralStats/DaysGeneralStats';
 
 import {
   Paginator,
   ButtonPaginator,
   HeaderMonth,
-  BoxMonth,
   DaysList,
   DaysButton,
   DaysPercentage,
@@ -45,6 +44,8 @@ export const MonthStatsTable = () => {
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
   const [activeButton, setActiveButton] = useState(null);
+  const [dayPosition, setDayPosition] = useState({ top: 0, left: 0, width: 0 });
+  const [modalVisible, setModalVisible] = useState(false);
 
   // Функція, яка повертає кількість днів у місяці
   const daysInMonth = month => {
@@ -101,9 +102,44 @@ export const MonthStatsTable = () => {
 
   // Обробник кліка по дню
   const onDayClick = day => {
-    const dayStats = dailyStats.find(stat => stat.day === day);
-    setSelectedDayStats(dayStats);
+    setModalVisible(true);
+    // Якщо модальне вікно вже відкрите то закриваємо його
+    if (selectedDayStats && selectedDayStats.day === day) {
+      setSelectedDayStats(null);
+      return;
+    }
+    // Логіка для відкриття модального вікна
+    const dayElement = dayRefs.current[day];
+    if (dayElement) {
+      const rect = dayElement.getBoundingClientRect();
+      setDayPosition({
+        top: rect.top + window.scrollY,
+        left: rect.left,
+        width: rect.width,
+      });
+      setSelectedDayStats({
+        day,
+        ...dailyStats.find(stat => stat.day === day),
+      });
+    }
   };
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (
+        selectedDayStats &&
+        !dayRefs.current[selectedDayStats.day].contains(event.target)
+      ) {
+        handleCloseModal();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [selectedDayStats]);
 
   useEffect(() => {
     fetchDataForMonth(selectedMonth);
@@ -112,10 +148,10 @@ export const MonthStatsTable = () => {
   // Для прикладу
   useEffect(() => {
     setDailyStats([
+      { day: 2, percentage: 60 },
+      { day: 10, percentage: 100 },
       { day: 15, percentage: 100 },
-      { day: 16, percentage: 60 },
-      { day: 17, percentage: 100 },
-      { day: 18, percentage: 60 },
+      { day: 29, percentage: 60 },
     ]);
   }, []);
 
@@ -131,8 +167,15 @@ export const MonthStatsTable = () => {
     });
   }, [dailyStats, selectedMonth]);
 
+  const dayRefs = useRef({});
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setSelectedDayStats(null);
+  };
+
   return (
-    <BoxMonth>
+    <div>
       <HeaderMonth>
         <h2>Month</h2>
         <Paginator
@@ -157,16 +200,22 @@ export const MonthStatsTable = () => {
       </HeaderMonth>
 
       {selectedDayStats && (
-        <DaysGeneralStats day={selectedDayStats.day} month={selectedMonth} stats={selectedDayStats} />
+        <DaysGeneralStats
+          day={selectedDayStats.day}
+          month={selectedMonth}
+          stats={selectedDayStats}
+          position={dayPosition}
+          onClose={handleCloseModal}
+          onShow={modalVisible}
+        />
       )}
-     
 
       <DaysList>
         {daysWithData.map(({ day, percentage, isHighlighted }) => (
-          <div  key={day}>
-      
+          <div key={day}>
             <DaysPercentage>
               <DaysButton
+                ref={el => (dayRefs.current[day] = el)}
                 onClick={() => onDayClick(day)}
                 isHighlighted={isHighlighted}
               >
@@ -177,6 +226,6 @@ export const MonthStatsTable = () => {
           </div>
         ))}
       </DaysList>
-    </BoxMonth>
+    </div>
   );
 };

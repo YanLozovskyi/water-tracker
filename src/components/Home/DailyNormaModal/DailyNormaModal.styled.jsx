@@ -182,7 +182,7 @@ export const ButtonSave = styled.button`
   transition: background-color ${props => props.theme.transition.main};
 
   &:hover {
-    background-color: ${props => props.theme.color.secondaryPowderBlue};
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {

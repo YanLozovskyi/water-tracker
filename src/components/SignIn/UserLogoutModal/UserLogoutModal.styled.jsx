@@ -28,7 +28,7 @@ export const LogOutBtn = styled.button`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     padding: 8px 30px;
-    min-width: 232px;
+    min-width: 100%;
     height: 36px;
     font-size: 16px;
     line-height: 20px; /* 125% */
@@ -62,7 +62,7 @@ export const CancelBtn = styled.button`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     padding: 8px 30px;
-    min-width: 232px;
+    min-width: 100%;
     height: 36px;
     font-size: 16px;
     line-height: 20px; /* 125% */
