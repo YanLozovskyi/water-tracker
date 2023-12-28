@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { logInThunk } from '../../../redux/auth/authOperations';
 import {
   BootleImg,
   ErrorSpan,
@@ -11,22 +12,18 @@ import {
   SignForm,
   SignStyledInput,
   SignStyledLabel,
-  SignUpContainer,
-  SignUpLink,
+  SignUpContainer
 } from '../../SignUp/SignUpForm/SignUpForm.styled';
-import { logInThunk } from '../../../redux/auth/authOperations';
-import { useNavigate } from 'react-router-dom';
 import { SignInLink } from './SignInForm.styled';
 
 export const SignInForm = () => {
   const dispatch = useDispatch();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [iconStatus, setIconStatus] = useState(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     validatePassword(password);
@@ -66,14 +63,13 @@ export const SignInForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(logInThunk({ email, password })).then(data => {
-      if (!data.error) navigate('/home');
-    });
+    dispatch(logInThunk({ email, password }))
+
     setEmail('');
     setPassword('');
   };
 
-  const iconClick = e => {
+  const iconClick = () => {
     iconStatus ? setIconStatus(false) : setIconStatus(true);
   };
 
