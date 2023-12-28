@@ -32,7 +32,6 @@ export const logout = async () => {
 // User
 
 export const refreshUser = async token => {
-  console.log('api-token', token);
   setToken(token);
   const { data } = await axios.get('/user/current');
   return data;

@@ -4,8 +4,10 @@ import {
   ModalHeader,
 } from '../../common/BaseModalWindow/BaseModalWindow.styled';
 import { Field, ErrorMessage } from 'formik';
-export const HiddenInput = styled(Field)`
-  position: absolute;
+
+export const TestLabel = styled.label`
+.test-input {
+    position: absolute;
   overflow: hidden;
   clip: rect(0 0 0 0);
   width: 1px;
@@ -15,7 +17,7 @@ export const HiddenInput = styled(Field)`
   border: 0;
   white-space: nowrap;
   clip-path: inset(100%);
-`;
+  }`
 
 export const FormText = styled.p`
   color: ${({ theme }) => theme.color.black};

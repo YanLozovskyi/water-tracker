@@ -2,12 +2,11 @@ import { useEffect, useRef } from 'react';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { BaseModalWindow } from 'components';
-import { Form, Formik, ErrorMessage } from 'formik';
+import { Form, Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
 import {
   DownloadWrap,
   FormText,
-  HiddenInput,
   IconDownload,
   StyledLabel,
   DownloadBtn,
@@ -36,6 +35,7 @@ import {
   ErrorInput,
   StyledErrorMessage,
   StyledErrorText,
+  TestLabel,
 } from './SettingModal.styled';
 import { forwardRef } from 'react';
 
@@ -69,7 +69,13 @@ export const SettingModal = ({ onClose }) => {
   // const [repeatedPassword, setRepeatedPassword] = useState('');
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
-  const filePicker = forwardRef(null);
+  const filePicker = useRef(null);
+
+  const HiddenInput = forwardRef((props, ref) => (
+    <Field innerRef={ref} {...props} />
+  ));
+
+  HiddenInput.displayName = 'MyField';
 
   const handleDownloadAvatar = () => {
     filePicker.current.click();
@@ -100,7 +106,7 @@ export const SettingModal = ({ onClose }) => {
             <Formik
               initialValues={{
                 avatar: '',
-                gender: '',
+                gender: 'Girl',
                 username: '',
                 email: '',
                 oldPassword: '',
@@ -126,12 +132,12 @@ export const SettingModal = ({ onClose }) => {
                           height="80px"
                         />
                       }
-
-                      <label>
+                      <TestLabel>
                         <HiddenInput
-                          ref={filePicker}
+                          innerRef={filePicker}
                           type="file"
                           name="avatar"
+                          className={"test-input"}
                           accept="image/png, image/jpeg"
                           onChange={event => {
                             if (
@@ -151,7 +157,7 @@ export const SettingModal = ({ onClose }) => {
                           </IconDownload>
                           <DownloadBtnText>Upload a photo</DownloadBtnText>
                         </DownloadBtn>
-                      </label>
+                      </TestLabel>
                     </DownloadWrap>
                   </FormField>
                   <DesktopFormWrap>
@@ -165,7 +171,7 @@ export const SettingModal = ({ onClose }) => {
                               name="gender"
                               value="Girl"
                               checked={values.gender === 'Girl'}
-                              // onChange={event => setGender(event.target.value)}
+                            // onChange={event => setGender(event.target.value)}
                             />
                             <RadioBtnText>Girl</RadioBtnText>
                           </RadioBtnLabel>
@@ -175,7 +181,7 @@ export const SettingModal = ({ onClose }) => {
                               name="gender"
                               value="Man"
                               checked={values.gender === 'Man'}
-                              // onChange={event => setGender(event.target.value)}
+                            // onChange={event => setGender(event.target.value)}
                             />
                             <RadioBtnText>Man</RadioBtnText>
                           </RadioBtnLabel>
@@ -190,7 +196,7 @@ export const SettingModal = ({ onClose }) => {
                             name="username"
                             // value={username}
                             placeholder={values.username}
-                            // onChange={event => setUserName(event.target.value)}
+                          // onChange={event => setUserName(event.target.value)}
                           />
                         ) : (
                           <Input
@@ -199,7 +205,7 @@ export const SettingModal = ({ onClose }) => {
                             name="username"
                             // value={username}
                             placeholder={values.username}
-                            // onChange={event => setUserName(event.target.value)}
+                          // onChange={event => setUserName(event.target.value)}
                           />
                         )}
                         <StyledErrorMessage component="p" name="username" />
@@ -213,7 +219,7 @@ export const SettingModal = ({ onClose }) => {
                             name="email"
                             // value={email}
                             placeholder={values.email}
-                            // onChange={event => setEmail(event.target.value)}
+                          // onChange={event => setEmail(event.target.value)}
                           />
                         ) : (
                           <Input
@@ -222,7 +228,7 @@ export const SettingModal = ({ onClose }) => {
                             name="email"
                             // value={email}
                             placeholder={values.email}
-                            // onChange={event => setEmail(event.target.value)}
+                          // onChange={event => setEmail(event.target.value)}
                           />
                         )}
                         <StyledErrorMessage component="p" name="email" />
@@ -242,7 +248,7 @@ export const SettingModal = ({ onClose }) => {
                               name="oldPassword"
                               // value={oldPassword}
                               placeholder="Password"
-                              // onChange={event => setOldPassword(event.target.value)}
+                            // onChange={event => setOldPassword(event.target.value)}
                             />
                           ) : (
                             <Input
@@ -251,7 +257,7 @@ export const SettingModal = ({ onClose }) => {
                               name="oldPassword"
                               // value={oldPassword}
                               placeholder="Password"
-                              // onChange={event => setOldPassword(event.target.value)}
+                            // onChange={event => setOldPassword(event.target.value)}
                             />
                           )}
                           <IconBtn
@@ -283,7 +289,7 @@ export const SettingModal = ({ onClose }) => {
                               name="newPassword"
                               // value={password}
                               placeholder="Password"
-                              // onChange={event => setPassword(event.target.value)}
+                            // onChange={event => setPassword(event.target.value)}
                             />
                           ) : (
                             <Input
@@ -292,7 +298,7 @@ export const SettingModal = ({ onClose }) => {
                               name="newPassword"
                               // value={password}
                               placeholder="Password"
-                              // onChange={event => setPassword(event.target.value)}
+                            // onChange={event => setPassword(event.target.value)}
                             />
                           )}
                           <IconBtn
@@ -324,9 +330,9 @@ export const SettingModal = ({ onClose }) => {
                               name="repeatedPassword"
                               // value={repeatedPassword}
                               placeholder="Password"
-                              // onChange={event =>
-                              //   setRepeatedPassword(event.target.value)
-                              // }
+                            // onChange={event =>
+                            //   setRepeatedPassword(event.target.value)
+                            // }
                             />
                           ) : (
                             <Input
@@ -335,9 +341,9 @@ export const SettingModal = ({ onClose }) => {
                               name="repeatedPassword"
                               // value={repeatedPassword}
                               placeholder="Password"
-                              // onChange={event =>
-                              //   setRepeatedPassword(event.target.value)
-                              // }
+                            // onChange={event =>
+                            //   setRepeatedPassword(event.target.value)
+                            // }
                             />
                           )}
                           <IconBtn
