@@ -77,8 +77,8 @@ export const ButtonMl = styled.button`
 `;
 
 export const Icon = styled.svg`
-  width: 100%;
-  height: 100%;
+  width: 24px;
+  height: 24px;
   stroke: ${props => props.theme.color.accent};
 `;
 

@@ -23,7 +23,7 @@ export const TodayListModal = ({
   const [amount, setAmount] = useState(initialAmount || 0);
   const [time, setTime] = useState(
     initialTime ||
-      new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
   );
   // змінюємо кількість води за допомогою кнопок
   const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
@@ -59,7 +59,7 @@ export const TodayListModal = ({
           <div>
             <ButtonMl onClick={decreaseAmount}>
               <Icon>
-                <use href={`${sprite}#icon-decrement`}></use>
+                <use href={`${sprite}#icon-decrement-outline`}></use>
               </Icon>
             </ButtonMl>
             <input
