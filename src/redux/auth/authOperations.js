@@ -48,10 +48,8 @@ export const refreshUserThunk = createAsyncThunk(
   'auth/refresh',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const {
-        auth: { token },
-      } = getState();
-      const data = await refreshUser(token);
+      const { auth } = getState();
+      const data = await refreshUser(auth.token);
 
       return data;
     } catch (error) {
@@ -60,10 +58,9 @@ export const refreshUserThunk = createAsyncThunk(
   },
   {
     condition: (_, { getState }) => {
-      const {
-        auth: { token },
-      } = getState();
-      if (!token) {
+      const { auth } = getState();
+
+      if (!auth.token) {
         return false;
       }
     },

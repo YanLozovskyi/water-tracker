@@ -3,8 +3,11 @@ import {
   ModalContent,
   ModalHeader,
 } from '../../common/BaseModalWindow/BaseModalWindow.styled';
-export const HiddenInput = styled.input`
-  position: absolute;
+import { Field, ErrorMessage } from 'formik';
+
+export const TestLabel = styled.label`
+.test-input {
+    position: absolute;
   overflow: hidden;
   clip: rect(0 0 0 0);
   width: 1px;
@@ -14,7 +17,7 @@ export const HiddenInput = styled.input`
   border: 0;
   white-space: nowrap;
   clip-path: inset(100%);
-`;
+  }`
 
 export const FormText = styled.p`
   color: ${({ theme }) => theme.color.black};
@@ -100,7 +103,7 @@ export const GenderText = styled(FormText)`
   margin-bottom: 12px;
 `;
 
-export const RadioBtn = styled.input`
+export const RadioBtn = styled(Field)`
   border: 1px solid ${props => props.theme.color.accent};
   width: 14px;
   height: 14px;
@@ -135,7 +138,7 @@ export const Avatar = styled.img`
   border-radius: 60%;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   width: 100%;
   height: 44px;
   padding-top: 12px;
@@ -158,6 +161,39 @@ export const Input = styled.input`
   &::placeholder {
     color: ${props => props.theme.color.secondaryLightBlue};
   }
+`;
+
+export const ErrorInput = styled(Input)`
+  border: 1px solid ${props => props.theme.color.secondaryRed};
+  color: ${props => props.theme.color.secondaryRed};
+
+  &:focus {
+    color: ${({ theme }) => theme.color.secondaryRed};
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.color.secondaryRed};
+  }
+`;
+
+export const StyledErrorMessage = styled(ErrorMessage)`
+  margin-top: 4px;
+  color: ${props => props.theme.color.secondaryRed};
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+`;
+
+export const StyledErrorText = styled.p`
+  margin-top: 4px;
+  color: ${props => props.theme.color.secondaryRed};
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
 `;
 
 export const ModalWrap = styled.div`
