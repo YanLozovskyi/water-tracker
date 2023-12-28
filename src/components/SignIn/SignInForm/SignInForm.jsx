@@ -99,7 +99,7 @@ export const SignInForm = () => {
         <SignStyledLabel>
           Enter your password
           <SignStyledInput
-            className={emailError ? 'input-with-error' : null}
+            className={passwordError ? 'input-with-error' : null}
             onChange={handleChange}
             autoComplete="off"
             type={iconStatus ? 'text' : 'password'}

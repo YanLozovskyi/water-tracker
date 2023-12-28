@@ -118,7 +118,7 @@ export const SignUpForm = () => {
           <SignStyledLabel>
             Enter your password
             <SignStyledInput
-              className={emailError ? 'input-with-error' : null}
+              className={passwordError ? 'input-with-error' : null}
               onChange={handleChange}
               autoComplete="off"
               type={iconStatus ? 'text' : 'password'}
@@ -141,7 +141,7 @@ export const SignUpForm = () => {
           <SignStyledLabel>
             Repeat password
             <SignStyledInput
-              className={emailError ? 'input-with-error' : null}
+              className={confirmPasswordError ? 'input-with-error' : null}
               onChange={handleChange}
               autoComplete="off"
               type={iconStatus ? 'text' : 'password'}
