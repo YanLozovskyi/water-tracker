@@ -156,6 +156,11 @@ export const AddWaterButton = styled.button`
   background-color: ${({ theme }) => theme.color.accent};
   color: ${({ theme }) => theme.color.white};
   border: none;
+  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+
+  &:hover {
+    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 336px;
