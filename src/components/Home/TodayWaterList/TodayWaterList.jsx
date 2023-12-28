@@ -72,7 +72,7 @@ export const TodayWaterList = () => {
               <IconGlass>
                 <use href={icons.glass}></use>
               </IconGlass>
-              <TodayVolume>{record.volume}250 ml</TodayVolume>
+              <TodayVolume>{record.amount} ml</TodayVolume>
               <TodayTime>{record.time} AM</TodayTime>
             </TodayInfo>
             <TodayTools>
@@ -89,73 +89,6 @@ export const TodayWaterList = () => {
             </TodayTools>
           </TodayItem>
         ))}
-
-        {/* <TodayItem>
-          <TodayInfo>
-            <IconGlass>
-              <use href={icons.glass}></use>
-            </IconGlass>
-            <TodayVolume>220 ml</TodayVolume>
-            <TodayTime>11:00 AM</TodayTime>
-          </TodayInfo>
-          <TodayTools>
-            <ButtonChange>
-              <svg>
-                <use href={icons.change}></use>
-              </svg>
-            </ButtonChange>
-            <ButtonDelete>
-              <svg>
-                <use href={icons.delete}></use>
-              </svg>
-            </ButtonDelete>
-          </TodayTools>
-        </TodayItem>
-
-        <TodayItem>
-          <TodayInfo>
-            <IconGlass>
-              <use href={icons.glass}></use>
-            </IconGlass>
-            <TodayVolume>200 ml</TodayVolume>
-            <TodayTime>14:00 PM</TodayTime>
-          </TodayInfo>
-          <TodayTools>
-            <ButtonChange>
-              <svg>
-                <use href={icons.change}></use>
-              </svg>
-            </ButtonChange>
-            <ButtonDelete>
-              <svg>
-                <use href={icons.delete}></use>
-              </svg>
-            </ButtonDelete>
-          </TodayTools>
-        </TodayItem>
-
-        <TodayItem>
-          <TodayInfo>
-            <IconGlass>
-              <use href={icons.glass}></use>
-            </IconGlass>
-            <TodayVolume>200 ml</TodayVolume>
-            <TodayTime>14:00 PM</TodayTime>
-          </TodayInfo>
-          <TodayTools>
-            <ButtonChange>
-              <svg>
-                <use href={icons.change}></use>
-              </svg>
-            </ButtonChange>
-            <ButtonDelete>
-              <svg>
-                <use href={icons.delete}></use>
-              </svg>
-            </ButtonDelete>
-          </TodayTools>
-        </TodayItem> */}
-
         <li>
           <AddWaterBtn onClick={openModalToAdd}>
             <svg>

@@ -51,8 +51,6 @@ export const TodayTime = styled.p`
 `;
 
 export const IconGlass = styled.svg`
-  stroke: #407bff;
-  fill: transparent;
   width: 26px;
   height: 26px;
   margin-right: 12px;
