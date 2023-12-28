@@ -38,8 +38,8 @@ import {
   TestLabel,
 } from './SettingModal.styled';
 import { forwardRef } from 'react';
-
-const defaultAvatar = 'src/assets/images/default_avatar_to_download.jpg';
+import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg'
+// const defaultAvatar = 'src/assets/images/default_avatar_to_download.jpg';
 
 const settingFormValidationSchema = Yup.object().shape({
   gender: Yup.string().required('Required'),
