@@ -5,21 +5,15 @@ export const WelcomePageStyle = styled.div`
   flex-direction: column;
   gap: 40px;
 
-  padding-top: 24px;
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     gap: 60px;
-
-    padding-top: 40px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     flex-direction: row;
     justify-content: center;
     align-items: flex-end;
-    padding-top: 80px;
 
     gap: 81px;
-    z-index: 100;
   }
 `;

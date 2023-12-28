@@ -1,11 +1,13 @@
 import { MainContent } from 'components';
-import { WelcomeStyle } from './Welcome.styled';
+import { WelcomeStyle, Container } from './Welcome.styled';
 
 const Welcome = () => {
   return (
-    <WelcomeStyle>
-      <MainContent />
-    </WelcomeStyle>
+    <Container>
+      <WelcomeStyle>
+        <MainContent />
+      </WelcomeStyle>
+    </Container>
   );
 };
 
