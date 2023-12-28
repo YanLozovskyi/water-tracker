@@ -43,13 +43,13 @@ export const OutlineContainer = styled.div`
 
 export const Container = styled.div`
   display: inline-block;
+  margin: auto;
   width: auto;
 
   padding: 24px 16px;
   background-color: ${({ theme }) => theme.color.secondaryWhite};
   box-shadow: 0 4px 14px rgba(64, 123, 255, 0.3);
   border-radius: 10px;
-  margin: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 32px 24px;

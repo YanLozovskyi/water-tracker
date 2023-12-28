@@ -30,7 +30,7 @@ export const WelcomeStyle = styled(Section)`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     padding-top: 80px;
-    padding-bottom: 294px;
+    height: 100vh;
     position: relative;
     background-size: contain;
     background-position: center bottom;
