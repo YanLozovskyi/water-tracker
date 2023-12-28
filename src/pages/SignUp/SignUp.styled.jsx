@@ -9,12 +9,13 @@ import imgHomeTabl1x from '../../assets/images/background/homePage/tablet/bubble
 import imgHomeTabl2x from '../../assets/images/background/homePage/tablet/bubbleTablet@2x.png';
 
 export const SignUpSection = styled(Section)`
-  background-position: center center;
+  padding-top: 40px;
+  background-position: top;
   background-image: -webkit-image-set(
     url(${imgHomeMob1x}) 1x,
     url(${imgHomeMob2x}) 2x
   );
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
 

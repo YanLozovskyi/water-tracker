@@ -2,77 +2,33 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import imgHome2Mob1x from '../../../assets/images/background/homePage/mobile/bottleMob.png';
 import imgHome2Mob2x from '../../../assets/images/background/homePage/mobile/bottleMob@2x.png';
-import imgHome2Tabl1x from '../../../assets/images/background/homePage/tablet/bottleTabl.png';
-import imgHome2Tabl2x from '../../../assets/images/background/homePage/tablet/bottleTabl@2x.png';
 import imgHome2Desk1x from '../../../assets/images/background/homePage/desktop/bottleDesc.png';
 import imgHome2Desk2x from '../../../assets/images/background/homePage/desktop/bottleDesc@2x.png';
 
-// export const SignImgBubble = styled.img`
-//   position: absolute;
-//   background-size: cover;
-//   background-position: center;
-//   width: 1404px;
-//   height: 582px;
-//   pointer-events: none;
-//   @media (max-width: 768px) {
-//     width: 768px;
-//     height: 680px;
-//   }
-//   @media (max-width: 480px) {
-//     width: 320px;
-//     height: 842px;
-//     display: inline-flex;
-//     padding-bottom: 2.302px;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: center;
-//   }
-// `;
-
-// export const SignImgButle = styled.img`
-//   position: absolute;
-//   width: 916px;
-//   height: 680px;
-//   pointer-events: none;
-//   @media (max-width: 768px) {
-//     width: 736px;
-//     height: 548px;
-//     margin-top: 52px;
-//     margin-left: 112px;
-//   }
-//   @media (max-width: 480px) {
-//     width: 280px;
-//     height: 210px;
-//     margin-top: 394px;
-//     margin-left: 20px;
-//   }
-// `;
-
 export const BootleImg = styled.div`
-  background-position: -120px center;
   background-image: -webkit-image-set(
     url(${imgHome2Mob1x}) 1x,
     url(${imgHome2Mob2x}) 2x
   );
   background-size: contain;
   background-repeat: no-repeat;
-  width: 916px;
-  min-height: 680px;
+  width: 280px;
+  height: 210px;
+  background-position: center;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    background-image: -webkit-image-set(
-      url(${imgHome2Tabl1x}) 1x,
-      url(${imgHome2Tabl2x}) 2x
-    );
-    width: 736px;
-    height: 548px;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    position: relative;
     background-image: -webkit-image-set(
       url(${imgHome2Desk1x}) 1x,
       url(${imgHome2Desk2x}) 2x
     );
+    width: 736px;
+    height: 548px;
+    background-position: 120px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    background-position: -120px center;
     width: 916px;
     min-height: 680px;
   }
@@ -80,46 +36,20 @@ export const BootleImg = styled.div`
 
 export const SignUpContainer = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  /* width: 1404px;
-  height: 582px;
-  top: 52px;
-  left: 18px;
+  flex-direction: column-reverse;
+  gap: 66px;
 
-  .sign-up-forms-container {
-    padding: 148px 198px 30px 822px;
-  }
-  @media (max-width: 768px) {
-    .sign-up-forms-container {
-      padding: 40px 368px 172px 32px;
-    }
-  }
-  @media (max-width: 480px) {
-    .sign-up-forms-container {
-      padding: 28px 20px 476px 20px;
-    }
-  }
-  .adaptation-container {
-    width: 384px;
-    height: 404px;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+    gap: 0;
   }
 
-  @media (max-width: 768px) {
-    .adaptation-container {
-      width: 336px;
-    }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
   }
-
-  @media (max-width: 480px) {
-    .adaptation-container {
-      width: 280px;
-      height: 396px;
-    }
-  }
-
- 
-  */
 `;
 
 export const ErrorSpan = styled.span`
@@ -128,7 +58,7 @@ export const ErrorSpan = styled.span`
 
 export const SignButton = styled.button`
   width: 100%;
-  padding: 10px 30px 10px 30px;
+  padding: 8px 30px 8px 30px;
   display: flex;
   justify-content: center;
   border-radius: 10px;
@@ -136,6 +66,10 @@ export const SignButton = styled.button`
   text-align: center;
   color: ${props => props.theme.color.white};
   background-color: ${props => props.theme.color.accent};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    padding: 10px 30px 10px 30px;
+  }
 `;
 
 export const SignStyledLabel = styled.label`
@@ -146,7 +80,6 @@ export const SignStyledLabel = styled.label`
   gap: 8px;
   font-size: 18px;
   font-style: normal;
-  font-weight: 400;
   line-height: 24px;
   color: ${props => props.theme.color.black};
 
@@ -172,6 +105,12 @@ export const SignStyledInput = styled.input`
   &::placeholder {
     color: ${props => props.theme.color.secondaryLightBlue};
   }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+  }
 `;
 
 export const SignForm = styled.form`
@@ -182,13 +121,17 @@ export const SignForm = styled.form`
   gap: 16px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    position: absolute;
+    top: 104px;
+    left: 30px;
     min-width: 336px;
+    z-index: 1;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    position: static;
     min-width: 384px;
     min-height: 312px;
-    gap: 16px;
   }
 `;
 
