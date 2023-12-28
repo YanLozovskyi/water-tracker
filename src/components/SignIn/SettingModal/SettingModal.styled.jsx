@@ -5,20 +5,6 @@ import {
 } from '../../common/BaseModalWindow/BaseModalWindow.styled';
 import { Field, ErrorMessage } from 'formik';
 
-export const TestLabel = styled.label`
-.test-input {
-    position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  }`
-
 export const FormText = styled.p`
   color: ${({ theme }) => theme.color.black};
   font-family: Roboto;
@@ -73,7 +59,7 @@ export const PasswordIcon = styled(IconDownload)`
   transform: translateY(-50%);
 `;
 
-export const DownloadBtn = styled.button`
+export const DownloadBtn = styled.label`
   display: flex;
   align-items: flex-end;
   gap: 8px;

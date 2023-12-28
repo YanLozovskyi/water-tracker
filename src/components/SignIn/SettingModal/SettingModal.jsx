@@ -1,45 +1,43 @@
-import { useEffect, useRef } from 'react';
+import { BaseModalWindow } from 'components';
+import { Field, Form, Formik } from 'formik';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { BaseModalWindow } from 'components';
-import { Form, Formik, ErrorMessage, Field } from 'formik';
 import * as Yup from 'yup';
+import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg';
 import {
-  DownloadWrap,
-  FormText,
-  IconDownload,
-  StyledLabel,
-  DownloadBtn,
-  DownloadBtnText,
-  FormField,
-  GenderText,
-  RadioBtn,
-  RadioBtnWrap,
-  RadioBtnText,
-  RadioBtnLabel,
-  Input,
   Avatar,
-  ModalWrap,
-  PasswordText,
-  PasswordLabel,
-  PasswordFormField,
-  IconBtn,
-  PasswordIcon,
-  PasswordInputWrap,
-  SaveBtn,
   DesktopFormWrap,
   DesktopPasswordWrap,
-  LastFormField,
-  GenderFormField,
-  SettingModalContent,
+  DownloadBtn,
+  DownloadBtnText,
+  DownloadWrap,
   ErrorInput,
+  FormField,
+  FormText,
+  GenderFormField,
+  GenderText,
+  IconBtn,
+  IconDownload,
+  Input,
+  LastFormField,
+  ModalWrap,
+  PasswordFormField,
+  PasswordIcon,
+  PasswordInputWrap,
+  PasswordLabel,
+  PasswordText,
+  RadioBtn,
+  RadioBtnLabel,
+  RadioBtnText,
+  RadioBtnWrap,
+  SaveBtn,
   StyledErrorMessage,
   StyledErrorText,
-  TestLabel,
+  StyledLabel
 } from './SettingModal.styled';
-import { forwardRef } from 'react';
-import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg'
-// const defaultAvatar = 'src/assets/images/default_avatar_to_download.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateAvatarThunk } from '../../../redux/auth/authOperations';
+import { selectUser } from '../../../redux/auth/authSelectors';
 
 const settingFormValidationSchema = Yup.object().shape({
   gender: Yup.string().required('Required'),
@@ -59,8 +57,9 @@ const settingFormValidationSchema = Yup.object().shape({
 });
 
 export const SettingModal = ({ onClose }) => {
-  const [files, setFiles] = useState(); //аватарка, яку завантажує юзер
-  const [avatar, setAvatar] = useState(); //рендер аватарки
+  const dispatch = useDispatch();
+  const { avatarURL } = useSelector(selectUser);
+
   // const [gender, setGender] = useState('girl');
   // const [username, setUserName] = useState('');
   // const [email, setEmail] = useState('');
@@ -69,34 +68,16 @@ export const SettingModal = ({ onClose }) => {
   // const [repeatedPassword, setRepeatedPassword] = useState('');
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
-  const filePicker = useRef(null);
-
-  const HiddenInput = forwardRef((props, ref) => (
-    <Field innerRef={ref} {...props} />
-  ));
-
-  HiddenInput.displayName = 'MyField';
-
-  const handleDownloadAvatar = () => {
-    filePicker.current.click();
-  };
-
   const handlePasswordVisibility = () => {
     setIsPasswordShown(previsPasswordShown => !previsPasswordShown);
   };
 
-  useEffect(() => {
-    if (!files) {
-      return;
-    }
-    const objectUrl = URL.createObjectURL(files[0]); //перетворюємо об'єкт файла на URL
+  const onChange = (e) => {
+    let formData = new FormData();
+    formData.append('avatar', e.target.files[0]);
 
-    setAvatar(objectUrl); //сетимо URL файла в стейт
-
-    return () => {
-      URL.revokeObjectURL(objectUrl); //підчищаємо пам'ять
-    };
-  }, [files]);
+    dispatch(updateAvatarThunk(formData));
+  };
 
   return (
     <>
@@ -126,38 +107,24 @@ export const SettingModal = ({ onClose }) => {
                     <DownloadWrap>
                       {
                         <Avatar
-                          src={avatar ? avatar : defaultAvatar}
+                          src={avatarURL ? avatarURL : defaultAvatar}
                           alt="user avatar"
                           width="80px"
                           height="80px"
                         />
                       }
-                      <TestLabel>
-                        <HiddenInput
-                          innerRef={filePicker}
+                      <DownloadBtn>
+                        <Field
                           type="file"
                           name="avatar"
-                          className={"test-input"}
+                          hidden
                           accept="image/png, image/jpeg"
-                          onChange={event => {
-                            if (
-                              event.target.files &&
-                              event.target.files.length > 0
-                            ) {
-                              setFiles(event.target.files);
-                            }
-                          }}
+                          onChange={onChange}
                         />
-                        <DownloadBtn
-                          type="button"
-                          onClick={handleDownloadAvatar}
-                        >
-                          <IconDownload>
-                            <use href={`${sprite}#icon-arrow-up`}></use>
-                          </IconDownload>
-                          <DownloadBtnText>Upload a photo</DownloadBtnText>
-                        </DownloadBtn>
-                      </TestLabel>
+                        <IconDownload>
+                          <use href={`${sprite}#icon-arrow-up`}></use>
+                        </IconDownload>
+                        <DownloadBtnText>Upload a photo</DownloadBtnText></DownloadBtn>
                     </DownloadWrap>
                   </FormField>
                   <DesktopFormWrap>
