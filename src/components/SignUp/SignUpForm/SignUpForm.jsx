@@ -2,13 +2,17 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
+  BootleImg,
+  ErrorSpan,
   EyeSlashIcon,
-  SignImgBubble,
-  SignImgButle,
+  FormTitle,
+  SignButton,
+  SignButtonDisabled,
+  SignForm,
   SignStyledInput,
   SignStyledLabel,
   SignUpContainer,
-  SignUpLink
+  SignUpLink,
 } from './SignUpForm.styled';
 import { registerThunk } from '../../../redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
@@ -42,7 +46,7 @@ export const SignUpForm = () => {
     }
   };
 
-  const validatePassword = (password) => {
+  const validatePassword = password => {
     if (password && password.length < 8) {
       setPasswordError('Password must be at least 8 characters long');
     } else {
@@ -79,11 +83,13 @@ export const SignUpForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(registerThunk({ email, password })).then((data) => { if (!data.error) navigate('/signin'); });
+    dispatch(registerThunk({ email, password })).then(data => {
+      if (!data.error) navigate('/signin');
+    });
     setEmail('');
     setPassword('');
     setConfirmPassword('');
-  }
+  };
 
   const iconClick = e => {
     iconStatus ? setIconStatus(false) : setIconStatus(true);
@@ -93,131 +99,80 @@ export const SignUpForm = () => {
 
   return (
     <>
-      <picture>
-        <SignImgBubble
-          src="src/assets/images/background/homePage/desktop/bgHomeBubbleDesc.png"
-          media="(max-width: 1440px)"
-        ></SignImgBubble>
-        <source
-          srcSet="src/assets/images/background/homePage/tablet/bgHomeTabBubble.png"
-          media="(max-width: 768px)"
-        />
-        <source
-          srcSet="src/assets/images/background/homePage/mobile/bgHomePhoneBubble.png"
-          media="(max-width: 480px)"
-        />
-      </picture>
-      <picture>
-        <SignImgButle
-          src="src/assets/images/background/homePage/desktop/bgHomeButleDesc.png"
-          media="(max-width: 1440px)"
-        ></SignImgButle>
-        <source
-          srcSet="src/assets/images/background/homePage/tablet/bgHomeTabButle.png"
-          media="(max-width: 768px)"
-        />
-        <source
-          srcSet="src/assets/images/background/homePage/mobile/bgHomePhoneButle.png"
-          media="(max-width: 480px)"
-        />
-      </picture>
       <SignUpContainer>
-        <div className="sign-up-forms-container">
-          <div className="adaptation-container">
-            <h2>Sign Up</h2>
-            <form onSubmit={handleSubmit}>
-              <div className="sign-up-form-container">
-                <SignStyledLabel>
-                  Enter your email
-                  <SignStyledInput
-                    className={emailError ? 'input-with-error' : null}
-                    onChange={handleChange}
-                    placeholder="E-mail"
-                    type="email"
-                    name='email'
-                    value={email}
-                  />
-                  {emailError && (
-                    <span className="sign-up-error-message">{emailError}</span>
-                  )}
-                </SignStyledLabel>
-              </div>
-              <div className="sign-up-form-container">
-                <SignStyledLabel>
-                  Enter your password
-                  <SignStyledInput
-                    className={passwordError ? 'input-with-error' : null}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    type={iconStatus ? 'text' : 'password'}
-                    placeholder="Password"
-                    name="password"
-                    value={password}
-                  />
-                  {passwordError && (
-                    <span className="sign-up-error-message">
-                      {passwordError}
-                    </span>
-                  )}
-                  {iconStatus === false ? (
-                    <EyeSlashIcon onClick={iconClick}>
-                      <use href={`${sprite}#icon-to-hide`}></use>
-                    </EyeSlashIcon>
-                  ) : (
-                    <EyeSlashIcon onClick={iconClick}>
-                      <use href={`${sprite}#icon-to-open`}></use>
-                    </EyeSlashIcon>
-                  )}
-                </SignStyledLabel>
-              </div>
-              <div className="sign-up-form-container">
-                <SignStyledLabel>
-                  Repeat password
-                  <SignStyledInput
-                    className={confirmPasswordError ? 'input-with-error' : null}
-                    onChange={handleChange}
-                    autoComplete="off"
-                    type={iconStatus ? 'text' : 'password'}
-                    placeholder="Repeat password"
-                    name='confirmPassword'
-                    value={confirmPassword}
-                  />
-                  {confirmPasswordError && (
-                    <span className="sign-up-error-message">
-                      {confirmPasswordError}
-                    </span>
-                  )}
-                  {iconStatus === false ? (
-                    <EyeSlashIcon onClick={iconClick}>
-                      <use href={`${sprite}#icon-to-hide`}></use>
-                    </EyeSlashIcon>
-                  ) : (
-                    <EyeSlashIcon onClick={iconClick}>
-                      <use href={`${sprite}#icon-to-open`}></use>
-                    </EyeSlashIcon>
-                  )}
-                </SignStyledLabel>
-                <button
-                  type="submit"
-                  className={
-                    buttonDisabled
-                      ? 'sign-up-button sign-up-button-disabled'
-                      : 'sign-up-button'
-                  }
-                  disabled={buttonDisabled}
-                >
-                  Sign Up
-                </button>
-              </div>
-            </form>
+        <BootleImg />
+        <SignForm onSubmit={handleSubmit}>
+          <FormTitle>Sign Up</FormTitle>
+          <SignStyledLabel>
+            Enter your email
+            <SignStyledInput
+              onChange={handleChange}
+              className={emailError ? 'input-with-error' : null}
+              placeholder="E-mail"
+              type="email"
+              name="email"
+              value={email}
+            />
+            {emailError && <ErrorSpan>{emailError}</ErrorSpan>}
+          </SignStyledLabel>
+          <SignStyledLabel>
+            Enter your password
+            <SignStyledInput
+              className={passwordError ? 'input-with-error' : null}
+              onChange={handleChange}
+              autoComplete="off"
+              type={iconStatus ? 'text' : 'password'}
+              placeholder="Password"
+              name="password"
+              value={password}
+            />
+            {passwordError && <ErrorSpan>{passwordError}</ErrorSpan>}
+            {iconStatus === false ? (
+              <EyeSlashIcon onClick={iconClick}>
+                <use href={`${sprite}#icon-to-hide`}></use>
+              </EyeSlashIcon>
+            ) : (
+              <EyeSlashIcon onClick={iconClick}>
+                <use href={`${sprite}#icon-to-open`}></use>
+              </EyeSlashIcon>
+            )}
+          </SignStyledLabel>
 
-            <SignUpLink
-              to="/signin"
-            >
-              Sign in
-            </SignUpLink>
-          </div>
-        </div>
+          <SignStyledLabel>
+            Repeat password
+            <SignStyledInput
+              className={confirmPasswordError ? 'input-with-error' : null}
+              onChange={handleChange}
+              autoComplete="off"
+              type={iconStatus ? 'text' : 'password'}
+              placeholder="Repeat password"
+              name="confirmPassword"
+              value={confirmPassword}
+            />
+            {confirmPasswordError && (
+              <ErrorSpan>{confirmPasswordError}</ErrorSpan>
+            )}
+            {iconStatus === false ? (
+              <EyeSlashIcon onClick={iconClick}>
+                <use href={`${sprite}#icon-to-hide`}></use>
+              </EyeSlashIcon>
+            ) : (
+              <EyeSlashIcon onClick={iconClick}>
+                <use href={`${sprite}#icon-to-open`}></use>
+              </EyeSlashIcon>
+            )}
+          </SignStyledLabel>
+          {buttonDisabled ? (
+            <SignButtonDisabled type="submit" disabled={buttonDisabled}>
+              SignUp
+            </SignButtonDisabled>
+          ) : (
+            <SignButton type="submit" disabled={buttonDisabled}>
+              SignUp
+            </SignButton>
+          )}
+          <SignUpLink to="/signin">Sign in</SignUpLink>
+        </SignForm>
       </SignUpContainer>
     </>
   );
