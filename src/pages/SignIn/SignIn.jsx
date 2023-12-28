@@ -1,7 +1,12 @@
-import { SignInForm, Section } from "components";
+import { SignInForm, Section } from 'components';
+import { SignInSection } from './SignIn.styled';
 
 const SignIn = () => {
-  return <Section><SignInForm /></Section>
+  return (
+    <SignInSection>
+      <SignInForm />
+    </SignInSection>
+  );
 };
 
 export default SignIn;
