@@ -3,7 +3,8 @@ import {
   ModalContent,
   ModalHeader,
 } from '../../common/BaseModalWindow/BaseModalWindow.styled';
-export const HiddenInput = styled.input`
+import { Field, ErrorMessage } from 'formik';
+export const HiddenInput = styled(Field)`
   position: absolute;
   overflow: hidden;
   clip: rect(0 0 0 0);
@@ -100,7 +101,7 @@ export const GenderText = styled(FormText)`
   margin-bottom: 12px;
 `;
 
-export const RadioBtn = styled.input`
+export const RadioBtn = styled(Field)`
   border: 1px solid ${props => props.theme.color.accent};
   width: 14px;
   height: 14px;
@@ -135,7 +136,7 @@ export const Avatar = styled.img`
   border-radius: 60%;
 `;
 
-export const Input = styled.input`
+export const Input = styled(Field)`
   width: 100%;
   height: 44px;
   padding-top: 12px;
@@ -158,6 +159,39 @@ export const Input = styled.input`
   &::placeholder {
     color: ${props => props.theme.color.secondaryLightBlue};
   }
+`;
+
+export const ErrorInput = styled(Input)`
+  border: 1px solid ${props => props.theme.color.secondaryRed};
+  color: ${props => props.theme.color.secondaryRed};
+
+  &:focus {
+    color: ${({ theme }) => theme.color.secondaryRed};
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.color.secondaryRed};
+  }
+`;
+
+export const StyledErrorMessage = styled(ErrorMessage)`
+  margin-top: 4px;
+  color: ${props => props.theme.color.secondaryRed};
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+`;
+
+export const StyledErrorText = styled.p`
+  margin-top: 4px;
+  color: ${props => props.theme.color.secondaryRed};
+  font-family: Roboto;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
 `;
 
 export const ModalWrap = styled.div`
