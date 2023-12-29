@@ -24,7 +24,7 @@ export const DailyNormaModal = ({ onClose }) => {
   const [intakeGoal, setIntakeGoal] = useState('');
 
   const calculateWaterIntake = useCallback(() => {
-    // if (!weight || !activityTime) return;
+    if (!weight || !activityTime) return;
     const factor = gender === 'female' ? 0.03 : 0.04;
     const activityFactor = gender === 'female' ? 0.4 : 0.6;
     const intake = (
