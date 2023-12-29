@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/authSelectors';
 import { DailyNormaModal } from 'components';
 import {
   DailyBox,
@@ -6,7 +8,8 @@ import {
   DailyNormaStyled,
 } from './DailyNorma.styled';
 
-export const DailyNorma = ({ userWaterIntake }) => {
+export const DailyNorma = () => {
+  const { waterRate } = useSelector(selectUser);
   const [isModalOpen, setModalOpen] = useState(false);
 
   const openModal = () => {
@@ -17,15 +20,17 @@ export const DailyNorma = ({ userWaterIntake }) => {
     setModalOpen(false);
   };
 
+  // Перетворення мілілітрів у літри
+  const waterRateL = (waterRate / 1000).toFixed(1) + ' L';
+
   return (
     <DailyBox>
       <DailyNormaStyled>
         <h2>My daily norma: </h2>
         <div>
-          <p>{userWaterIntake || '2.0 L'}</p>
+          <p>{waterRateL}</p>
           <button onClick={openModal}>Edit</button>
         </div>
-
         {isModalOpen && <DailyNormaModal onClose={closeModal} />}
       </DailyNormaStyled>
       <BackgroundHome />
