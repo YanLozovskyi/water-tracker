@@ -1,7 +1,11 @@
-import { Section } from "components";
+import { Section, NotFound } from 'components';
 
 const Error = () => {
-  return <Section><div>Error</div></Section>;
+  return (
+    <Section>
+      <NotFound />
+    </Section>
+  );
 };
 
 export default Error;

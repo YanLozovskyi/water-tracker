@@ -40,3 +40,7 @@ export * from './SignUp/SignUpForm/SignUpForm';
 export * from './Welcome/Main/MainContent';
 export * from './Welcome/WaterConsumptionTracker/WaterConsumptionTracker';
 export * from './Welcome/WhyDrinkWater/WhyDrinkWater';
+
+// Error
+
+export * from './NotFound/NotFound';
