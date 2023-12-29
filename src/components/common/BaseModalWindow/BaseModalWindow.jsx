@@ -22,8 +22,6 @@ export const BaseModalWindow = ({
   const backdropRef = useRef(null);
 
   useEffect(() => {
-    // if (!onShow) return;
-
     const bodyScroll = disable => {
       document.body.style.overflow = disable ? 'hidden' : 'auto';
     };

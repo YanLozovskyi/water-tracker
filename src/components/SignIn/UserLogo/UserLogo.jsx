@@ -1,18 +1,20 @@
-import { useState } from 'react';
 import { UserLogoModal } from 'components';
+import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { selectUser } from '../../../redux/auth/authSelectors';
 import {
-  UserLogoBtn,
-  UserModalIcon,
   UserAvatar,
   UserDefaultAvatar,
-  UserLogoTitle,
+  UserLogoBtn,
   UserLogoContainer,
+  UserLogoTitle,
+  UserModalIcon,
 } from './UserLogo.styled';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../redux/auth/authSelectors';
 
 export const UserLogo = () => {
+  const myRef = useRef();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const { userName, avatarURL } = useSelector(selectUser);
 
@@ -46,7 +48,7 @@ export const UserLogo = () => {
   return (
     <UserLogoContainer>
       <UserLogoTitle>{name}</UserLogoTitle>
-      <UserLogoBtn onClick={showModal}>
+      <UserLogoBtn onClick={showModal} ref={myRef}>
         {avatarURL ? (
           <UserAvatar src={avatar} alt="" />
         ) : (
@@ -56,7 +58,7 @@ export const UserLogo = () => {
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      {modalIsOpen && <UserLogoModal />}
+      {modalIsOpen && <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />}
     </UserLogoContainer>
   );
 };
