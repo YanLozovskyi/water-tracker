@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+
 import { BaseModalWindow } from 'components';
 import {
   Formula,
@@ -22,7 +23,8 @@ export const DailyNormaModal = ({ onClose }) => {
   const [dailyIntake, setDailyIntake] = useState('2.0'); // Значення за замовчуванням
   const [intakeGoal, setIntakeGoal] = useState('');
 
-  const calculateWaterIntake = () => {
+  const calculateWaterIntake = useCallback(() => {
+    // if (!weight || !activityTime) return;
     const factor = gender === 'female' ? 0.03 : 0.04;
     const activityFactor = gender === 'female' ? 0.4 : 0.6;
     const intake = (
@@ -30,10 +32,13 @@ export const DailyNormaModal = ({ onClose }) => {
       (activityTime / 60) * activityFactor
     ).toFixed(2);
     setDailyIntake(intake);
-  };
+  }, [gender, weight, activityTime]);
+
+  useEffect(() => {
+    calculateWaterIntake();
+  }, [calculateWaterIntake]);
 
   const handleSave = async () => {
-    calculateWaterIntake();
     const userData = {
       gender,
       weight,
@@ -41,6 +46,7 @@ export const DailyNormaModal = ({ onClose }) => {
       dailyIntake,
     };
   };
+
   return (
     <BaseModalWindow onClose={onClose} title="My daily norma">
       <BoxModal>
