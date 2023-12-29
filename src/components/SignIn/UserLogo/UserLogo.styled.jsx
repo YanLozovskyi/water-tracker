@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const UserLogoContainer = styled.div`
   position: relative;
-  display: flex; 
+  display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 8px;
@@ -60,6 +60,6 @@ export const UserModalIcon = styled.svg`
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.color.accent};
+    stroke: ${props => props.theme.color.secondaryYellow};
   }
 `;

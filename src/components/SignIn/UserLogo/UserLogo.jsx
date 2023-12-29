@@ -28,10 +28,10 @@ export const UserLogo = () => {
         name: userName,
         avatar: avatarURL,
       };
-    } else if (userName) {
+    } else if (userName || avatarURL) {
       return {
-        name: userName,
-        avatar: firstLetter,
+        name: userName || firstLetter,
+        avatar: avatarURL || firstLetter,
       };
     } else {
       return {
@@ -48,7 +48,7 @@ export const UserLogo = () => {
       <UserLogoTitle>{name}</UserLogoTitle>
       <UserLogoBtn onClick={showModal}>
         {avatarURL ? (
-          <UserAvatar src={avatar} alt="" />
+          <UserAvatar src={avatar} alt="user-avatar" />
         ) : (
           <UserDefaultAvatar>{avatar}</UserDefaultAvatar>
         )}
