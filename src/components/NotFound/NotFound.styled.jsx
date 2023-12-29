@@ -1,9 +1,5 @@
 import styled from '@emotion/styled';
 
-export const ErrorWrap = styled.div`
-  padding-top: 30px;
-`;
-
 export const ErrorBtn = styled.button`
   background-color: ${props => props.theme.color.accent};
   color: ${props => props.theme.color.white};

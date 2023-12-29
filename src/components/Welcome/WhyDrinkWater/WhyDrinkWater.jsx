@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  Title,
   Container,
   Item,
   List,
   OutlineContainer,
+  Title,
 } from './WhyDrinkWater.styled';
 
 export const WhyDrinkWater = () => {
