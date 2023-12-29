@@ -1,1 +1,0 @@
-import{j as o}from"./index-6c720f63.js";import{S as r}from"./Section-08351efe.js";const s=()=>o.jsx("div",{children:"ForgotPasswordForm"}),n=()=>o.jsxs(r,{children:["  ",o.jsx(s,{})]});export{n as default};
