@@ -1,8 +1,4 @@
 import styled from '@emotion/styled';
-import {
-  ModalContent,
-  ModalHeader,
-} from '../../common/BaseModalWindow/BaseModalWindow.styled';
 import { Field, ErrorMessage } from 'formik';
 
 export const FormText = styled.p`
@@ -61,11 +57,9 @@ export const PasswordIcon = styled(IconDownload)`
 
 export const DownloadBtn = styled.label`
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
   gap: 8px;
-  border: none;
-  background-color: transparent;
-  padding: 0;
+  cursor: pointer;
 `;
 
 export const DownloadBtnText = styled.span`
@@ -81,20 +75,20 @@ export const FormField = styled.div`
   margin-bottom: 24px;
 
   .error-input {
-     border: 1px solid ${props => props.theme.color.secondaryRed};
-     color: ${props => props.theme.color.secondaryRed};
-
-  &:focus {
-    color: ${({ theme }) => theme.color.secondaryRed};
-  }
-
-  &::placeholder {
+    border: 1px solid ${props => props.theme.color.secondaryRed};
     color: ${props => props.theme.color.secondaryRed};
-  }
+
+    &:focus {
+      color: ${({ theme }) => theme.color.secondaryRed};
+    }
+
+    &::placeholder {
+      color: ${props => props.theme.color.secondaryRed};
+    }
   }
 `;
 
-export const PasswordFormField = styled.div`
+export const PasswordFormField = styled(FormField)`
   margin-bottom: 12px;
 `;
 
@@ -162,19 +156,6 @@ export const Input = styled(Field)`
   }
 `;
 
-export const ErrorInput = styled(Input)`
-  border: 1px solid ${props => props.theme.color.secondaryRed};
-  color: ${props => props.theme.color.secondaryRed};
-
-  &:focus {
-    color: ${({ theme }) => theme.color.secondaryRed};
-  }
-
-  &::placeholder {
-    color: ${props => props.theme.color.secondaryRed};
-  }
-`;
-
 export const StyledErrorMessage = styled(ErrorMessage)`
   margin-top: 4px;
   color: ${props => props.theme.color.secondaryRed};
@@ -205,6 +186,10 @@ export const ModalWrap = styled.div`
   @media (min-width: ${props => props.theme.breakpoint.tablet}) {
     padding-left: 24px;
     padding-right: 24px;
+  }
+
+  @media (min-width: ${props => props.theme.breakpoint.desktop}) {
+    min-width: 1008px;
   }
 `;
 
@@ -263,7 +248,7 @@ export const DesktopPasswordWrap = styled.div`
   }
 `;
 
-export const LastFormField = styled.div`
+export const LastFormField = styled(FormField)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     margin-bottom: 24px;
   }
@@ -282,13 +267,3 @@ export const GenderFormField = styled.div`
     margin-bottom: 52px;
   }
 `;
-
-export const SettingModalContent = styled(ModalContent)`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    max-width: 1008px;
-  }
-`;
-
-// export const SettingModalHeader = styled(ModalHeader)`
-
-// `;
