@@ -3,15 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
 import {
-  Title,
-  Parag,
   Benefits,
-  Tracker,
-  Image,
-  Item,
   BenefitsTitle,
   Button,
   HiddenTitle,
+  Image,
+  Item,
+  Parag,
+  Title,
+  Tracker,
 } from './WaterConsumptionTracker.styled';
 
 export const WaterConsumptionTracker = () => {
