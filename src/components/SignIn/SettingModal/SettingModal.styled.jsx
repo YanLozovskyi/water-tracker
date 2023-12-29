@@ -79,6 +79,19 @@ export const DownloadBtnText = styled.span`
 
 export const FormField = styled.div`
   margin-bottom: 24px;
+
+  .error-input {
+     border: 1px solid ${props => props.theme.color.secondaryRed};
+     color: ${props => props.theme.color.secondaryRed};
+
+  &:focus {
+    color: ${({ theme }) => theme.color.secondaryRed};
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.color.secondaryRed};
+  }
+  }
 `;
 
 export const PasswordFormField = styled.div`

@@ -1,9 +1,12 @@
 import { BaseModalWindow } from 'components';
 import { Field, Form, Formik } from 'formik';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
 import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg';
+import { updateAvatarThunk } from '../../../redux/auth/authOperations';
+import { selectUser } from '../../../redux/auth/authSelectors';
 import {
   Avatar,
   DesktopFormWrap,
@@ -35,9 +38,6 @@ import {
   StyledErrorText,
   StyledLabel
 } from './SettingModal.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateAvatarThunk } from '../../../redux/auth/authOperations';
-import { selectUser } from '../../../redux/auth/authSelectors';
 
 const settingFormValidationSchema = Yup.object().shape({
   gender: Yup.string().required('Required'),
@@ -156,25 +156,15 @@ export const SettingModal = ({ onClose }) => {
                       </GenderFormField>
                       <FormField>
                         <StyledLabel htmlFor="username">Your name</StyledLabel>
-                        {errors.username && touched.username ? (
-                          <ErrorInput
-                            type="text"
-                            id="username"
-                            name="username"
-                            // value={username}
-                            placeholder={values.username}
-                          // onChange={event => setUserName(event.target.value)}
-                          />
-                        ) : (
-                          <Input
-                            type="text"
-                            id="username"
-                            name="username"
-                            // value={username}
-                            placeholder={values.username}
-                          // onChange={event => setUserName(event.target.value)}
-                          />
-                        )}
+                        <Input
+                          type="text"
+                          id="username"
+                          name="username"
+                          className={errors.username && touched.username ? "error-input" : null}
+                          // value={username}
+                          placeholder={values.username}
+                        // onChange={event => setUserName(event.target.value)}
+                        />
                         <StyledErrorMessage component="p" name="username" />
                       </FormField>
                       <LastFormField>
