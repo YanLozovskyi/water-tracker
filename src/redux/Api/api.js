@@ -2,41 +2,47 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://watertracker-backend.onrender.com';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = '';
-  },
+const setToken = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
+
+const unsetToken = () => {
+  axios.defaults.headers.common.Authorization = '';
 };
 
 // Auth
 
 export const signup = async body => {
   const { data } = await axios.post('/auth/register', body);
-  token.set(data.token);
+  setToken(data.token);
   return data;
 };
 
 export const signin = async body => {
   const { data } = await axios.post('/auth/login', body);
-  token.set(data.token);
+  setToken(data.token);
   return data;
 };
 
 export const logout = async () => {
   await axios.post('/auth/logout');
-  token.unset();
-};
-
-export const refreshUser = async token => {
-  token.set(token);
-  const { data } = await axios.get('/user/current');
-  return data;
+  unsetToken();
 };
 
 // User
+
+export const updateWaterRate = async newWaterRate => {
+  const { data } = await axios.post('/waterrate', {
+    waterRate: newWaterRate,
+  });
+  return data;
+};
+
+export const refreshUser = async token => {
+  setToken(token);
+  const { data } = await axios.get('/user/current');
+  return data;
+};
 
 export const updateAvatar = async newPhotoFile => {
   const {

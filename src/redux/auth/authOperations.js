@@ -6,13 +6,14 @@ import {
   signin,
   signup,
   updateAvatar,
+  updateWaterRate,
 } from '../Api/api';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await signup(credentials);
+      const data = await signup(credentials);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -24,7 +25,7 @@ export const logInThunk = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await signin(credentials);
+      const data = await signin(credentials);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -44,14 +45,14 @@ export const logOutThunk = createAsyncThunk(
   },
 );
 
+// User
+
 export const refreshUserThunk = createAsyncThunk(
   'auth/refresh',
   async (_, { rejectWithValue, getState }) => {
     try {
-      const {
-        auth: { token },
-      } = getState();
-      const data = await refreshUser(token);
+      const { auth } = getState();
+      const data = await refreshUser(auth.token);
 
       return data;
     } catch (error) {
@@ -60,17 +61,28 @@ export const refreshUserThunk = createAsyncThunk(
   },
   {
     condition: (_, { getState }) => {
-      const {
-        auth: { token },
-      } = getState();
-      if (!token) {
+      const { auth } = getState();
+
+      if (!auth.token) {
         return false;
       }
     },
   },
 );
 
-// User
+export const updateWaterRateThunk = createAsyncThunk(
+  'auth/updateWaterRate',
+  async (newWaterRate, { rejectWithValue }) => {
+    try {
+      console.log(newWaterRate);
+      const rate = Number(newWaterRate) * 1000;
+      const { waterRate } = await updateWaterRate(rate);
+      return waterRate;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
 
 export const updateAvatarThunk = createAsyncThunk(
   'user/avatar',

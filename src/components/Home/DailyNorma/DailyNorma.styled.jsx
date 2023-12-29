@@ -10,8 +10,8 @@ import imgHome2Desk2x from '../../../assets/images/background/homePage/desktop/b
 export const DailyBox = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: 24px;
   margin-bottom: 16px;
+  position: relative;
 `;
 
 export const BackgroundHome = styled.div`
@@ -30,7 +30,6 @@ export const BackgroundHome = styled.div`
       url(${imgHome2Tabl1x}) 1x,
       url(${imgHome2Tabl2x}) 2x
     );
-    position: relative;
     height: 386px;
   }
 
@@ -39,7 +38,7 @@ export const BackgroundHome = styled.div`
       url(${imgHome2Desk1x}) 1x,
       url(${imgHome2Desk2x}) 2x
     );
-    width: 680px;
+    width: 592px;
     height: 548px;
   }
 `;
@@ -52,7 +51,7 @@ export const DailyNormaStyled = styled.div`
   border: 1px solid ${props => props.theme.color.secondaryWhite};
   box-shadow: 0px 4px 8px 0px rgba(158, 187, 255, 0.12);
   background: ${props => props.theme.color.white};
-  max-width: 170px;
+  max-width: 172px;
 
   div {
     display: flex;
@@ -79,15 +78,21 @@ export const DailyNormaStyled = styled.div`
     font-size: 16px;
     font-weight: 400;
     line-height: 1.25;
-    color: #8baeff;
+    color: ${props => props.theme.color.accent};
     background: transparent;
+
+    &:hover,
+    &:focus {
+      color: ${props => props.theme.color.secondaryYellow};
+    }
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     position: absolute;
-    top: 25%;
-    left: 15%;
+    top: 13%;
+    left: 12%;
     transform: translate(-50%, -50%);
+    z-index: 1;
 
     p {
       font-size: 24px;
@@ -95,9 +100,8 @@ export const DailyNormaStyled = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    top: 27%;
+    top: 20%;
     left: 14%;
-    transform: translate(-50%, -50%);
     max-width: 180px;
   }
 `;

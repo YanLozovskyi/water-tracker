@@ -1,7 +1,8 @@
 import styled from '@emotion/styled';
 
 export const UserLogoContainer = styled.div`
-  display: flex;
+  position: relative;
+  display: flex; 
   justify-content: space-around;
   align-items: center;
   gap: 8px;

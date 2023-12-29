@@ -8,20 +8,15 @@ import imgHomeMob2x from '../../assets/images/background/homePage/mobile/bubbleM
 import imgHomeTabl1x from '../../assets/images/background/homePage/tablet/bubbleTablet.png';
 import imgHomeTabl2x from '../../assets/images/background/homePage/tablet/bubbleTablet@2x.png';
 
-export const HomeSection = styled(Section)`background-color: black;`
-
-export const BoxHome = styled.div`
+export const HomeSection = styled(Section)`
   background-position: center center;
   background-image: -webkit-image-set(
     url(${imgHomeMob1x}) 1x,
-    url(${imgHomeMob2x}) 2xf
+    url(${imgHomeMob2x}) 2x
   );
   background-size: contain;
   background-repeat: no-repeat;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     background-image: -webkit-image-set(
@@ -35,12 +30,38 @@ export const BoxHome = styled.div`
       url(${imgHomeDesk1x}) 1x,
       url(${imgHomeDesk2x}) 2x
     );
+  }
+`;
+
+export const BoxHome = styled.div`
+  margin-top: 24px;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     display: flex;
-    /* flex-direction: row;
-    flex-wrap: wrap; */
+    flex-direction: row;
+  }
+`;
+
+export const HomeStatistics = styled.div`
+  padding: 24px 8px;
+  box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
+  background: ${props => props.theme.color.secondaryWhite};
+  max-width: 280px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    padding: 32px 24px;
+    max-width: 704px;
   }
 
-  &.your-custom-class {
-    background-color: black;
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    max-width: 592px;
+    flex-direction: row;
   }
 `;

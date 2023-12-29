@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+
 import { BaseModalWindow } from 'components';
 import {
   Formula,
@@ -12,6 +13,7 @@ import {
   InputRadio,
   Comment,
   BoxModal,
+  FormResult,
 } from './DailyNormaModal.styled';
 
 export const DailyNormaModal = ({ onClose }) => {
@@ -21,7 +23,8 @@ export const DailyNormaModal = ({ onClose }) => {
   const [dailyIntake, setDailyIntake] = useState('2.0'); // Значення за замовчуванням
   const [intakeGoal, setIntakeGoal] = useState('');
 
-  const calculateWaterIntake = () => {
+  const calculateWaterIntake = useCallback(() => {
+    if (!weight || !activityTime) return;
     const factor = gender === 'female' ? 0.03 : 0.04;
     const activityFactor = gender === 'female' ? 0.4 : 0.6;
     const intake = (
@@ -29,10 +32,13 @@ export const DailyNormaModal = ({ onClose }) => {
       (activityTime / 60) * activityFactor
     ).toFixed(2);
     setDailyIntake(intake);
-  };
+  }, [gender, weight, activityTime]);
+
+  useEffect(() => {
+    calculateWaterIntake();
+  }, [calculateWaterIntake]);
 
   const handleSave = async () => {
-    calculateWaterIntake();
     const userData = {
       gender,
       weight,
@@ -40,6 +46,7 @@ export const DailyNormaModal = ({ onClose }) => {
       dailyIntake,
     };
   };
+
   return (
     <BaseModalWindow onClose={onClose} title="My daily norma">
       <BoxModal>
@@ -54,10 +61,12 @@ export const DailyNormaModal = ({ onClose }) => {
               </Paragraph>
             </Formula>
             <Comment>
-              <span>*</span> V is the volume of the water norm in liters per
-              day, M is your body weight, T is the time of active sports, or
-              another type of activity commensurate in terms of loads (in the
-              absence of these, you must set 0)
+              <p>
+                <span>*</span> V is the volume of the water norm in liters per
+                day, M is your body weight, T is the time of active sports, or
+                another type of activity commensurate in terms of loads (in the
+                absence of these, you must set 0)
+              </p>
             </Comment>
           </div>
         }
@@ -87,37 +96,37 @@ export const DailyNormaModal = ({ onClose }) => {
                   <span>For boy</span>
                 </label>
               </FormRadio>
-              <div className="form-group">
+              <div>
                 <Paragraph>Your weight in kilograms:</Paragraph>
                 <Input
-                  type="number"
+                  type="text"
                   placeholder="0"
                   value={weight}
                   onChange={e => setWeight(e.target.value)}
                 />
               </div>
-              <div className="form-group">
+              <div>
                 <Paragraph>
                   Time of active participation in sports or other activities
                   with a high physical load:
                 </Paragraph>
                 <Input
-                  type="number"
+                  type="text"
                   placeholder="0"
                   value={activityTime}
                   onChange={e => setActivityTime(e.target.value)}
                 />
               </div>
-              <div className="form-result">
+              <FormResult>
                 The required amount of water in liters per day:{' '}
-                <strong>{dailyIntake} L</strong>
-              </div>
-              <div className="form-group">
+                <strong>{dailyIntake}L</strong>
+              </FormResult>
+              <div>
                 <TitleModal>
                   Write down how much water you will drink:
                 </TitleModal>
                 <Input
-                  type="number"
+                  type="text"
                   placeholder="0"
                   value={intakeGoal}
                   onChange={e => setIntakeGoal(e.target.value)}

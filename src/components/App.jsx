@@ -1,9 +1,12 @@
-import { lazy } from 'react';
+import { Loader } from 'components';
+import { lazy, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import RestrictedRoute from './RestrictedRoute';
-import { Loader } from 'components';
 
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshUserThunk } from '../redux/auth/authOperations';
+import { selectIsRefreshing } from '../redux/auth/authSelectors';
 import SharedLayout from './SharedLayout';
 
 const WelcomePage = lazy(() => import('../pages/Welcome/Welcome'));
@@ -16,7 +19,12 @@ const ForgotPassPage = lazy(() =>
 );
 
 const App = () => {
-  const isRefreshing = false;
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing)
+
+  useEffect(() => {
+    dispatch(refreshUserThunk());
+  }, [dispatch]);
 
   return !isRefreshing ? (
     <Routes>
@@ -27,7 +35,7 @@ const App = () => {
             <RestrictedRoute component={<WelcomePage />} redirectTo="/home" />
           }
         />
-        <Route path="home" element={<PrivateRoute component={HomePage} />} />
+        <Route path="home" element={<PrivateRoute component={HomePage} redirectTo={'/'} />} />
         <Route
           path="signin"
           element={

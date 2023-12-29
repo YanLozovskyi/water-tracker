@@ -1,14 +1,18 @@
-export const handleAuth = (state, { payload }) => {
+import { initialState } from './authSlice';
+
+export const handleRegister = (state, { payload }) => {
   state.user = payload.user;
   state.token = payload.token;
   state.isLoggedIn = true;
 };
 
-export const handleLogout = state => {
-  state.user = {};
-  state.token = null;
-  state.isLoggedIn = false;
+export const handleLogin = (state, { payload }) => {
+  state.user = payload.user;
+  state.token = payload.token;
+  state.isLoggedIn = true;
 };
+
+export const handleLogout = () => initialState;
 
 export const handleRefreshFulfield = (state, { payload }) => {
   state.user = payload;
@@ -22,6 +26,10 @@ export const handleRefreshPending = state => {
 
 export const handleRefreshReject = state => {
   state.isRefreshing = false;
+};
+
+export const handlerUpdateWaterRate = (state, { payload }) => {
+  state.user.waterRate = payload;
 };
 
 export const handlerUpdateAvatar = (state, { payload }) => {
