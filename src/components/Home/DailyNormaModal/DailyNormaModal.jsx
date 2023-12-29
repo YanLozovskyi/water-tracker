@@ -1,4 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/authSelectors';
+import { updateWaterRateThunk } from '../../../redux/auth/authOperations';
 import PropTypes from 'prop-types';
 
 import { BaseModalWindow } from 'components';
@@ -20,8 +23,11 @@ export const DailyNormaModal = ({ onClose }) => {
   const [gender, setGender] = useState('female');
   const [weight, setWeight] = useState('');
   const [activityTime, setActivityTime] = useState('');
-  const [dailyIntake, setDailyIntake] = useState('2.0'); // Значення за замовчуванням
+  const [dailyIntake, setDailyIntake] = useState('2.0');
   const [intakeGoal, setIntakeGoal] = useState('');
+
+  const { user } = useSelector(selectUser);
+  const dispatch = useDispatch();
 
   const calculateWaterIntake = useCallback(() => {
     if (!weight || !activityTime) return;
@@ -38,13 +44,20 @@ export const DailyNormaModal = ({ onClose }) => {
     calculateWaterIntake();
   }, [calculateWaterIntake]);
 
+  useEffect(() => {
+    if (user) {
+      setGender(user.gender || 'female');
+    }
+  }, [user]);
+
   const handleSave = async () => {
-    const userData = {
+    const waterRateData = {
       gender,
       weight,
       activityTime,
       dailyIntake,
     };
+    dispatch(updateWaterRateThunk({ waterRateData }));
   };
 
   return (
