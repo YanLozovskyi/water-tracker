@@ -56,7 +56,7 @@ export const UserLogo = () => {
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      {modalIsOpen && <UserLogoModal onClose={showModal} />}
+      {modalIsOpen && <UserLogoModal />}
     </UserLogoContainer>
   );
 };

@@ -1,6 +1,6 @@
+import { SettingModal, UserLogoutModal } from 'components';
 import { useState } from 'react';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { SettingModal } from '../SettingModal/SettingModal';
 import {
   IconSettings,
   StyledBtn,
@@ -8,42 +8,52 @@ import {
   StyledLogoModal,
 } from './UserLogoModal.styled';
 
-export const UserLogoModal = ({ onClose }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
+export const UserLogoModal = () => {
+  const [isFirstModalOpen, setFirstModalOpen] = useState(false);
+  const [isSecondModalOpen, setSecondModalOpen] = useState(false);
 
-  const openModal = () => {
-    setModalOpen(true);
+  const openFirstModal = () => {
+    setFirstModalOpen(true);
   };
 
-  const closeModal = () => {
-    setModalOpen(false);
+  const closeFirstModal = () => {
+    setFirstModalOpen(false);
+  };
+
+  const openSecondModal = () => {
+    setSecondModalOpen(true);
+  };
+
+  const closeSecondModal = () => {
+    setSecondModalOpen(false);
   };
 
   return (
     <>
-      <div>
-        <StyledLogoModal>
-          <ul>
-            <StyledListItem>
-              <IconSettings width="16px" height="16px">
-                <use href={`${sprite}#icon-settings`}></use>
-              </IconSettings>
-              <StyledBtn type="button" onClick={openModal}>
-                Setting
-                {isModalOpen && <SettingModal onClose={closeModal} />}
-              </StyledBtn>
-            </StyledListItem>
-            <StyledListItem>
-              <IconSettings width="16px" height="16px">
-                <use href={`${sprite}#icon-exit`}></use>
-              </IconSettings>
-              <StyledBtn type="button" onClick={openModal}>
-                Log out
-              </StyledBtn>
-            </StyledListItem>
-          </ul>
-        </StyledLogoModal>
-      </div>
+      <StyledLogoModal>
+        <ul>
+          <StyledListItem>
+            <IconSettings width="16px" height="16px">
+              <use href={`${sprite}#icon-settings`}></use>
+            </IconSettings>
+            <StyledBtn type="button" onClick={openFirstModal}>
+              Setting
+              {isFirstModalOpen && <SettingModal onClose={closeFirstModal} />}
+            </StyledBtn>
+          </StyledListItem>
+          <StyledListItem>
+            <IconSettings width="16px" height="16px">
+              <use href={`${sprite}#icon-exit`}></use>
+            </IconSettings>
+            <StyledBtn type="button" onClick={openSecondModal}>
+              Log out
+              {isSecondModalOpen && (
+                <UserLogoutModal onClose={closeSecondModal} />
+              )}
+            </StyledBtn>
+          </StyledListItem>
+        </ul>
+      </StyledLogoModal>
     </>
   );
 };

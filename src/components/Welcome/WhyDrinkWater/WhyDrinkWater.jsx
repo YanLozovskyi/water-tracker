@@ -1,5 +1,11 @@
 import React from 'react';
-import { Title, Tab, Item, List } from './WhyDrinkWater.styled';
+import {
+  Title,
+  Container,
+  Item,
+  List,
+  OutlineContainer,
+} from './WhyDrinkWater.styled';
 
 export const WhyDrinkWater = () => {
   const list = [
@@ -12,13 +18,15 @@ export const WhyDrinkWater = () => {
     'Maintaining an immune system capable of resisting disease',
   ];
   return (
-    <Tab>
-      <Title>Why drink water</Title>
-      <List>
-        {list.map((item, index) => (
-          <Item key={index}>{item}</Item>
-        ))}
-      </List>
-    </Tab>
+    <OutlineContainer>
+      <Container>
+        <Title>Why drink water</Title>
+        <List>
+          {list.map((item, index) => (
+            <Item key={index}>{item}</Item>
+          ))}
+        </List>
+      </Container>
+    </OutlineContainer>
   );
 };

@@ -5,12 +5,13 @@ import {
   BaseModalStyled,
   CloseButton,
   CloseIcon,
+  ModalContent,
+  ModalHeader,
 } from './BaseModalWindow.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 
 export const BaseModalWindow = ({
   onShow = true,
-  type,
   children,
   title,
   onClose,
@@ -21,7 +22,7 @@ export const BaseModalWindow = ({
   const backdropRef = useRef(null);
 
   useEffect(() => {
-    if (!onShow) return;
+    // if (!onShow) return;
 
     const bodyScroll = disable => {
       document.body.style.overflow = disable ? 'hidden' : 'auto';
@@ -40,28 +41,24 @@ export const BaseModalWindow = ({
     window.addEventListener('keydown', handleEsc);
 
     return () => {
+      bodyScroll(false);
       window.removeEventListener('keydown', handleEsc);
     };
   }, [modalRoot.children.length, onShow, onClose]);
 
   return createPortal(
     <BaseModalStyled onClick={onClose} ref={backdropRef}>
-      <div
-        className="modal-content"
-        type={type}
-        onClick={e => e.stopPropagation()}
-        ref={modalContainerRef}
-      >
-        <div className="modal-header">
+      <ModalContent onClick={e => e.stopPropagation()} ref={modalContainerRef}>
+        <ModalHeader>
           <h2>{title}</h2>
           <CloseButton onClick={onClose}>
             <CloseIcon>
               <use href={`${sprite}#icon-outline`}></use>
             </CloseIcon>
           </CloseButton>
-        </div>
+        </ModalHeader>
         <div>{children}</div>
-      </div>
+      </ModalContent>
     </BaseModalStyled>,
     modalRoot,
   );

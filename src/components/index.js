@@ -30,6 +30,7 @@ export * from './SignIn/SignInForm/SignInForm';
 export * from './SignIn/UserAuth/UserAuth';
 export * from './SignIn/UserLogo/UserLogo';
 export * from './SignIn/UserLogoModal/UserLogoModal';
+export * from './SignIn/UserLogoutModal/UserLogoutModal';
 
 // SignUp
 
