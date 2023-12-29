@@ -28,6 +28,10 @@ export const handleRefreshReject = state => {
   state.isRefreshing = false;
 };
 
+export const handlerUpdateWaterRate = (state, { payload }) => {
+  state.user.waterRate = payload;
+};
+
 export const handlerUpdateAvatar = (state, { payload }) => {
   state.user.avatarURL = payload;
 };
