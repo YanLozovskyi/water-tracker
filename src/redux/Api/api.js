@@ -31,6 +31,13 @@ export const logout = async () => {
 
 // User
 
+export const updateWaterRate = async newWaterRate => {
+  const { data } = await axios.post('/waterrate', {
+    waterRate: newWaterRate,
+  });
+  return data;
+};
+
 export const refreshUser = async token => {
   setToken(token);
   const { data } = await axios.get('/user/current');
