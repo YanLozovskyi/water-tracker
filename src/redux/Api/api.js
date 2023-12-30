@@ -65,3 +65,25 @@ export const editUserInfo = async body => {
 };
 
 // Water
+
+export const addWaters = async newWater => {
+  const { data } = await axios.post('/water', newWater, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return data;
+};
+
+export const editWater = async ({ newWaterUser, id }) => {
+  const { data } = await axios.patch(`/water/${id}`, newWaterUser, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return data;
+};
+
+export const deleteWater = async id => {
+  await axios.delete(`/water${id}`);
+};
