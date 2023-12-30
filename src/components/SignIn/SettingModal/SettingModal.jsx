@@ -5,7 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
 import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg';
-import { updateAvatarThunk } from '../../../redux/auth/authOperations';
+import {
+  updateAvatarThunk,
+  editUserInfoThunk,
+} from '../../../redux/auth/authOperations';
 import { selectUser } from '../../../redux/auth/authSelectors';
 import {
   Avatar,
@@ -39,39 +42,66 @@ import {
 } from './SettingModal.styled';
 
 const settingFormValidationSchema = Yup.object().shape({
-  gender: Yup.string().required('Required'),
-  username: Yup.string()
+  gender: Yup.string(),
+  name: Yup.string()
     .min(3, 'Username must be more then 3 characters long')
-    .max(32, 'Username must be less then 32 characters long')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
+    .max(32, 'Username must be less then 32 characters long'),
+  email: Yup.string().email('Invalid email'),
   newPassword: Yup.string()
     .min(8, 'New password must be at least 8 characters long')
-    .max(64, 'New password must be less then 64 characters long')
-    .required('Required'),
-  oldPassword: Yup.string()
+    .max(64, 'New password must be less then 64 characters long'),
+  outdatedPassword: Yup.string()
     .min(8, 'Old password must be at least 8 characters long')
-    .max(64, 'Old password must be less then 64 characters long')
-    .required('Required'),
+    .max(64, 'Old password must be less then 64 characters long'),
 });
 
 export const SettingModal = ({ onClose }) => {
   const dispatch = useDispatch();
-  const { avatarURL } = useSelector(selectUser);
+  const { avatarURL, email, userName } = useSelector(selectUser);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const initialValues = {
     avatar: '',
-    gender: 'Girl',
-    username: '',
-    email: '',
-    oldPassword: '',
+    gender: 'female',
+    name: userName,
+    email,
+    outdatedPassword: '',
     newPassword: '',
     repeatedPassword: '',
   };
 
   const handleSubmit = (values, actions) => {
-    console.log(values);
+    // console.log(values);
+    if (!values.outdatedPassword && values.newPassword) {
+      alert('Please enter old password');
+      return;
+    }
+
+    if (values.outdatedPassword === values.newPassword) {
+      alert('New password should be different from the old one');
+      return;
+    }
+
+    const formData = {
+      email: values.email,
+      name: values.name,
+      gender: values.gender,
+      outdatedPassword: values.outdatedPassword,
+      newPassword: values.newPassword,
+    };
+    console.log('formData', formData);
+
+    const dataSend = {};
+
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value) {
+        dataSend[key] = value;
+      }
+    });
+
+    console.log('dataSend', dataSend);
+
+    dispatch(editUserInfoThunk(dataSend));
     actions.resetForm();
   };
 
@@ -133,8 +163,8 @@ export const SettingModal = ({ onClose }) => {
                             <RadioBtn
                               type="radio"
                               name="gender"
-                              value="Girl"
-                              checked={values.gender === 'Girl'}
+                              value="female"
+                              checked={values.gender === 'female'}
                             />
                             <RadioBtnText>Girl</RadioBtnText>
                           </RadioBtnLabel>
@@ -142,8 +172,8 @@ export const SettingModal = ({ onClose }) => {
                             <RadioBtn
                               type="radio"
                               name="gender"
-                              value="Man"
-                              checked={values.gender === 'Man'}
+                              value="male"
+                              checked={values.gender === 'male'}
                             />
                             <RadioBtnText>Man</RadioBtnText>
                           </RadioBtnLabel>
@@ -154,15 +184,13 @@ export const SettingModal = ({ onClose }) => {
                         <Input
                           type="text"
                           id="username"
-                          name="username"
+                          name="name"
                           className={
-                            errors.username && touched.username
-                              ? 'error-input'
-                              : null
+                            errors.name && touched.name ? 'error-input' : null
                           }
-                          placeholder={values.username}
+                          placeholder={values.name}
                         />
-                        <StyledErrorMessage component="p" name="username" />
+                        <StyledErrorMessage component="p" name="name" />
                       </FormField>
                       <LastFormField>
                         <StyledLabel htmlFor="email">E-mail</StyledLabel>
@@ -188,9 +216,10 @@ export const SettingModal = ({ onClose }) => {
                           <Input
                             type={isPasswordShown ? 'text' : 'password'}
                             id="oldPassword"
-                            name="oldPassword"
+                            name="outdatedPassword"
                             className={
-                              errors.oldPassword && touched.oldPassword
+                              errors.outdatedPassword &&
+                              touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
@@ -211,7 +240,10 @@ export const SettingModal = ({ onClose }) => {
                             )}
                           </IconBtn>
                         </PasswordInputWrap>
-                        <StyledErrorMessage component="p" name="oldPassword" />
+                        <StyledErrorMessage
+                          component="p"
+                          name="outdatedPassword"
+                        />
                       </PasswordFormField>
                       <PasswordFormField>
                         <PasswordLabel htmlFor="password">
