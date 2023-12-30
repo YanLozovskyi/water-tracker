@@ -57,39 +57,35 @@ const settingFormValidationSchema = Yup.object().shape({
 
 export const SettingModal = ({ onClose }) => {
   const dispatch = useDispatch();
-  const { avatarURL, email, userName } = useSelector(selectUser);
+  const { avatarURL, email, name, gender } = useSelector(selectUser);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const initialValues = {
-    avatar: '',
-    gender: 'female',
-    name: userName,
-    email,
+    gender: gender || '',
+    name: name || "",
+    email: email || "",
     outdatedPassword: '',
     newPassword: '',
     repeatedPassword: '',
   };
 
   const handleSubmit = (values, actions) => {
-    // console.log(values);
-    if (!values.outdatedPassword && values.newPassword) {
+    const { gender, name, email, outdatedPassword, newPassword } = values
+
+    if (!outdatedPassword && newPassword) {
       alert('Please enter old password');
       return;
     }
 
-    if (values.outdatedPassword === values.newPassword) {
+    if (outdatedPassword === newPassword && outdatedPassword !== "" && newPassword !== "") {
       alert('New password should be different from the old one');
       return;
     }
 
     const formData = {
-      email: values.email,
-      name: values.name,
-      gender: values.gender,
-      outdatedPassword: values.outdatedPassword,
-      newPassword: values.newPassword,
+      gender, name, email, outdatedPassword, newPassword
     };
-    console.log('formData', formData);
+    // console.log('formData', formData);
 
     const dataSend = {};
 
@@ -99,7 +95,7 @@ export const SettingModal = ({ onClose }) => {
       }
     });
 
-    console.log('dataSend', dataSend);
+    // console.log('dataSend', dataSend);
 
     dispatch(editUserInfoThunk(dataSend));
     actions.resetForm();
@@ -219,7 +215,7 @@ export const SettingModal = ({ onClose }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                              touched.outdatedPassword
+                                touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
