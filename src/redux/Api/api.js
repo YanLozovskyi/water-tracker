@@ -56,11 +56,7 @@ export const updateAvatar = async newPhotoFile => {
 };
 
 export const editUserInfo = async body => {
-  const data = await axios.patch('/user/edit', body, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const { data } = await axios.patch('/user/edit', body);
   return data;
 };
 
