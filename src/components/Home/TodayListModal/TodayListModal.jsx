@@ -11,7 +11,16 @@ import {
   FooterModal,
   Input,
   Icon,
+  PreviousInfo,
+  Label,
+  InputWater,
+  InputTime,
 } from './TodayListModal.styled';
+import {
+  IconGlass,
+  TodayVolume,
+  TodayTime,
+} from '../TodayWaterList/TodayWaterList.styled';
 
 export const TodayListModal = ({
   initialAmount,
@@ -23,14 +32,24 @@ export const TodayListModal = ({
   const [amount, setAmount] = useState(initialAmount || 0);
   const [time, setTime] = useState(
     initialTime ||
-    new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
   );
+
   // змінюємо кількість води за допомогою кнопок
   const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
   const decreaseAmount = () =>
     setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
 
-  const handleAmountChange = e => setAmount(Number(e.target.value) || 0);
+  const handleAmountChange = e => {
+    let newValue = e.target.value;
+
+    if (newValue.startsWith('0') && newValue.length > 1) {
+      newValue = newValue.substring(1);
+    }
+
+    setAmount(newValue);
+  };
+
   const handleTimeChange = e => setTime(e.target.value);
 
   const handleSubmit = () => {
@@ -43,14 +62,15 @@ export const TodayListModal = ({
     <BaseModalWindow onClose={onClose} title={title}>
       <BoxAddModal>
         {isEditing && (
-          <div>
-            <h3>Previous entry:</h3>
-            <p>
-              {initialAmount
-                ? `${initialAmount} ml at ${initialTime}`
-                : 'No notes yet'}
-            </p>
-          </div>
+          <PreviousInfo>
+            <IconGlass>
+              <use href={`${sprite}#glass`}></use>
+            </IconGlass>
+            <TodayVolume>
+              {initialAmount ? `${initialAmount} ml` : 'No notes yet'}
+            </TodayVolume>
+            <TodayTime>{initialAmount ? initialTime : ''}</TodayTime>
+          </PreviousInfo>
         )}
 
         <h3>{isEditing ? 'Correct entered data:' : 'Choose a value:'}</h3>
@@ -62,14 +82,17 @@ export const TodayListModal = ({
                 <use href={`${sprite}#icon-decrement-outline`}></use>
               </Icon>
             </ButtonMl>
-            <input
-              type="number"
-              value={amount}
-              onChange={handleAmountChange}
-              onBlur={() =>
-                setAmount(prevAmount => prevAmount || initialAmount || 0)
-              }
-            />
+            <Label>
+              <InputWater
+                type="number"
+                value={amount}
+                onChange={handleAmountChange}
+                onBlur={() =>
+                  setAmount(prevAmount => prevAmount || initialAmount || 0)
+                }
+              />
+              <span>ml</span>
+            </Label>
             <ButtonMl onClick={increaseAmount}>
               <Icon>
                 <use href={`${sprite}#icon-increment`}></use>
@@ -80,7 +103,7 @@ export const TodayListModal = ({
 
         <AddTime>
           <AddParagraph>Recording time:</AddParagraph>
-          <Input
+          <InputTime
             type="time"
             value={time}
             onChange={handleTimeChange}
@@ -94,7 +117,7 @@ export const TodayListModal = ({
             value={amount}
             onChange={handleAmountChange}
             onBlur={() =>
-              setAmount(prevAmount => prevAmount || initialAmount || 0)
+              setAmount(prevAmount => prevAmount || initialAmount || '')
             }
           />
         </div>
