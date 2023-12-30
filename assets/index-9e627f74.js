@@ -1018,7 +1018,7 @@ template {
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     width: 160px;
   }
-`,eP=({onClose:e})=>{const[t,n]=w.useState("female"),[r,i]=w.useState(""),[o,a]=w.useState(""),[s,l]=w.useState("2.0"),[u,f]=w.useState(""),{user:c}=ur(Op),d=Il(),v=w.useCallback(()=>{if(!r||!o)return;const m=t==="female"?.03:.04,x=t==="female"?.4:.6,h=(r*m+o/60*x).toFixed(2);l(h)},[t,r,o]);w.useEffect(()=>{v()},[v]),w.useEffect(()=>{c&&n(c.gender||"female")},[c]);const g=async()=>{d(fx({waterRateData:{gender:t,weight:r,activityTime:o,dailyIntake:s}}))};return b.jsx(Vl,{onClose:e,title:"My daily norma",children:b.jsxs(KC,{children:[b.jsxs("div",{children:[b.jsxs(YC,{children:[b.jsxs(ja,{children:["For girl: ",b.jsx("span",{children:"V=(M*0,03) + (T*0,4)"})]}),b.jsxs(ja,{children:["For man: ",b.jsx("span",{children:"V=(M*0,04) + (T*0,6)"})]})]}),b.jsx(QC,{children:b.jsxs("p",{children:[b.jsx("span",{children:"*"})," V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)"]})})]}),b.jsx("div",{children:b.jsxs(qC,{children:[b.jsxs(XC,{children:[b.jsx(Qg,{children:"Calculate your rate:"}),b.jsxs("label",{children:[b.jsx(Xg,{type:"radio",name:"gender",value:"female",checked:t==="female",onChange:()=>n("female")}),b.jsx("span",{children:"For girl"})]}),b.jsxs("label",{children:[b.jsx(Xg,{type:"radio",name:"gender",value:"male",checked:t==="male",onChange:()=>n("male")}),b.jsx("span",{children:"For boy"})]})]}),b.jsxs("div",{children:[b.jsx(ja,{children:"Your weight in kilograms:"}),b.jsx(Gu,{type:"text",placeholder:"0",value:r,onChange:m=>i(m.target.value)})]}),b.jsxs("div",{children:[b.jsx(ja,{children:"Time of active participation in sports or other activities with a high physical load:"}),b.jsx(Gu,{type:"text",placeholder:"0",value:o,onChange:m=>a(m.target.value)})]}),b.jsxs(JC,{children:["The required amount of water in liters per day:"," ",b.jsxs("strong",{children:[s,"L"]})]}),b.jsxs("div",{children:[b.jsx(Qg,{children:"Write down how much water you will drink:"}),b.jsx(Gu,{type:"text",placeholder:"0",value:u,onChange:m=>f(m.target.value)})]}),b.jsx(ZC,{onClick:g,children:"Save"})]})})]})})};eP.propTypes={onClose:no.func.isRequired};const LF=k.div`
+`,eP=({onClose:e})=>{const[t,n]=w.useState("female"),[r,i]=w.useState(""),[o,a]=w.useState(""),[s,l]=w.useState("2.0"),[u,f]=w.useState(""),{user:c}=ur(Op),d=Il(),v=w.useCallback(()=>{if(!r||!o)return;const m=t==="female"?.03:.04,x=t==="female"?.4:.6,h=(r*m+o/60*x).toFixed(2);l(h)},[t,r,o]);w.useEffect(()=>{v()},[v]),w.useEffect(()=>{c&&n(c.gender||"female")},[c]);const g=async()=>{const m=parseFloat(s);if(isNaN(m)){console.error("Daily Intake is not a valid number.");return}d(fx(m)).unwrap()};return b.jsx(Vl,{onClose:e,title:"My daily norma",children:b.jsxs(KC,{children:[b.jsxs("div",{children:[b.jsxs(YC,{children:[b.jsxs(ja,{children:["For girl: ",b.jsx("span",{children:"V=(M*0,03) + (T*0,4)"})]}),b.jsxs(ja,{children:["For man: ",b.jsx("span",{children:"V=(M*0,04) + (T*0,6)"})]})]}),b.jsx(QC,{children:b.jsxs("p",{children:[b.jsx("span",{children:"*"})," V is the volume of the water norm in liters per day, M is your body weight, T is the time of active sports, or another type of activity commensurate in terms of loads (in the absence of these, you must set 0)"]})})]}),b.jsx("div",{children:b.jsxs(qC,{children:[b.jsxs(XC,{children:[b.jsx(Qg,{children:"Calculate your rate:"}),b.jsxs("label",{children:[b.jsx(Xg,{type:"radio",name:"gender",value:"female",checked:t==="female",onChange:()=>n("female")}),b.jsx("span",{children:"For girl"})]}),b.jsxs("label",{children:[b.jsx(Xg,{type:"radio",name:"gender",value:"male",checked:t==="male",onChange:()=>n("male")}),b.jsx("span",{children:"For boy"})]})]}),b.jsxs("div",{children:[b.jsx(ja,{children:"Your weight in kilograms:"}),b.jsx(Gu,{type:"text",placeholder:"0",value:r,onChange:m=>i(m.target.value)})]}),b.jsxs("div",{children:[b.jsx(ja,{children:"Time of active participation in sports or other activities with a high physical load:"}),b.jsx(Gu,{type:"text",placeholder:"0",value:o,onChange:m=>a(m.target.value)})]}),b.jsxs(JC,{children:["The required amount of water in liters per day:"," ",b.jsxs("strong",{children:[s,"L"]})]}),b.jsxs("div",{children:[b.jsx(Qg,{children:"Write down how much water you will drink:"}),b.jsx(Gu,{type:"text",placeholder:"0",value:u,onChange:m=>f(m.target.value)})]}),b.jsx(ZC,{onClick:g,children:"Save"})]})})]})})};eP.propTypes={onClose:no.func.isRequired};const LF=k.div`
   position: absolute;
   background-color: ${({theme:e})=>e.color.white};
   border-radius: 10px;
@@ -1199,7 +1199,7 @@ template {
     -webkit-appearance: none;
     margin: 0;
   }
-`,e5=k.div`
+`,eN=k.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1212,7 +1212,7 @@ template {
   span {
     margin-right: 15px;
   }
-`,t5=k.button`
+`,tN=k.button`
   background-color: ${e=>e.theme.color.white};
   color: ${e=>e.theme.color.accent};
   border-radius: 30px;
@@ -1229,13 +1229,13 @@ template {
   &:hover &:focus {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
-`,n5=k.svg`
+`,nN=k.svg`
   width: 24px;
   height: 24px;
   stroke: ${e=>e.theme.color.accent};
-`,r5=k.div`
+`,rN=k.div`
   margin-bottom: 24px;
-`,i5=k.input`
+`,iN=k.input`
   color: ${e=>e.theme.color.accent};
   font-size: 16px;
   font-weight: 400;
@@ -1265,7 +1265,7 @@ template {
   &:not(:placeholder-shown) {
     color: ${e=>e.theme.color.accent};
   }
-`,o5=k.input`
+`,oN=k.input`
   color: ${e=>e.theme.color.accent};
   font-size: 16px;
   font-weight: 400;
@@ -1301,7 +1301,7 @@ template {
   &:not(:placeholder-shown) {
     color: ${e=>e.theme.color.accent};
   }
-`,a5=k.div`
+`,aN=k.div`
   margin-top: 24px;
   display: flex;
   flex-direction: column;
@@ -1322,7 +1322,7 @@ template {
     gap: 24px;
     margin-top: 24px;
   }
-`,s5=k.button`
+`,sN=k.button`
   background-color: ${e=>e.theme.color.accent};
   color: ${e=>e.theme.color.white};
   padding: 10px 30px;
@@ -1340,18 +1340,18 @@ template {
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     width: 160px;
   }
-`,l5=k.div`
+`,lN=k.div`
   margin-bottom: 24px;
-`,u5=k.li`
+`,uN=k.li`
   display: flex;
   justify-content: space-between;
   padding: 12px 0;
   align-items: center;
   border-bottom: 1px solid #d7e3ff;
-`,c5=k.div`
+`,cN=k.div`
   display: flex;
   align-items: center;
-`,f5=k.h2`
+`,fN=k.h2`
   font-size: 24px;
   font-weight: 500;
   line-height: 1.25;
@@ -1362,21 +1362,21 @@ template {
     font-size: 26px;
     line-height: 1.23;
   }
-`,d5=k.ul`
+`,dN=k.ul`
   height: 212px;
   overflow: auto;
-`,p5=k.p`
+`,pN=k.p`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
   color: #407bff;
   margin-right: 16px;
-`,h5=k.p`
+`,hN=k.p`
   font-size: 12px;
   font-weight: 400;
   line-height: 2;
   color: #2f2f2f;
-`,m5=k.svg`
+`,mN=k.svg`
   width: 26px;
   height: 26px;
   margin-right: 12px;
@@ -1385,10 +1385,10 @@ template {
     width: 36px;
     height: 36px;
   }
-`,g5=k.div`
+`,gN=k.div`
   display: flex;
   gap: 18px;
-`,y5=k.button`
+`,yN=k.button`
   background-color: transparent;
   padding: 0;
   width: 20px;
@@ -1404,7 +1404,7 @@ template {
   &:hover {
     border-bottom: 1px solid #9ebbff;
   }
-`,v5=k.button`
+`,vN=k.button`
   background-color: transparent;
   padding: 0;
   width: 20px;
@@ -1420,7 +1420,7 @@ template {
   &:hover {
     border-bottom: 1px solid #ef5050;
   }
-`,x5=k.button`
+`,xN=k.button`
   display: flex;
   gap: 8px;
   align-items: center;
@@ -1448,7 +1448,7 @@ template {
     color: #ff9d43;
     stroke: #ff9d43;
   }
-`,w5=k.div`
+`,wN=k.div`
   width: 280px;
   display: flex;
   justify-content: center;
@@ -1467,7 +1467,7 @@ template {
     width: 592px;
     gap: 32px;
   }
-`,b5=k.input`
+`,bN=k.input`
   &[type='range'] {
     appearance: none;
     width: 100%;
@@ -1504,14 +1504,14 @@ template {
     -webkit-appearance: none;
     margin-top: -4px;
   }
-`,S5=k.p`
+`,SN=k.p`
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
   margin-bottom: 16px;
   color: ${({theme:e})=>e.color.accent};
-`,k5=k.div`
+`,kN=k.div`
   position: relative;
   height: 102px;
   display: flex;
@@ -1521,12 +1521,12 @@ template {
     width: 356px;
     height: 90px;
   }
-`,E5=k.div`
+`,EN=k.div`
   height: 32px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`,_5=k.span`
+`,_N=k.span`
   position: absolute;
   transform: translateX(-50%);
   display: flex;
@@ -1545,7 +1545,7 @@ template {
     align-items: center;
     color: ${({theme:e})=>e.color.secondaryLightBlue};
   }
-`,O5=k.span`
+`,ON=k.span`
   transform: translateX(-50%);
   font-size: 12px;
   line-height: 16px;
@@ -1562,7 +1562,7 @@ template {
     gap: 4px;
     color: ${({theme:e})=>e.color.secondaryLightBlue};
   }
-`,$5=k.span`
+`,$N=k.span`
   transform: translateX(50%);
   font-size: 12px;
   font-weight: 400;
@@ -1579,7 +1579,7 @@ template {
     align-items: center;
     color: ${({theme:e})=>e.color.secondaryLightBlue};
   }
-`,T5=k.button`
+`,TN=k.button`
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -1605,7 +1605,7 @@ template {
     height: 44px;
     padding: 10px 30px 10px 30px;
   }
-`,C5=k.svg`
+`,CN=k.svg`
   width: 24px;
   height: 24px;
   fill: transparent;
@@ -1825,7 +1825,7 @@ attempted value: ${a}
     margin-bottom: 52px;
   }
 `,eF=Aw().shape({gender:Vr(),name:Vr().min(3,"Username must be more then 3 characters long").max(32,"Username must be less then 32 characters long"),email:Vr().email("Invalid email"),newPassword:Vr().min(8,"New password must be at least 8 characters long").max(64,"New password must be less then 64 characters long"),outdatedPassword:Vr().min(8,"Old password must be at least 8 characters long").max(64,"Old password must be less then 64 characters long")}),tF=({onClose:e})=>{const t=Il(),{avatarURL:n,email:r,name:i,gender:o}=ur(Op),[a,s]=w.useState(!1),l={gender:o||"",name:i||"",email:r||"",outdatedPassword:"",newPassword:"",repeatedPassword:""},u=(d,v)=>{const{gender:g,name:m,email:x,outdatedPassword:h,newPassword:p}=d;if(!h&&p){alert("Please enter old password");return}if(h===p&&h!==""&&p!==""){alert("New password should be different from the old one");return}const y={gender:g,name:m,email:x,outdatedPassword:h,newPassword:p},S={};Object.entries(y).forEach(([E,_])=>{_&&(S[E]=_)}),t(px(S)),v.resetForm()},f=()=>{s(d=>!d)},c=d=>{let v=new FormData;v.append("avatar",d.target.files[0]),t(dx(v))};return b.jsx(b.Fragment,{children:b.jsx(Vl,{onClose:e,title:"Setting",children:b.jsx(q3,{children:b.jsx(IA,{initialValues:l,validationSchema:eF,onSubmit:u,children:({values:d,errors:v,touched:g})=>b.jsxs(_w,{children:[b.jsxs(Ks,{children:[b.jsx(Vp,{children:"Your photo"}),b.jsxs(B3,{children:[b.jsx(K3,{src:n||U3,alt:"user avatar",width:"80px",height:"80px"}),b.jsxs(V3,{children:[b.jsx(Lp,{type:"file",name:"avatar",hidden:!0,accept:"image/png, image/jpeg",onChange:c}),b.jsx(Nw,{children:b.jsx("use",{href:`${_t}#icon-arrow-up`})}),b.jsx(W3,{children:"Upload a photo"})]})]})]}),b.jsxs(J3,{children:[b.jsxs(My,{children:[b.jsxs(Z3,{children:[b.jsx(H3,{children:"Your gender identity"}),b.jsxs(G3,{children:[b.jsxs(Dy,{children:[b.jsx(Ly,{type:"radio",name:"gender",value:"female",checked:d.gender==="female"}),b.jsx(zy,{children:"Girl"})]}),b.jsxs(Dy,{children:[b.jsx(Ly,{type:"radio",name:"gender",value:"male",checked:d.gender==="male"}),b.jsx(zy,{children:"Man"})]})]})]}),b.jsxs(Ks,{children:[b.jsx(Ny,{htmlFor:"username",children:"Your name"}),b.jsx(Qi,{type:"text",id:"username",name:"name",className:v.name&&g.name?"error-input":null,placeholder:d.name}),b.jsx(Fa,{component:"p",name:"name"})]}),b.jsxs(Uy,{children:[b.jsx(Ny,{htmlFor:"email",children:"E-mail"}),b.jsx(Qi,{type:"email",id:"email",name:"email",className:v.email&&g.email?"error-input":null,placeholder:d.email}),b.jsx(Fa,{component:"p",name:"email"})]})]}),b.jsxs(My,{children:[b.jsx(Q3,{children:"Password"}),b.jsxs(Iy,{children:[b.jsx(nc,{htmlFor:"oldPassword",children:"Outdated password:"}),b.jsxs(tc,{children:[b.jsx(Qi,{type:a?"text":"password",id:"oldPassword",name:"outdatedPassword",className:v.outdatedPassword&&g.outdatedPassword?"error-input":null,placeholder:"Password"}),b.jsx(ec,{type:"button",onClick:f,children:a?b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-open`})}):b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-hide`})})})]}),b.jsx(Fa,{component:"p",name:"outdatedPassword"})]}),b.jsxs(Iy,{children:[b.jsx(nc,{htmlFor:"password",children:"New Password:"}),b.jsxs(tc,{children:[b.jsx(Qi,{type:a?"text":"password",id:"password",name:"newPassword",className:v.newPassword&&g.newPassword?"error-input":null,placeholder:"Password"}),b.jsx(ec,{type:"button",onClick:f,children:a?b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-open`})}):b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-hide`})})})]}),b.jsx(Fa,{component:"p",name:"newPassword"})]}),b.jsxs(Uy,{children:[b.jsx(nc,{htmlFor:"repeatedPassword",children:"Repeat new password:"}),b.jsxs(tc,{children:[b.jsx(Qi,{type:a?"text":"password",id:"repeatedPassword",name:"repeatedPassword",className:d.newPassword!==d.repeatedPassword?"error-input":null,placeholder:"Password"}),b.jsx(ec,{type:"button",onClick:f,children:a?b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-open`})}):b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-hide`})})})]}),d.newPassword!==d.repeatedPassword?b.jsx(Y3,{children:`The entered password doesn't matches the new
-                            password`}):null]})]})]}),b.jsx(X3,{type:"submit",children:"Save"})]})})})})})},P5=k.div`
+                            password`}):null]})]})]}),b.jsx(X3,{type:"submit",children:"Save"})]})})})})})},PN=k.div`
   background-image: -webkit-image-set(
     url(${Vx}) 1x,
     url(${Wx}) 2x
@@ -1852,7 +1852,7 @@ attempted value: ${a}
     width: 916px;
     min-height: 680px;
   }
-`,j5=k.div`
+`,jN=k.div`
   display: flex;
   flex-direction: column-reverse;
   gap: 66px;
@@ -1868,7 +1868,7 @@ attempted value: ${a}
     align-items: center;
     flex-direction: row;
   }
-`,R5=k.span`
+`,RN=k.span`
   color: red;
 `,nF=k.button`
   width: 100%;
@@ -1884,7 +1884,7 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     padding: 10px 30px 10px 30px;
   }
-`,A5=k.label`
+`,AN=k.label`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -1899,7 +1899,7 @@ attempted value: ${a}
     color: red;
     border: 1px solid ${e=>e.theme.color.secondaryRed};
   }
-`,F5=k.input`
+`,FN=k.input`
   width: 100%;
   border-radius: 6px;
   border: 1px solid ${e=>e.theme.color.secondaryPowderBlue};
@@ -1921,7 +1921,7 @@ attempted value: ${a}
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
   }
-`,N5=k.form`
+`,NN=k.form`
   display: flex;
   flex-direction: column;
   min-width: 280px;
@@ -1941,17 +1941,17 @@ attempted value: ${a}
     min-width: 384px;
     min-height: 312px;
   }
-`,I5=k(nF)`
+`,IN=k(nF)`
   background-color: ${e=>e.theme.color.secondaryPowderBlue};
   cursor: not-allowed;
-`,L5=k.h2`
+`,LN=k.h2`
   width: 100%;
   font-size: 26px;
   font-style: normal;
   font-weight: 500;
   line-height: 32px;
   color: ${e=>e.theme.color.black};
-`,z5=k.svg`
+`,zN=k.svg`
   width: 16px;
   height: 16px;
   border: 1px;
@@ -1960,7 +1960,7 @@ attempted value: ${a}
   position: absolute;
   right: 10px;
   top: 44px;
-`,D5=k(Go)`
+`,DN=k(Go)`
   width: 100%;
   font-size: 16px;
   font-style: normal;
@@ -1970,7 +1970,7 @@ attempted value: ${a}
   &:hover {
     color: ${e=>e.theme.color.secondaryYellow};
   }
-`,M5=k(Go)`
+`,MN=k(Go)`
   width: 100%;
   font-size: 16px;
   font-style: normal;
@@ -2183,7 +2183,7 @@ attempted value: ${a}
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 32px;
-`,wF=({onClose:e})=>{const t=Il();return b.jsx(b.Fragment,{children:b.jsx(Vl,{onClose:e,title:"Log out",children:b.jsxs(xF,{children:[b.jsx(mF,{children:"Do you really want to leave?"}),b.jsxs(vF,{children:[b.jsx("li",{children:b.jsx(yF,{type:"button",onClick:e,children:"Cancel"})}),b.jsx("li",{children:b.jsx(gF,{type:"button",onClick:()=>t(cx()),children:"Log out"})})]})]})})})},U5=k.div`
+`,wF=({onClose:e})=>{const t=Il();return b.jsx(b.Fragment,{children:b.jsx(Vl,{onClose:e,title:"Log out",children:b.jsxs(xF,{children:[b.jsx(mF,{children:"Do you really want to leave?"}),b.jsxs(vF,{children:[b.jsx("li",{children:b.jsx(yF,{type:"button",onClick:e,children:"Cancel"})}),b.jsx("li",{children:b.jsx(gF,{type:"button",onClick:()=>t(cx()),children:"Log out"})})]})]})})})},UN=k.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -2199,9 +2199,9 @@ attempted value: ${a}
 
     gap: 81px;
   }
-`,B5=k.h1`
+`,BN=k.h1`
   display: none;
-`,V5=k.h2`
+`,VN=k.h2`
   font-weight: 700;
   font-size: 28px;
   color: ${({theme:e})=>e.color.black};
@@ -2212,7 +2212,7 @@ attempted value: ${a}
     font-size: 36px;
     line-height: 42px;
   }
-`,W5=k.p`
+`,WN=k.p`
   font-size: 24px;
   color: ${({theme:e})=>e.color.black};
   line-height: 30px;
@@ -2222,7 +2222,7 @@ attempted value: ${a}
     font-size: 26px;
     line-height: 32px;
   }
-`,H5=k.ul`
+`,HN=k.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -2240,11 +2240,11 @@ attempted value: ${a}
     flex-direction: column;
     justify-content: center;
   }
-`,G5=k.li`
+`,GN=k.li`
   display: flex;
   gap: 8px;
   align-items: center;
-`,K5=k.div`
+`,KN=k.div`
   display: inline-block;
   max-width: 280px;
   margin: auto;
@@ -2257,7 +2257,7 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     min-width: 439px;
   }
-`,Y5=k.svg`
+`,YN=k.svg`
   stroke: #407bff;
   fill: none;
   width: 32px;
@@ -2267,13 +2267,13 @@ attempted value: ${a}
     width: 40px;
     height: 40px;
   }
-`,q5=k.h3`
+`,qN=k.h3`
   font-weight: 500;
   font-size: 18px;
   color: ${({theme:e})=>e.color.black};
   line-height: 20px;
   margin-bottom: 12px;
-`,Q5=k.button`
+`,QN=k.button`
   display: inline-block;
   width: 100%;
   padding: 8px 30px;
@@ -2303,12 +2303,12 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     width: 384px;
   }
-`,X5=k.h2`
+`,XN=k.h2`
   font-weight: 500;
   font-size: 18px;
   color: ${({theme:e})=>e.color.black};
   margin-bottom: 12px;
-`,J5=k.li`
+`,JN=k.li`
   font-size: 16px;
   color: ${({theme:e})=>e.color.black};
   line-height: 20px;
@@ -2336,10 +2336,10 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     list-style-position: inside;
   }
-`,Z5=k.div`
+`,ZN=k.div`
   display: inline-block;
   margin: 0;
-`,eN=k.div`
+`,e5=k.div`
   display: inline-block;
   margin: auto;
   width: auto;
@@ -2355,10 +2355,10 @@ attempted value: ${a}
     list-style-position: inside;
     margin: 0;
   }
-`,tN=k.ul`
+`,t5=k.ul`
   list-style-type: none;
   padding-left: 0;
-`,nN=k.button`
+`,n5=k.button`
   background-color: ${e=>e.theme.color.accent};
   color: ${e=>e.theme.color.white};
   padding: 10px 20px;
@@ -2376,7 +2376,7 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.mobile}) {
     font-size: 16px;
   }
-`,rN=k.img`
+`,r5=k.img`
   font-size: 16px;
   width: 280px;
   height: 280px;
@@ -2392,4 +2392,4 @@ attempted value: ${a}
     width: 900px;
     height: 700px;
   }
-`,bF="modulepreload",SF=function(e){return"/water-tracker/"+e},Hy={},zi=function(t,n,r){if(!n||n.length===0)return t();const i=document.getElementsByTagName("link");return Promise.all(n.map(o=>{if(o=SF(o),o in Hy)return;Hy[o]=!0;const a=o.endsWith(".css"),s=a?'[rel="stylesheet"]':"";if(!!r)for(let f=i.length-1;f>=0;f--){const c=i[f];if(c.href===o&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${o}"]${s}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":bF,a||(u.as="script",u.crossOrigin=""),u.href=o,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${o}`)))})})).then(()=>t()).catch(o=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=o,window.dispatchEvent(a),!a.defaultPrevented)throw o})},kF=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(e,{}):b.jsx(Ux,{to:t}),Na=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(Ux,{to:t}):e,EF=()=>b.jsxs(b.Fragment,{children:[b.jsx(WC,{}),b.jsx("main",{children:b.jsx(w.Suspense,{fallback:b.jsx(Sp,{}),children:b.jsx(_C,{})})})]}),_F=w.lazy(()=>zi(()=>import("./Welcome-5c1d2597.js"),["assets/Welcome-5c1d2597.js","assets/Section-dcf23298.js"])),OF=w.lazy(()=>zi(()=>import("./Home-9057eee5.js"),["assets/Home-9057eee5.js","assets/Section-dcf23298.js","assets/bubbleTablet@2x-6e22c1d3.js"])),$F=w.lazy(()=>zi(()=>import("./SignIn-f85647f9.js"),["assets/SignIn-f85647f9.js","assets/Section-dcf23298.js","assets/bubbleTablet@2x-6e22c1d3.js"])),TF=w.lazy(()=>zi(()=>import("./SignUp-227ee6b8.js"),["assets/SignUp-227ee6b8.js","assets/Section-dcf23298.js","assets/bubbleTablet@2x-6e22c1d3.js"])),CF=w.lazy(()=>zi(()=>import("./Error-fff8b6e6.js"),["assets/Error-fff8b6e6.js","assets/Section-dcf23298.js"])),PF=w.lazy(()=>zi(()=>import("./ForgotPassword-c7d74606.js"),["assets/ForgotPassword-c7d74606.js","assets/Section-dcf23298.js"])),jF=()=>{const e=Il(),t=ur(UC);return w.useEffect(()=>{e(os())},[e]),t?b.jsx(Sp,{}):b.jsx($C,{children:b.jsxs(jn,{path:"/",element:b.jsx(EF,{}),children:[b.jsx(jn,{index:!0,element:b.jsx(Na,{component:b.jsx(_F,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"home",element:b.jsx(kF,{component:OF,redirectTo:"/"})}),b.jsx(jn,{path:"signin",element:b.jsx(Na,{component:b.jsx($F,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"signup",element:b.jsx(Na,{component:b.jsx(TF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"forgot-password",element:b.jsx(Na,{component:b.jsx(PF,{}),redirectTo:"/signin"})}),b.jsx(jn,{path:"*",element:b.jsx(CF,{})})]})})},RF=sc.createRoot(document.getElementById("root"));RF.render(b.jsx(He.StrictMode,{children:b.jsxs(g0,{theme:hf,children:[b.jsx(y0,{styles:C$}),b.jsx(tE,{store:mx,children:b.jsx(P1,{loading:b.jsx(Sp,{}),persistor:k$,children:b.jsx(FC,{basename:"/water-tracker",children:b.jsx(jF,{})})})})]})}));export{a5 as $,YF as A,q5 as B,eN as C,FF as D,Vl as E,qF as F,QF as G,B5 as H,G5 as I,m5 as J,p5 as K,tN as L,h5 as M,JF as N,Z5 as O,W5 as P,XF as Q,t5 as R,n5 as S,K5 as T,e5 as U,ZF as V,U5 as W,r5 as X,HF as Y,i5 as Z,o5 as _,V5 as a,s5 as a0,l5 as a1,f5 as a2,d5 as a3,u5 as a4,c5 as a5,g5 as a6,y5 as a7,v5 as a8,x5 as a9,nN as aA,rN as aB,G$ as aC,w5 as aa,k5 as ab,S5 as ac,b5 as ad,E5 as ae,O5 as af,_5 as ag,$5 as ah,T5 as ai,C5 as aj,Il as ak,j5 as al,P5 as am,N5 as an,L5 as ao,A5 as ap,F5 as aq,R5 as ar,z5 as as,I5 as at,nF as au,M5 as av,t$ as aw,D5 as ax,e$ as ay,Go as az,H5 as b,Y5 as c,Q5 as d,X5 as e,J5 as f,ur as g,Op as h,IF as i,b as j,eP as k,NF as l,LF as m,k as n,zF as o,DF as p,UF as q,w as r,_t as s,MF as t,zx as u,BF as v,WF as w,VF as x,GF as y,KF as z};
+`,bF="modulepreload",SF=function(e){return"/water-tracker/"+e},Hy={},zi=function(t,n,r){if(!n||n.length===0)return t();const i=document.getElementsByTagName("link");return Promise.all(n.map(o=>{if(o=SF(o),o in Hy)return;Hy[o]=!0;const a=o.endsWith(".css"),s=a?'[rel="stylesheet"]':"";if(!!r)for(let f=i.length-1;f>=0;f--){const c=i[f];if(c.href===o&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${o}"]${s}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":bF,a||(u.as="script",u.crossOrigin=""),u.href=o,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${o}`)))})})).then(()=>t()).catch(o=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=o,window.dispatchEvent(a),!a.defaultPrevented)throw o})},kF=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(e,{}):b.jsx(Ux,{to:t}),Na=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(Ux,{to:t}):e,EF=()=>b.jsxs(b.Fragment,{children:[b.jsx(WC,{}),b.jsx("main",{children:b.jsx(w.Suspense,{fallback:b.jsx(Sp,{}),children:b.jsx(_C,{})})})]}),_F=w.lazy(()=>zi(()=>import("./Welcome-cf8d1b4e.js"),["assets/Welcome-cf8d1b4e.js","assets/Section-0b74242b.js"])),OF=w.lazy(()=>zi(()=>import("./Home-96acb15c.js"),["assets/Home-96acb15c.js","assets/Section-0b74242b.js","assets/bubbleTablet@2x-6e22c1d3.js"])),$F=w.lazy(()=>zi(()=>import("./SignIn-f08aae9d.js"),["assets/SignIn-f08aae9d.js","assets/Section-0b74242b.js","assets/bubbleTablet@2x-6e22c1d3.js"])),TF=w.lazy(()=>zi(()=>import("./SignUp-651713b9.js"),["assets/SignUp-651713b9.js","assets/Section-0b74242b.js","assets/bubbleTablet@2x-6e22c1d3.js"])),CF=w.lazy(()=>zi(()=>import("./Error-60adf899.js"),["assets/Error-60adf899.js","assets/Section-0b74242b.js"])),PF=w.lazy(()=>zi(()=>import("./ForgotPassword-87cd30dc.js"),["assets/ForgotPassword-87cd30dc.js","assets/Section-0b74242b.js"])),jF=()=>{const e=Il(),t=ur(UC);return w.useEffect(()=>{e(os())},[e]),t?b.jsx(Sp,{}):b.jsx($C,{children:b.jsxs(jn,{path:"/",element:b.jsx(EF,{}),children:[b.jsx(jn,{index:!0,element:b.jsx(Na,{component:b.jsx(_F,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"home",element:b.jsx(kF,{component:OF,redirectTo:"/"})}),b.jsx(jn,{path:"signin",element:b.jsx(Na,{component:b.jsx($F,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"signup",element:b.jsx(Na,{component:b.jsx(TF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"forgot-password",element:b.jsx(Na,{component:b.jsx(PF,{}),redirectTo:"/signin"})}),b.jsx(jn,{path:"*",element:b.jsx(CF,{})})]})})},RF=sc.createRoot(document.getElementById("root"));RF.render(b.jsx(He.StrictMode,{children:b.jsxs(g0,{theme:hf,children:[b.jsx(y0,{styles:C$}),b.jsx(tE,{store:mx,children:b.jsx(P1,{loading:b.jsx(Sp,{}),persistor:k$,children:b.jsx(FC,{basename:"/water-tracker",children:b.jsx(jF,{})})})})]})}));export{aN as $,YF as A,qN as B,e5 as C,FF as D,Vl as E,qF as F,QF as G,BN as H,GN as I,mN as J,pN as K,t5 as L,hN as M,JF as N,ZN as O,WN as P,XF as Q,tN as R,nN as S,KN as T,eN as U,ZF as V,UN as W,rN as X,HF as Y,iN as Z,oN as _,VN as a,sN as a0,lN as a1,fN as a2,dN as a3,uN as a4,cN as a5,gN as a6,yN as a7,vN as a8,xN as a9,n5 as aA,r5 as aB,G$ as aC,wN as aa,kN as ab,SN as ac,bN as ad,EN as ae,ON as af,_N as ag,$N as ah,TN as ai,CN as aj,Il as ak,jN as al,PN as am,NN as an,LN as ao,AN as ap,FN as aq,RN as ar,zN as as,IN as at,nF as au,MN as av,t$ as aw,DN as ax,e$ as ay,Go as az,HN as b,YN as c,QN as d,XN as e,JN as f,ur as g,Op as h,IF as i,b as j,eP as k,NF as l,LF as m,k as n,zF as o,DF as p,UF as q,w as r,_t as s,MF as t,zx as u,BF as v,WF as w,VF as x,GF as y,KF as z};
