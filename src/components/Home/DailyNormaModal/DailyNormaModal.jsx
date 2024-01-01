@@ -57,7 +57,12 @@ export const DailyNormaModal = ({ onClose }) => {
       console.error('Daily Intake is not a valid number.');
       return;
     }
-    dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
+    try {
+      await dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
+      onClose();
+    } catch (error) {
+      console.error('Failed to save water data:', error);
+    }
   };
 
   return (

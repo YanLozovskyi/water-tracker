@@ -75,8 +75,8 @@ export const updateWaterRateThunk = createAsyncThunk(
   async (newWaterRate, { rejectWithValue }) => {
     try {
       const rate = Number(newWaterRate) * 1000;
-      const { waterRate } = await updateWaterRate(rate);
-      return waterRate;
+      await updateWaterRate(rate);
+      return rate;
     } catch (error) {
       return rejectWithValue(error.message);
     }

@@ -15,10 +15,11 @@ export const addWatersThunk = createAsyncThunk(
 
 export const editWaterThunk = createAsyncThunk(
   'water/editWater',
-  async (body, { rejectWithValue }) => {
+  async ({ _id, waterVolume, date }, { rejectWithValue }) => {
     try {
-      const data = await editWater(body);
-      return data;
+      const newWaterUser = { waterVolume, date };
+      const response = await editWater({ newWaterUser, id: _id });
+      return response;
     } catch (error) {
       return rejectWithValue(error.message);
     }
