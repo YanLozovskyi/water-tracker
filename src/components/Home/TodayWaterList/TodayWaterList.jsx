@@ -1,5 +1,12 @@
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { useDispatch, useSelector } from 'react-redux';
 import { TodayListModal } from 'components';
+import {
+  deleteWaterThunk,
+  addWatersThunk,
+  editWaterThunk,
+} from '../../../redux/waterData/waterOperations';
+import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
 import {
   AddWaterBtn,
   ButtonChange,
@@ -28,13 +35,16 @@ export const TodayWaterList = () => {
   const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
 
+  const dispatch = useDispatch();
+  const todayWaterRecords = useSelector(selectWaterToday);
+
   const openModalToAdd = () => {
     setSelectedRecord(null);
     setModalOpen(true);
   };
 
-  const openModalToEdit = (record, index) => {
-    setSelectedRecord({ ...record, index });
+  const openModalToEdit = record => {
+    setSelectedRecord(record);
     setModalOpen(true);
   };
 
@@ -42,46 +52,62 @@ export const TodayWaterList = () => {
     setModalOpen(false);
   };
 
-  const handleDelete = index => {
+  const handleDelete = async recordId => {
     // Видаляємо запис за індексом
-    setRecords(records.filter((_, idx) => idx !== index));
+    try {
+      await dispatch(deleteWaterThunk(recordId)).unwrap();
+      setRecords(records.filter(record => record._id !== recordId));
+    } catch (error) {
+      console.error('Failed to delete water record:', error);
+    }
   };
 
-  const handleSave = data => {
-    if (selectedRecord !== null) {
-      // Оновлюємо існуючий запис
-      setRecords(
-        records.map((rec, idx) =>
-          idx === selectedRecord.index ? { ...rec, ...data } : rec,
-        ),
-      );
-    } else {
-      // Додаємо новий запис
-      setRecords([...records, data]);
+  const handleSave = async data => {
+    try {
+      if (selectedRecord !== null) {
+        // Оновлюємо існуючий запис
+        const updateData = {
+          ...data,
+          _id: selectedRecord._id,
+        };
+        await dispatch(editWaterThunk(updateData)).unwrap();
+      } else {
+        await dispatch(addWatersThunk(data)).unwrap();
+      }
+      closeModal();
+    } catch (error) {
+      console.error('Failed to save water data:', error);
     }
-    closeModal();
   };
+
+  function formatTime(isoDate) {
+    return new Date(isoDate).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+  }
 
   return (
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
       <TodayList>
-        {records.map((record, index) => (
-          <TodayItem key={index}>
+        {todayWaterRecords.dailyWaterList.map(record => (
+          <TodayItem key={record._id}>
             <TodayInfo>
               <IconGlass>
                 <use href={icons.glass}></use>
               </IconGlass>
-              <TodayVolume>{record.amount} ml</TodayVolume>
-              <TodayTime>{record.time} AM</TodayTime>
+              <TodayVolume>{record.waterVolume} ml</TodayVolume>
+              <TodayTime>{formatTime(record.date)}</TodayTime>
             </TodayInfo>
             <TodayTools>
-              <ButtonChange onClick={() => openModalToEdit(record, index)}>
+              <ButtonChange onClick={() => openModalToEdit(record)}>
                 <svg>
                   <use href={icons.change}></use>
                 </svg>
               </ButtonChange>
-              <ButtonDelete onClick={() => handleDelete(index)}>
+              <ButtonDelete onClick={() => handleDelete(record._id)}>
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
@@ -100,9 +126,10 @@ export const TodayWaterList = () => {
       </TodayList>
       {isModalOpen && (
         <TodayListModal
-          initialAmount={selectedRecord?.volume}
-          initialTime={selectedRecord?.time}
+          initialAmount={selectedRecord?.waterVolume}
+          initialTime={selectedRecord?.date}
           isEditing={selectedRecord !== null}
+          existingRecordId={selectedRecord?._id}
           onSave={handleSave}
           onClose={closeModal}
         />
