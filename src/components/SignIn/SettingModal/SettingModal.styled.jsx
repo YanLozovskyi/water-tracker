@@ -156,6 +156,35 @@ export const Input = styled(Field)`
   }
 `;
 
+export const PasswordInput = styled.input`
+  width: 100%;
+  height: 44px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 6px;
+  border: 1px solid ${({ theme }) => theme.color.secondaryLightBlue};
+  color: ${({ theme }) => theme.color.secondaryLightBlue};
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  outline: transparent; /* 125% */
+
+  &:focus {
+    color: ${({ theme }) => theme.color.accent};
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.color.secondaryLightBlue};
+  }
+
+  &[type='password'] {
+    -webkit-text-security: none;
+  }
+`;
+
 export const StyledErrorMessage = styled(ErrorMessage)`
   margin-top: 4px;
   color: ${props => props.theme.color.secondaryRed};

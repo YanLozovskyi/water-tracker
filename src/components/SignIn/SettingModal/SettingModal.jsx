@@ -28,6 +28,7 @@ import {
   ModalWrap,
   PasswordFormField,
   PasswordIcon,
+  PasswordInput,
   PasswordInputWrap,
   PasswordLabel,
   PasswordText,
@@ -59,6 +60,7 @@ export const SettingModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const { avatarURL, email, userName } = useSelector(selectUser);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+  // const [password, setPassword] = useState('');
 
   const initialValues = {
     avatar: '',
@@ -213,18 +215,72 @@ export const SettingModal = ({ onClose }) => {
                           Outdated password:
                         </PasswordLabel>
                         <PasswordInputWrap>
-                          <Input
-                            type={isPasswordShown ? 'text' : 'password'}
+                          {/* {isPasswordShown ? (
+                            <Field id="oldPassword" name="outdatedPassword">
+                              {({ field, form }) => (
+                                <PasswordInput
+                                  {...field}
+                                  type="text"
+                                  // id="oldPassword"
+                                  // name="outdatedPassword"
+                                  className={
+                                    errors.outdatedPassword &&
+                                    touched.outdatedPassword
+                                      ? 'error-input'
+                                      : null
+                                  }
+                                  onChange={e => {
+                                    const newPassword =
+                                      e.target.value.toLowerCase();
+
+                                    form.setFieldValue(
+                                      'outdatedPassword',
+                                      newPassword,
+                                    );
+                                  }}
+                                  placeholder="Password"
+                                />
+                              )}
+                            </Field>
+                          ) : ( */}
+                          <Field
+                            // type={isPasswordShown ? 'text' : 'password'}
                             id="oldPassword"
                             name="outdatedPassword"
-                            className={
-                              errors.outdatedPassword &&
-                              touched.outdatedPassword
-                                ? 'error-input'
-                                : null
-                            }
-                            placeholder="Password"
-                          />
+                          >
+                            {({ field, form }) => (
+                              <PasswordInput
+                                {...field}
+                                type={isPasswordShown ? 'text' : 'password'}
+                                // id="oldPassword"
+                                // name="outdatedPassword"
+                                onChange={e => {
+                                  const newPassword = e.target.value;
+                                  // console.log(newPassword);
+
+                                  const passwordWithAsteriks =
+                                    newPassword.replace(/[a-zA-Zа-яА-Я]/g, '*');
+                                  // console.log(passwordWithAsteriks);
+
+                                  // field.onChange({
+                                  //   target: { value: passwordWithAsteriks },
+                                  // });
+                                  form.setFieldValue(
+                                    'outdatedPassword',
+                                    passwordWithAsteriks,
+                                  );
+                                }}
+                                className={
+                                  errors.outdatedPassword &&
+                                  touched.outdatedPassword
+                                    ? 'error-input'
+                                    : null
+                                }
+                                placeholder="Password"
+                              />
+                            )}
+                          </Field>
+                          {/* )} */}
                           <IconBtn
                             type="button"
                             onClick={handlePasswordVisibility}
