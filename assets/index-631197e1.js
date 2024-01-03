@@ -1449,6 +1449,50 @@ template {
     stroke: #ff9d43;
   }
 `,ON=k.div`
+  padding: 0 24px 32px;
+`,$N=k.button`
+  display: inline-block;
+  width: 100%;
+  padding: 8px 30px;
+  color: ${({theme:e})=>e.color.white};
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  background-color: ${({theme:e})=>e.color.secondaryRed};
+  box-shadow: ${({theme:e})=>e.boxShadowforButton.normalButton};
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: ${({theme:e})=>e.boxShadowforButton.hoverButton};
+  }
+  &:active {
+    box-shadow: ${({theme:e})=>e.boxShadowforButton.activeButton};
+  }
+
+  &:nth-last-child(1) {
+    color: ${({theme:e})=>e.color.accent};
+    background-color: ${({theme:e})=>e.color.secondaryPowderBlue};
+  }
+
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
+    width: 160px;
+    padding: 10px 30px;
+  }
+`,TN=k.div`
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
+    flex-direction: row-reverse;
+  }
+`,CN=k.p`
+  font-size: 18px;
+  color: ${({theme:e})=>e.color.black};
+  line-height: 20px;
+
+  margin-bottom: 24px;
+`,PN=k.div`
   width: 280px;
   display: flex;
   justify-content: center;
@@ -1467,7 +1511,7 @@ template {
     width: 592px;
     gap: 32px;
   }
-`,$N=k.input`
+`,jN=k.input`
   &[type='range'] {
     appearance: none;
     width: 100%;
@@ -1504,14 +1548,14 @@ template {
     -webkit-appearance: none;
     margin-top: -4px;
   }
-`,TN=k.p`
+`,RN=k.p`
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 0em;
   text-align: left;
   margin-bottom: 16px;
   color: ${({theme:e})=>e.color.accent};
-`,CN=k.div`
+`,AN=k.div`
   position: relative;
   height: 102px;
   display: flex;
@@ -1521,12 +1565,12 @@ template {
     width: 356px;
     height: 90px;
   }
-`,PN=k.div`
+`,FN=k.div`
   height: 32px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-`,jN=k.span`
+`,NN=k.span`
   position: absolute;
   transform: translateX(-50%);
   display: flex;
@@ -1545,7 +1589,7 @@ template {
     align-items: center;
     color: ${({theme:e})=>e.color.secondaryLightBlue};
   }
-`,RN=k.span`
+`,IN=k.span`
   transform: translateX(-50%);
   font-size: 12px;
   line-height: 16px;
@@ -1562,7 +1606,7 @@ template {
     gap: 4px;
     color: ${({theme:e})=>e.color.secondaryLightBlue};
   }
-`,AN=k.span`
+`,LN=k.span`
   transform: translateX(50%);
   font-size: 12px;
   font-weight: 400;
@@ -1579,7 +1623,7 @@ template {
     align-items: center;
     color: ${({theme:e})=>e.color.secondaryLightBlue};
   }
-`,FN=k.button`
+`,zN=k.button`
   display: flex;
   gap: 10px;
   justify-content: center;
@@ -1605,7 +1649,7 @@ template {
     height: 44px;
     padding: 10px 30px 10px 30px;
   }
-`,NN=k.svg`
+`,DN=k.svg`
   width: 24px;
   height: 24px;
   fill: transparent;
@@ -1825,7 +1869,7 @@ attempted value: ${a}
     margin-bottom: 52px;
   }
 `,aF=Aw().shape({gender:Wr(),name:Wr().min(3,"Username must be more then 3 characters long").max(32,"Username must be less then 32 characters long"),email:Wr().email("Invalid email"),newPassword:Wr().min(8,"New password must be at least 8 characters long").max(64,"New password must be less then 64 characters long"),outdatedPassword:Wr().min(8,"Old password must be at least 8 characters long").max(64,"Old password must be less then 64 characters long")}),sF=({onClose:e})=>{const t=Il(),{avatarURL:n,email:r,name:i,gender:o}=ur($p),[a,s]=w.useState(!1),l={gender:o||"",name:i||"",email:r||"",outdatedPassword:"",newPassword:"",repeatedPassword:""},u=(d,v)=>{const{gender:g,name:m,email:x,outdatedPassword:h,newPassword:p}=d;if(!h&&p){alert("Please enter old password");return}if(h===p&&h!==""&&p!==""){alert("New password should be different from the old one");return}const y={gender:g,name:m,email:x,outdatedPassword:h,newPassword:p},S={};Object.entries(y).forEach(([E,_])=>{_&&(S[E]=_)}),t(px(S)),v.resetForm()},f=()=>{s(d=>!d)},c=d=>{let v=new FormData;v.append("avatar",d.target.files[0]),t(dx(v))};return b.jsx(b.Fragment,{children:b.jsx(Wl,{onClose:e,title:"Setting",children:b.jsx(tF,{children:b.jsx(BA,{initialValues:l,validationSchema:aF,onSubmit:u,children:({values:d,errors:v,touched:g})=>b.jsxs(_w,{children:[b.jsxs(Ks,{children:[b.jsx(Vp,{children:"Your photo"}),b.jsxs(Y3,{children:[b.jsx(Z3,{src:n||K3,alt:"user avatar",width:"80px",height:"80px"}),b.jsxs(q3,{children:[b.jsx(zp,{type:"file",name:"avatar",hidden:!0,accept:"image/png, image/jpeg",onChange:c}),b.jsx(Nw,{children:b.jsx("use",{href:`${_t}#icon-arrow-up`})}),b.jsx(Q3,{children:"Upload a photo"})]})]})]}),b.jsxs(iF,{children:[b.jsxs(Uy,{children:[b.jsxs(oF,{children:[b.jsx(X3,{children:"Your gender identity"}),b.jsxs(J3,{children:[b.jsxs(My,{children:[b.jsx(zy,{type:"radio",name:"gender",value:"female",checked:d.gender==="female"}),b.jsx(Dy,{children:"Girl"})]}),b.jsxs(My,{children:[b.jsx(zy,{type:"radio",name:"gender",value:"male",checked:d.gender==="male"}),b.jsx(Dy,{children:"Man"})]})]})]}),b.jsxs(Ks,{children:[b.jsx(Iy,{htmlFor:"username",children:"Your name"}),b.jsx(Qi,{type:"text",id:"username",name:"name",className:v.name&&g.name?"error-input":null,placeholder:d.name}),b.jsx(Fa,{component:"p",name:"name"})]}),b.jsxs(By,{children:[b.jsx(Iy,{htmlFor:"email",children:"E-mail"}),b.jsx(Qi,{type:"email",id:"email",name:"email",className:v.email&&g.email?"error-input":null,placeholder:d.email}),b.jsx(Fa,{component:"p",name:"email"})]})]}),b.jsxs(Uy,{children:[b.jsx(nF,{children:"Password"}),b.jsxs(Ly,{children:[b.jsx(nc,{htmlFor:"oldPassword",children:"Outdated password:"}),b.jsxs(tc,{children:[b.jsx(Qi,{type:a?"text":"password",id:"oldPassword",name:"outdatedPassword",className:v.outdatedPassword&&g.outdatedPassword?"error-input":null,placeholder:"Password"}),b.jsx(ec,{type:"button",onClick:f,children:a?b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-open`})}):b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-hide`})})})]}),b.jsx(Fa,{component:"p",name:"outdatedPassword"})]}),b.jsxs(Ly,{children:[b.jsx(nc,{htmlFor:"password",children:"New Password:"}),b.jsxs(tc,{children:[b.jsx(Qi,{type:a?"text":"password",id:"password",name:"newPassword",className:v.newPassword&&g.newPassword?"error-input":null,placeholder:"Password"}),b.jsx(ec,{type:"button",onClick:f,children:a?b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-open`})}):b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-hide`})})})]}),b.jsx(Fa,{component:"p",name:"newPassword"})]}),b.jsxs(By,{children:[b.jsx(nc,{htmlFor:"repeatedPassword",children:"Repeat new password:"}),b.jsxs(tc,{children:[b.jsx(Qi,{type:a?"text":"password",id:"repeatedPassword",name:"repeatedPassword",className:d.newPassword!==d.repeatedPassword?"error-input":null,placeholder:"Password"}),b.jsx(ec,{type:"button",onClick:f,children:a?b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-open`})}):b.jsx(Br,{children:b.jsx("use",{href:`${_t}#icon-to-hide`})})})]}),d.newPassword!==d.repeatedPassword?b.jsx(eF,{children:`The entered password doesn't matches the new
-                            password`}):null]})]})]}),b.jsx(rF,{type:"submit",children:"Save"})]})})})})})},IN=k.div`
+                            password`}):null]})]})]}),b.jsx(rF,{type:"submit",children:"Save"})]})})})})})},MN=k.div`
   background-image: -webkit-image-set(
     url(${Wx}) 1x,
     url(${Vx}) 2x
@@ -1852,7 +1896,7 @@ attempted value: ${a}
     width: 916px;
     min-height: 680px;
   }
-`,LN=k.div`
+`,UN=k.div`
   display: flex;
   flex-direction: column-reverse;
   gap: 66px;
@@ -1868,7 +1912,7 @@ attempted value: ${a}
     align-items: center;
     flex-direction: row;
   }
-`,zN=k.span`
+`,BN=k.span`
   color: red;
 `,lF=k.button`
   width: 100%;
@@ -1884,7 +1928,7 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     padding: 10px 30px 10px 30px;
   }
-`,DN=k.label`
+`,WN=k.label`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -1899,7 +1943,7 @@ attempted value: ${a}
     color: red;
     border: 1px solid ${e=>e.theme.color.secondaryRed};
   }
-`,MN=k.input`
+`,VN=k.input`
   width: 100%;
   border-radius: 6px;
   border: 1px solid ${e=>e.theme.color.secondaryPowderBlue};
@@ -1921,7 +1965,7 @@ attempted value: ${a}
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
   }
-`,UN=k.form`
+`,HN=k.form`
   display: flex;
   flex-direction: column;
   min-width: 280px;
@@ -1941,17 +1985,17 @@ attempted value: ${a}
     min-width: 384px;
     min-height: 312px;
   }
-`,BN=k(lF)`
+`,GN=k(lF)`
   background-color: ${e=>e.theme.color.secondaryPowderBlue};
   cursor: not-allowed;
-`,WN=k.h2`
+`,KN=k.h2`
   width: 100%;
   font-size: 26px;
   font-style: normal;
   font-weight: 500;
   line-height: 32px;
   color: ${e=>e.theme.color.black};
-`,VN=k.svg`
+`,YN=k.svg`
   width: 16px;
   height: 16px;
   border: 1px;
@@ -1960,7 +2004,7 @@ attempted value: ${a}
   position: absolute;
   right: 10px;
   top: 44px;
-`,HN=k(Go)`
+`,qN=k(Go)`
   width: 100%;
   font-size: 16px;
   font-style: normal;
@@ -1970,7 +2014,7 @@ attempted value: ${a}
   &:hover {
     color: ${e=>e.theme.color.secondaryYellow};
   }
-`,GN=k(Go)`
+`,QN=k(Go)`
   width: 100%;
   font-size: 16px;
   font-style: normal;
@@ -2183,7 +2227,7 @@ attempted value: ${a}
   padding-left: 24px;
   padding-right: 24px;
   padding-bottom: 32px;
-`,OF=({onClose:e})=>{const t=Il();return b.jsx(b.Fragment,{children:b.jsx(Wl,{onClose:e,title:"Log out",children:b.jsxs(_F,{children:[b.jsx(bF,{children:"Do you really want to leave?"}),b.jsxs(EF,{children:[b.jsx("li",{children:b.jsx(kF,{type:"button",onClick:e,children:"Cancel"})}),b.jsx("li",{children:b.jsx(SF,{type:"button",onClick:()=>t(cx()),children:"Log out"})})]})]})})})},KN=k.div`
+`,OF=({onClose:e})=>{const t=Il();return b.jsx(b.Fragment,{children:b.jsx(Wl,{onClose:e,title:"Log out",children:b.jsxs(_F,{children:[b.jsx(bF,{children:"Do you really want to leave?"}),b.jsxs(EF,{children:[b.jsx("li",{children:b.jsx(kF,{type:"button",onClick:e,children:"Cancel"})}),b.jsx("li",{children:b.jsx(SF,{type:"button",onClick:()=>t(cx()),children:"Log out"})})]})]})})})},XN=k.div`
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -2199,9 +2243,9 @@ attempted value: ${a}
 
     gap: 81px;
   }
-`,YN=k.h1`
+`,JN=k.h1`
   display: none;
-`,qN=k.h2`
+`,ZN=k.h2`
   font-weight: 700;
   font-size: 28px;
   color: ${({theme:e})=>e.color.black};
@@ -2212,7 +2256,7 @@ attempted value: ${a}
     font-size: 36px;
     line-height: 42px;
   }
-`,QN=k.p`
+`,e5=k.p`
   font-size: 24px;
   color: ${({theme:e})=>e.color.black};
   line-height: 30px;
@@ -2222,7 +2266,7 @@ attempted value: ${a}
     font-size: 26px;
     line-height: 32px;
   }
-`,XN=k.ul`
+`,t5=k.ul`
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -2240,11 +2284,11 @@ attempted value: ${a}
     flex-direction: column;
     justify-content: center;
   }
-`,JN=k.li`
+`,n5=k.li`
   display: flex;
   gap: 8px;
   align-items: center;
-`,ZN=k.div`
+`,r5=k.div`
   display: inline-block;
   max-width: 280px;
   margin: auto;
@@ -2257,7 +2301,7 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     min-width: 439px;
   }
-`,e5=k.svg`
+`,i5=k.svg`
   stroke: #407bff;
   fill: none;
   width: 32px;
@@ -2267,13 +2311,13 @@ attempted value: ${a}
     width: 40px;
     height: 40px;
   }
-`,t5=k.h3`
+`,o5=k.h3`
   font-weight: 500;
   font-size: 18px;
   color: ${({theme:e})=>e.color.black};
   line-height: 20px;
   margin-bottom: 12px;
-`,n5=k.button`
+`,a5=k.button`
   display: inline-block;
   width: 100%;
   padding: 8px 30px;
@@ -2303,12 +2347,12 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     width: 384px;
   }
-`,r5=k.h2`
+`,s5=k.h2`
   font-weight: 500;
   font-size: 18px;
   color: ${({theme:e})=>e.color.black};
   margin-bottom: 12px;
-`,i5=k.li`
+`,l5=k.li`
   font-size: 16px;
   color: ${({theme:e})=>e.color.black};
   line-height: 20px;
@@ -2336,10 +2380,10 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     list-style-position: inside;
   }
-`,o5=k.div`
+`,u5=k.div`
   display: inline-block;
   margin: 0;
-`,a5=k.div`
+`,c5=k.div`
   display: inline-block;
   margin: auto;
   width: auto;
@@ -2355,10 +2399,10 @@ attempted value: ${a}
     list-style-position: inside;
     margin: 0;
   }
-`,s5=k.ul`
+`,f5=k.ul`
   list-style-type: none;
   padding-left: 0;
-`,l5=k.button`
+`,d5=k.button`
   background-color: ${e=>e.theme.color.accent};
   color: ${e=>e.theme.color.white};
   padding: 10px 20px;
@@ -2376,7 +2420,7 @@ attempted value: ${a}
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.mobile}) {
     font-size: 16px;
   }
-`,u5=k.img`
+`,p5=k.img`
   font-size: 16px;
   width: 280px;
   height: 280px;
@@ -2392,4 +2436,4 @@ attempted value: ${a}
     width: 900px;
     height: 700px;
   }
-`,$F="modulepreload",TF=function(e){return"/water-tracker/"+e},Gy={},zi=function(t,n,r){if(!n||n.length===0)return t();const i=document.getElementsByTagName("link");return Promise.all(n.map(o=>{if(o=TF(o),o in Gy)return;Gy[o]=!0;const a=o.endsWith(".css"),s=a?'[rel="stylesheet"]':"";if(!!r)for(let f=i.length-1;f>=0;f--){const c=i[f];if(c.href===o&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${o}"]${s}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":$F,a||(u.as="script",u.crossOrigin=""),u.href=o,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${o}`)))})})).then(()=>t()).catch(o=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=o,window.dispatchEvent(a),!a.defaultPrevented)throw o})},CF=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(e,{}):b.jsx(Ux,{to:t}),Na=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(Ux,{to:t}):e,PF=()=>b.jsxs(b.Fragment,{children:[b.jsx(QC,{}),b.jsx("main",{children:b.jsx(w.Suspense,{fallback:b.jsx(kp,{}),children:b.jsx(jC,{})})})]}),jF=w.lazy(()=>zi(()=>import("./Welcome-818b20db.js"),["assets/Welcome-818b20db.js","assets/Section-1f472bd7.js"])),RF=w.lazy(()=>zi(()=>import("./Home-d992b3ce.js"),["assets/Home-d992b3ce.js","assets/Section-1f472bd7.js","assets/bubbleTablet@2x-6e22c1d3.js"])),AF=w.lazy(()=>zi(()=>import("./SignIn-6057e717.js"),["assets/SignIn-6057e717.js","assets/Section-1f472bd7.js","assets/bubbleTablet@2x-6e22c1d3.js"])),FF=w.lazy(()=>zi(()=>import("./SignUp-9f15069f.js"),["assets/SignUp-9f15069f.js","assets/Section-1f472bd7.js","assets/bubbleTablet@2x-6e22c1d3.js"])),NF=w.lazy(()=>zi(()=>import("./Error-30f13e55.js"),["assets/Error-30f13e55.js","assets/Section-1f472bd7.js"])),IF=w.lazy(()=>zi(()=>import("./ForgotPassword-383c3396.js"),["assets/ForgotPassword-383c3396.js","assets/Section-1f472bd7.js"])),LF=()=>{const e=Il(),t=ur(KC);return w.useEffect(()=>{e(os())},[e]),t?b.jsx(kp,{}):b.jsx(AC,{children:b.jsxs(jn,{path:"/",element:b.jsx(PF,{}),children:[b.jsx(jn,{index:!0,element:b.jsx(Na,{component:b.jsx(jF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"home",element:b.jsx(CF,{component:RF,redirectTo:"/"})}),b.jsx(jn,{path:"signin",element:b.jsx(Na,{component:b.jsx(AF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"signup",element:b.jsx(Na,{component:b.jsx(FF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"forgot-password",element:b.jsx(Na,{component:b.jsx(IF,{}),redirectTo:"/signin"})}),b.jsx(jn,{path:"*",element:b.jsx(NF,{})})]})})},zF=sc.createRoot(document.getElementById("root"));zF.render(b.jsx(He.StrictMode,{children:b.jsxs(y0,{theme:hf,children:[b.jsx(v0,{styles:N$}),b.jsx(tE,{store:mx,children:b.jsx(j1,{loading:b.jsx(kp,{}),persistor:C$,children:b.jsx(MC,{basename:"/water-tracker",children:b.jsx(LF,{})})})})]})}));export{fN as $,eN as A,t5 as B,a5 as C,MF as D,Il as E,Wl as F,tN as G,YN as H,JN as I,nN as J,bN as K,s5 as L,xN as M,wN as N,o5 as O,QN as P,iN as Q,rN as R,sN as S,ZN as T,lN as U,aN as V,KN as W,oN as X,XF as Y,uN as Z,cN as _,qN as a,dN as a0,pN as a1,k$ as a2,S$ as a3,hN as a4,yN as a5,vN as a6,mN as a7,gN as a8,SN as a9,HN as aA,e$ as aB,Go as aC,l5 as aD,u5 as aE,J$ as aF,kN as aa,EN as ab,E$ as ac,_N as ad,ON as ae,CN as af,TN as ag,$N as ah,PN as ai,RN as aj,jN as ak,AN as al,FN as am,NN as an,LN as ao,IN as ap,UN as aq,WN as ar,DN as as,MN as at,zN as au,VN as av,BN as aw,lF as ax,GN as ay,t$ as az,XN as b,e5 as c,n5 as d,r5 as e,i5 as f,ur as g,$p as h,BF as i,b as j,aP as k,UF as l,WF as m,k as n,VF as o,HF as p,KF as q,w as r,_t as s,GF as t,zx as u,YF as v,QF as w,qF as x,JF as y,ZF as z};
+`,$F="modulepreload",TF=function(e){return"/water-tracker/"+e},Gy={},zi=function(t,n,r){if(!n||n.length===0)return t();const i=document.getElementsByTagName("link");return Promise.all(n.map(o=>{if(o=TF(o),o in Gy)return;Gy[o]=!0;const a=o.endsWith(".css"),s=a?'[rel="stylesheet"]':"";if(!!r)for(let f=i.length-1;f>=0;f--){const c=i[f];if(c.href===o&&(!a||c.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${o}"]${s}`))return;const u=document.createElement("link");if(u.rel=a?"stylesheet":$F,a||(u.as="script",u.crossOrigin=""),u.href=o,document.head.appendChild(u),a)return new Promise((f,c)=>{u.addEventListener("load",f),u.addEventListener("error",()=>c(new Error(`Unable to preload CSS for ${o}`)))})})).then(()=>t()).catch(o=>{const a=new Event("vite:preloadError",{cancelable:!0});if(a.payload=o,window.dispatchEvent(a),!a.defaultPrevented)throw o})},CF=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(e,{}):b.jsx(Ux,{to:t}),Na=({component:e,redirectTo:t})=>ur(Kl)?b.jsx(Ux,{to:t}):e,PF=()=>b.jsxs(b.Fragment,{children:[b.jsx(QC,{}),b.jsx("main",{children:b.jsx(w.Suspense,{fallback:b.jsx(kp,{}),children:b.jsx(jC,{})})})]}),jF=w.lazy(()=>zi(()=>import("./Welcome-7082462a.js"),["assets/Welcome-7082462a.js","assets/Section-7c9a3785.js"])),RF=w.lazy(()=>zi(()=>import("./Home-35ab9b51.js"),["assets/Home-35ab9b51.js","assets/Section-7c9a3785.js","assets/bubbleTablet@2x-6e22c1d3.js"])),AF=w.lazy(()=>zi(()=>import("./SignIn-81dd8722.js"),["assets/SignIn-81dd8722.js","assets/Section-7c9a3785.js","assets/bubbleTablet@2x-6e22c1d3.js"])),FF=w.lazy(()=>zi(()=>import("./SignUp-a56eeec4.js"),["assets/SignUp-a56eeec4.js","assets/Section-7c9a3785.js","assets/bubbleTablet@2x-6e22c1d3.js"])),NF=w.lazy(()=>zi(()=>import("./Error-fb399021.js"),["assets/Error-fb399021.js","assets/Section-7c9a3785.js"])),IF=w.lazy(()=>zi(()=>import("./ForgotPassword-e16f1540.js"),["assets/ForgotPassword-e16f1540.js","assets/Section-7c9a3785.js"])),LF=()=>{const e=Il(),t=ur(KC);return w.useEffect(()=>{e(os())},[e]),t?b.jsx(kp,{}):b.jsx(AC,{children:b.jsxs(jn,{path:"/",element:b.jsx(PF,{}),children:[b.jsx(jn,{index:!0,element:b.jsx(Na,{component:b.jsx(jF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"home",element:b.jsx(CF,{component:RF,redirectTo:"/"})}),b.jsx(jn,{path:"signin",element:b.jsx(Na,{component:b.jsx(AF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"signup",element:b.jsx(Na,{component:b.jsx(FF,{}),redirectTo:"/home"})}),b.jsx(jn,{path:"forgot-password",element:b.jsx(Na,{component:b.jsx(IF,{}),redirectTo:"/signin"})}),b.jsx(jn,{path:"*",element:b.jsx(NF,{})})]})})},zF=sc.createRoot(document.getElementById("root"));zF.render(b.jsx(He.StrictMode,{children:b.jsxs(y0,{theme:hf,children:[b.jsx(v0,{styles:N$}),b.jsx(tE,{store:mx,children:b.jsx(j1,{loading:b.jsx(kp,{}),persistor:C$,children:b.jsx(MC,{basename:"/water-tracker",children:b.jsx(LF,{})})})})]})}));export{fN as $,eN as A,o5 as B,c5 as C,MF as D,Il as E,Wl as F,tN as G,JN as H,n5 as I,nN as J,bN as K,f5 as L,xN as M,wN as N,u5 as O,e5 as P,iN as Q,rN as R,sN as S,r5 as T,lN as U,aN as V,XN as W,oN as X,XF as Y,uN as Z,cN as _,ZN as a,dN as a0,pN as a1,k$ as a2,S$ as a3,ON as a4,CN as a5,TN as a6,$N as a7,hN as a8,yN as a9,GN as aA,lF as aB,QN as aC,t$ as aD,qN as aE,e$ as aF,Go as aG,d5 as aH,p5 as aI,J$ as aJ,vN as aa,mN as ab,gN as ac,SN as ad,kN as ae,EN as af,E$ as ag,_N as ah,PN as ai,AN as aj,RN as ak,jN as al,FN as am,IN as an,NN as ao,LN as ap,zN as aq,DN as ar,UN as as,MN as at,HN as au,KN as av,WN as aw,VN as ax,BN as ay,YN as az,t5 as b,i5 as c,a5 as d,s5 as e,l5 as f,ur as g,$p as h,BF as i,b as j,aP as k,UF as l,WF as m,k as n,VF as o,HF as p,KF as q,w as r,_t as s,GF as t,zx as u,YF as v,QF as w,qF as x,JF as y,ZF as z};
