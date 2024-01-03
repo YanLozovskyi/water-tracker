@@ -6,9 +6,9 @@
 <font id="fontello" horiz-adv-x="1000" >
 <font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
-<glyph glyph-name="__" unicode="&#x2022;" d="M67 419l105 144-157 46 24 79 157-58-4 179h79l-5-182 155 57 24-79-160-48 103-141-65-48-96 150-95-147-65 48z m562 389v-899h-78v899h78z" horiz-adv-x="667" />
+<glyph glyph-name="star-3" unicode="&#x2022;" d="M126 41l196 270-295 88 46 146 295-108-9 336h149l-10-342 291 109 45-150-300-89 193-264-121-91-181 281-177-275-122 89z" horiz-adv-x="875" />
 
-<glyph glyph-name="__-1" unicode="&#x25cf;" d="M67 419l105 144-157 46 24 79 157-58-4 179h79l-5-182 155 57 24-79-160-48 103-141-65-48-96 150-95-147-65 48z m562 389v-899h-78v899h78z" horiz-adv-x="667" />
+<glyph glyph-name="star-2" unicode="&#x25cf;" d="M126 41l196 270-295 88 46 146 295-108-9 336h149l-10-342 291 109 45-150-300-89 193-264-121-91-181 281-177-275-122 89z" horiz-adv-x="875" />
 </font>
 </defs>
 </svg>
