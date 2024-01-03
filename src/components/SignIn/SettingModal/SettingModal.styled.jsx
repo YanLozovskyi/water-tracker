@@ -3,9 +3,7 @@ import { Field, ErrorMessage } from 'formik';
 
 export const FormText = styled.p`
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.11; /* 111.111% */
 `;
@@ -14,9 +12,7 @@ export const StyledLabel = styled.label`
   display: inline-block;
   margin-bottom: 8px;
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.11; /* 111.111% */
 `;
@@ -64,9 +60,7 @@ export const DownloadBtn = styled.label`
 
 export const DownloadBtnText = styled.span`
   color: ${({ theme }) => theme.color.accent};
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
   line-height: 18px; /* 128.571% */
 `;
@@ -115,10 +109,7 @@ export const RadioBtnWrap = styled.div`
 export const RadioBtnText = styled.span`
   margin-left: 8px;
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 1.25; /* 125% */
 `;
 
@@ -141,9 +132,7 @@ export const Input = styled(Field)`
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.color.secondaryLightBlue};
   color: ${({ theme }) => theme.color.secondaryLightBlue};
-  font-family: Roboto;
   font-size: 16px;
-  font-weight: 400;
   line-height: 1.25;
   outline: transparent; /* 125% */
 
@@ -159,20 +148,14 @@ export const Input = styled(Field)`
 export const StyledErrorMessage = styled(ErrorMessage)`
   margin-top: 4px;
   color: ${props => props.theme.color.secondaryRed};
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 18px; /* 128.571% */
 `;
 
 export const StyledErrorText = styled.p`
   margin-top: 4px;
   color: ${props => props.theme.color.secondaryRed};
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 18px; /* 128.571% */
 `;
 
@@ -200,9 +183,7 @@ export const PasswordText = styled(FormText)`
 export const PasswordLabel = styled.label`
   margin-bottom: 8px;
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 16px;
-  font-weight: 400;
   line-height: 1.25; /* 125% */
 `;
 
@@ -215,7 +196,6 @@ export const SaveBtn = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${({ theme }) => theme.color.white};
   text-align: center;
-  font-family: Roboto;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25; /* 125% */

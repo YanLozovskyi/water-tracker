@@ -188,55 +188,38 @@ export const GlobalStyles = css`
   }
 
    @font-face {
-    font-family: 'fontello';
-    src: url('../assets/fonts/customStars/fontello.eot?0000');
-  src: url('../assets/fonts/customStars/fontello.eot?0000#iefix') format('embedded-opentype'),
-       url('../assets/fonts/customStars/fontello.woff2?0000') format('woff2'),
-       url('../assets/fonts/customStars/fontello.woff?0000') format('woff'),
-       url('../assets/fonts/customStars/fontello.ttf?0000') format('truetype'),
-       url('../assets/fonts/customStars/fontello.svg?0000#fontello') format('svg');
+    font-family: 'font-stars-password';
+       src: url('src/assets/fonts/customStars/fontello.eot?59471026');
+  src: url('src/assets/fonts/customStars/fontello.eot?59471026#iefix') format('embedded-opentype'),
+       url('src/assets/fonts/customStars/fontello.woff2?59471026') format('woff2'),
+       url('src/assets/fonts/customStars/fontello.woff?59471026') format('woff'),
+       url('src/assets/fonts/customStars/fontello.ttf?59471026') format('truetype'),
+       url('src/assets/fonts/customStars/fontello.svg?59471026#fontello') format('svg');
     font-weight: normal;
     font-style: normal;
   }
 
   input[type='password'] {
-    font-family: 'fontello';
+    font-family: 'font-stars-password';
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
 
-    /* For safety - reset parent styles, that can break glyph codes*/
     font-variant: normal;
     text-transform: none;
 
-    /* Font smoothing. That was taken from TWBS */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Uncomment for 3D effect */
-    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
 
-    /* add spacing to better separate each image */
+    text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
+
     letter-spacing: 2px;
+
+    &::placeholder {
+      font-family: 'Roboto';
+    }
   }
-
-  input[type='password'] {
-    font-family: 'fontello';
-    font-style: normal;
-    font-weight: normal;
-
-    /* For safety - reset parent styles, that can break glyph codes*/
-    font-variant: normal;
-    text-transform: none;
-
-    /* Font smoothing. That was taken from TWBS */
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    /* Uncomment for 3D effect */
-    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
-
-    /* add spacing to better separate each image */
-    letter-spacing: 2px;
-  }
+  
   /* ========================= /Fonts ========================= */
 
   /* ========================= Common styles ========================= */
