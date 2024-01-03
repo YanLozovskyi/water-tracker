@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BaseModalWindow } from 'components';
+import { useDispatch } from 'react-redux';
+import {
+  addWatersThunk,
+  editWaterThunk,
+} from '../../../redux/waterData/waterOperations';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import {
   BoxAddModal,
@@ -28,12 +33,25 @@ export const TodayListModal = ({
   isEditing,
   onSave,
   onClose,
+  existingRecordId,
 }) => {
+  const formatIsoToTime = isoString => {
+    return new Date(isoString).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+    });
+  };
+
   const [amount, setAmount] = useState(initialAmount || 0);
   const [time, setTime] = useState(
-    initialTime ||
-      new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+    isEditing && initialTime
+      ? formatIsoToTime(initialTime)
+      : new Date().toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
   );
+  const dispatch = useDispatch();
 
   // змінюємо кількість води за допомогою кнопок
   const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
@@ -53,10 +71,27 @@ export const TodayListModal = ({
   const handleTimeChange = e => setTime(e.target.value);
 
   const handleSubmit = () => {
-    onSave({ amount, time });
+    const currentDate = new Date().toISOString().slice(0, 10);
+    const dateTime = `${currentDate}T${time}`;
+    const isoDate = new Date(dateTime).toISOString();
+    const waterData = {
+      waterVolume: amount,
+      date: isoDate,
+    };
+    if (isEditing) {
+      dispatch(
+        editWaterThunk({ _id: existingRecordId, ...waterData }),
+      ).unwrap();
+    } else {
+      dispatch(addWatersThunk(waterData)).unwrap();
+    }
+    onClose();
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
+
+  const displayTime =
+    isEditing && initialTime ? formatIsoToTime(initialTime) : '';
 
   return (
     <BaseModalWindow onClose={onClose} title={title}>
@@ -64,12 +99,12 @@ export const TodayListModal = ({
         {isEditing && (
           <PreviousInfo>
             <IconGlass>
-              <use href={`${sprite}#glass`}></use>
+              <use href={`${sprite}#icon-glass`}></use>
             </IconGlass>
             <TodayVolume>
               {initialAmount ? `${initialAmount} ml` : 'No notes yet'}
             </TodayVolume>
-            <TodayTime>{initialAmount ? initialTime : ''}</TodayTime>
+            <TodayTime>{initialTime ? `${displayTime} AM` : ''}</TodayTime>
           </PreviousInfo>
         )}
 

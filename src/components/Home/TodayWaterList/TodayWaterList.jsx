@@ -1,5 +1,12 @@
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { TodayListModal } from 'components';
+import { useDispatch, useSelector } from 'react-redux';
+import { TodayListModal, DeletingEntryModal } from 'components';
+import {
+  deleteWaterThunk,
+  addWatersThunk,
+  editWaterThunk,
+} from '../../../redux/waterData/waterOperations';
+import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
 import {
   AddWaterBtn,
   ButtonChange,
@@ -25,16 +32,24 @@ const icons = {
 
 export const TodayWaterList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [records, setRecords] = useState([]);
+  // const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
+  const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
+  const dispatch = useDispatch();
+  const { dailyWaterList } = useSelector(selectWaterToday);
 
   const openModalToAdd = () => {
     setSelectedRecord(null);
     setModalOpen(true);
   };
 
-  const openModalToEdit = (record, index) => {
-    setSelectedRecord({ ...record, index });
+  const openModalToDelete = record => {
+    setSelectedRecord(record);
+    setDeletingModalOpen(true);
+  };
+
+  const openModalToEdit = record => {
+    setSelectedRecord(record);
     setModalOpen(true);
   };
 
@@ -42,51 +57,68 @@ export const TodayWaterList = () => {
     setModalOpen(false);
   };
 
-  const handleDelete = index => {
-    // Видаляємо запис за індексом
-    setRecords(records.filter((_, idx) => idx !== index));
-  };
+  // const handleDelete = async recordId => {
+  //   // Видаляємо запис за індексом
+  //     await dispatch(deleteWaterThunk(recordId)).unwrap();
+  //     setRecords(records.filter(record => record._id !== recordId));
+  // };
 
   const handleSave = data => {
     if (selectedRecord !== null) {
       // Оновлюємо існуючий запис
-      setRecords(
-        records.map((rec, idx) =>
-          idx === selectedRecord.index ? { ...rec, ...data } : rec,
-        ),
-      );
+      const updateData = {
+        ...data,
+        _id: selectedRecord._id,
+      };
+      dispatch(editWaterThunk(updateData)).unwrap();
     } else {
-      // Додаємо новий запис
-      setRecords([...records, data]);
+      dispatch(addWatersThunk(data)).unwrap();
     }
     closeModal();
   };
+
+  function formatTime(isoDate) {
+    return new Date(isoDate).toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit',
+      hour12: true,
+    });
+  }
 
   return (
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
       <TodayList>
-        {records.map((record, index) => (
-          <TodayItem key={index}>
+        {dailyWaterList.map(record => (
+          <TodayItem key={record._id}>
             <TodayInfo>
               <IconGlass>
                 <use href={icons.glass}></use>
               </IconGlass>
-              <TodayVolume>{record.amount} ml</TodayVolume>
-              <TodayTime>{record.time} AM</TodayTime>
+              <TodayVolume>{record.waterVolume} ml</TodayVolume>
+              <TodayTime>{formatTime(record.date)}</TodayTime>
             </TodayInfo>
             <TodayTools>
-              <ButtonChange onClick={() => openModalToEdit(record, index)}>
+              <ButtonChange onClick={() => openModalToEdit(record)}>
                 <svg>
                   <use href={icons.change}></use>
                 </svg>
               </ButtonChange>
-              <ButtonDelete onClick={() => handleDelete(index)}>
+              <ButtonDelete
+                onClick={() => openModalToDelete(record)}
+              >
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
               </ButtonDelete>
             </TodayTools>
+            {isDeletingModalOpen && (
+              <DeletingEntryModal
+                onClose={() => setDeletingModalOpen(false)}
+                onDelete={() => dispatch(deleteWaterThunk(record._id))}
+                title="Delete Entry"
+              />
+            )}
           </TodayItem>
         ))}
         <li>
@@ -98,11 +130,13 @@ export const TodayWaterList = () => {
           </AddWaterBtn>
         </li>
       </TodayList>
+
       {isModalOpen && (
         <TodayListModal
-          initialAmount={selectedRecord?.volume}
-          initialTime={selectedRecord?.time}
+          initialAmount={selectedRecord?.waterVolume}
+          initialTime={selectedRecord?.date}
           isEditing={selectedRecord !== null}
+          existingRecordId={selectedRecord?._id}
           onSave={handleSave}
           onClose={closeModal}
         />
