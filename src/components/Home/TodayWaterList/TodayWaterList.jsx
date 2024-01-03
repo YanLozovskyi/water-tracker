@@ -1,6 +1,7 @@
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { TodayListModal } from 'components';
+import { DeletingEntryModal } from '../DeletingEntryModal/DeletingEntryModal';
 import {
   deleteWaterThunk,
   addWatersThunk,
@@ -34,13 +35,18 @@ export const TodayWaterList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
-
+  const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
   const dispatch = useDispatch();
   const todayWaterRecords = useSelector(selectWaterToday);
 
   const openModalToAdd = () => {
     setSelectedRecord(null);
     setModalOpen(true);
+  };
+
+  const openModalToDelete = record => {
+    setSelectedRecord(record);
+    setDeletingModalOpen(true);
   };
 
   const openModalToEdit = record => {
@@ -53,12 +59,16 @@ export const TodayWaterList = () => {
   };
 
   const handleDelete = async recordId => {
-    // Видаляємо запис за індексом
     try {
+      setDeletingModalOpen(true);
       await dispatch(deleteWaterThunk(recordId)).unwrap();
       setRecords(records.filter(record => record._id !== recordId));
+
+      setDeletingModalOpen(false);
     } catch (error) {
       console.error('Failed to delete water record:', error);
+
+      setDeletingModalOpen(false);
     }
   };
 
@@ -107,11 +117,19 @@ export const TodayWaterList = () => {
                   <use href={icons.change}></use>
                 </svg>
               </ButtonChange>
-              <ButtonDelete onClick={() => handleDelete(record._id)}>
+
+              <ButtonDelete onClick={openModalToDelete}>
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
               </ButtonDelete>
+              {isDeletingModalOpen && (
+                <DeletingEntryModal
+                  onClose={() => setDeletingModalOpen(false)}
+                  onDelete={() => handleDelete(record._id)}
+                  title="Delete Entry"
+                />
+              )}
             </TodayTools>
           </TodayItem>
         ))}
@@ -124,6 +142,7 @@ export const TodayWaterList = () => {
           </AddWaterBtn>
         </li>
       </TodayList>
+
       {isModalOpen && (
         <TodayListModal
           initialAmount={selectedRecord?.waterVolume}
