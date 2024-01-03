@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { ErrorMessage, Formik } from 'formik';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import * as Yup from 'yup';
 import { logInThunk } from '../../../redux/auth/authOperations';
 import {
   BootleImg,
@@ -15,8 +17,6 @@ import {
   SignUpContainer,
 } from '../../SignUp/SignUpForm/SignUpForm.styled';
 import { SignInLink } from './SignInForm.styled';
-import { Formik, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 
 const validationSchema = Yup.object({
   email: Yup.string('Enter your email')
@@ -26,7 +26,6 @@ const validationSchema = Yup.object({
   password: Yup.string()
     .required('Password is required')
     .min(8, 'Your password is too short.')
-    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
 });
 
 export const SignInForm = () => {
