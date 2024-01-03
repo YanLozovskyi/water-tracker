@@ -5,6 +5,12 @@ import { theme } from './theme';
 import RobotoRegular from '../assets/fonts/Roboto-Regular.ttf';
 import RobotoMedium from '../assets/fonts/Roboto-Medium.ttf';
 import RobotoBold from '../assets/fonts/Roboto-Bold.ttf';
+import fontStarEot from '../assets/fonts/customStars/fontello.eot'
+import fontStarWoff2 from '../assets/fonts/customStars/fontello.woff2'
+import fontStarWoff from '../assets/fonts/customStars/fontello.woff'
+import fontStarTtf from '../assets/fonts/customStars/fontello.ttf'
+import fontStarSvg from '../assets/fonts/customStars/fontello.svg'
+
 
 export const GlobalStyles = css`
   ${emotionNormalize}
@@ -186,15 +192,19 @@ export const GlobalStyles = css`
     font-weight: 700;
     src: url(${RobotoBold}) format('truetype');
   }
-
+/* import fontStarEot from '../assets/fonts/customStars/fontello.eot'
+import fontStarEotWoff2 from '../assets/fonts/customStars/fontello.woff2'
+import fontStarEotwoff from '../assets/fonts/customStars/fontello.woff'
+import fontStarTtf from '../assets/fonts/customStars/fontello.ttf'
+import fontStarSvg from '../assets/fonts/customStars/fontello.svg' */
    @font-face {
     font-family: 'font-stars-password';
-       src: url('src/assets/fonts/customStars/fontello.eot?59471026');
-  src: url('src/assets/fonts/customStars/fontello.eot?59471026#iefix') format('embedded-opentype'),
-       url('src/assets/fonts/customStars/fontello.woff2?59471026') format('woff2'),
-       url('src/assets/fonts/customStars/fontello.woff?59471026') format('woff'),
-       url('src/assets/fonts/customStars/fontello.ttf?59471026') format('truetype'),
-       url('src/assets/fonts/customStars/fontello.svg?59471026#fontello') format('svg');
+       src: url(${fontStarEot}?59471026);
+  src: url(${fontStarEot}?59471026#iefix) format('embedded-opentype'),
+       url(${fontStarWoff2}?59471026) format('woff2'),
+       url(${fontStarWoff}?59471026) format('woff'),
+       url(${fontStarTtf}?59471026) format('truetype'),
+       url(${fontStarSvg}?59471026#fontello) format('svg');
     font-weight: normal;
     font-style: normal;
   }
