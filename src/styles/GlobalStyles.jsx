@@ -192,11 +192,7 @@ export const GlobalStyles = css`
     font-weight: 700;
     src: url(${RobotoBold}) format('truetype');
   }
-/* import fontStarEot from '../assets/fonts/customStars/fontello.eot'
-import fontStarEotWoff2 from '../assets/fonts/customStars/fontello.woff2'
-import fontStarEotwoff from '../assets/fonts/customStars/fontello.woff'
-import fontStarTtf from '../assets/fonts/customStars/fontello.ttf'
-import fontStarSvg from '../assets/fonts/customStars/fontello.svg' */
+
    @font-face {
     font-family: 'font-stars-password';
        src: url(${fontStarEot}?59471026);
