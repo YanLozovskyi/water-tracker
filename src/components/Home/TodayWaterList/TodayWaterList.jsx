@@ -1,6 +1,6 @@
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { TodayListModal } from 'components';
+import { TodayListModal, DeletingEntryModal } from 'components';
 import {
   deleteWaterThunk,
   addWatersThunk,
@@ -32,15 +32,20 @@ const icons = {
 
 export const TodayWaterList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [records, setRecords] = useState([]);
+  // const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
-
+  const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const todayWaterRecords = useSelector(selectWaterToday);
+  const { dailyWaterList } = useSelector(selectWaterToday);
 
   const openModalToAdd = () => {
     setSelectedRecord(null);
     setModalOpen(true);
+  };
+
+  const openModalToDelete = record => {
+    setSelectedRecord(record);
+    setDeletingModalOpen(true);
   };
 
   const openModalToEdit = record => {
@@ -52,32 +57,24 @@ export const TodayWaterList = () => {
     setModalOpen(false);
   };
 
-  const handleDelete = async recordId => {
-    // Видаляємо запис за індексом
-    try {
-      await dispatch(deleteWaterThunk(recordId)).unwrap();
-      setRecords(records.filter(record => record._id !== recordId));
-    } catch (error) {
-      console.error('Failed to delete water record:', error);
-    }
-  };
+  // const handleDelete = async recordId => {
+  //   // Видаляємо запис за індексом
+  //     await dispatch(deleteWaterThunk(recordId)).unwrap();
+  //     setRecords(records.filter(record => record._id !== recordId));
+  // };
 
-  const handleSave = async data => {
-    try {
-      if (selectedRecord !== null) {
-        // Оновлюємо існуючий запис
-        const updateData = {
-          ...data,
-          _id: selectedRecord._id,
-        };
-        await dispatch(editWaterThunk(updateData)).unwrap();
-      } else {
-        await dispatch(addWatersThunk(data)).unwrap();
-      }
-      closeModal();
-    } catch (error) {
-      console.error('Failed to save water data:', error);
+  const handleSave = data => {
+    if (selectedRecord !== null) {
+      // Оновлюємо існуючий запис
+      const updateData = {
+        ...data,
+        _id: selectedRecord._id,
+      };
+      dispatch(editWaterThunk(updateData)).unwrap();
+    } else {
+      dispatch(addWatersThunk(data)).unwrap();
     }
+    closeModal();
   };
 
   function formatTime(isoDate) {
@@ -92,7 +89,7 @@ export const TodayWaterList = () => {
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
       <TodayList>
-        {todayWaterRecords.dailyWaterList.map(record => (
+        {dailyWaterList.map(record => (
           <TodayItem key={record._id}>
             <TodayInfo>
               <IconGlass>
@@ -107,12 +104,21 @@ export const TodayWaterList = () => {
                   <use href={icons.change}></use>
                 </svg>
               </ButtonChange>
-              <ButtonDelete onClick={() => handleDelete(record._id)}>
+              <ButtonDelete
+                onClick={() => openModalToDelete(record)}
+              >
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
               </ButtonDelete>
             </TodayTools>
+            {isDeletingModalOpen && (
+              <DeletingEntryModal
+                onClose={() => setDeletingModalOpen(false)}
+                onDelete={() => dispatch(deleteWaterThunk(record._id))}
+                title="Delete Entry"
+              />
+            )}
           </TodayItem>
         ))}
         <li>
@@ -124,6 +130,7 @@ export const TodayWaterList = () => {
           </AddWaterBtn>
         </li>
       </TodayList>
+
       {isModalOpen && (
         <TodayListModal
           initialAmount={selectedRecord?.waterVolume}

@@ -54,11 +54,15 @@ export const UserLogo = () => {
         ) : (
           <UserDefaultAvatar>{avatar}</UserDefaultAvatar>
         )}
-        <UserModalIcon>
+        <UserModalIcon
+          style={{ transform: modalIsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        >
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      {modalIsOpen && <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />}
+      {modalIsOpen && (
+        <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />
+      )}
     </UserLogoContainer>
   );
 };

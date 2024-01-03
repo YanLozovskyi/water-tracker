@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BaseModalWindow } from 'components';
 import { useDispatch } from 'react-redux';
 import {
@@ -47,9 +47,9 @@ export const TodayListModal = ({
     isEditing && initialTime
       ? formatIsoToTime(initialTime)
       : new Date().toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
   );
   const dispatch = useDispatch();
 
@@ -70,26 +70,22 @@ export const TodayListModal = ({
 
   const handleTimeChange = e => setTime(e.target.value);
 
-  const handleSubmit = async () => {
-    try {
-      const currentDate = new Date().toISOString().slice(0, 10);
-      const dateTime = `${currentDate}T${time}`;
-      const isoDate = new Date(dateTime).toISOString();
-      const waterData = {
-        waterVolume: amount,
-        date: isoDate,
-      };
-      if (isEditing) {
-        await dispatch(
-          editWaterThunk({ _id: existingRecordId, ...waterData }),
-        ).unwrap();
-      } else {
-        await dispatch(addWatersThunk(waterData)).unwrap();
-      }
-      onClose();
-    } catch (error) {
-      console.error('Failed to process water data:', error);
+  const handleSubmit = () => {
+    const currentDate = new Date().toISOString().slice(0, 10);
+    const dateTime = `${currentDate}T${time}`;
+    const isoDate = new Date(dateTime).toISOString();
+    const waterData = {
+      waterVolume: amount,
+      date: isoDate,
+    };
+    if (isEditing) {
+      dispatch(
+        editWaterThunk({ _id: existingRecordId, ...waterData }),
+      ).unwrap();
+    } else {
+      dispatch(addWatersThunk(waterData)).unwrap();
     }
+    onClose();
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
