@@ -1,7 +1,6 @@
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
-import { TodayListModal } from 'components';
-import { DeletingEntryModal } from '../DeletingEntryModal/DeletingEntryModal';
+import { TodayListModal, DeletingEntryModal } from 'components';
 import {
   deleteWaterThunk,
   addWatersThunk,

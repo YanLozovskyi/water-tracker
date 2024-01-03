@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { BaseModalWindow } from 'components';
 import { useDispatch } from 'react-redux';
 import {
@@ -47,9 +47,9 @@ export const TodayListModal = ({
     isEditing && initialTime
       ? formatIsoToTime(initialTime)
       : new Date().toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
   );
   const dispatch = useDispatch();
 
