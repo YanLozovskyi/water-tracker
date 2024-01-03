@@ -11,18 +11,28 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
+import { rootReducer } from './root/rootSlice';
 import { waterReducer } from './waterData/waterSlice';
 
-const authPersistConfig = {
-  key: 'auth',
+const PersistConfig = {
+  key: 'root',
   storage,
   whitelist: ['token'],
 };
 
+// const waterPersistConfig = {
+//   key: 'waterData',
+//   storage,
+
+//   // whitelist: [],
+// };
+
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authReducer),
+    root: rootReducer,
+    auth: persistReducer(PersistConfig, authReducer),
     waterData: waterReducer,
+    // waterData: persistReducer(waterPersistConfig, waterReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
