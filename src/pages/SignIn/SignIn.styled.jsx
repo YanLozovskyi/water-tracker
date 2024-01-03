@@ -9,6 +9,7 @@ import imgHomeTabl1x from '../../assets/images/background/homePage/tablet/bubble
 import imgHomeTabl2x from '../../assets/images/background/homePage/tablet/bubbleTablet@2x.png';
 
 export const SignInSection = styled(Section)`
+  padding-top: 40px;
   background-position: center center;
   background-image: -webkit-image-set(
     url(${imgHomeMob1x}) 1x,

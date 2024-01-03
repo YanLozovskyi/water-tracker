@@ -5,6 +5,12 @@ import { theme } from './theme';
 import RobotoRegular from '../assets/fonts/Roboto-Regular.ttf';
 import RobotoMedium from '../assets/fonts/Roboto-Medium.ttf';
 import RobotoBold from '../assets/fonts/Roboto-Bold.ttf';
+import fontStarEot from '../assets/fonts/customStars/fontello.eot'
+import fontStarWoff2 from '../assets/fonts/customStars/fontello.woff2'
+import fontStarWoff from '../assets/fonts/customStars/fontello.woff'
+import fontStarTtf from '../assets/fonts/customStars/fontello.ttf'
+import fontStarSvg from '../assets/fonts/customStars/fontello.svg'
+
 
 export const GlobalStyles = css`
   ${emotionNormalize}
@@ -186,6 +192,40 @@ export const GlobalStyles = css`
     font-weight: 700;
     src: url(${RobotoBold}) format('truetype');
   }
+
+   @font-face {
+    font-family: 'font-stars-password';
+       src: url(${fontStarEot}?59471026);
+  src: url(${fontStarEot}?59471026#iefix) format('embedded-opentype'),
+       url(${fontStarWoff2}?59471026) format('woff2'),
+       url(${fontStarWoff}?59471026) format('woff'),
+       url(${fontStarTtf}?59471026) format('truetype'),
+       url(${fontStarSvg}?59471026#fontello) format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  input[type='password'] {
+    font-family: 'font-stars-password';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+
+    font-variant: normal;
+    text-transform: none;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3);
+
+    letter-spacing: 2px;
+
+    &::placeholder {
+      font-family: 'Roboto';
+    }
+  }
+  
   /* ========================= /Fonts ========================= */
 
   /* ========================= Common styles ========================= */

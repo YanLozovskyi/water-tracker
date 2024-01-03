@@ -227,8 +227,11 @@ export const SettingModal = ({ onClose }) => {
                                 ? 'error-input'
                                 : null
                             }
-                            placeholder="Password"
-                          />
+                          // placeholder="Password"
+                          />{values.outdatedPassword === "" ? <span style={{
+                            position: "absolute", top: "50%",
+                            left: "10px", transform: "translateY(-50%)", opacity: '50%',
+                          }}>Password</span> : null}
                           <IconBtn
                             type="button"
                             onClick={handlePasswordVisibility}
