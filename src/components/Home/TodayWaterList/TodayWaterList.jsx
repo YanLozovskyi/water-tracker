@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
-import { TodayListModal } from 'components';
-import { DeletingEntryModal } from '../DeletingEntryModal/DeletingEntryModal';
+import { TodayListModal, DeletingEntryModal } from 'components';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { formatTime } from '../../../helpers/utils/dateUtils';
 

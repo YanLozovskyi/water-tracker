@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { DaysGeneralStats } from '../DaysGeneralStats/DaysGeneralStats';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { formatMonth } from '../../../helpers/utils/dateUtils';
+import { DaysGeneralStats } from 'components';
 import {
-  Paginator,
   ButtonPaginator,
-  HeaderMonth,
-  DaysList,
   DaysButton,
+  DaysList,
   DaysPercentage,
+  HeaderMonth,
+  Paginator,
   Year,
 } from './MonthStatsTable.styled';
 
