@@ -37,7 +37,7 @@ export const TodayWaterList = () => {
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const todayWaterRecords = useSelector(selectWaterToday);
+  const { dailyWaterList } = useSelector(selectWaterToday);
 
   const openModalToAdd = () => {
     setSelectedRecord(null);
@@ -90,7 +90,7 @@ export const TodayWaterList = () => {
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
       <TodayList>
-        {todayWaterRecords.dailyWaterList.map(record => (
+        {dailyWaterList.map(record => (
           <TodayItem key={record._id}>
             <TodayInfo>
               <IconGlass>
@@ -106,20 +106,20 @@ export const TodayWaterList = () => {
                 </svg>
               </ButtonChange>
               <ButtonDelete
-                onClick={() => dispatch(deleteWaterThunk(record._id))}
+                onClick={() => openModalToDelete(record)}
               >
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
               </ButtonDelete>
-              {isDeletingModalOpen && (
-                <DeletingEntryModal
-                  onClose={() => setDeletingModalOpen(false)}
-                  onDelete={() => handleDelete(record._id)}
-                  title="Delete Entry"
-                />
-              )}
             </TodayTools>
+            {isDeletingModalOpen && (
+              <DeletingEntryModal
+                onClose={() => setDeletingModalOpen(false)}
+                onDelete={() => dispatch(deleteWaterThunk(record._id))}
+                title="Delete Entry"
+              />
+            )}
           </TodayItem>
         ))}
         <li>
