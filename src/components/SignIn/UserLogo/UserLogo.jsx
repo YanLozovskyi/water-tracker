@@ -16,38 +16,38 @@ export const UserLogo = () => {
   const myRef = useRef();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { userName, avatarURL } = useSelector(selectUser);
+  const { name, avatarURL } = useSelector(selectUser);
 
   const showModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
 
-  const firstLetter = userName ? userName.charAt(0).toUpperCase() : 'V';
+  const firstLetter = name ? name.charAt(0).toUpperCase() : 'V';
 
   const getUserInfo = () => {
-    if (userName && avatarURL) {
+    if (name && avatarURL) {
       return {
-        name: userName,
+        userName: name,
         avatar: avatarURL,
       };
-    } else if (userName || avatarURL) {
+    } else if (name || avatarURL) {
       return {
-        name: userName || firstLetter,
+        userName: name || firstLetter,
         avatar: avatarURL || firstLetter,
       };
     } else {
       return {
-        name: firstLetter,
+        userName: firstLetter,
         avatar: firstLetter,
       };
     }
   };
 
-  const { name, avatar } = getUserInfo();
+  const { userName, avatar } = getUserInfo();
 
   return (
     <UserLogoContainer>
-      <UserLogoTitle>{name}</UserLogoTitle>
+      <UserLogoTitle>{userName}</UserLogoTitle>
       <UserLogoBtn onClick={showModal} ref={myRef}>
         {avatarURL ? (
           <UserAvatar src={avatar} alt="user-avatar" />

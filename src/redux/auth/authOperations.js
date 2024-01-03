@@ -74,10 +74,9 @@ export const updateWaterRateThunk = createAsyncThunk(
   'auth/updateWaterRate',
   async (newWaterRate, { rejectWithValue }) => {
     try {
-      console.log(newWaterRate);
       const rate = Number(newWaterRate) * 1000;
-      const { waterRate } = await updateWaterRate(rate);
-      return waterRate;
+      await updateWaterRate(rate);
+      return rate;
     } catch (error) {
       return rejectWithValue(error.message);
     }

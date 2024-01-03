@@ -1,16 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import {
-  persistStore,
-  persistReducer,
   FLUSH,
-  REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
+  REHYDRATE,
+  persistReducer,
+  persistStore,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
+import { waterReducer } from './waterData/waterSlice';
 
 const authPersistConfig = {
   key: 'auth',
@@ -19,7 +20,10 @@ const authPersistConfig = {
 };
 
 export const store = configureStore({
-  reducer: { auth: persistReducer(authPersistConfig, authReducer) },
+  reducer: {
+    auth: persistReducer(authPersistConfig, authReducer),
+    waterData: waterReducer,
+  },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {

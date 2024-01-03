@@ -24,7 +24,7 @@ export const initialState = {
   user: {
     email: '',
     avatarURL: '',
-    userName: '',
+    name: '',
     gender: '',
     waterRate: '',
   },

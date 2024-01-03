@@ -10,6 +10,10 @@ export const BoxModal = styled.div`
     padding-right: 24px;
     padding-bottom: 32px;
   }
+
+  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    width: 592px;
+  } */
 `;
 
 export const Formula = styled.div`
@@ -105,7 +109,7 @@ export const InputRadio = styled.input`
       border-radius: 50%;
       background: ${props => props.theme.color.accent};
       top: 50%;
-      left: 3px;
+      left: 4px;
       transform: translate(0, -50%);
       opacity: 0;
     }
