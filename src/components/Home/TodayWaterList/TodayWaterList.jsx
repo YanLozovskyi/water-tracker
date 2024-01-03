@@ -1,6 +1,7 @@
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { TodayListModal } from 'components';
+import { DeletingEntryModal } from '../DeletingEntryModal/DeletingEntryModal';
 import {
   deleteWaterThunk,
   addWatersThunk,
@@ -34,13 +35,18 @@ export const TodayWaterList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   // const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
-
+  const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
   const dispatch = useDispatch();
-  const todayWaterRecords = useSelector(selectWaterToday);
+  const { dailyWaterList } = useSelector(selectWaterToday);
 
   const openModalToAdd = () => {
     setSelectedRecord(null);
     setModalOpen(true);
+  };
+
+  const openModalToDelete = record => {
+    setSelectedRecord(record);
+    setDeletingModalOpen(true);
   };
 
   const openModalToEdit = record => {
@@ -84,7 +90,7 @@ export const TodayWaterList = () => {
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
       <TodayList>
-        {todayWaterRecords.dailyWaterList.map(record => (
+        {dailyWaterList.map(record => (
           <TodayItem key={record._id}>
             <TodayInfo>
               <IconGlass>
@@ -100,13 +106,20 @@ export const TodayWaterList = () => {
                 </svg>
               </ButtonChange>
               <ButtonDelete
-                onClick={() => dispatch(deleteWaterThunk(record._id))}
+                onClick={() => openModalToDelete(record)}
               >
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
               </ButtonDelete>
             </TodayTools>
+            {isDeletingModalOpen && (
+              <DeletingEntryModal
+                onClose={() => setDeletingModalOpen(false)}
+                onDelete={() => dispatch(deleteWaterThunk(record._id))}
+                title="Delete Entry"
+              />
+            )}
           </TodayItem>
         ))}
         <li>
@@ -118,6 +131,7 @@ export const TodayWaterList = () => {
           </AddWaterBtn>
         </li>
       </TodayList>
+
       {isModalOpen && (
         <TodayListModal
           initialAmount={selectedRecord?.waterVolume}
