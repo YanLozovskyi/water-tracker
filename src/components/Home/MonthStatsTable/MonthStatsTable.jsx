@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { DaysGeneralStats } from '../DaysGeneralStats/DaysGeneralStats';
-
+import { formatMonth } from '../../../helpers/utils/dateUtils';
 import {
   Paginator,
   ButtonPaginator,
@@ -16,26 +16,6 @@ const getCurrentMonth = () => {
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
   return `${year}-${month}`;
-};
-
-// Функція для перетворення формату "рік-місяць" у назву місяця
-const formatMonth = monthYearString => {
-  const [year, month] = monthYearString.split('-').map(Number);
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  return monthNames[month - 1];
 };
 
 export const MonthStatsTable = () => {

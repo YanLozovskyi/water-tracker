@@ -24,7 +24,7 @@ export const ButtonStyle = styled.button`
     box-shadow: ${({ theme }) => theme.boxShadowforButton.activeButton};
   }
 
-  &:nth-last-child(1) {
+  &:last-of-type {
     color: ${({ theme }) => theme.color.accent};
     background-color: ${({ theme }) => theme.color.secondaryPowderBlue};
   }
