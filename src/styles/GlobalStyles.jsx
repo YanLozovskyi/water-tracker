@@ -186,6 +186,57 @@ export const GlobalStyles = css`
     font-weight: 700;
     src: url(${RobotoBold}) format('truetype');
   }
+
+   @font-face {
+    font-family: 'fontello';
+    src: url('../assets/fonts/customStars/fontello.eot?0000');
+  src: url('../assets/fonts/customStars/fontello.eot?0000#iefix') format('embedded-opentype'),
+       url('../assets/fonts/customStars/fontello.woff2?0000') format('woff2'),
+       url('../assets/fonts/customStars/fontello.woff?0000') format('woff'),
+       url('../assets/fonts/customStars/fontello.ttf?0000') format('truetype'),
+       url('../assets/fonts/customStars/fontello.svg?0000#fontello') format('svg');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  input[type='password'] {
+    font-family: 'fontello';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+
+    /* add spacing to better separate each image */
+    letter-spacing: 2px;
+  }
+
+  input[type='password'] {
+    font-family: 'fontello';
+    font-style: normal;
+    font-weight: normal;
+
+    /* For safety - reset parent styles, that can break glyph codes*/
+    font-variant: normal;
+    text-transform: none;
+
+    /* Font smoothing. That was taken from TWBS */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Uncomment for 3D effect */
+    /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+
+    /* add spacing to better separate each image */
+    letter-spacing: 2px;
+  }
   /* ========================= /Fonts ========================= */
 
   /* ========================= Common styles ========================= */
