@@ -1,12 +1,10 @@
-import sprite from 'src/assets/images/sprite/sprite.svg';
-import { useDispatch, useSelector } from 'react-redux';
-import { TodayListModal, DeletingEntryModal } from 'components';
-import {
-  deleteWaterThunk,
-  addWatersThunk,
-  editWaterThunk,
-} from '../../../redux/waterData/waterOperations';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
+import { TodayListModal, DeletingEntryModal } from 'components';
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import { formatTime } from '../../../helpers/utils/dateUtils';
+
 import {
   AddWaterBtn,
   ButtonChange,
@@ -21,7 +19,6 @@ import {
   TodayVolume,
   TodayWrapper,
 } from './TodayWaterList.styled';
-import { useState } from 'react';
 
 const icons = {
   glass: `${sprite}#icon-glass`,
@@ -32,10 +29,8 @@ const icons = {
 
 export const TodayWaterList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  // const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
-  const dispatch = useDispatch();
   const { dailyWaterList } = useSelector(selectWaterToday);
 
   const openModalToAdd = () => {
@@ -52,38 +47,6 @@ export const TodayWaterList = () => {
     setSelectedRecord(record);
     setModalOpen(true);
   };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  // const handleDelete = async recordId => {
-  //   // Видаляємо запис за індексом
-  //     await dispatch(deleteWaterThunk(recordId)).unwrap();
-  //     setRecords(records.filter(record => record._id !== recordId));
-  // };
-
-  const handleSave = data => {
-    if (selectedRecord !== null) {
-      // Оновлюємо існуючий запис
-      const updateData = {
-        ...data,
-        _id: selectedRecord._id,
-      };
-      dispatch(editWaterThunk(updateData)).unwrap();
-    } else {
-      dispatch(addWatersThunk(data)).unwrap();
-    }
-    closeModal();
-  };
-
-  function formatTime(isoDate) {
-    return new Date(isoDate).toLocaleTimeString([], {
-      hour: '2-digit',
-      minute: '2-digit',
-      hour12: true,
-    });
-  }
 
   return (
     <TodayWrapper>
@@ -104,21 +67,12 @@ export const TodayWaterList = () => {
                   <use href={icons.change}></use>
                 </svg>
               </ButtonChange>
-              <ButtonDelete
-                onClick={() => openModalToDelete(record)}
-              >
+              <ButtonDelete onClick={() => openModalToDelete(record)}>
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
               </ButtonDelete>
             </TodayTools>
-            {isDeletingModalOpen && (
-              <DeletingEntryModal
-                onClose={() => setDeletingModalOpen(false)}
-                onDelete={() => dispatch(deleteWaterThunk(record._id))}
-                title="Delete Entry"
-              />
-            )}
           </TodayItem>
         ))}
         <li>
@@ -131,14 +85,20 @@ export const TodayWaterList = () => {
         </li>
       </TodayList>
 
+      {isDeletingModalOpen && (
+        <DeletingEntryModal
+          onClose={() => setDeletingModalOpen(false)}
+          recordId={selectedRecord?._id}
+        />
+      )}
+
       {isModalOpen && (
         <TodayListModal
           initialAmount={selectedRecord?.waterVolume}
           initialTime={selectedRecord?.date}
           isEditing={selectedRecord !== null}
           existingRecordId={selectedRecord?._id}
-          onSave={handleSave}
-          onClose={closeModal}
+          onClose={() => setModalOpen(false)}
         />
       )}
     </TodayWrapper>

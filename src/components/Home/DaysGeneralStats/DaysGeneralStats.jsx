@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSelectors';
+import { formatMonth } from '../../../helpers/utils/dateUtils';
 import {
   DaysGeneralStatsModal,
   DaysGeneralStatsList,
@@ -8,25 +9,6 @@ import {
   DaysGeneralStatsItem,
   DaysGeneralStatsData,
 } from './DaysGeneralStats.styled';
-
-const formatMonth = monthYearString => {
-  const [year, month] = monthYearString.split('-').map(Number);
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  return monthNames[month - 1];
-};
 
 export const DaysGeneralStats = ({
   day,
