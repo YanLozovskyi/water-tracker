@@ -49,10 +49,24 @@ const settingFormValidationSchema = Yup.object().shape({
   email: Yup.string().email('Invalid email'),
   newPassword: Yup.string()
     .min(8, 'New password must be at least 8 characters long')
-    .max(64, 'New password must be less then 64 characters long'),
+    .max(64, 'New password must be less then 64 characters long')
+    .nullable()
+    .test(
+      'isNewPasswordDifferent',
+      'New password should be different from the old one',
+      (value, schema) => !value || value !== schema.parent.outdatedPassword,
+    ),
   outdatedPassword: Yup.string()
     .min(8, 'Old password must be at least 8 characters long')
-    .max(64, 'Old password must be less then 64 characters long'),
+    .max(64, 'Old password must be less then 64 characters long')
+    .when('newPassword', (newPassword, field) =>
+      newPassword[0] ? field.required('Please enter old password') : field,
+    ),
+  repeatedPassword: Yup.string().test(
+    'isRepeatedPasswordValueMatched',
+    'The entered password should match the new one',
+    (value, schema) => !value || value === schema.parent.newPassword,
+  ),
 });
 
 export const SettingModal = ({ onClose }) => {
@@ -62,28 +76,22 @@ export const SettingModal = ({ onClose }) => {
 
   const initialValues = {
     gender: gender || '',
-    name: name || "",
-    email: email || "",
+    name: name || '',
+    email: email || '',
     outdatedPassword: '',
     newPassword: '',
     repeatedPassword: '',
   };
 
   const handleSubmit = (values, actions) => {
-    const { gender, name, email, outdatedPassword, newPassword } = values
-
-    if (!outdatedPassword && newPassword) {
-      alert('Please enter old password');
-      return;
-    }
-
-    if (outdatedPassword === newPassword && outdatedPassword !== "" && newPassword !== "") {
-      alert('New password should be different from the old one');
-      return;
-    }
+    const { gender, name, email, outdatedPassword, newPassword } = values;
 
     const formData = {
-      gender, name, email, outdatedPassword, newPassword
+      gender,
+      name,
+      email,
+      outdatedPassword,
+      newPassword,
     };
     // console.log('formData', formData);
 
@@ -215,7 +223,7 @@ export const SettingModal = ({ onClose }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                                touched.outdatedPassword
+                              touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
@@ -254,7 +262,8 @@ export const SettingModal = ({ onClose }) => {
                             id="password"
                             name="newPassword"
                             className={
-                              errors.newPassword && touched.newPassword
+                              (errors.newPassword && touched.newPassword) ||
+                              (values.outdatedPassword && !values.newPassword)
                                 ? 'error-input'
                                 : null
                             }
@@ -275,6 +284,11 @@ export const SettingModal = ({ onClose }) => {
                             )}
                           </IconBtn>
                         </PasswordInputWrap>
+                        {values.outdatedPassword && !values.newPassword && (
+                          <StyledErrorText>
+                            Please, enter new password
+                          </StyledErrorText>
+                        )}
                         <StyledErrorMessage component="p" name="newPassword" />
                       </PasswordFormField>
                       <LastFormField>
@@ -308,12 +322,10 @@ export const SettingModal = ({ onClose }) => {
                             )}
                           </IconBtn>
                         </PasswordInputWrap>
-                        {values.newPassword !== values.repeatedPassword ? (
-                          <StyledErrorText>
-                            {`The entered password doesn't matches the new
-                            password`}
-                          </StyledErrorText>
-                        ) : null}
+                        <StyledErrorMessage
+                          component="p"
+                          name="repeatedPassword"
+                        />
                       </LastFormField>
                     </DesktopPasswordWrap>
                   </DesktopFormWrap>
