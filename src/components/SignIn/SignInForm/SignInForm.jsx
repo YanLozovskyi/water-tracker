@@ -6,125 +6,91 @@ import {
   BootleImg,
   ErrorSpan,
   EyeSlashIcon,
+  FormContainer,
   FormTitle,
   SignButton,
-  SignButtonDisabled,
   SignForm,
   SignStyledInput,
   SignStyledLabel,
-  SignUpContainer
+  SignUpContainer,
 } from '../../SignUp/SignUpForm/SignUpForm.styled';
 import { SignInLink } from './SignInForm.styled';
+import { Formik, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object({
+  email: Yup.string('Enter your email')
+    .email('Enter a valid email')
+    .matches(/^[^\s@]+@[^\s@]+.[^\s@]+$/, 'Email is not valid')
+    .required('Email is required'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(8, 'Your password is too short.')
+    .matches(/[a-zA-Z]/, 'Password can only contain Latin letters.'),
+});
 
 export const SignInForm = () => {
   const dispatch = useDispatch();
-
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
   const [iconStatus, setIconStatus] = useState(false);
 
-  useEffect(() => {
-    validatePassword(password);
-  }, [password]);
-
-  const validateEmail = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setEmailError('please enter a valid email address');
-    } else {
-      setEmailError('');
-    }
-  };
-
-  const validatePassword = password => {
-    if (password && password.length < 8) {
-      setPasswordError('Password must be at least 8 characters long');
-    } else {
-      setPasswordError('');
-    }
-  };
-
-  const handleChange = ({ target: { name, value } }) => {
-    switch (name) {
-      case 'email':
-        setEmail(value);
-        validateEmail();
-        return;
-      case 'password':
-        setPassword(value);
-        validatePassword();
-        return;
-      default:
-        return;
-    }
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(logInThunk({ email, password }))
-
-    setEmail('');
-    setPassword('');
-  };
-
   const iconClick = () => {
-    iconStatus ? setIconStatus(false) : setIconStatus(true);
+    setIconStatus(!iconStatus);
   };
-
-  const buttonDisabled = emailError || passwordError;
 
   return (
     <SignUpContainer>
       <BootleImg />
-      <SignForm onSubmit={handleSubmit}>
+      <FormContainer>
         <FormTitle>Sign In</FormTitle>
-        <SignStyledLabel>
-          Enter your email
-          <SignStyledInput
-            onChange={handleChange}
-            className={emailError ? 'input-with-error' : null}
-            placeholder="E-mail"
-            type="email"
-            name="email"
-            value={email}
-          />
-          {emailError && <ErrorSpan>{emailError}</ErrorSpan>}
-        </SignStyledLabel>
-        <SignStyledLabel>
-          Enter your password
-          <SignStyledInput
-            className={passwordError ? 'input-with-error' : null}
-            onChange={handleChange}
-            autoComplete="off"
-            type={iconStatus ? 'text' : 'password'}
-            placeholder="Password"
-            name="password"
-            value={password}
-          />
-          {passwordError && <ErrorSpan>{passwordError}</ErrorSpan>}
-          {iconStatus === false ? (
-            <EyeSlashIcon onClick={iconClick}>
-              <use href={`${sprite}#icon-to-hide`}></use>
-            </EyeSlashIcon>
-          ) : (
-            <EyeSlashIcon onClick={iconClick}>
-              <use href={`${sprite}#icon-to-open`}></use>
-            </EyeSlashIcon>
+        <Formik
+          initialValues={{ email: '', password: '' }}
+          validationSchema={validationSchema}
+          onSubmit={({ email, password }) => {
+            dispatch(logInThunk({ email, password }));
+          }}
+        >
+          {formik => (
+            <SignForm>
+              <SignStyledLabel>
+                Enter your email
+                <SignStyledInput
+                  className={formik.errors.email ? 'input-with-error' : null}
+                  type="email"
+                  name="email"
+                  placeholder="E-mail"
+                />
+                <ErrorMessage name="email" component={ErrorSpan} />
+              </SignStyledLabel>
+              <SignStyledLabel>
+                Enter your password
+                <SignStyledInput
+                  className={formik.errors.password ? 'input-with-error' : null}
+                  type={iconStatus ? 'text' : 'password'}
+                  name="password"
+                  placeholder="Password"
+                />
+                <ErrorMessage name="password" component={ErrorSpan} />
+                {!iconStatus ? (
+                  <EyeSlashIcon onClick={iconClick}>
+                    <use href={`${sprite}#icon-to-hide`}></use>
+                  </EyeSlashIcon>
+                ) : (
+                  <EyeSlashIcon onClick={iconClick}>
+                    <use href={`${sprite}#icon-to-open`}></use>
+                  </EyeSlashIcon>
+                )}
+              </SignStyledLabel>
+              <SignButton
+                className={!formik.isValid ? 'button-disabled' : null}
+                type="submit"
+              >
+                Sign In
+              </SignButton>
+            </SignForm>
           )}
-        </SignStyledLabel>
-        {buttonDisabled ? (
-          <SignButtonDisabled type="submit" disabled={buttonDisabled}>
-            SignIn
-          </SignButtonDisabled>
-        ) : (
-          <SignButton type="submit" disabled={buttonDisabled}>
-            SignIn
-          </SignButton>
-        )}
+        </Formik>
         <SignInLink to="/signup">Sign up</SignInLink>
-      </SignForm>
+      </FormContainer>
     </SignUpContainer>
   );
 };
