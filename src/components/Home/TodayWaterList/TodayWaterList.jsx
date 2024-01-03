@@ -33,7 +33,7 @@ const icons = {
 
 export const TodayWaterList = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [records, setRecords] = useState([]);
+  // const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
   const dispatch = useDispatch();
@@ -58,36 +58,24 @@ export const TodayWaterList = () => {
     setModalOpen(false);
   };
 
-  const handleDelete = async recordId => {
-    try {
-      setDeletingModalOpen(true);
-      await dispatch(deleteWaterThunk(recordId)).unwrap();
-      setRecords(records.filter(record => record._id !== recordId));
+  // const handleDelete = async recordId => {
+  //   // Видаляємо запис за індексом
+  //     await dispatch(deleteWaterThunk(recordId)).unwrap();
+  //     setRecords(records.filter(record => record._id !== recordId));
+  // };
 
-      setDeletingModalOpen(false);
-    } catch (error) {
-      console.error('Failed to delete water record:', error);
-
-      setDeletingModalOpen(false);
+  const handleSave = data => {
+    if (selectedRecord !== null) {
+      // Оновлюємо існуючий запис
+      const updateData = {
+        ...data,
+        _id: selectedRecord._id,
+      };
+      dispatch(editWaterThunk(updateData)).unwrap();
+    } else {
+      dispatch(addWatersThunk(data)).unwrap();
     }
-  };
-
-  const handleSave = async data => {
-    try {
-      if (selectedRecord !== null) {
-        // Оновлюємо існуючий запис
-        const updateData = {
-          ...data,
-          _id: selectedRecord._id,
-        };
-        await dispatch(editWaterThunk(updateData)).unwrap();
-      } else {
-        await dispatch(addWatersThunk(data)).unwrap();
-      }
-      closeModal();
-    } catch (error) {
-      console.error('Failed to save water data:', error);
-    }
+    closeModal();
   };
 
   function formatTime(isoDate) {
@@ -117,8 +105,9 @@ export const TodayWaterList = () => {
                   <use href={icons.change}></use>
                 </svg>
               </ButtonChange>
-
-              <ButtonDelete onClick={openModalToDelete}>
+              <ButtonDelete
+                onClick={() => dispatch(deleteWaterThunk(record._id))}
+              >
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>

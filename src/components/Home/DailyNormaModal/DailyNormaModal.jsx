@@ -50,19 +50,16 @@ export const DailyNormaModal = ({ onClose }) => {
     }
   }, [user]);
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const parsedDailyIntake = parseFloat(dailyIntake);
 
     if (isNaN(parsedDailyIntake)) {
       console.error('Daily Intake is not a valid number.');
       return;
     }
-    try {
-      await dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
-      onClose();
-    } catch (error) {
-      console.error('Failed to save water data:', error);
-    }
+
+    dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
+    onClose();
   };
 
   return (
