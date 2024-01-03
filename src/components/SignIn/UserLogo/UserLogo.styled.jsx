@@ -40,7 +40,6 @@ export const UserDefaultAvatar = styled.span`
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid #9ebbff;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -55,11 +54,12 @@ export const UserDefaultAvatar = styled.span`
 export const UserModalIcon = styled.svg`
   width: 16px;
   height: 16px;
+  fill: ${({ theme }) => theme.color.accent};
   stroke: ${({ theme }) => theme.color.accent};
-  fill: transparent;
+  transition: transform 0.5s ease;
 
   &:hover,
   &:focus {
-    stroke: ${props => props.theme.color.secondaryYellow};
+    stroke: ${({ theme }) => theme.color.secondaryYellow};
   }
 `;
