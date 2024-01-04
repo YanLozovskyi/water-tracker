@@ -3,6 +3,7 @@ import {
   editUserInfo,
   logout,
   refreshUser,
+  requestPassword,
   signin,
   signup,
   updateAvatar,
@@ -39,6 +40,19 @@ export const logOutThunk = createAsyncThunk(
     try {
       await logout();
       return;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const reqPassThunk = createAsyncThunk(
+  'auth/request-pass',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const email = await requestPassword(credentials);
+      console.log(email);
+      return email;
     } catch (error) {
       return rejectWithValue(error.message);
     }
