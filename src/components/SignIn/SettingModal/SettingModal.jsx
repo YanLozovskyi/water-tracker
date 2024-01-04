@@ -223,15 +223,12 @@ export const SettingModal = ({ onClose }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                              touched.outdatedPassword
+                                touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
-                          // placeholder="Password"
-                          />{values.outdatedPassword === "" ? <span style={{
-                            position: "absolute", top: "50%",
-                            left: "10px", transform: "translateY(-50%)", opacity: '50%',
-                          }}>Password</span> : null}
+                            placeholder="Password"
+                          />
                           <IconBtn
                             type="button"
                             onClick={handlePasswordVisibility}
@@ -263,7 +260,7 @@ export const SettingModal = ({ onClose }) => {
                             name="newPassword"
                             className={
                               (errors.newPassword && touched.newPassword) ||
-                              (values.outdatedPassword && !values.newPassword)
+                                (values.outdatedPassword && !values.newPassword)
                                 ? 'error-input'
                                 : null
                             }

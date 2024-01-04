@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { formatDate } from '../../helpers/utils/dateUtils';
 
 axios.defaults.baseURL = 'https://watertracker-backend.onrender.com/api';
 
@@ -88,4 +89,13 @@ export const editWater = async ({ newWaterUser, id }) => {
 
 export const deleteWater = async id => {
   await axios.delete(`/water/${id}`);
+};
+
+export const fetchTodayWater = async () => {
+  const date = formatDate(new Date());
+  return await axios.get(`/today?date=${date}`);
+};
+
+export const fetchMonthWater = async ({ startDate, endDate }) => {
+  return await axios.get(`/month?startDate=${startDate}&endDate=${endDate}`);
 };
