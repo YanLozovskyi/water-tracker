@@ -18,6 +18,7 @@ export * from './Header/Header';
 export * from './Home/DailyNorma/DailyNorma';
 export * from './Home/DailyNormaModal/DailyNormaModal';
 export * from './Home/DaysGeneralStats/DaysGeneralStats';
+export * from './Home/DeletingEntryModal/DeletingEntryModal';
 export * from './Home/MonthStatsTable/MonthStatsTable';
 export * from './Home/TodayListModal/TodayListModal';
 export * from './Home/TodayWaterList/TodayWaterList';

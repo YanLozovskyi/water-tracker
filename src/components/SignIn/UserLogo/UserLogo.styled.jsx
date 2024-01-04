@@ -54,7 +54,12 @@ export const UserDefaultAvatar = styled.span`
 export const UserModalIcon = styled.svg`
   width: 16px;
   height: 16px;
-  fill: ${props => props.theme.color.accent};
-  stroke: ${props => props.theme.color.accent};
+  fill: ${({ theme }) => theme.color.accent};
+  stroke: ${({ theme }) => theme.color.accent};
   transition: transform 0.5s ease;
+
+  &:hover,
+  &:focus {
+    stroke: ${({ theme }) => theme.color.secondaryYellow};
+  }
 `;

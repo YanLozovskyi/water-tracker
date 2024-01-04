@@ -60,9 +60,11 @@ export const UserLogo = () => {
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      {modalIsOpen && (
-        <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />
-      )}
+      <div>
+        {modalIsOpen && (
+          <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />
+        )}
+      </div>
     </UserLogoContainer>
   );
 };

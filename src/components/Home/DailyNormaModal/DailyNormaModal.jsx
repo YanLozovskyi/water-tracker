@@ -20,14 +20,14 @@ import {
 } from './DailyNormaModal.styled';
 
 export const DailyNormaModal = ({ onClose }) => {
-  const [gender, setGender] = useState('female');
+  const dispatch = useDispatch();
+  const { gender: reduxGender } = useSelector(selectUser);
+
+  const [gender, setGender] = useState(reduxGender);
   const [weight, setWeight] = useState('');
   const [activityTime, setActivityTime] = useState('');
   const [dailyIntake, setDailyIntake] = useState('2.0');
   const [intakeGoal, setIntakeGoal] = useState('');
-
-  const { user } = useSelector(selectUser);
-  const dispatch = useDispatch();
 
   const calculateWaterIntake = useCallback(() => {
     if (!weight || !activityTime) return;
@@ -44,25 +44,22 @@ export const DailyNormaModal = ({ onClose }) => {
     calculateWaterIntake();
   }, [calculateWaterIntake]);
 
-  useEffect(() => {
-    if (user) {
-      setGender(user.gender || 'female');
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     setGender(user.gender || 'female');
+  //   }
+  // }, [user]);
 
-  const handleSave = async () => {
+  const handleSave = () => {
     const parsedDailyIntake = parseFloat(dailyIntake);
 
     if (isNaN(parsedDailyIntake)) {
       console.error('Daily Intake is not a valid number.');
       return;
     }
-    try {
-      await dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
-      onClose();
-    } catch (error) {
-      console.error('Failed to save water data:', error);
-    }
+
+    dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
+    onClose();
   };
 
   return (

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const StyledLogoModal = styled.div`
   position: absolute;
+  z-index: 1;
   top: 38px;
   left: -53px;
   width: 118px;
