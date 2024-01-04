@@ -11,6 +11,7 @@ export * from './common/Section/Section';
 // Basic
 
 export * from './ForgotPasswordForm/ForgotPasswordForm';
+export * from './ForgotPasswordForm/ResetPasswordForm';
 export * from './Header/Header';
 
 // Home
