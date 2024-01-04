@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
 import { TodayListModal, DeletingEntryModal } from 'components';
 import sprite from 'src/assets/images/sprite/sprite.svg';
@@ -19,6 +19,7 @@ import {
   TodayVolume,
   TodayWrapper,
 } from './TodayWaterList.styled';
+import { getMonthWater, getTodayWater } from '../../../redux/waterData/waterOperations';
 
 const icons = {
   glass: `${sprite}#icon-glass`,
@@ -28,10 +29,16 @@ const icons = {
 };
 
 export const TodayWaterList = () => {
+  const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedRecord, setSelectedRecord] = useState(null);
   const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
   const { dailyWaterList } = useSelector(selectWaterToday);
+
+  useEffect(() => {
+    dispatch(getTodayWater());
+    dispatch(getMonthWater({ startDate: "2024-01-01", endDate: "2024-01-31" }))
+  }, [dispatch]);
 
   const openModalToAdd = () => {
     setSelectedRecord(null);
@@ -52,7 +59,7 @@ export const TodayWaterList = () => {
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
       <TodayList>
-        {dailyWaterList.map(record => (
+        {dailyWaterList?.map(record => (
           <TodayItem key={record._id}>
             <TodayInfo>
               <IconGlass>

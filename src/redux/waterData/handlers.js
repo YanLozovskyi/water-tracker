@@ -19,3 +19,13 @@ export const handlerDeleteWater = (state, { payload }) => {
     data => data._id !== payload,
   );
 };
+
+export const handleGetTodayWater = (state, { payload }) => {
+  state.today.dailyWaterList = payload.waterVolumes;
+  state.today.dailyNormFulfillment = payload.waterVolumeSum;
+  state.today.waterVolumePercentage = payload.waterVolumePercentage;
+};
+
+export const handleGetMonthWater = (state, { payload }) => {
+  state.month = payload;
+};
