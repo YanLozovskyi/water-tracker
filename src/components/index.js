@@ -50,3 +50,5 @@ export * from './NotFound/NotFound';
 // ThemeProvider
 
 export * from './ThemeProvider/ThemeProvider';
+
+export * from './TogglerTheme/TogglerTheme';
