@@ -45,3 +45,7 @@ export * from './Welcome/WhyDrinkWater/WhyDrinkWater';
 // Error
 
 export * from './NotFound/NotFound';
+
+// ThemeProvider
+
+export * from './ThemeProvider/ThemeProvider';

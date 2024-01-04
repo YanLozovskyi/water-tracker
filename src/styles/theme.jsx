@@ -23,8 +23,73 @@ const SomeName = styled.div`
   color: ${({theme}) => theme.color.black};
  }
 
-`
 */
+// export const theme = {
+//   // Breakpoints
+//   breakpoint: {
+//     mobile: '320px',
+//     tablet: '768px',
+//     desktop: '1440px',
+//   },
+
+//   // Animation (transition) on hover & focus
+//   transition: {
+//     main: '250ms cubic-bezier(0.165, 0.84, 0.44, 1.03)',
+//     modal: '300ms ease-in-out',
+//   },
+//   lightTheme: {
+//     // Colors
+//     color: {
+//       primary: '#FFFFFF',
+//       secondary: '#2F2F2F',
+//       accent: '#407BFF',
+
+//       secondaryWhite: '#ecf2ff',
+//       secondaryRed: '#ef5050',
+//       secondaryLightBlue: '#9ebbff',
+//       secondaryYellow: '#ff9d43',
+//       secondaryPowderBlue: '#d7e3ff',
+//     },
+
+//     // Animation (transition) on hover & focus
+//     boxShadowforButton: {
+//       normalButton: '0 4px 8px rgba(64, 123, 255, 0.34)',
+//       hoverButton: '0 4px 14px rgba(64, 123, 255, 0.54)',
+//       activeButton: 'none',
+//     },
+
+//     modalBoxShadow: {
+//       modal: '0 4px 14px rgba(64, 123, 255, 0.3)',
+//     },
+//   },
+
+//   darkTheme: {
+//     // Colors
+
+//     color: {
+//       primary: '#2F2F2F',
+//       secondary: '#FFFFFF',
+//       accent: '#407BFF',
+
+//       secondaryWhite: '#2E4167',
+//       secondaryRed: '#ef5050',
+//       secondaryLightBlue: '#7FAAFD',
+//       secondaryYellow: '#DF9E63',
+//       secondaryPowderBlue: '#283F6C',
+//     },
+
+//     // Animation (transition) on hover & focus
+//     boxShadowforButton: {
+//       normalButton: '0 4px 8px rgba(64, 123, 255, 0.18)',
+//       hoverButton: '0 4px 8px rgba(64, 123, 255, 0.18)',
+//       activeButton: 'none',
+//     },
+
+//     modalBoxShadow: {
+//       modal: '0 4px 8px rgba(50, 73, 120, 0.5)',
+//     },
+//   },
+// };
 
 export const theme = {
   // Colors
