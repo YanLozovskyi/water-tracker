@@ -12,6 +12,7 @@ export * from './common/Toggle/Toggle';
 // Basic
 
 export * from './ForgotPasswordForm/ForgotPasswordForm';
+export * from './ForgotPasswordForm/ResetPasswordForm';
 export * from './Header/Header';
 
 // Home

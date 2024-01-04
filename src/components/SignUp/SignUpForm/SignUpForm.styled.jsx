@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 import { Form, Field } from 'formik';
+import { FcHighPriority, FcOk } from 'react-icons/fc';
 import imgHome2Mob1x from '../../../assets/images/background/homePage/mobile/bottleMob.png';
 import imgHome2Mob2x from '../../../assets/images/background/homePage/mobile/bottleMob@2x.png';
 import imgHome2Desk1x from '../../../assets/images/background/homePage/desktop/bottleDesc.png';
@@ -178,4 +179,20 @@ export const FormContainer = styled.div`
     min-width: 384px;
     min-height: 312px;
   }
+`;
+
+export const ErrorSvg = styled(FcHighPriority)`
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 46px;
+  right: 10px;
+`;
+
+export const SuccessSvg = styled(FcOk)`
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 46px;
+  right: 10px;
 `;
