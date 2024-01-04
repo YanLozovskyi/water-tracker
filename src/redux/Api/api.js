@@ -81,5 +81,5 @@ export const editWater = async ({ newWaterUser, id }) => {
 };
 
 export const deleteWater = async id => {
-  await axios.delete(`/water${id}`);
+  await axios.delete(`/water/${id}`);
 };
