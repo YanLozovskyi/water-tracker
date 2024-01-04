@@ -7,6 +7,7 @@ export * from './common/Loader/Loader';
 export * from './common/LogOutBtn/LogOutBtn';
 export * from './common/Logo/Logo';
 export * from './common/Section/Section';
+export * from './common/Toggle/Toggle';
 
 // Basic
 
