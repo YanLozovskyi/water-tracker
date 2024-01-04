@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ToggleContainer, ToggleHandle } from './Toggle.styled';
 export const Toggle = () => {
   const [isToggled, setToggle] = useState(false);
