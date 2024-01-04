@@ -1,29 +1,9 @@
 import styled from '@emotion/styled';
-import {
-  ModalContent,
-  ModalHeader,
-} from '../../common/BaseModalWindow/BaseModalWindow.styled';
 import { Field, ErrorMessage } from 'formik';
-
-export const TestLabel = styled.label`
-.test-input {
-    position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  border: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  }`
 
 export const FormText = styled.p`
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.11; /* 111.111% */
 `;
@@ -32,9 +12,7 @@ export const StyledLabel = styled.label`
   display: inline-block;
   margin-bottom: 8px;
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.11; /* 111.111% */
 `;
@@ -73,29 +51,38 @@ export const PasswordIcon = styled(IconDownload)`
   transform: translateY(-50%);
 `;
 
-export const DownloadBtn = styled.button`
+export const DownloadBtn = styled.label`
   display: flex;
-  align-items: flex-end;
+  justify-content: center;
   gap: 8px;
-  border: none;
-  background-color: transparent;
-  padding: 0;
+  cursor: pointer;
 `;
 
 export const DownloadBtnText = styled.span`
   color: ${({ theme }) => theme.color.accent};
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
   line-height: 18px; /* 128.571% */
 `;
 
 export const FormField = styled.div`
   margin-bottom: 24px;
+
+  .error-input {
+    border: 1px solid ${props => props.theme.color.secondaryRed};
+    color: ${props => props.theme.color.secondaryRed};
+
+    &:focus {
+      color: ${({ theme }) => theme.color.secondaryRed};
+    }
+
+    &::placeholder {
+      color: ${props => props.theme.color.secondaryRed};
+    }
+  }
 `;
 
-export const PasswordFormField = styled.div`
+export const PasswordFormField = styled(FormField)`
   margin-bottom: 12px;
 `;
 
@@ -122,10 +109,7 @@ export const RadioBtnWrap = styled.div`
 export const RadioBtnText = styled.span`
   margin-left: 8px;
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 1.25; /* 125% */
 `;
 
@@ -148,9 +132,7 @@ export const Input = styled(Field)`
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.color.secondaryLightBlue};
   color: ${({ theme }) => theme.color.secondaryLightBlue};
-  font-family: Roboto;
   font-size: 16px;
-  font-weight: 400;
   line-height: 1.25;
   outline: transparent; /* 125% */
 
@@ -163,36 +145,17 @@ export const Input = styled(Field)`
   }
 `;
 
-export const ErrorInput = styled(Input)`
-  border: 1px solid ${props => props.theme.color.secondaryRed};
-  color: ${props => props.theme.color.secondaryRed};
-
-  &:focus {
-    color: ${({ theme }) => theme.color.secondaryRed};
-  }
-
-  &::placeholder {
-    color: ${props => props.theme.color.secondaryRed};
-  }
-`;
-
 export const StyledErrorMessage = styled(ErrorMessage)`
   margin-top: 4px;
   color: ${props => props.theme.color.secondaryRed};
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 18px; /* 128.571% */
 `;
 
 export const StyledErrorText = styled.p`
   margin-top: 4px;
   color: ${props => props.theme.color.secondaryRed};
-  font-family: Roboto;
   font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 18px; /* 128.571% */
 `;
 
@@ -207,6 +170,10 @@ export const ModalWrap = styled.div`
     padding-left: 24px;
     padding-right: 24px;
   }
+
+  @media (min-width: ${props => props.theme.breakpoint.desktop}) {
+    min-width: 1008px;
+  }
 `;
 
 export const PasswordText = styled(FormText)`
@@ -216,9 +183,7 @@ export const PasswordText = styled(FormText)`
 export const PasswordLabel = styled.label`
   margin-bottom: 8px;
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 16px;
-  font-weight: 400;
   line-height: 1.25; /* 125% */
 `;
 
@@ -231,7 +196,6 @@ export const SaveBtn = styled.button`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${({ theme }) => theme.color.white};
   text-align: center;
-  font-family: Roboto;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25; /* 125% */
@@ -264,7 +228,7 @@ export const DesktopPasswordWrap = styled.div`
   }
 `;
 
-export const LastFormField = styled.div`
+export const LastFormField = styled(FormField)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     margin-bottom: 24px;
   }
@@ -283,13 +247,3 @@ export const GenderFormField = styled.div`
     margin-bottom: 52px;
   }
 `;
-
-export const SettingModalContent = styled(ModalContent)`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    max-width: 1008px;
-  }
-`;
-
-// export const SettingModalHeader = styled(ModalHeader)`
-
-// `;

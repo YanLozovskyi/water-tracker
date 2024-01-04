@@ -1,62 +1,70 @@
-import { useState } from 'react';
 import { UserLogoModal } from 'components';
+import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { selectUser } from '../../../redux/auth/authSelectors';
 import {
-  UserLogoBtn,
-  UserModalIcon,
   UserAvatar,
   UserDefaultAvatar,
-  UserLogoTitle,
+  UserLogoBtn,
   UserLogoContainer,
+  UserLogoTitle,
+  UserModalIcon,
 } from './UserLogo.styled';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../../../redux/auth/authSelectors';
 
 export const UserLogo = () => {
+  const myRef = useRef();
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const { userName, avatarURL } = useSelector(selectUser);
+  const { name, avatarURL } = useSelector(selectUser);
 
   const showModal = () => {
     setModalIsOpen(!modalIsOpen);
   };
 
-  const firstLetter = userName ? userName.charAt(0).toUpperCase() : 'V';
+  const firstLetter = name ? name.charAt(0).toUpperCase() : 'V';
 
   const getUserInfo = () => {
-    if (userName && avatarURL) {
+    if (name && avatarURL) {
       return {
-        name: userName,
+        userName: name,
         avatar: avatarURL,
       };
-    } else if (userName) {
+    } else if (name || avatarURL) {
       return {
-        name: userName,
-        avatar: firstLetter,
+        userName: name || firstLetter,
+        avatar: avatarURL || firstLetter,
       };
     } else {
       return {
-        name: firstLetter,
+        userName: firstLetter,
         avatar: firstLetter,
       };
     }
   };
 
-  const { name, avatar } = getUserInfo();
+  const { userName, avatar } = getUserInfo();
 
   return (
     <UserLogoContainer>
-      <UserLogoTitle>{name}</UserLogoTitle>
-      <UserLogoBtn onClick={showModal}>
+      <UserLogoTitle>{userName}</UserLogoTitle>
+      <UserLogoBtn onClick={showModal} ref={myRef}>
         {avatarURL ? (
-          <UserAvatar src={avatar} alt="" />
+          <UserAvatar src={avatar} alt="user-avatar" />
         ) : (
           <UserDefaultAvatar>{avatar}</UserDefaultAvatar>
         )}
-        <UserModalIcon>
+        <UserModalIcon
+          style={{ transform: modalIsOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}
+        >
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      {modalIsOpen && <UserLogoModal />}
+      <div>
+        {modalIsOpen && (
+          <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />
+        )}
+      </div>
     </UserLogoContainer>
   );
 };

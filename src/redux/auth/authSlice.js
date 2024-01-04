@@ -6,6 +6,7 @@ import {
   refreshUserThunk,
   registerThunk,
   updateAvatarThunk,
+  updateWaterRateThunk,
 } from './authOperations';
 import {
   handleLogin,
@@ -16,13 +17,14 @@ import {
   handleRegister,
   handlerEditUserInfo,
   handlerUpdateAvatar,
+  handlerUpdateWaterRate,
 } from './handlers';
 
 export const initialState = {
   user: {
     email: '',
     avatarURL: '',
-    userName: '',
+    name: '',
     gender: '',
     waterRate: '',
   },
@@ -39,9 +41,10 @@ const authSlice = createSlice({
       .addCase(registerThunk.fulfilled, handleRegister)
       .addCase(logInThunk.fulfilled, handleLogin)
       .addCase(logOutThunk.fulfilled, handleLogout)
+      .addCase(updateWaterRateThunk.fulfilled, handlerUpdateWaterRate)
       .addCase(updateAvatarThunk.fulfilled, handlerUpdateAvatar)
-      .addCase(refreshUserThunk.fulfilled, handleRefreshFulfield)
       .addCase(editUserInfoThunk.fulfilled, handlerEditUserInfo)
+      .addCase(refreshUserThunk.fulfilled, handleRefreshFulfield)
       .addCase(refreshUserThunk.pending, handleRefreshPending)
       .addCase(refreshUserThunk.rejected, handleRefreshReject);
   },

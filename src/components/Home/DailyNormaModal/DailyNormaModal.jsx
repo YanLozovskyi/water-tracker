@@ -1,5 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/authSelectors';
+import { updateWaterRateThunk } from '../../../redux/auth/authOperations';
 import PropTypes from 'prop-types';
+
 import { BaseModalWindow } from 'components';
 import {
   Formula,
@@ -16,13 +20,17 @@ import {
 } from './DailyNormaModal.styled';
 
 export const DailyNormaModal = ({ onClose }) => {
-  const [gender, setGender] = useState('female');
+  const dispatch = useDispatch();
+  const { gender: reduxGender } = useSelector(selectUser);
+
+  const [gender, setGender] = useState(reduxGender);
   const [weight, setWeight] = useState('');
   const [activityTime, setActivityTime] = useState('');
-  const [dailyIntake, setDailyIntake] = useState('2.0'); // Значення за замовчуванням
+  const [dailyIntake, setDailyIntake] = useState('2.0');
   const [intakeGoal, setIntakeGoal] = useState('');
 
-  const calculateWaterIntake = () => {
+  const calculateWaterIntake = useCallback(() => {
+    if (!weight || !activityTime) return;
     const factor = gender === 'female' ? 0.03 : 0.04;
     const activityFactor = gender === 'female' ? 0.4 : 0.6;
     const intake = (
@@ -30,17 +38,30 @@ export const DailyNormaModal = ({ onClose }) => {
       (activityTime / 60) * activityFactor
     ).toFixed(2);
     setDailyIntake(intake);
+  }, [gender, weight, activityTime]);
+
+  useEffect(() => {
+    calculateWaterIntake();
+  }, [calculateWaterIntake]);
+
+  // useEffect(() => {
+  //   if (user) {
+  //     setGender(user.gender || 'female');
+  //   }
+  // }, [user]);
+
+  const handleSave = () => {
+    const parsedDailyIntake = parseFloat(dailyIntake);
+
+    if (isNaN(parsedDailyIntake)) {
+      console.error('Daily Intake is not a valid number.');
+      return;
+    }
+
+    dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
+    onClose();
   };
 
-  const handleSave = async () => {
-    calculateWaterIntake();
-    const userData = {
-      gender,
-      weight,
-      activityTime,
-      dailyIntake,
-    };
-  };
   return (
     <BaseModalWindow onClose={onClose} title="My daily norma">
       <BoxModal>

@@ -1,4 +1,7 @@
 import React, { useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../redux/auth/authSelectors';
+import { formatMonth } from '../../../helpers/utils/dateUtils';
 import {
   DaysGeneralStatsModal,
   DaysGeneralStatsList,
@@ -7,33 +10,15 @@ import {
   DaysGeneralStatsData,
 } from './DaysGeneralStats.styled';
 
-const formatMonth = monthYearString => {
-  const [year, month] = monthYearString.split('-').map(Number);
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  return monthNames[month - 1];
-};
-
 export const DaysGeneralStats = ({
   day,
-  stats: { norma, full, servings },
+  stats: { full, servings },
   month,
   position,
   onShow,
 }) => {
   const modalRef = useRef(null);
+  const { waterRate } = useSelector(selectUser);
 
   useEffect(() => {
     if (!modalRef.current) return;
@@ -72,6 +57,8 @@ export const DaysGeneralStats = ({
     }
   }, [position]);
 
+  const waterRateL = (waterRate / 1000).toFixed(1) + ' L';
+
   return (
     <DaysGeneralStatsModal
       ref={modalRef}
@@ -84,7 +71,7 @@ export const DaysGeneralStats = ({
           </DaysGeneralStatsData>
         </DaysGeneralStatsItem>
         <DaysGeneralStatsItem>
-          Daily norma:<DaysGeneralStatsInfo>{norma}</DaysGeneralStatsInfo>
+          Daily norma:<DaysGeneralStatsInfo>{waterRateL}</DaysGeneralStatsInfo>
         </DaysGeneralStatsItem>
         <DaysGeneralStatsItem>
           Fulfillment of the daily norm:

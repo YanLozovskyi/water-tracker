@@ -1,5 +1,10 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
+import { TodayListModal, DeletingEntryModal } from 'components';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { TodayListModal } from 'components';
+import { formatTime } from '../../../helpers/utils/dateUtils';
+
 import {
   AddWaterBtn,
   ButtonChange,
@@ -14,7 +19,7 @@ import {
   TodayVolume,
   TodayWrapper,
 } from './TodayWaterList.styled';
-import { useState } from 'react';
+import { getMonthWater, getTodayWater } from '../../../redux/waterData/waterOperations';
 
 const icons = {
   glass: `${sprite}#icon-glass`,
@@ -24,64 +29,52 @@ const icons = {
 };
 
 export const TodayWaterList = () => {
+  const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
-  const [records, setRecords] = useState([]);
   const [selectedRecord, setSelectedRecord] = useState(null);
+  const [isDeletingModalOpen, setDeletingModalOpen] = useState(false);
+  const { dailyWaterList } = useSelector(selectWaterToday);
+
+  useEffect(() => {
+    dispatch(getTodayWater());
+    dispatch(getMonthWater({ startDate: "2024-01-01", endDate: "2024-01-31" }))
+  }, [dispatch]);
 
   const openModalToAdd = () => {
     setSelectedRecord(null);
     setModalOpen(true);
   };
 
-  const openModalToEdit = (record, index) => {
-    setSelectedRecord({ ...record, index });
+  const openModalToDelete = record => {
+    setSelectedRecord(record);
+    setDeletingModalOpen(true);
+  };
+
+  const openModalToEdit = record => {
+    setSelectedRecord(record);
     setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-  };
-
-  const handleDelete = index => {
-    // Видаляємо запис за індексом
-    setRecords(records.filter((_, idx) => idx !== index));
-  };
-
-  const handleSave = data => {
-    if (selectedRecord !== null) {
-      // Оновлюємо існуючий запис
-      setRecords(
-        records.map((rec, idx) =>
-          idx === selectedRecord.index ? { ...rec, ...data } : rec,
-        ),
-      );
-    } else {
-      // Додаємо новий запис
-      setRecords([...records, data]);
-    }
-    closeModal();
   };
 
   return (
     <TodayWrapper>
       <TodayTitle>Today</TodayTitle>
       <TodayList>
-        {records.map((record, index) => (
-          <TodayItem key={index}>
+        {dailyWaterList?.map(record => (
+          <TodayItem key={record._id}>
             <TodayInfo>
               <IconGlass>
                 <use href={icons.glass}></use>
               </IconGlass>
-              <TodayVolume>{record.amount} ml</TodayVolume>
-              <TodayTime>{record.time} AM</TodayTime>
+              <TodayVolume>{record.waterVolume} ml</TodayVolume>
+              <TodayTime>{formatTime(record.date)}</TodayTime>
             </TodayInfo>
             <TodayTools>
-              <ButtonChange onClick={() => openModalToEdit(record, index)}>
+              <ButtonChange onClick={() => openModalToEdit(record)}>
                 <svg>
                   <use href={icons.change}></use>
                 </svg>
               </ButtonChange>
-              <ButtonDelete onClick={() => handleDelete(index)}>
+              <ButtonDelete onClick={() => openModalToDelete(record)}>
                 <svg>
                   <use href={icons.delete}></use>
                 </svg>
@@ -98,13 +91,21 @@ export const TodayWaterList = () => {
           </AddWaterBtn>
         </li>
       </TodayList>
+
+      {isDeletingModalOpen && (
+        <DeletingEntryModal
+          onClose={() => setDeletingModalOpen(false)}
+          recordId={selectedRecord?._id}
+        />
+      )}
+
       {isModalOpen && (
         <TodayListModal
-          initialAmount={selectedRecord?.volume}
-          initialTime={selectedRecord?.time}
+          initialAmount={selectedRecord?.waterVolume}
+          initialTime={selectedRecord?.date}
           isEditing={selectedRecord !== null}
-          onSave={handleSave}
-          onClose={closeModal}
+          existingRecordId={selectedRecord?._id}
+          onClose={() => setModalOpen(false)}
         />
       )}
     </TodayWrapper>

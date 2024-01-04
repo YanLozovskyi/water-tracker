@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const UserLogoContainer = styled.div`
   position: relative;
-  display: flex; 
+  display: flex;
   justify-content: space-around;
   align-items: center;
   gap: 8px;
@@ -40,7 +40,6 @@ export const UserDefaultAvatar = styled.span`
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid #9ebbff;
   font-size: 16px;
   display: flex;
   align-items: center;
@@ -55,11 +54,12 @@ export const UserDefaultAvatar = styled.span`
 export const UserModalIcon = styled.svg`
   width: 16px;
   height: 16px;
+  fill: ${({ theme }) => theme.color.accent};
   stroke: ${({ theme }) => theme.color.accent};
-  fill: transparent;
+  transition: transform 0.5s ease;
 
   &:hover,
   &:focus {
-    color: ${props => props.theme.color.accent};
+    stroke: ${({ theme }) => theme.color.secondaryYellow};
   }
 `;

@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { setLocale } from 'yup';
 
 export const BoxAddModal = styled.div`
   padding-left: 12px;
@@ -23,6 +22,17 @@ export const BoxAddModal = styled.div`
   }
 `;
 
+export const PreviousInfo = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 8px 24px;
+  gap: 12px;
+  border-radius: 10px;
+  background-color: ${props => props.theme.color.secondaryWhite};
+  width: 254px;
+  margin-bottom: 24px;
+`;
+
 export const AddParagraph = styled.p`
   font-size: 16px;
   font-weight: 400;
@@ -38,22 +48,40 @@ export const AddWater = styled.div`
     align-items: center;
     gap: 10px;
   }
+`;
 
-  input {
-    display: flex;
-    padding: 6px 10px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 40px;
-    border: none;
-    background: ${props => props.theme.color.secondaryPowderBlue};
-    color: ${props => props.theme.color.accent};
-    text-align: center;
-    font-size: 18px;
-    font-weight: 700;
-    line-height: 1.33;
-    width: 92px;
-    height: 36px;
+export const InputWater = styled.input`
+  border-radius: 40px;
+  border: none;
+  background: ${props => props.theme.color.secondaryPowderBlue};
+  color: ${props => props.theme.color.accent};
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.33;
+  width: 50px;
+  height: 36px;
+  margin-left: 10px;
+
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+`;
+
+export const Label = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 40px;
+  background: ${props => props.theme.color.secondaryPowderBlue};
+  color: ${props => props.theme.color.accent};
+  font-size: 18px;
+  font-weight: 700;
+
+  span {
+    margin-right: 15px;
   }
 `;
 
@@ -86,6 +114,38 @@ export const AddTime = styled.div`
   margin-bottom: 24px;
 `;
 
+export const InputTime = styled.input`
+  color: ${props => props.theme.color.accent};
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  width: 100%;
+  display: flex;
+  padding: 12px 10px;
+  align-items: flex-start;
+  gap: 10px;
+  border-radius: 6px;
+  border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
+
+  &::placeholder {
+    color: ${props => props.theme.color.secondaryLightBlue};
+  }
+
+  &:hover {
+    color: ${props => props.theme.color.accent};
+    border: 1px solid ${props => props.theme.color.accent};
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${props => props.theme.color.accent};
+  }
+
+  &:not(:placeholder-shown) {
+    color: ${props => props.theme.color.accent};
+  }
+`;
+
 export const Input = styled.input`
   color: ${props => props.theme.color.accent};
   font-size: 16px;
@@ -98,14 +158,37 @@ export const Input = styled.input`
   gap: 10px;
   border-radius: 6px;
   border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
+
+  ::-webkit-outer-spin-button,
+  ::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &::placeholder {
+    color: ${props => props.theme.color.secondaryLightBlue};
+  }
+
+  &:hover {
+    color: ${props => props.theme.color.accent};
+    border: 1px solid ${props => props.theme.color.accent};
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid ${props => props.theme.color.accent};
+  }
+
+  &:not(:placeholder-shown) {
+    color: ${props => props.theme.color.accent};
+  }
 `;
 
 export const FooterModal = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  gap: 24px;
   margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
   span {
     color: ${props => props.theme.color.accent};
@@ -113,6 +196,14 @@ export const FooterModal = styled.div`
     font-size: 18px;
     font-weight: 700;
     line-height: 1.33;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    gap: 24px;
+    margin-top: 24px;
   }
 `;
 

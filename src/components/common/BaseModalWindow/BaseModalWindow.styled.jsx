@@ -41,7 +41,7 @@ export const ModalContent = styled.div`
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* align-items: center; */
   padding: 24px 12px;
   color: ${props => props.theme.color.black};
 

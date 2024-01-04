@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { formatDate } from '../../helpers/utils/dateUtils';
 
-axios.defaults.baseURL = 'https://watertracker-backend.onrender.com';
+axios.defaults.baseURL = 'https://watertracker-backend.onrender.com/api';
 
 const setToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -31,6 +32,13 @@ export const logout = async () => {
 
 // User
 
+export const updateWaterRate = async newWaterRate => {
+  const { data } = await axios.post('/waterrate', {
+    waterRate: newWaterRate,
+  });
+  return data;
+};
+
 export const refreshUser = async token => {
   setToken(token);
   const { data } = await axios.get('/user/current');
@@ -49,10 +57,39 @@ export const updateAvatar = async newPhotoFile => {
 };
 
 export const editUserInfo = async body => {
-  const data = await axios.patch('/user/edit', body, {
+  const { data } = await axios.patch('/user/edit', body);
+  return data;
+};
+
+// Water
+
+export const addWaters = async newWater => {
+  const { data } = await axios.post('/water', newWater, {
     headers: {
       'Content-Type': 'application/json',
     },
   });
   return data;
+};
+
+export const editWater = async ({ newWaterUser, id }) => {
+  const { data } = await axios.patch(`/water/${id}`, newWaterUser, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  return data;
+};
+
+export const deleteWater = async id => {
+  await axios.delete(`/water/${id}`);
+};
+
+export const fetchTodayWater = async () => {
+  const date = formatDate(new Date());
+  return await axios.get(`/today?date=${date}`);
+};
+
+export const fetchMonthWater = async ({ startDate, endDate }) => {
+  return await axios.get(`/month?startDate=${startDate}&endDate=${endDate}`);
 };

@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
+import { Form, Field } from 'formik';
 import imgHome2Mob1x from '../../../assets/images/background/homePage/mobile/bottleMob.png';
 import imgHome2Mob2x from '../../../assets/images/background/homePage/mobile/bottleMob@2x.png';
 import imgHome2Desk1x from '../../../assets/images/background/homePage/desktop/bottleDesc.png';
@@ -38,6 +39,7 @@ export const SignUpContainer = styled.div`
   display: flex;
   flex-direction: column-reverse;
   gap: 66px;
+  align-items: center;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     flex-direction: row-reverse;
@@ -89,7 +91,7 @@ export const SignStyledLabel = styled.label`
   }
 `;
 
-export const SignStyledInput = styled.input`
+export const SignStyledInput = styled(Field)`
   width: 100%;
   border-radius: 6px;
   border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
@@ -113,31 +115,15 @@ export const SignStyledInput = styled.input`
   }
 `;
 
-export const SignForm = styled.form`
+export const SignForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  min-width: 280px;
-  min-height: 304px;
   gap: 16px;
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    position: absolute;
-    top: 104px;
-    left: 30px;
-    min-width: 336px;
-    z-index: 1;
+  .button-disabled {
+    background-color: ${props => props.theme.color.secondaryPowderBlue};
+    cursor: not-allowed;
   }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    position: static;
-    min-width: 384px;
-    min-height: 312px;
-  }
-`;
-
-export const SignButtonDisabled = styled(SignButton)`
-  background-color: ${props => props.theme.color.secondaryPowderBlue};
-  cursor: not-allowed;
 `;
 
 export const FormTitle = styled.h2`
@@ -157,7 +143,7 @@ export const EyeSlashIcon = styled.svg`
   fill: ${props => props.theme.color.white};
   position: absolute;
   right: 10px;
-  top: 44px;
+  top: 46px;
 `;
 
 export const SignUpLink = styled(NavLink)`
@@ -169,5 +155,27 @@ export const SignUpLink = styled(NavLink)`
   color: ${props => props.theme.color.accent};
   &:hover {
     color: ${props => props.theme.color.secondaryYellow};
+  }
+`;
+
+export const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 280px;
+  min-height: 304px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    position: absolute;
+    top: 104px;
+    left: 30px;
+    z-index: 1;
+    min-width: 336px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    position: static;
+    min-width: 384px;
+    min-height: 312px;
   }
 `;

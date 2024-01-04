@@ -1,7 +1,12 @@
-import { Section } from "components";
+import { NotFound } from 'components';
+import { ErrorSection } from './Error.styled';
 
 const Error = () => {
-  return <Section><div>Error</div></Section>;
+  return (
+    <ErrorSection>
+      <NotFound />
+    </ErrorSection>
+  );
 };
 
 export default Error;

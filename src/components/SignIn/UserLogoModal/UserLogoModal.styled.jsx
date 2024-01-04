@@ -2,7 +2,9 @@ import styled from '@emotion/styled';
 
 export const StyledLogoModal = styled.div`
   position: absolute;
-  top: 54px;
+  z-index: 1;
+  top: 38px;
+  left: -53px;
   width: 118px;
   padding: 16px;
   border-radius: 10px;
@@ -10,17 +12,8 @@ export const StyledLogoModal = styled.div`
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
   transition: all ${props => props.theme.transition.modal};
 
-  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    right: 7%;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    right: 4%;
-  } */
-
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    top: 56px;
-    /* right: 8.5%; */
+    top: 42px; //44
   }
 `;
 

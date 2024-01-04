@@ -1,102 +1,124 @@
-import { useEffect, useRef } from 'react';
-import { useState } from 'react';
-import sprite from 'src/assets/images/sprite/sprite.svg';
 import { BaseModalWindow } from 'components';
-import { Form, Formik, ErrorMessage, Field } from 'formik';
+import { Field, Form, Formik } from 'formik';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
+import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg';
 import {
-  DownloadWrap,
-  FormText,
-  IconDownload,
-  StyledLabel,
-  DownloadBtn,
-  DownloadBtnText,
-  FormField,
-  GenderText,
-  RadioBtn,
-  RadioBtnWrap,
-  RadioBtnText,
-  RadioBtnLabel,
-  Input,
+  updateAvatarThunk,
+  editUserInfoThunk,
+} from '../../../redux/auth/authOperations';
+import { selectUser } from '../../../redux/auth/authSelectors';
+import {
   Avatar,
-  ModalWrap,
-  PasswordText,
-  PasswordLabel,
-  PasswordFormField,
-  IconBtn,
-  PasswordIcon,
-  PasswordInputWrap,
-  SaveBtn,
   DesktopFormWrap,
   DesktopPasswordWrap,
-  LastFormField,
+  DownloadBtn,
+  DownloadBtnText,
+  DownloadWrap,
+  FormField,
+  FormText,
   GenderFormField,
-  SettingModalContent,
-  ErrorInput,
+  GenderText,
+  IconBtn,
+  IconDownload,
+  Input,
+  LastFormField,
+  ModalWrap,
+  PasswordFormField,
+  PasswordIcon,
+  PasswordInputWrap,
+  PasswordLabel,
+  PasswordText,
+  RadioBtn,
+  RadioBtnLabel,
+  RadioBtnText,
+  RadioBtnWrap,
+  SaveBtn,
   StyledErrorMessage,
   StyledErrorText,
-  TestLabel,
+  StyledLabel,
 } from './SettingModal.styled';
-import { forwardRef } from 'react';
-import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg'
-// const defaultAvatar = 'src/assets/images/default_avatar_to_download.jpg';
 
 const settingFormValidationSchema = Yup.object().shape({
-  gender: Yup.string().required('Required'),
-  username: Yup.string()
+  gender: Yup.string(),
+  name: Yup.string()
     .min(3, 'Username must be more then 3 characters long')
-    .max(32, 'Username must be less then 32 characters long')
-    .required('Required'),
-  email: Yup.string().email('Invalid email').required('Required'),
+    .max(32, 'Username must be less then 32 characters long'),
+  email: Yup.string().email('Invalid email'),
   newPassword: Yup.string()
     .min(8, 'New password must be at least 8 characters long')
     .max(64, 'New password must be less then 64 characters long')
-    .required('Required'),
-  oldPassword: Yup.string()
+    .nullable()
+    .test(
+      'isNewPasswordDifferent',
+      'New password should be different from the old one',
+      (value, schema) => !value || value !== schema.parent.outdatedPassword,
+    ),
+  outdatedPassword: Yup.string()
     .min(8, 'Old password must be at least 8 characters long')
     .max(64, 'Old password must be less then 64 characters long')
-    .required('Required'),
+    .when('newPassword', (newPassword, field) =>
+      newPassword[0] ? field.required('Please enter old password') : field,
+    ),
+  repeatedPassword: Yup.string().test(
+    'isRepeatedPasswordValueMatched',
+    'The entered password should match the new one',
+    (value, schema) => !value || value === schema.parent.newPassword,
+  ),
 });
 
 export const SettingModal = ({ onClose }) => {
-  const [files, setFiles] = useState(); //аватарка, яку завантажує юзер
-  const [avatar, setAvatar] = useState(); //рендер аватарки
-  // const [gender, setGender] = useState('girl');
-  // const [username, setUserName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [oldPassword, setOldPassword] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [repeatedPassword, setRepeatedPassword] = useState('');
+  const dispatch = useDispatch();
+  const { avatarURL, email, name, gender } = useSelector(selectUser);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
-  const filePicker = useRef(null);
+  const initialValues = {
+    gender: gender || '',
+    name: name || '',
+    email: email || '',
+    outdatedPassword: '',
+    newPassword: '',
+    repeatedPassword: '',
+  };
 
-  const HiddenInput = forwardRef((props, ref) => (
-    <Field innerRef={ref} {...props} />
-  ));
+  const handleSubmit = (values, actions) => {
+    const { gender, name, email, outdatedPassword, newPassword } = values;
 
-  HiddenInput.displayName = 'MyField';
+    const formData = {
+      gender,
+      name,
+      email,
+      outdatedPassword,
+      newPassword,
+    };
+    // console.log('formData', formData);
 
-  const handleDownloadAvatar = () => {
-    filePicker.current.click();
+    const dataSend = {};
+
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value) {
+        dataSend[key] = value;
+      }
+    });
+
+    // console.log('dataSend', dataSend);
+
+    dispatch(editUserInfoThunk(dataSend));
+    actions.resetForm();
   };
 
   const handlePasswordVisibility = () => {
     setIsPasswordShown(previsPasswordShown => !previsPasswordShown);
   };
 
-  useEffect(() => {
-    if (!files) {
-      return;
-    }
-    const objectUrl = URL.createObjectURL(files[0]); //перетворюємо об'єкт файла на URL
+  const handleAvatarDownload = e => {
+    let formData = new FormData();
+    formData.append('avatar', e.target.files[0]);
 
-    setAvatar(objectUrl); //сетимо URL файла в стейт
-
-    return () => {
-      URL.revokeObjectURL(objectUrl); //підчищаємо пам'ять
-    };
-  }, [files]);
+    dispatch(updateAvatarThunk(formData));
+  };
 
   return (
     <>
@@ -104,20 +126,9 @@ export const SettingModal = ({ onClose }) => {
         <ModalWrap>
           {
             <Formik
-              initialValues={{
-                avatar: '',
-                gender: 'Girl',
-                username: '',
-                email: '',
-                oldPassword: '',
-                newPassword: '',
-                repeatedPassword: '',
-              }}
+              initialValues={initialValues}
               validationSchema={settingFormValidationSchema}
-              onSubmit={(values, actions) => {
-                console.log(values);
-                actions.resetForm();
-              }}
+              onSubmit={handleSubmit}
             >
               {({ values, errors, touched }) => (
                 <Form>
@@ -126,38 +137,25 @@ export const SettingModal = ({ onClose }) => {
                     <DownloadWrap>
                       {
                         <Avatar
-                          src={avatar ? avatar : defaultAvatar}
+                          src={avatarURL ? avatarURL : defaultAvatar}
                           alt="user avatar"
                           width="80px"
                           height="80px"
                         />
                       }
-                      <TestLabel>
-                        <HiddenInput
-                          innerRef={filePicker}
+                      <DownloadBtn>
+                        <Field
                           type="file"
                           name="avatar"
-                          className={"test-input"}
+                          hidden
                           accept="image/png, image/jpeg"
-                          onChange={event => {
-                            if (
-                              event.target.files &&
-                              event.target.files.length > 0
-                            ) {
-                              setFiles(event.target.files);
-                            }
-                          }}
+                          onChange={handleAvatarDownload}
                         />
-                        <DownloadBtn
-                          type="button"
-                          onClick={handleDownloadAvatar}
-                        >
-                          <IconDownload>
-                            <use href={`${sprite}#icon-arrow-up`}></use>
-                          </IconDownload>
-                          <DownloadBtnText>Upload a photo</DownloadBtnText>
-                        </DownloadBtn>
-                      </TestLabel>
+                        <IconDownload>
+                          <use href={`${sprite}#icon-arrow-up`}></use>
+                        </IconDownload>
+                        <DownloadBtnText>Upload a photo</DownloadBtnText>
+                      </DownloadBtn>
                     </DownloadWrap>
                   </FormField>
                   <DesktopFormWrap>
@@ -169,9 +167,8 @@ export const SettingModal = ({ onClose }) => {
                             <RadioBtn
                               type="radio"
                               name="gender"
-                              value="Girl"
-                              checked={values.gender === 'Girl'}
-                            // onChange={event => setGender(event.target.value)}
+                              value="female"
+                              checked={values.gender === 'female'}
                             />
                             <RadioBtnText>Girl</RadioBtnText>
                           </RadioBtnLabel>
@@ -179,9 +176,8 @@ export const SettingModal = ({ onClose }) => {
                             <RadioBtn
                               type="radio"
                               name="gender"
-                              value="Man"
-                              checked={values.gender === 'Man'}
-                            // onChange={event => setGender(event.target.value)}
+                              value="male"
+                              checked={values.gender === 'male'}
                             />
                             <RadioBtnText>Man</RadioBtnText>
                           </RadioBtnLabel>
@@ -189,48 +185,28 @@ export const SettingModal = ({ onClose }) => {
                       </GenderFormField>
                       <FormField>
                         <StyledLabel htmlFor="username">Your name</StyledLabel>
-                        {errors.username && touched.username ? (
-                          <ErrorInput
-                            type="text"
-                            id="username"
-                            name="username"
-                            // value={username}
-                            placeholder={values.username}
-                          // onChange={event => setUserName(event.target.value)}
-                          />
-                        ) : (
-                          <Input
-                            type="text"
-                            id="username"
-                            name="username"
-                            // value={username}
-                            placeholder={values.username}
-                          // onChange={event => setUserName(event.target.value)}
-                          />
-                        )}
-                        <StyledErrorMessage component="p" name="username" />
+                        <Input
+                          type="text"
+                          id="username"
+                          name="name"
+                          className={
+                            errors.name && touched.name ? 'error-input' : null
+                          }
+                          placeholder={values.name}
+                        />
+                        <StyledErrorMessage component="p" name="name" />
                       </FormField>
                       <LastFormField>
                         <StyledLabel htmlFor="email">E-mail</StyledLabel>
-                        {errors.email && touched.email ? (
-                          <ErrorInput
-                            type="email"
-                            id="email"
-                            name="email"
-                            // value={email}
-                            placeholder={values.email}
-                          // onChange={event => setEmail(event.target.value)}
-                          />
-                        ) : (
-                          <Input
-                            type="email"
-                            id="email"
-                            name="email"
-                            // value={email}
-                            placeholder={values.email}
-                          // onChange={event => setEmail(event.target.value)}
-                          />
-                        )}
+                        <Input
+                          type="email"
+                          id="email"
+                          name="email"
+                          className={
+                            errors.email && touched.email ? 'error-input' : null
+                          }
+                          placeholder={values.email}
+                        />
                         <StyledErrorMessage component="p" name="email" />
                       </LastFormField>
                     </DesktopPasswordWrap>
@@ -241,25 +217,18 @@ export const SettingModal = ({ onClose }) => {
                           Outdated password:
                         </PasswordLabel>
                         <PasswordInputWrap>
-                          {errors.oldPassword && touched.oldPassword ? (
-                            <ErrorInput
-                              type={isPasswordShown ? 'text' : 'password'}
-                              id="oldPassword"
-                              name="oldPassword"
-                              // value={oldPassword}
-                              placeholder="Password"
-                            // onChange={event => setOldPassword(event.target.value)}
-                            />
-                          ) : (
-                            <Input
-                              type={isPasswordShown ? 'text' : 'password'}
-                              id="oldPassword"
-                              name="oldPassword"
-                              // value={oldPassword}
-                              placeholder="Password"
-                            // onChange={event => setOldPassword(event.target.value)}
-                            />
-                          )}
+                          <Input
+                            type={isPasswordShown ? 'text' : 'password'}
+                            id="oldPassword"
+                            name="outdatedPassword"
+                            className={
+                              errors.outdatedPassword &&
+                                touched.outdatedPassword
+                                ? 'error-input'
+                                : null
+                            }
+                            placeholder="Password"
+                          />
                           <IconBtn
                             type="button"
                             onClick={handlePasswordVisibility}
@@ -275,32 +244,28 @@ export const SettingModal = ({ onClose }) => {
                             )}
                           </IconBtn>
                         </PasswordInputWrap>
-                        <StyledErrorMessage component="p" name="oldPassword" />
+                        <StyledErrorMessage
+                          component="p"
+                          name="outdatedPassword"
+                        />
                       </PasswordFormField>
                       <PasswordFormField>
                         <PasswordLabel htmlFor="password">
                           New Password:
                         </PasswordLabel>
                         <PasswordInputWrap>
-                          {errors.newPassword && touched.newPassword ? (
-                            <ErrorInput
-                              type={isPasswordShown ? 'text' : 'password'}
-                              id="password"
-                              name="newPassword"
-                              // value={password}
-                              placeholder="Password"
-                            // onChange={event => setPassword(event.target.value)}
-                            />
-                          ) : (
-                            <Input
-                              type={isPasswordShown ? 'text' : 'password'}
-                              id="password"
-                              name="newPassword"
-                              // value={password}
-                              placeholder="Password"
-                            // onChange={event => setPassword(event.target.value)}
-                            />
-                          )}
+                          <Input
+                            type={isPasswordShown ? 'text' : 'password'}
+                            id="password"
+                            name="newPassword"
+                            className={
+                              (errors.newPassword && touched.newPassword) ||
+                                (values.outdatedPassword && !values.newPassword)
+                                ? 'error-input'
+                                : null
+                            }
+                            placeholder="Password"
+                          />
                           <IconBtn
                             type="button"
                             onClick={handlePasswordVisibility}
@@ -316,6 +281,11 @@ export const SettingModal = ({ onClose }) => {
                             )}
                           </IconBtn>
                         </PasswordInputWrap>
+                        {values.outdatedPassword && !values.newPassword && (
+                          <StyledErrorText>
+                            Please, enter new password
+                          </StyledErrorText>
+                        )}
                         <StyledErrorMessage component="p" name="newPassword" />
                       </PasswordFormField>
                       <LastFormField>
@@ -323,29 +293,17 @@ export const SettingModal = ({ onClose }) => {
                           Repeat new password:
                         </PasswordLabel>
                         <PasswordInputWrap>
-                          {values.newPassword !== values.repeatedPassword ? (
-                            <ErrorInput
-                              type={isPasswordShown ? 'text' : 'password'}
-                              id="repeatedPassword"
-                              name="repeatedPassword"
-                              // value={repeatedPassword}
-                              placeholder="Password"
-                            // onChange={event =>
-                            //   setRepeatedPassword(event.target.value)
-                            // }
-                            />
-                          ) : (
-                            <Input
-                              type={isPasswordShown ? 'text' : 'password'}
-                              id="repeatedPassword"
-                              name="repeatedPassword"
-                              // value={repeatedPassword}
-                              placeholder="Password"
-                            // onChange={event =>
-                            //   setRepeatedPassword(event.target.value)
-                            // }
-                            />
-                          )}
+                          <Input
+                            type={isPasswordShown ? 'text' : 'password'}
+                            id="repeatedPassword"
+                            name="repeatedPassword"
+                            className={
+                              values.newPassword !== values.repeatedPassword
+                                ? 'error-input'
+                                : null
+                            }
+                            placeholder="Password"
+                          />
                           <IconBtn
                             type="button"
                             onClick={handlePasswordVisibility}
@@ -361,12 +319,10 @@ export const SettingModal = ({ onClose }) => {
                             )}
                           </IconBtn>
                         </PasswordInputWrap>
-                        {values.newPassword !== values.repeatedPassword ? (
-                          <StyledErrorText>
-                            {`The entered password doesn't matches the new
-                            password`}
-                          </StyledErrorText>
-                        ) : null}
+                        <StyledErrorMessage
+                          component="p"
+                          name="repeatedPassword"
+                        />
                       </LastFormField>
                     </DesktopPasswordWrap>
                   </DesktopFormWrap>
