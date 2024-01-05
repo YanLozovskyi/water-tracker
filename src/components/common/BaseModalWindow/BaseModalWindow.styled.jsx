@@ -30,7 +30,7 @@ export const ModalContent = styled.div`
   overflow: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    min-width: 704px;
+    min-width: 592px;
   }
 
   /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {

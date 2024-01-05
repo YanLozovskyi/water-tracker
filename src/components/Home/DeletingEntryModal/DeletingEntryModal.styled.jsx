@@ -2,10 +2,6 @@ import styled from '@emotion/styled';
 
 export const BoxModal = styled.div`
   padding: 0 24px 32px;
-  /* 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    max-width: 592px;
-  } */
 `;
 
 export const ButtonStyle = styled.button`

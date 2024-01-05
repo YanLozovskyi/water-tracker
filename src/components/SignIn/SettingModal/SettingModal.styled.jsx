@@ -173,6 +173,7 @@ export const ModalWrap = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 
   @media (min-width: ${props => props.theme.breakpoint.tablet}) {
+    min-width: 704px;
     padding-left: 24px;
     padding-right: 24px;
   }

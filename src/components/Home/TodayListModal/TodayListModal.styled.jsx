@@ -16,9 +16,14 @@ export const BoxAddModal = styled.div`
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    min-width: 704px;
     padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 32px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    min-width: 592px;
   }
 `;
 
