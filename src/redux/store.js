@@ -21,11 +21,17 @@ const PersistConfig = {
   whitelist: ['token'],
 };
 
+// const ThemePersistConfig = {
+//   key: 'theme',
+//   storage,
+// };
+
 export const store = configureStore({
   reducer: {
     root: rootReducer,
     auth: persistReducer(PersistConfig, authReducer),
     waterData: waterReducer,
+    // theme: persistReducer(ThemePersistConfig, themeReducer),
     theme: themeReducer,
   },
   middleware: getDefaultMiddleware =>

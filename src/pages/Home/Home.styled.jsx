@@ -34,7 +34,7 @@ export const HomeSection = styled(Section)`
 `;
 
 export const BoxHome = styled.div`
-  margin-top: 24px;
+  /* margin-top: 24px; */
   padding: 0;
   width: 100%;
   display: flex;
