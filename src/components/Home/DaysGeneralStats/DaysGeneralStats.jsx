@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSelectors';
-import { formatMonth } from '../../../helpers/utils/dateUtils';
+import { selectMonthData } from '../../../redux/waterData/waterSelectors';
+import { formatDate } from '../../../helpers/utils/dateUtils';
 import {
   DaysGeneralStatsModal,
   DaysGeneralStatsList,
@@ -10,15 +11,11 @@ import {
   DaysGeneralStatsData,
 } from './DaysGeneralStats.styled';
 
-export const DaysGeneralStats = ({
-  day,
-  stats: { full, servings },
-  month,
-  position,
-  onShow,
-}) => {
+export const DaysGeneralStats = ({ stats, position, onShow }) => {
+  const { date, waterVolumeSum, drinkCount, waterVolumePercentage } = stats;
   const modalRef = useRef(null);
   const { waterRate } = useSelector(selectUser);
+  // const monthData = useSelector(selectMonthData);
 
   useEffect(() => {
     if (!modalRef.current) return;
@@ -59,6 +56,7 @@ export const DaysGeneralStats = ({
 
   const waterRateL = (waterRate / 1000).toFixed(1) + ' L';
 
+  const formattedDate = date ? formatDate(date, 'd, MMMM') : '';
   return (
     <DaysGeneralStatsModal
       ref={modalRef}
@@ -66,20 +64,20 @@ export const DaysGeneralStats = ({
     >
       <DaysGeneralStatsList>
         <DaysGeneralStatsItem>
-          <DaysGeneralStatsData>
-            {day}, {formatMonth(month)}
-          </DaysGeneralStatsData>
+          <DaysGeneralStatsData>{formattedDate}</DaysGeneralStatsData>
         </DaysGeneralStatsItem>
         <DaysGeneralStatsItem>
           Daily norma:<DaysGeneralStatsInfo>{waterRateL}</DaysGeneralStatsInfo>
         </DaysGeneralStatsItem>
         <DaysGeneralStatsItem>
           Fulfillment of the daily norm:
-          <DaysGeneralStatsInfo>{full}</DaysGeneralStatsInfo>
+          <DaysGeneralStatsInfo>
+            {Math.round(waterVolumePercentage)}%
+          </DaysGeneralStatsInfo>
         </DaysGeneralStatsItem>
         <DaysGeneralStatsItem>
           How many servings of water:
-          <DaysGeneralStatsInfo>{servings}</DaysGeneralStatsInfo>
+          <DaysGeneralStatsInfo>{drinkCount}</DaysGeneralStatsInfo>
         </DaysGeneralStatsItem>
       </DaysGeneralStatsList>
     </DaysGeneralStatsModal>
