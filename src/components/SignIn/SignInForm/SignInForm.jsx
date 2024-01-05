@@ -25,7 +25,7 @@ const validationSchema = Yup.object({
     .required('Email is required'),
   password: Yup.string()
     .required('Password is required')
-    .min(8, 'Your password is too short.')
+    .min(8, 'Your password is too short.'),
 });
 
 export const SignInForm = () => {
@@ -48,12 +48,12 @@ export const SignInForm = () => {
             dispatch(logInThunk({ email, password }));
           }}
         >
-          {formik => (
+          {({ errors, isValid }) => (
             <SignForm>
               <SignStyledLabel>
                 Enter your email
                 <SignStyledInput
-                  className={formik.errors.email ? 'input-with-error' : null}
+                  className={errors.email ? 'input-with-error' : null}
                   type="email"
                   name="email"
                   placeholder="E-mail"
@@ -63,7 +63,7 @@ export const SignInForm = () => {
               <SignStyledLabel>
                 Enter your password
                 <SignStyledInput
-                  className={formik.errors.password ? 'input-with-error' : null}
+                  className={errors.password ? 'input-with-error' : null}
                   type={iconStatus ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
@@ -80,7 +80,7 @@ export const SignInForm = () => {
                 )}
               </SignStyledLabel>
               <SignButton
-                className={!formik.isValid ? 'button-disabled' : null}
+                className={!isValid ? 'button-disabled' : null}
                 type="submit"
               >
                 Sign In
@@ -89,6 +89,7 @@ export const SignInForm = () => {
           )}
         </Formik>
         <SignInLink to="/signup">Sign up</SignInLink>
+        <SignInLink to="/forgot-password">I forgot password</SignInLink>
       </FormContainer>
     </SignUpContainer>
   );

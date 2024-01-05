@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 export const StyledLogoModal = styled.div`
   position: absolute;
   z-index: 1;
-  top: 38px;
-  left: -53px;
+  left: -120px;
+  top: 32px;
   width: 118px;
   padding: 16px;
   border-radius: 10px;
@@ -13,7 +13,7 @@ export const StyledLogoModal = styled.div`
   transition: all ${props => props.theme.transition.modal};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    top: 42px; //44
+    top: 34px;
   }
 `;
 
@@ -44,4 +44,9 @@ export const StyledListItem = styled.li`
   &:not(:last-child) {
     margin-bottom: 16px;
   }
+`;
+
+export const UserLogoModalWrap = styled.div`
+  position: relative;
+  margin-bottom: 6px;
 `;

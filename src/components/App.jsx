@@ -17,6 +17,7 @@ const ErrorPage = lazy(() => import('../pages/Error/Error'));
 const ForgotPassPage = lazy(() =>
   import('../pages/ForgotPasswordPage/ForgotPassword'),
 );
+const ResetPassPage = lazy(() => import('../pages/ResetPasswordPage/ResetPassword'))
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +57,10 @@ const App = () => {
               redirectTo="/signin"
             />
           }
+        />
+        <Route
+          path="api/auth/reset-pass"
+          element={<ResetPassPage />}
         />
         <Route path="*" element={<ErrorPage />} />
       </Route>
