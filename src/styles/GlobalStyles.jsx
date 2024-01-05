@@ -221,8 +221,14 @@ export const GlobalStyles = css`
 
     letter-spacing: 2px;
 
-    &::placeholder {
-      font-family: 'Roboto';
+    &:placeholder-shown {
+      font-family: 'Roboto', sans-serif;
+      font-size: 18px;
+      line-height: 1.15;
+      letter-spacing: normal;
+      -webkit-font-smoothing: auto;
+      -moz-osx-font-smoothing: auto;
+      text-shadow: none;
     }
   }
   

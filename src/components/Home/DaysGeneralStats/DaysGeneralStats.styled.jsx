@@ -26,7 +26,7 @@ export const DaysGeneralStatsItem = styled.li`
 
 export const DaysGeneralStatsInfo = styled.span`
   color: ${({ theme }) => theme.color.accent};
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
 `;
 export const DaysGeneralStatsData = styled.p`

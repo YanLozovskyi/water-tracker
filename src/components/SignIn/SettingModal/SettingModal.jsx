@@ -39,6 +39,7 @@ import {
   StyledErrorMessage,
   StyledErrorText,
   StyledLabel,
+  DesktopGenderWrap,
 } from './SettingModal.styled';
 
 const settingFormValidationSchema = Yup.object().shape({
@@ -54,7 +55,7 @@ const settingFormValidationSchema = Yup.object().shape({
     .test(
       'isNewPasswordDifferent',
       'New password should be different from the old one',
-      (value, schema) => !value || value !== schema.parent.outdatedPassword,
+      (value, { parent }) => !value || value !== parent.outdatedPassword,
     ),
   outdatedPassword: Yup.string()
     .min(8, 'Old password must be at least 8 characters long')
@@ -65,7 +66,7 @@ const settingFormValidationSchema = Yup.object().shape({
   repeatedPassword: Yup.string().test(
     'isRepeatedPasswordValueMatched',
     'The entered password should match the new one',
-    (value, schema) => !value || value === schema.parent.newPassword,
+    (value, { parent }) => !value || value === parent.newPassword,
   ),
 });
 
@@ -84,6 +85,10 @@ export const SettingModal = ({ onClose }) => {
   };
 
   const handleSubmit = (values, actions) => {
+    if (values.outdatedPassword && !values.newPassword) {
+      return;
+    }
+
     const { gender, name, email, outdatedPassword, newPassword } = values;
 
     const formData = {
@@ -159,7 +164,7 @@ export const SettingModal = ({ onClose }) => {
                     </DownloadWrap>
                   </FormField>
                   <DesktopFormWrap>
-                    <DesktopPasswordWrap>
+                    <DesktopGenderWrap>
                       <GenderFormField>
                         <GenderText>Your gender identity</GenderText>
                         <RadioBtnWrap>
@@ -209,7 +214,7 @@ export const SettingModal = ({ onClose }) => {
                         />
                         <StyledErrorMessage component="p" name="email" />
                       </LastFormField>
-                    </DesktopPasswordWrap>
+                    </DesktopGenderWrap>
                     <DesktopPasswordWrap>
                       <PasswordText>Password</PasswordText>
                       <PasswordFormField>
@@ -227,11 +232,8 @@ export const SettingModal = ({ onClose }) => {
                                 ? 'error-input'
                                 : null
                             }
-                          // placeholder="Password"
-                          />{values.outdatedPassword === "" ? <span style={{
-                            position: "absolute", top: "50%",
-                            left: "10px", transform: "translateY(-50%)", opacity: '50%',
-                          }}>Password</span> : null}
+                            placeholder="Password"
+                          />
                           <IconBtn
                             type="button"
                             onClick={handlePasswordVisibility}

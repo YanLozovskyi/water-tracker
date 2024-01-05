@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { selectUser } from '../../../redux/auth/authSelectors';
+import { UserLogoModalWrap } from '../UserLogoModal/UserLogoModal.styled';
 import {
   UserAvatar,
   UserDefaultAvatar,
@@ -60,11 +61,11 @@ export const UserLogo = () => {
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      <div>
+      <UserLogoModalWrap>
         {modalIsOpen && (
           <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />
         )}
-      </div>
+      </UserLogoModalWrap>
     </UserLogoContainer>
   );
 };
