@@ -8,6 +8,7 @@ import {
   updateAvatarThunk,
   updateWaterRateThunk,
   reqPassThunk,
+  resPassThunk,
 } from './authOperations';
 import {
   handleLogin,
@@ -20,6 +21,7 @@ import {
   handlerUpdateAvatar,
   handlerUpdateWaterRate,
   handleReqPass,
+  handleResPass,
 } from './handlers';
 
 export const initialState = {
@@ -49,7 +51,8 @@ const authSlice = createSlice({
       .addCase(refreshUserThunk.fulfilled, handleRefreshFulfield)
       .addCase(refreshUserThunk.pending, handleRefreshPending)
       .addCase(refreshUserThunk.rejected, handleRefreshReject)
-      .addCase(reqPassThunk.fulfilled, handleReqPass);
+      .addCase(reqPassThunk.fulfilled, handleReqPass)
+      .addCase(resPassThunk.fulfilled, handleResPass);
   },
 });
 
