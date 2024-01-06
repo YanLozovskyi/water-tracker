@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getTodayWater } from '../../../redux/waterData/waterOperations';
-import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectWaterVolumePercentage } from '../../../redux/waterData/waterSelectors';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import { TodayListModal } from 'components';
 
@@ -20,20 +19,7 @@ import {
 
 export const WaterRatioPanel = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const dispatch = useDispatch();
-  const todayWater = useSelector(selectWaterToday);
-
-  const roundedWaterVolumePercentage = Math.round(
-    todayWater.waterVolumePercentage,
-  );
-
-  useEffect(() => {
-    dispatch(getTodayWater());
-  }, [dispatch]);
-
-  const openModal = () => {
-    setModalOpen(true);
-  };
+  const roundedWaterVolumePercentage = useSelector(selectWaterVolumePercentage)
 
   const getMarkPosition = () => {
     const limitedPercentage = Math.min(
@@ -41,7 +27,7 @@ export const WaterRatioPanel = () => {
       Math.max(0, roundedWaterVolumePercentage),
     );
     return {
-      left: `calc(${limitedPercentage}% - 12px)`,
+      left: `calc(${limitedPercentage}% + 4px)`,
     };
   };
 
@@ -49,10 +35,6 @@ export const WaterRatioPanel = () => {
     return {
       backgroundSize: `${roundedWaterVolumePercentage}%`,
     };
-  };
-
-  const handleUpdate = () => {
-    dispatch(getTodayWater());
   };
 
   const showMarkLabel =
@@ -82,16 +64,15 @@ export const WaterRatioPanel = () => {
           <RightMark>100%</RightMark>
         </MarksContainer>
       </WaterRangeContainer>
-      <AddWaterButton onClick={openModal}>
+      <AddWaterButton onClick={() => setModalOpen(true)}>
         <AddIcon>
           <use href={`${sprite}#icon-increment-outline`}></use>
-        </AddIcon>{' '}
+        </AddIcon>
         Add Water
       </AddWaterButton>
       {isModalOpen && (
         <TodayListModal
           onClose={() => setModalOpen(false)}
-          onUpdate={handleUpdate}
         />
       )}
     </WaterRatioPanelContainer>
