@@ -40,7 +40,6 @@ export const TodayWaterList = () => {
 
   useEffect(() => {
     dispatch(getTodayWater());
-    dispatch(getMonthWater({ startDate: '2024-01-01', endDate: '2024-01-31' }));
   }, [dispatch]);
 
   const openModalToAdd = () => {
