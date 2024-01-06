@@ -1,8 +1,7 @@
-import { Container, Logo, UserAuth, UserLogo } from 'components';
+import { Container, Logo, UserAuth, UserLogo, TogglerTheme } from 'components';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
 import { ContainerHeader, HeaderWrap } from './Header.styled';
-import { TogglerTheme } from '../togglerTheme/togglerTheme';
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
