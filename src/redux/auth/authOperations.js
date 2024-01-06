@@ -4,6 +4,7 @@ import {
   logout,
   refreshUser,
   requestPassword,
+  resetPassword,
   signin,
   signup,
   updateAvatar,
@@ -51,8 +52,19 @@ export const reqPassThunk = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const email = await requestPassword(credentials);
-      console.log(email);
       return email;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const resPassThunk = createAsyncThunk(
+  '/auth/reset-pass',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const data = await resetPassword(credentials);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

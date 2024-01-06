@@ -17,11 +17,13 @@ const ErrorPage = lazy(() => import('../pages/Error/Error'));
 const ForgotPassPage = lazy(() =>
   import('../pages/ForgotPasswordPage/ForgotPassword'),
 );
-const ResetPassPage = lazy(() => import('../pages/ResetPasswordPage/ResetPassword'))
+const ResetPassPage = lazy(() =>
+  import('../pages/ResetPasswordPage/ResetPassword'),
+);
 
 const App = () => {
   const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing)
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
     dispatch(refreshUserThunk());
@@ -36,7 +38,10 @@ const App = () => {
             <RestrictedRoute component={<WelcomePage />} redirectTo="/home" />
           }
         />
-        <Route path="home" element={<PrivateRoute component={HomePage} redirectTo={'/'} />} />
+        <Route
+          path="home"
+          element={<PrivateRoute component={HomePage} redirectTo={'/'} />}
+        />
         <Route
           path="signin"
           element={
@@ -58,10 +63,7 @@ const App = () => {
             />
           }
         />
-        <Route
-          path="api/auth/reset-pass"
-          element={<ResetPassPage />}
-        />
+        <Route path="api/auth/reset-pass" element={<ResetPassPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

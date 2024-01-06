@@ -7,6 +7,7 @@ import { logInThunk } from '../../../redux/auth/authOperations';
 import {
   BootleImg,
   ErrorSpan,
+  ErrorSvg,
   EyeSlashIcon,
   FormContainer,
   FormTitle,
@@ -15,8 +16,10 @@ import {
   SignStyledInput,
   SignStyledLabel,
   SignUpContainer,
+  SuccessSvg,
 } from '../../SignUp/SignUpForm/SignUpForm.styled';
 import { SignInLink } from './SignInForm.styled';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const validationSchema = Yup.object({
   email: Yup.string('Enter your email')
@@ -46,9 +49,10 @@ export const SignInForm = () => {
           validationSchema={validationSchema}
           onSubmit={({ email, password }) => {
             dispatch(logInThunk({ email, password }));
+            onreset();
           }}
         >
-          {({ errors, isValid }) => (
+          {({ errors, isValid, values }) => (
             <SignForm>
               <SignStyledLabel>
                 Enter your email
@@ -59,6 +63,8 @@ export const SignInForm = () => {
                   placeholder="E-mail"
                 />
                 <ErrorMessage name="email" component={ErrorSpan} />
+                {errors.email && values.email && <ErrorSvg />}
+                {!errors.email && values.email && <SuccessSvg />}
               </SignStyledLabel>
               <SignStyledLabel>
                 Enter your password
@@ -78,6 +84,12 @@ export const SignInForm = () => {
                     <use href={`${sprite}#icon-to-open`}></use>
                   </EyeSlashIcon>
                 )}
+                <PasswordStrengthBar
+                  style={{ height: '8px' }}
+                  scoreWordStyle={{ margin: '0px' }}
+                  password={values.password}
+                  minLength={8}
+                />
               </SignStyledLabel>
               <SignButton
                 className={!isValid ? 'button-disabled' : null}

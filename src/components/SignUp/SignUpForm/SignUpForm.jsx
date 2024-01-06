@@ -69,7 +69,8 @@ export const SignUpForm = () => {
                   placeholder="E-mail"
                 />
                 <ErrorMessage name="email" component={ErrorSpan} />
-                {errors.email && touched.email ? <ErrorSvg /> : <SuccessSvg />}
+                {errors.email && values.email && <ErrorSvg />}
+                {!errors.email && values.email && <SuccessSvg />}
               </SignStyledLabel>
               <SignStyledLabel>
                 Enter your password
@@ -91,7 +92,9 @@ export const SignUpForm = () => {
                 )}
                 <PasswordStrengthBar
                   style={{ height: '5px' }}
+                  scoreWordStyle={{ margin: '0' }}
                   password={values.password}
+                  minLength={8}
                 />
               </SignStyledLabel>
               <SignStyledLabel>
@@ -112,6 +115,10 @@ export const SignUpForm = () => {
                     <use href={`${sprite}#icon-to-open`}></use>
                   </EyeSlashIcon>
                 )}
+                <PasswordStrengthBar
+                  password={values.confirmPassword}
+                  scoreWordStyle={{ margin: '0' }}
+                />
               </SignStyledLabel>
               <SignButton
                 className={!isValid ? 'button-disabled' : null}

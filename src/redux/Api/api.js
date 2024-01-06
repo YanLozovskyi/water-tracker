@@ -32,7 +32,11 @@ export const logout = async () => {
 
 export const requestPassword = async body => {
   const { data } = await axios.post('/auth/request-pass', body);
-  console.log(data);
+  return data;
+};
+
+export const resetPassword = async body => {
+  const { data } = await axios.post('/auth/reset-pass', body);
   return data;
 };
 

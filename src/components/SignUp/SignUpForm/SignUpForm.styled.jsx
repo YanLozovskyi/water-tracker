@@ -119,7 +119,7 @@ export const SignStyledInput = styled(Field)`
 export const SignForm = styled(Form)`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 20px;
 
   .button-disabled {
     background-color: ${props => props.theme.color.secondaryPowderBlue};
