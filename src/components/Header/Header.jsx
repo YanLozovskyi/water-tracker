@@ -1,13 +1,13 @@
 import { Container, Logo, UserAuth, UserLogo, TogglerTheme } from 'components';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from '../../redux/auth/authSelectors';
-import { ContainerHeader, HeaderWrap } from './Header.styled';
+import { ContainerHeader } from './Header.styled';
 
 export const Header = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
-    <HeaderWrap>
+    <header>
       <Container>
         <ContainerHeader>
           <Logo />
@@ -15,6 +15,6 @@ export const Header = () => {
           {isLoggedIn ? <UserLogo /> : <UserAuth />}
         </ContainerHeader>
       </Container>
-    </HeaderWrap>
+    </header>
   );
 };

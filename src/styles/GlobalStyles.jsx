@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import emotionNormalize from 'emotion-normalize';
 
 import RobotoRegular from '../assets/fonts/Roboto-Regular.ttf';
@@ -10,7 +10,9 @@ import fontStarWoff from '../assets/fonts/customStars/fontello.woff';
 import fontStarTtf from '../assets/fonts/customStars/fontello.ttf';
 import fontStarSvg from '../assets/fonts/customStars/fontello.svg';
 
-export const GlobalStyles = css`
+export const GlobalStyles = () => {
+  const theme = useTheme();
+  return css`
   ${emotionNormalize}
 
   /* ========================= Reset styles ========================= */
@@ -245,6 +247,9 @@ export const GlobalStyles = css`
   body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+    color: ${theme.color.black};
+    background-color: ${theme.color.white};
+    transition: all 0.5s linear;
   }
   /* ========================= /Common styles ========================= */
 
@@ -269,4 +274,4 @@ export const GlobalStyles = css`
   }
 
   /* ========================= /Scroll styles ========================= */
-`;
+`}
