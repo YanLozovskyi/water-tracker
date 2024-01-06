@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from '../../styles';
-import { selectTheme } from '../../redux/theme/themeSelectors';
+import { selectTheme } from '../../redux/options/optionsSelectors';
 import { useState, useEffect } from 'react';
 
 export const Theme = ({ children }) => {

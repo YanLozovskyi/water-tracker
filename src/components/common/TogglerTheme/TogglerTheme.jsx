@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectTheme } from '../../../redux/theme/themeSelectors';
-import { set } from '../../../redux/theme/themeSlice';
+import { selectTheme } from '../../../redux/options/optionsSelectors';
+import { set } from '../../../redux/options/optionsSlice';
 import { ToggleContainer, ToggleHandle } from './TogglerTheme.styled';
 
 export const TogglerTheme = () => {

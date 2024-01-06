@@ -12,7 +12,7 @@ import {
 } from './DaysGeneralStats.styled';
 
 export const DaysGeneralStats = ({ stats, position, onShow }) => {
-  const { date, waterVolumeSum, drinkCount, waterVolumePercentage } = stats;
+  const { date, drinkCount, waterVolumePercentage } = stats;
   const modalRef = useRef(null);
   const { waterRate } = useSelector(selectUser);
   // const monthData = useSelector(selectMonthData);
