@@ -10,7 +10,7 @@ export const HeaderMonth = styled.div`
     font-size: 24px;
     font-weight: 500;
     line-height: 1.25;
-    color: ${props => props.theme.color.black};
+    color: ${({ theme }) => theme.color.black};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -27,13 +27,14 @@ export const ButtonPaginator = styled.button`
   width: 14px;
   height: 14px;
   background: transparent;
-  color: ${props =>
-    props.active
-      ? props.theme.color.accent
-      : props.theme.color.secondaryLightBlue};
+  color: ${({ theme }) => theme.color.secondaryLightBlue};
+
+  &:active {
+    color: ${({ theme }) => theme.color.accent};
+  }
 
   &:hover {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 `;
 
@@ -41,7 +42,7 @@ export const Paginator = styled.div`
   display: flex;
   align-items: baseline;
   position: relative;
-  color: ${props => props.theme.color.accent};
+  color: ${({ theme }) => theme.color.accent};
   column-gap: 12px;
   font-size: 16px;
   font-weight: 400;
@@ -84,7 +85,7 @@ export const DaysPercentage = styled.div`
   font-size: 10px;
   font-weight: 400;
   line-height: 1.6;
-  color: ${props => props.theme.color.secondaryLightBlue};
+  color: ${({ theme }) => theme.color.secondaryLightBlue};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 12px;
@@ -99,13 +100,13 @@ export const DaysButton = styled.button`
   align-items: center;
   gap: 10px;
   font-size: 14px;
-  background-color: ${props => props.theme.color.white};
+  background-color: ${({ theme }) => theme.color.white};
   border: 1px solid
     ${props =>
-      props.isHighlighted
-        ? props.theme.color.secondaryYellow
-        : props.theme.color.white};
-  color: ${props => props.theme.color.black};
+    props.isHighlighted
+      ? props.theme.color.secondaryYellow
+      : props.theme.color.white};
+  color: ${({ theme }) => theme.color.black};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
