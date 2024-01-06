@@ -9,7 +9,6 @@ import fontStarWoff2 from '../assets/fonts/customStars/fontello.woff2';
 import fontStarWoff from '../assets/fonts/customStars/fontello.woff';
 import fontStarTtf from '../assets/fonts/customStars/fontello.ttf';
 import fontStarSvg from '../assets/fonts/customStars/fontello.svg';
-import { theme } from './theme';
 
 export const GlobalStyles = css`
   ${emotionNormalize}
@@ -246,9 +245,6 @@ export const GlobalStyles = css`
   body {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
-    color: ${theme};
-    background-color: ${theme};
-    transition: all 0.5s linear;
   }
   /* ========================= /Common styles ========================= */
 
