@@ -48,5 +48,4 @@ export const StyledListItem = styled.li`
 
 export const UserLogoModalWrap = styled.div`
   position: relative;
-  margin-bottom: 6px;
 `;

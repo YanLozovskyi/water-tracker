@@ -24,7 +24,6 @@ import {
   IconBtn,
   IconDownload,
   Input,
-  LastFormField,
   ModalWrap,
   PasswordFormField,
   PasswordIcon,
@@ -40,6 +39,7 @@ import {
   StyledErrorText,
   StyledLabel,
   DesktopGenderWrap,
+  LastPasswordFormField,
 } from './SettingModal.styled';
 
 const settingFormValidationSchema = Yup.object().shape({
@@ -112,6 +112,7 @@ export const SettingModal = ({ onClose }) => {
 
     dispatch(editUserInfoThunk(dataSend));
     actions.resetForm();
+    onClose();
   };
 
   const handlePasswordVisibility = () => {
@@ -201,7 +202,7 @@ export const SettingModal = ({ onClose }) => {
                         />
                         <StyledErrorMessage component="p" name="name" />
                       </FormField>
-                      <LastFormField>
+                      <div>
                         <StyledLabel htmlFor="email">E-mail</StyledLabel>
                         <Input
                           type="email"
@@ -213,7 +214,7 @@ export const SettingModal = ({ onClose }) => {
                           placeholder={values.email}
                         />
                         <StyledErrorMessage component="p" name="email" />
-                      </LastFormField>
+                      </div>
                     </DesktopGenderWrap>
                     <DesktopPasswordWrap>
                       <PasswordText>Password</PasswordText>
@@ -293,7 +294,7 @@ export const SettingModal = ({ onClose }) => {
                         )}
                         <StyledErrorMessage component="p" name="newPassword" />
                       </PasswordFormField>
-                      <LastFormField>
+                      <LastPasswordFormField>
                         <PasswordLabel htmlFor="repeatedPassword">
                           Repeat new password:
                         </PasswordLabel>
@@ -328,7 +329,7 @@ export const SettingModal = ({ onClose }) => {
                           component="p"
                           name="repeatedPassword"
                         />
-                      </LastFormField>
+                      </LastPasswordFormField>
                     </DesktopPasswordWrap>
                   </DesktopFormWrap>
                   <SaveBtn type="submit">Save</SaveBtn>

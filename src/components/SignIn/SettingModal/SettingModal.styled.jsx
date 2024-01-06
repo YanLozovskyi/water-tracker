@@ -83,12 +83,12 @@ export const FormField = styled.div`
 `;
 
 export const PasswordFormField = styled(FormField)`
-  margin-bottom: 12px;
-  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    height: 72px;
-  } */
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     height: 82px;
+    margin-bottom: 28px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    margin-bottom: 12px;
   }
 `;
 
@@ -222,16 +222,18 @@ export const SaveBtn = styled.button`
 `;
 
 export const DesktopFormWrap = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    margin-bottom: 24px;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     display: flex;
     gap: 24px;
-    margin-bottom: 24px;
   }
 `;
 
 export const DesktopPasswordWrap = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    height: 320px;
+    min-height: 320px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 392px;
@@ -239,18 +241,24 @@ export const DesktopPasswordWrap = styled.div`
 `;
 
 export const DesktopGenderWrap = styled.div`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    width: 392px;
-  }
-`;
-
-export const LastFormField = styled(FormField)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     margin-bottom: 24px;
   }
-
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    width: 392px;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     margin-bottom: 0px;
+  }
+`;
+
+export const LastPasswordFormField = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    height: 92px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    height: 82px;
   }
 `;
 
