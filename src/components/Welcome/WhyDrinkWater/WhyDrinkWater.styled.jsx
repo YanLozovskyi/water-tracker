@@ -43,8 +43,8 @@ export const OutlineContainer = styled.div`
 
 export const Container = styled.div`
   display: inline-block;
-  margin: auto;
-  width: auto;
+
+  width: 280px;
 
   padding: 24px 16px;
   background-color: ${({ theme }) => theme.color.secondaryWhite};
@@ -53,9 +53,8 @@ export const Container = styled.div`
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 32px 24px;
-
+    width: auto;
     list-style-position: inside;
-    margin: 0;
   }
 `;
 
