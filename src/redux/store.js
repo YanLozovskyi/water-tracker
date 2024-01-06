@@ -13,7 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import { authReducer } from './auth/authSlice';
 import { rootReducer } from './root/rootSlice';
 import { waterReducer } from './waterData/waterSlice';
-import { themeReducer } from './theme/themeSlice';
+import { optionsReducer } from './options/optionsSlice';
 
 const PersistConfig = {
   key: 'root',
@@ -21,18 +21,17 @@ const PersistConfig = {
   whitelist: ['token'],
 };
 
-// const ThemePersistConfig = {
-//   key: 'theme',
-//   storage,
-// };
+const OptionsPersistConfig = {
+  key: 'options',
+  storage,
+};
 
 export const store = configureStore({
   reducer: {
     root: rootReducer,
     auth: persistReducer(PersistConfig, authReducer),
     waterData: waterReducer,
-    // theme: persistReducer(ThemePersistConfig, themeReducer),
-    theme: themeReducer,
+    options: persistReducer(OptionsPersistConfig, optionsReducer),
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
