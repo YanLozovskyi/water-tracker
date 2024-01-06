@@ -37,16 +37,15 @@ export const TodayListModal = ({
   isEditing,
   onClose,
   existingRecordId,
-  onUpdate,
 }) => {
   const [amount, setAmount] = useState(initialAmount || 0);
   const [time, setTime] = useState(
     isEditing && initialTime
       ? formatTimeForInput(initialTime)
       : new Date().toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
+        hour: '2-digit',
+        minute: '2-digit',
+      }),
   );
   const dispatch = useDispatch();
 
@@ -81,8 +80,6 @@ export const TodayListModal = ({
     } else {
       dispatch(addWatersThunk(waterData)).unwrap();
     }
-
-    onUpdate(); // Виклик для оновлення даних у WaterRatioPanel
 
     onClose();
   };
