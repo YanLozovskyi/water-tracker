@@ -70,6 +70,7 @@ export const DaysList = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     column-gap: 34px;
     row-gap: 20px;
+    height: 275px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
