@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import {
   addWaters,
   deleteWater,
@@ -14,7 +15,16 @@ export const addWatersThunk = createAsyncThunk(
       const data = await addWaters(newWater);
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      switch (error.response.status) {
+        case 409:
+          toast.error(`You can't add water at the same time twice`);
+          return rejectWithValue(error.message);
+        case 400:
+          toast.error(`You must write at least 1 ml.`);
+          return rejectWithValue(error.message);
+        default:
+          return rejectWithValue(error.message);
+      }
     }
   },
 );
@@ -27,6 +37,9 @@ export const editWaterThunk = createAsyncThunk(
       const response = await editWater({ newWaterUser, id: _id });
       return response;
     } catch (error) {
+      if (error.response.status === 400) {
+        toast.error(`You must write at least 1 ml.`);
+      }
       return rejectWithValue(error.message);
     }
   },
