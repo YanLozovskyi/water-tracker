@@ -84,6 +84,12 @@ export const FormField = styled.div`
 
 export const PasswordFormField = styled(FormField)`
   margin-bottom: 12px;
+  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    height: 72px;
+  } */
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    height: 82px;
+  }
 `;
 
 export const GenderText = styled(FormText)`
@@ -167,6 +173,7 @@ export const ModalWrap = styled.div`
   background-color: ${({ theme }) => theme.color.white};
 
   @media (min-width: ${props => props.theme.breakpoint.tablet}) {
+    min-width: 704px;
     padding-left: 24px;
     padding-right: 24px;
   }
@@ -223,6 +230,15 @@ export const DesktopFormWrap = styled.div`
 `;
 
 export const DesktopPasswordWrap = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    height: 320px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    width: 392px;
+  }
+`;
+
+export const DesktopGenderWrap = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 392px;
   }

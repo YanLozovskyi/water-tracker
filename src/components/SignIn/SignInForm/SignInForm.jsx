@@ -7,6 +7,7 @@ import { logInThunk } from '../../../redux/auth/authOperations';
 import {
   BootleImg,
   ErrorSpan,
+  ErrorSvg,
   EyeSlashIcon,
   FormContainer,
   FormTitle,
@@ -15,8 +16,10 @@ import {
   SignStyledInput,
   SignStyledLabel,
   SignUpContainer,
+  SuccessSvg,
 } from '../../SignUp/SignUpForm/SignUpForm.styled';
 import { SignInLink } from './SignInForm.styled';
+import PasswordStrengthBar from 'react-password-strength-bar';
 
 const validationSchema = Yup.object({
   email: Yup.string('Enter your email')
@@ -25,7 +28,7 @@ const validationSchema = Yup.object({
     .required('Email is required'),
   password: Yup.string()
     .required('Password is required')
-    .min(8, 'Your password is too short.')
+    .min(8, 'Your password is too short.'),
 });
 
 export const SignInForm = () => {
@@ -46,24 +49,27 @@ export const SignInForm = () => {
           validationSchema={validationSchema}
           onSubmit={({ email, password }) => {
             dispatch(logInThunk({ email, password }));
+            onreset();
           }}
         >
-          {formik => (
+          {({ errors, isValid, values }) => (
             <SignForm>
               <SignStyledLabel>
                 Enter your email
                 <SignStyledInput
-                  className={formik.errors.email ? 'input-with-error' : null}
+                  className={errors.email ? 'input-with-error' : null}
                   type="email"
                   name="email"
                   placeholder="E-mail"
                 />
                 <ErrorMessage name="email" component={ErrorSpan} />
+                {errors.email && values.email && <ErrorSvg />}
+                {!errors.email && values.email && <SuccessSvg />}
               </SignStyledLabel>
               <SignStyledLabel>
                 Enter your password
                 <SignStyledInput
-                  className={formik.errors.password ? 'input-with-error' : null}
+                  className={errors.password ? 'input-with-error' : null}
                   type={iconStatus ? 'text' : 'password'}
                   name="password"
                   placeholder="Password"
@@ -78,9 +84,15 @@ export const SignInForm = () => {
                     <use href={`${sprite}#icon-to-open`}></use>
                   </EyeSlashIcon>
                 )}
+                <PasswordStrengthBar
+                  style={{ height: '8px' }}
+                  scoreWordStyle={{ margin: '0px' }}
+                  password={values.password}
+                  minLength={8}
+                />
               </SignStyledLabel>
               <SignButton
-                className={!formik.isValid ? 'button-disabled' : null}
+                className={!isValid ? 'button-disabled' : null}
                 type="submit"
               >
                 Sign In
@@ -89,6 +101,7 @@ export const SignInForm = () => {
           )}
         </Formik>
         <SignInLink to="/signup">Sign up</SignInLink>
+        <SignInLink to="/forgot-password">I forgot password</SignInLink>
       </FormContainer>
     </SignUpContainer>
   );

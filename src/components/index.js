@@ -7,10 +7,12 @@ export * from './common/Loader/Loader';
 export * from './common/LogOutBtn/LogOutBtn';
 export * from './common/Logo/Logo';
 export * from './common/Section/Section';
+export * from './common/Toggle/Toggle';
 
 // Basic
 
 export * from './ForgotPasswordForm/ForgotPasswordForm';
+export * from './ForgotPasswordForm/ResetPasswordForm';
 export * from './Header/Header';
 
 // Home

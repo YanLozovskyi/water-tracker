@@ -1,6 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { formatMonth } from '../../../helpers/utils/dateUtils';
+import { useDispatch, useSelector } from 'react-redux';
+import { getMonthWater } from '../../../redux/waterData/waterOperations';
+import { selectMonthData } from '../../../redux/waterData/waterSelectors';
 import { DaysGeneralStats } from 'components';
+import {
+  getCurrentMonth,
+  daysInMonth,
+  formatMonth,
+} from '../../../helpers/utils/dateUtils';
 import {
   ButtonPaginator,
   DaysButton,
@@ -11,43 +18,37 @@ import {
   Year,
 } from './MonthStatsTable.styled';
 
-const getCurrentMonth = () => {
-  const date = new Date();
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  return `${year}-${month}`;
-};
-
 export const MonthStatsTable = () => {
+  const dispatch = useDispatch();
+  const monthData = useSelector(selectMonthData);
   const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
-  const [dailyStats, setDailyStats] = useState([]);
+  const [activeButton, setActiveButton] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [dayPosition, setDayPosition] = useState({ top: 0, left: 0, width: 0 });
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
-  const [activeButton, setActiveButton] = useState(null);
-  const [dayPosition, setDayPosition] = useState({ top: 0, left: 0, width: 0 });
-  const [modalVisible, setModalVisible] = useState(false);
 
-  // Функція, яка повертає кількість днів у місяці
-  const daysInMonth = month => {
-    const [year, monthIndex] = month.split('-').map(Number);
-    const isLeapYear = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
-    const daysInFeb = isLeapYear ? 29 : 28;
-    const daysPerMonth = [
-      31,
-      daysInFeb,
-      31,
-      30,
-      31,
-      30,
-      31,
-      31,
-      30,
-      31,
-      30,
-      31,
-    ];
-    return daysPerMonth[monthIndex - 1];
-  };
+  useEffect(() => {
+    dispatch(getMonthWater(selectedMonth));
+  }, [selectedMonth, dispatch]);
+
+  // useMemo для обчислення стану для кожного дня
+  const daysWithData = useMemo(() => {
+    return [...Array(daysInMonth(selectedMonth)).keys()].map(dayIndex => {
+      // Форматуємо дату для пошуку
+      const formattedDay = `${selectedMonth}-${(dayIndex + 1)
+        .toString()
+        .padStart(2, '0')}`;
+      const dayData = monthData.find(data =>
+        data.date.startsWith(formattedDay),
+      );
+      return {
+        day: dayIndex + 1,
+        percentage: dayData ? dayData.waterVolumePercentage : 0,
+        isHighlighted: dayData && dayData.waterVolumePercentage < 100,
+      };
+    });
+  }, [monthData, selectedMonth]);
 
   // Функція для зміни місяця
   const changeMonth = direction => {
@@ -73,42 +74,47 @@ export const MonthStatsTable = () => {
     }
   };
 
-  // Функція для завантаження даних за місяць
-  const fetchDataForMonth = async month => {
-    // код для запиту даних
-    // Приклад: const response = await fetch('/api/data?month=' + month);
-    // setDailyStats(response.data);
-  };
-
   // Обробник кліка по дню
   const onDayClick = day => {
-    setModalVisible(true);
-    // Якщо модальне вікно вже відкрите то закриваємо його
-    if (selectedDayStats && selectedDayStats.day === day) {
-      setSelectedDayStats(null);
-      return;
-    }
-    // Логіка для відкриття модального вікна
-    const dayElement = dayRefs.current[day];
-    if (dayElement) {
-      const rect = dayElement.getBoundingClientRect();
-      setDayPosition({
-        top: rect.top + window.scrollY,
-        left: rect.left,
-        width: rect.width,
-      });
-      setSelectedDayStats({
-        day,
-        ...dailyStats.find(stat => stat.day === day),
-      });
+    // Форматуємо дату для пошуку
+    const formattedDay = `${selectedMonth}-${day.toString().padStart(2, '0')}`;
+    const dayData = monthData.find(data => data.date.startsWith(formattedDay));
+
+    if (dayData) {
+      if (selectedDayStats && selectedDayStats.date === dayData.date) {
+        // Якщо клік по тому ж дню, закриваємо вікно
+        handleCloseModal();
+      } else {
+        // В іншому випадку, відкриваємо вікно з новими даними
+        setSelectedDayStats(dayData);
+        setModalVisible(true);
+
+        // Встановлення позиції модального вікна
+        const dayElement = dayRefs.current[day];
+        if (dayElement) {
+          const rect = dayElement.getBoundingClientRect();
+          setDayPosition({
+            top: rect.top + window.scrollY,
+            left: rect.left,
+            width: rect.width,
+          });
+        }
+      }
     }
   };
+
+  const handleCloseModal = () => {
+    setModalVisible(false);
+    setSelectedDayStats(null);
+  };
+
+  const dayRefs = useRef({});
 
   useEffect(() => {
     const handleClickOutside = event => {
       if (
-        selectedDayStats &&
-        !dayRefs.current[selectedDayStats.day].contains(event.target)
+        modalVisible &&
+        !dayRefs.current[selectedDayStats.day]?.contains(event.target)
       ) {
         handleCloseModal();
       }
@@ -119,40 +125,7 @@ export const MonthStatsTable = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [selectedDayStats]);
-
-  useEffect(() => {
-    fetchDataForMonth(selectedMonth);
-  }, [selectedMonth]);
-
-  // Для прикладу
-  useEffect(() => {
-    setDailyStats([
-      { day: 2, percentage: 60 },
-      { day: 10, percentage: 100 },
-      { day: 15, percentage: 100 },
-      { day: 29, percentage: 60 },
-    ]);
-  }, []);
-
-  // useMemo для обчислення стану для кожного дня
-  const daysWithData = useMemo(() => {
-    return [...Array(daysInMonth(selectedMonth)).keys()].map(dayIndex => {
-      const dayData = dailyStats.find(stat => stat.day === dayIndex + 1);
-      return {
-        day: dayIndex + 1,
-        percentage: dayData ? dayData.percentage : 0, // Встановлюємо 0, якщо немає даних
-        isHighlighted: dayData && dayData.percentage < 100,
-      };
-    });
-  }, [dailyStats, selectedMonth]);
-
-  const dayRefs = useRef({});
-
-  const handleCloseModal = () => {
-    setModalVisible(false);
-    setSelectedDayStats(null);
-  };
+  }, [modalVisible, selectedDayStats]);
 
   return (
     <div>
@@ -181,8 +154,6 @@ export const MonthStatsTable = () => {
 
       {selectedDayStats && (
         <DaysGeneralStats
-          day={selectedDayStats.day}
-          month={selectedMonth}
           stats={selectedDayStats}
           position={dayPosition}
           onClose={handleCloseModal}
@@ -201,7 +172,7 @@ export const MonthStatsTable = () => {
               >
                 {day}
               </DaysButton>
-              <span>{percentage}%</span> {/* Відображення відсотка */}
+              <span>{Math.round(percentage)}%</span>
             </DaysPercentage>
           </div>
         ))}

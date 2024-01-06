@@ -30,6 +30,16 @@ export const logout = async () => {
   unsetToken();
 };
 
+export const requestPassword = async body => {
+  const { data } = await axios.post('/auth/request-pass', body);
+  return data;
+};
+
+export const resetPassword = async body => {
+  const { data } = await axios.post('/auth/reset-pass', body);
+  return data;
+};
+
 // User
 
 export const updateWaterRate = async newWaterRate => {

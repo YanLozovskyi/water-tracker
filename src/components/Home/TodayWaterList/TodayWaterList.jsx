@@ -19,7 +19,10 @@ import {
   TodayVolume,
   TodayWrapper,
 } from './TodayWaterList.styled';
-import { getMonthWater, getTodayWater } from '../../../redux/waterData/waterOperations';
+import {
+  getMonthWater,
+  getTodayWater,
+} from '../../../redux/waterData/waterOperations';
 
 const icons = {
   glass: `${sprite}#icon-glass`,
@@ -37,7 +40,7 @@ export const TodayWaterList = () => {
 
   useEffect(() => {
     dispatch(getTodayWater());
-    dispatch(getMonthWater({ startDate: "2024-01-01", endDate: "2024-01-31" }))
+    dispatch(getMonthWater({ startDate: '2024-01-01', endDate: '2024-01-31' }));
   }, [dispatch]);
 
   const openModalToAdd = () => {
@@ -53,6 +56,10 @@ export const TodayWaterList = () => {
   const openModalToEdit = record => {
     setSelectedRecord(record);
     setModalOpen(true);
+  };
+
+  const handleUpdate = () => {
+    dispatch(getTodayWater());
   };
 
   return (
@@ -106,6 +113,7 @@ export const TodayWaterList = () => {
           isEditing={selectedRecord !== null}
           existingRecordId={selectedRecord?._id}
           onClose={() => setModalOpen(false)}
+          onUpdate={handleUpdate}
         />
       )}
     </TodayWrapper>

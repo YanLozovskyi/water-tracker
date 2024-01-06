@@ -37,6 +37,7 @@ export const TodayListModal = ({
   isEditing,
   onClose,
   existingRecordId,
+  onUpdate,
 }) => {
   const [amount, setAmount] = useState(initialAmount || 0);
   const [time, setTime] = useState(
@@ -80,6 +81,9 @@ export const TodayListModal = ({
     } else {
       dispatch(addWatersThunk(waterData)).unwrap();
     }
+
+    onUpdate(); // Виклик для оновлення даних у WaterRatioPanel
+
     onClose();
   };
 

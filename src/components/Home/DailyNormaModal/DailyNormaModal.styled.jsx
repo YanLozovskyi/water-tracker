@@ -6,14 +6,15 @@ export const BoxModal = styled.div`
   padding-bottom: 24px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    min-width: 704px;
     padding-left: 24px;
     padding-right: 24px;
     padding-bottom: 32px;
   }
 
-  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    width: 592px;
-  } */
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    min-width: 592px;
+  }
 `;
 
 export const Formula = styled.div`

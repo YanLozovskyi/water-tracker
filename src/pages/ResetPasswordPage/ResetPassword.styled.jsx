@@ -8,7 +8,7 @@ import imgHomeMob2x from '../../assets/images/background/homePage/mobile/bubbleM
 import imgHomeTabl1x from '../../assets/images/background/homePage/tablet/bubbleTablet.png';
 import imgHomeTabl2x from '../../assets/images/background/homePage/tablet/bubbleTablet@2x.png';
 
-export const ForgotPasswordSection = styled(Section)`
+export const ResetPasswordSection = styled(Section)`
   padding-top: 40px;
   background-position: top;
   background-image: -webkit-image-set(

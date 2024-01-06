@@ -3,6 +3,8 @@ import {
   editUserInfo,
   logout,
   refreshUser,
+  requestPassword,
+  resetPassword,
   signin,
   signup,
   updateAvatar,
@@ -39,6 +41,30 @@ export const logOutThunk = createAsyncThunk(
     try {
       await logout();
       return;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const reqPassThunk = createAsyncThunk(
+  'auth/request-pass',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const email = await requestPassword(credentials);
+      return email;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const resPassThunk = createAsyncThunk(
+  '/auth/reset-pass',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const data = await resetPassword(credentials);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }

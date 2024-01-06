@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-export const ModalContainer = styled.div`
+export const BoxModal = styled.div`
   padding: 0 24px 32px;
 `;
 
@@ -50,4 +50,16 @@ export const TextStyle = styled.p`
   line-height: 20px;
 
   margin-bottom: 24px;
+`;
+
+export const StyleTitle = styled.h2`
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 32px;
+  color: ${({ theme }) => theme.color.black};
+  padding-left: 12px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    padding-left: 0;
+  }
 `;
