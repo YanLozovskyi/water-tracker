@@ -19,7 +19,7 @@ export const DeletingEntryModal = ({ onClose, recordId }) => {
   return (
     <BaseModalWindow
       onClose={onClose}
-      title={<StyleTitle>Delete Entry</StyleTitle>}
+      title={"Delete Entry"}
     >
       <BoxModal>
         <TextStyle>Are you sure you want to delete the entry?</TextStyle>
@@ -28,6 +28,6 @@ export const DeletingEntryModal = ({ onClose, recordId }) => {
           <ButtonStyle onClick={onClose}>Cancel</ButtonStyle>
         </ButtonBox>
       </BoxModal>
-    </BaseModalWindow>
+    </BaseModalWindow >
   );
 };

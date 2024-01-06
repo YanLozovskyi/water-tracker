@@ -59,7 +59,7 @@ export const InputWater = styled.input`
   border-radius: 40px;
   border: none;
   background: ${({ theme }) => theme.color.secondaryPowderBlue};
-  color: ${theme => theme.color.accent};
+  color: ${({ theme }) => theme.color.accent};
   text-align: center;
   font-size: 18px;
   font-weight: 700;
@@ -80,7 +80,7 @@ export const Label = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 40px;
-  background: ${theme => theme.color.secondaryPowderBlue};
+  background: ${({ theme }) => theme.color.secondaryPowderBlue};
   color: ${({ theme }) => theme.color.accent};
   font-size: 18px;
   font-weight: 700;

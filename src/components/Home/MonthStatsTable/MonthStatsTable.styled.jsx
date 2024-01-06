@@ -103,10 +103,10 @@ export const DaysButton = styled.button`
   background-color: ${({ theme }) => theme.color.white};
   border: 1px solid
     ${props =>
-      props.isHighlighted
-        ? props.theme.color.secondaryYellow
-        : props.theme.color.white};
-  color: ${props => props.theme.color.black};
+    props.isHighlighted
+      ? props.theme.color.secondaryYellow
+      : props.theme.color.white};
+  color: ${({ theme }) => theme.color.black};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 16px;
