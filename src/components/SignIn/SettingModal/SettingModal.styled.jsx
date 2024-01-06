@@ -69,26 +69,26 @@ export const FormField = styled.div`
   margin-bottom: 24px;
 
   .error-input {
-    border: 1px solid ${props => props.theme.color.secondaryRed};
-    color: ${props => props.theme.color.secondaryRed};
+    border: 1px solid ${({ theme }) => theme.color.secondaryRed};
+    color: ${({ theme }) => theme.color.secondaryRed};
 
     &:focus {
       color: ${({ theme }) => theme.color.secondaryRed};
     }
 
     &::placeholder {
-      color: ${props => props.theme.color.secondaryRed};
+      color: ${({ theme }) => theme.color.secondaryRed};
     }
   }
 `;
 
 export const PasswordFormField = styled(FormField)`
-  margin-bottom: 12px;
-  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    height: 72px;
-  } */
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     height: 82px;
+    margin-bottom: 28px;
+  }
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    margin-bottom: 12px;
   }
 `;
 
@@ -97,12 +97,12 @@ export const GenderText = styled(FormText)`
 `;
 
 export const RadioBtn = styled(Field)`
-  border: 1px solid ${props => props.theme.color.accent};
+  border: 1px solid ${({ theme }) => theme.color.accent};
   width: 14px;
   height: 14px;
 
   &:checked {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 `;
 
@@ -147,20 +147,20 @@ export const Input = styled(Field)`
   }
 
   &::placeholder {
-    color: ${props => props.theme.color.secondaryLightBlue};
+    color: ${({ theme }) => theme.color.secondaryLightBlue};
   }
 `;
 
 export const StyledErrorMessage = styled(ErrorMessage)`
   margin-top: 4px;
-  color: ${props => props.theme.color.secondaryRed};
+  color: ${({ theme }) => theme.color.secondaryRed};
   font-size: 14px;
   line-height: 18px; /* 128.571% */
 `;
 
 export const StyledErrorText = styled.p`
   margin-top: 4px;
-  color: ${props => props.theme.color.secondaryRed};
+  color: ${({ theme }) => theme.color.secondaryRed};
   font-size: 14px;
   line-height: 18px; /* 128.571% */
 `;
@@ -172,13 +172,13 @@ export const ModalWrap = styled.div`
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.white};
 
-  @media (min-width: ${props => props.theme.breakpoint.tablet}) {
+  @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     min-width: 704px;
     padding-left: 24px;
     padding-right: 24px;
   }
 
-  @media (min-width: ${props => props.theme.breakpoint.desktop}) {
+  @media (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     min-width: 1008px;
   }
 `;
@@ -206,13 +206,13 @@ export const SaveBtn = styled.button`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25; /* 125% */
-  transition: box-shadow ${props => props.theme.transition.main};
+  transition: box-shadow ${({ theme }) => theme.transition.main};
 
   &:is(:hover, :focus) {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
   }
 
-  @media (min-width: ${props => props.theme.breakpoint.tablet}) {
+  @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     margin-left: auto;
     min-width: 160px;
     padding: 10px 30px;
@@ -222,16 +222,18 @@ export const SaveBtn = styled.button`
 `;
 
 export const DesktopFormWrap = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    margin-bottom: 24px;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     display: flex;
     gap: 24px;
-    margin-bottom: 24px;
   }
 `;
 
 export const DesktopPasswordWrap = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    height: 320px;
+    min-height: 320px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 392px;
@@ -239,18 +241,24 @@ export const DesktopPasswordWrap = styled.div`
 `;
 
 export const DesktopGenderWrap = styled.div`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    width: 392px;
-  }
-`;
-
-export const LastFormField = styled(FormField)`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     margin-bottom: 24px;
   }
-
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    width: 392px;
+  }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     margin-bottom: 0px;
+  }
+`;
+
+export const LastPasswordFormField = styled.div`
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+    height: 92px;
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    height: 82px;
   }
 `;
 
