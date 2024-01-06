@@ -9,7 +9,7 @@ export const BoxAddModal = styled.div`
 
   h3 {
     margin-bottom: 16px;
-    color: ${props => props.theme.color.black};
+    color: ${({ theme }) => theme.color.black};
     font-size: 18px;
     font-weight: 500;
     line-height: 1.1;
@@ -33,7 +33,7 @@ export const PreviousInfo = styled.div`
   padding: 8px 24px;
   gap: 12px;
   border-radius: 10px;
-  background-color: ${props => props.theme.color.secondaryWhite};
+  background-color: ${({ theme }) => theme.color.secondaryWhite};
   width: 254px;
   margin-bottom: 24px;
 `;
@@ -42,7 +42,7 @@ export const AddParagraph = styled.p`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
-  color: ${props => props.theme.color.black};
+  color: ${({ theme }) => theme.color.black};
   margin-bottom: 12px;
 `;
 
@@ -58,8 +58,8 @@ export const AddWater = styled.div`
 export const InputWater = styled.input`
   border-radius: 40px;
   border: none;
-  background: ${props => props.theme.color.secondaryPowderBlue};
-  color: ${props => props.theme.color.accent};
+  background: ${({ theme }) => theme.color.secondaryPowderBlue};
+  color: ${theme => theme.color.accent};
   text-align: center;
   font-size: 18px;
   font-weight: 700;
@@ -80,8 +80,8 @@ export const Label = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 40px;
-  background: ${props => props.theme.color.secondaryPowderBlue};
-  color: ${props => props.theme.color.accent};
+  background: ${theme => theme.color.secondaryPowderBlue};
+  color: ${({ theme }) => theme.color.accent};
   font-size: 18px;
   font-weight: 700;
 
@@ -91,10 +91,10 @@ export const Label = styled.div`
 `;
 
 export const ButtonMl = styled.button`
-  background-color: ${props => props.theme.color.white};
-  color: ${props => props.theme.color.accent};
+  background-color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.accent};
   border-radius: 30px;
-  border: 1px solid ${props => props.theme.color.secondaryLightBlue};
+  border: 1px solid ${({ theme }) => theme.color.secondaryLightBlue};
   width: 44px;
   height: 44px;
   display: flex;
@@ -102,17 +102,17 @@ export const ButtonMl = styled.button`
   align-items: center;
   gap: 10px;
   padding: 4px;
-  box-shadow: 0px 2px 4px 0px rgba(64, 123, 255, 0.2);
+  box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
 
   &:hover &:focus {
-    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+    box-shadow: ${({ theme }) => theme.boxShadowforButton.hoverButton};
   }
 `;
 
 export const Icon = styled.svg`
   width: 24px;
   height: 24px;
-  stroke: ${props => props.theme.color.accent};
+  stroke: ${({ theme }) => theme.color.accent};
 `;
 
 export const AddTime = styled.div`
@@ -120,7 +120,7 @@ export const AddTime = styled.div`
 `;
 
 export const InputTime = styled.input`
-  color: ${props => props.theme.color.accent};
+  color: ${({ theme }) => theme.color.accent};
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
@@ -130,29 +130,29 @@ export const InputTime = styled.input`
   align-items: flex-start;
   gap: 10px;
   border-radius: 6px;
-  border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
+  border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
 
   &::placeholder {
-    color: ${props => props.theme.color.secondaryLightBlue};
+    color: ${({ theme }) => theme.color.secondaryLightBlue};
   }
 
   &:hover {
-    color: ${props => props.theme.color.accent};
-    border: 1px solid ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.color.accent};
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:not(:placeholder-shown) {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 `;
 
 export const Input = styled.input`
-  color: ${props => props.theme.color.accent};
+  color: ${({ theme }) => theme.color.accent};
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
@@ -162,7 +162,7 @@ export const Input = styled.input`
   align-items: flex-start;
   gap: 10px;
   border-radius: 6px;
-  border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
+  border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
 
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
@@ -171,21 +171,21 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: ${props => props.theme.color.secondaryLightBlue};
+    color: ${({ theme }) => theme.color.secondaryLightBlue};
   }
 
   &:hover {
-    color: ${props => props.theme.color.accent};
-    border: 1px solid ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.color.accent};
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:not(:placeholder-shown) {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 `;
 
@@ -196,7 +196,7 @@ export const FooterModal = styled.div`
   gap: 16px;
 
   span {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
     text-align: center;
     font-size: 18px;
     font-weight: 700;
@@ -213,18 +213,18 @@ export const FooterModal = styled.div`
 `;
 
 export const AddButtonSave = styled.button`
-  background-color: ${props => props.theme.color.accent};
-  color: ${props => props.theme.color.white};
+  background-color: ${({ theme }) => theme.color.accent};
+  color: ${({ theme }) => theme.color.white};
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 18px;
   width: 100%;
   height: 44px;
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  transition: background-color ${props => props.theme.transition.main};
+  box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
+  transition: background-color ${({ theme }) => theme.transition.main};
 
   &:hover {
-    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+    box-shadow: ${({ theme }) => theme.boxShadowforButton.hoverButton};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {

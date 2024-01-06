@@ -156,10 +156,10 @@ export const AddWaterButton = styled.button`
   background-color: ${({ theme }) => theme.color.accent};
   color: ${({ theme }) => theme.color.white};
   border: none;
-  box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+  box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
 
   &:hover {
-    box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);
+    box-shadow: ${({ theme }) => theme.boxShadowforButton.hoverButton};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -178,5 +178,5 @@ export const AddIcon = styled.svg`
   width: 24px;
   height: 24px;
   fill: transparent;
-  stroke: ${props => props.theme.color.white};
+  stroke: ${({ theme }) => theme.color.white};
 `;

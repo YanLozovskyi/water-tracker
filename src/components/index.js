@@ -52,5 +52,3 @@ export * from './NotFound/NotFound';
 // ThemeProvider
 
 export * from './Theme/Theme';
-
-export * from './TogglerTheme/TogglerTheme';

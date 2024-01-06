@@ -9,7 +9,7 @@ export const TodayItem = styled.li`
   justify-content: space-between;
   padding: 12px 0;
   align-items: center;
-  border-bottom: 1px solid #d7e3ff;
+  border-bottom: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
 `;
 
 export const TodayInfo = styled.div`
@@ -21,7 +21,7 @@ export const TodayTitle = styled.h2`
   font-size: 24px;
   font-weight: 500;
   line-height: 1.25;
-  color: #2f2f2f;
+  color: ${({ theme }) => theme.color.black};
   margin-bottom: 16px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -39,7 +39,7 @@ export const TodayVolume = styled.p`
   font-size: 18px;
   font-weight: 400;
   line-height: 1.33;
-  color: #407bff;
+  color: ${({ theme }) => theme.color.accent};
   margin-right: 16px;
 `;
 
@@ -47,7 +47,7 @@ export const TodayTime = styled.p`
   font-size: 12px;
   font-weight: 400;
   line-height: 2;
-  color: #2f2f2f;
+  color: ${({ theme }) => theme.color.black};
 `;
 
 export const IconGlass = styled.svg`
@@ -73,14 +73,14 @@ export const ButtonChange = styled.button`
   height: 20px;
 
   & svg {
-    stroke: #9ebbff;
+    stroke: ${({ theme }) => theme.color.secondaryLightBlue};
     fill: transparent;
     width: 16px;
     height: 16px;
   }
 
   &:hover {
-    border-bottom: 1px solid #9ebbff;
+    border-bottom: 1px solid ${({ theme }) => theme.color.secondaryLightBlue};
   }
 `;
 
@@ -91,14 +91,14 @@ export const ButtonDelete = styled.button`
   height: 20px;
 
   & svg {
-    stroke: #ef5050;
+    stroke: ${({ theme }) => theme.color.secondaryRed};
     fill: transparent;
     width: 16px;
     height: 16px;
   }
 
   &:hover {
-    border-bottom: 1px solid #ef5050;
+    border-bottom: 1px solid ${({ theme }) => theme.color.secondaryRed};
   }
 `;
 
@@ -113,7 +113,7 @@ export const AddWaterBtn = styled.button`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25;
-  stroke: ${props => props.theme.color.accent};
+  stroke: ${({ theme }) => theme.color.accent};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     font-size: 18px;
@@ -127,7 +127,7 @@ export const AddWaterBtn = styled.button`
   }
 
   &:hover {
-    color: #ff9d43;
-    stroke: #ff9d43;
+    color: ${({ theme }) => theme.color.secondaryYellow};
+    stroke: ${({ theme }) => theme.color.secondaryYellow};
   }
 `;
