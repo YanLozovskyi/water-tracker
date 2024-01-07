@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectWaterToday } from '../../../redux/waterData/waterSelectors';
 import { TodayListModal, DeletingEntryModal } from 'components';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { formatTime } from '../../../helpers/utils/dateUtils';
+import { format, parseISO } from 'date-fns';
 
 import {
   AddWaterBtn,
@@ -72,7 +72,7 @@ export const TodayWaterList = () => {
                 <use href={icons.glass}></use>
               </IconGlass>
               <TodayVolume>{record.waterVolume} ml</TodayVolume>
-              <TodayTime>{formatTime(record.date)}</TodayTime>
+              <TodayTime>{format(parseISO(record.date), 'hh:mm a')}</TodayTime>
             </TodayInfo>
             <TodayTools>
               <ButtonChange onClick={() => openModalToEdit(record)}>

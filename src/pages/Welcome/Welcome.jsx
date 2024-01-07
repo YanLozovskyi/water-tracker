@@ -1,5 +1,5 @@
 import { MainContent } from 'components';
-import { WelcomeStyle, Container } from './Welcome.styled';
+import { Container, WelcomeStyle } from './Welcome.styled';
 
 const Welcome = () => {
   return (

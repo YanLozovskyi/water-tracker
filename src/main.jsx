@@ -19,7 +19,7 @@ root.render(
       <Theme>
         <Global styles={GlobalStyles} />
         <PersistGate loading={<Loader />} persistor={persistor}>
-          <BrowserRouter basename="/water-tracker">
+          <BrowserRouter basename="/">
             <App />
           </BrowserRouter>
         </PersistGate>
