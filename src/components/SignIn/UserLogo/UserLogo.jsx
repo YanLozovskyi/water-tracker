@@ -61,7 +61,12 @@ export const UserLogo = () => {
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      <UserLogoModalWrap>
+      <UserLogoModalWrap
+        style={{
+          opacity: modalIsOpen ? 1 : 0,
+          transform: modalIsOpen ? 'scale(1)' : 'scale(0)',
+        }}
+      >
         {modalIsOpen && (
           <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />
         )}
