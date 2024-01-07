@@ -1,9 +1,13 @@
+import { ContentLoader } from 'components';
 import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import PasswordStrengthBar from 'react-password-strength-bar';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
 import { resPassThunk } from '../../redux/auth/authOperations';
+import { selectIsLoading } from '../../redux/root/rootSelectors';
 import {
   BootleImg,
   ErrorSpan,
@@ -16,8 +20,6 @@ import {
   SignStyledLabel,
   SignUpContainer,
 } from '../SignUp/SignUpForm/SignUpForm.styled';
-import PasswordStrengthBar from 'react-password-strength-bar';
-import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const validationSchema = Yup.object({
   newPassword: Yup.string()
@@ -30,9 +32,11 @@ const validationSchema = Yup.object({
 });
 
 export const ResetPasswordForm = () => {
+  const dispatch = useDispatch();
+  const { isLoading } = useSelector(selectIsLoading)
+
   const searchParam = useSearchParams();
   const resetToken = searchParam[0].get('resetToken');
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [iconStatus, setIconStatus] = useState(false);
 
@@ -113,7 +117,7 @@ export const ResetPasswordForm = () => {
                 className={!isValid ? 'button-disabled' : null}
                 type="submit"
               >
-                Change password
+                Change password {isLoading && <ContentLoader />}
               </SignButton>
             </SignForm>
           )}

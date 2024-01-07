@@ -61,13 +61,14 @@ export const ErrorSpan = styled.span`
 `;
 
 export const SignButton = styled.button`
-  width: 100%;
-  padding: 8px 30px 8px 30px;
   display: flex;
   justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 8px 30px 8px 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  text-align: center;
   color: ${({ theme }) => theme.color.white};
   background-color: ${({ theme }) => theme.color.accent};
 
@@ -151,10 +152,9 @@ export const EyeSlashIcon = styled.svg`
 export const SignUpLink = styled(NavLink)`
   width: 100%;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 20px;
   color: ${({ theme }) => theme.color.accent};
+  
   &:hover {
     color: ${({ theme }) => theme.color.secondaryYellow};
   }

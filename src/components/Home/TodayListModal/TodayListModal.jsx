@@ -1,35 +1,36 @@
+import { BaseModalWindow, ContentLoader } from 'components';
 import { useState } from 'react';
-import { BaseModalWindow } from 'components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import sprite from 'src/assets/images/sprite/sprite.svg';
+import {
+  formatTime,
+  formatTimeForInput,
+} from '../../../helpers/utils/dateUtils';
+import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
   addWatersThunk,
   editWaterThunk,
 } from '../../../redux/waterData/waterOperations';
 import {
-  formatTime,
-  formatTimeForInput,
-} from '../../../helpers/utils/dateUtils';
-import sprite from 'src/assets/images/sprite/sprite.svg';
+  IconGlass,
+  TodayTime,
+  TodayVolume,
+} from '../TodayWaterList/TodayWaterList.styled';
 import {
-  BoxAddModal,
   AddButtonSave,
-  ButtonMl,
-  AddWater,
   AddParagraph,
   AddTime,
+  AddWater,
+  BoxAddModal,
+  ButtonMl,
   FooterModal,
-  Input,
   Icon,
-  PreviousInfo,
-  Label,
-  InputWater,
+  Input,
   InputTime,
+  InputWater,
+  Label,
+  PreviousInfo,
 } from './TodayListModal.styled';
-import {
-  IconGlass,
-  TodayVolume,
-  TodayTime,
-} from '../TodayWaterList/TodayWaterList.styled';
 
 export const TodayListModal = ({
   initialAmount,
@@ -48,6 +49,7 @@ export const TodayListModal = ({
       }),
   );
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(selectIsLoading)
 
   // змінюємо кількість води за допомогою кнопок
   const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
@@ -79,12 +81,14 @@ export const TodayListModal = ({
     if (isEditing) {
       dispatch(
         editWaterThunk({ _id: existingRecordId, ...waterData }),
-      ).unwrap();
+      ).then(data => {
+        if (!data.error) onClose();
+      });
     } else {
-      dispatch(addWatersThunk(waterData)).unwrap();
+      dispatch(addWatersThunk(waterData)).then(data => {
+        if (!data.error) onClose();
+      });
     }
-
-    onClose();
   };
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
@@ -154,7 +158,7 @@ export const TodayListModal = ({
         </div>
         <FooterModal>
           <span>{amount}ml</span>
-          <AddButtonSave onClick={handleSubmit}>Save</AddButtonSave>
+          <AddButtonSave onClick={handleSubmit}>Save {isLoading && <ContentLoader />}</AddButtonSave>
         </FooterModal>
       </BoxAddModal>
     </BaseModalWindow>

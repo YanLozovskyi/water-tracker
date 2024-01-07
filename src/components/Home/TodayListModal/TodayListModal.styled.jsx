@@ -213,6 +213,10 @@ export const FooterModal = styled.div`
 `;
 
 export const AddButtonSave = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   background-color: ${({ theme }) => theme.color.accent};
   color: ${({ theme }) => theme.color.white};
   padding: 10px 30px;

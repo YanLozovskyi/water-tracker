@@ -51,15 +51,3 @@ export const TextStyle = styled.p`
 
   margin-bottom: 24px;
 `;
-
-export const StyleTitle = styled.h2`
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 32px;
-  color: ${({ theme }) => theme.color.black};
-  padding-left: 12px;
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    padding-left: 0;
-  }
-`;

@@ -1,20 +1,23 @@
-import { useDispatch } from 'react-redux';
+import { BaseModalWindow, ContentLoader } from 'components';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import { deleteWaterThunk } from '../../../redux/waterData/waterOperations';
-import { BaseModalWindow } from 'components';
 import {
-  ButtonStyle,
   BoxModal,
-  TextStyle,
   ButtonBox,
-  StyleTitle,
+  ButtonStyle,
+  TextStyle,
 } from './DeletingEntryModal.styled';
 
 export const DeletingEntryModal = ({ onClose, recordId }) => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(selectIsLoading)
+
 
   const handleDelete = () => {
-    dispatch(deleteWaterThunk(recordId)).unwrap();
-    onClose();
+    dispatch(deleteWaterThunk(recordId)).then(data => {
+      if (!data.error) onClose();
+    });
   };
   return (
     <BaseModalWindow
@@ -24,7 +27,7 @@ export const DeletingEntryModal = ({ onClose, recordId }) => {
       <BoxModal>
         <TextStyle>Are you sure you want to delete the entry?</TextStyle>
         <ButtonBox>
-          <ButtonStyle onClick={handleDelete}>Delete</ButtonStyle>
+          <ButtonStyle onClick={handleDelete}>Delete {isLoading && <ContentLoader />}</ButtonStyle>
           <ButtonStyle onClick={onClose}>Cancel</ButtonStyle>
         </ButtonBox>
       </BoxModal>

@@ -1,7 +1,10 @@
+import { ContentLoader } from 'components';
 import { ErrorMessage, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as Yup from 'yup';
 import { reqPassThunk } from '../../redux/auth/authOperations';
+import { selectIsLoading } from '../../redux/root/rootSelectors';
+import { SignInLink } from '../SignIn/SignInForm/SignInForm.styled';
 import {
   BootleImg,
   ErrorSpan,
@@ -15,7 +18,6 @@ import {
   SignUpContainer,
   SuccessSvg,
 } from '../SignUp/SignUpForm/SignUpForm.styled';
-import { SignInLink } from '../SignIn/SignInForm/SignInForm.styled';
 
 const validationSchema = Yup.object({
   email: Yup.string('Enter your email')
@@ -26,6 +28,8 @@ const validationSchema = Yup.object({
 
 export const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(selectIsLoading)
+
 
   return (
     <SignUpContainer>
@@ -62,7 +66,7 @@ export const ForgotPasswordForm = () => {
                 className={!isValid ? 'button-disabled' : null}
                 type="submit"
               >
-                Send
+                Send {isLoading && <ContentLoader />}
               </SignButton>
             </SignForm>
           )}

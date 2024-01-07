@@ -1,6 +1,7 @@
-import { BaseModalWindow } from 'components';
-import { useDispatch } from 'react-redux';
+import { BaseModalWindow, ContentLoader } from 'components';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOutThunk } from '../../../redux/auth/authOperations';
+import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
   CancelBtn,
   List,
@@ -11,6 +12,7 @@ import {
 
 export const UserLogoutModal = ({ onClose }) => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(selectIsLoading)
 
   return (
     <>
@@ -24,7 +26,7 @@ export const UserLogoutModal = ({ onClose }) => {
               </CancelBtn>
             </li>
             <li>
-              <LogOutBtn type="button" onClick={() => dispatch(logOutThunk())}>Log out</LogOutBtn>
+              <LogOutBtn type="button" onClick={() => dispatch(logOutThunk())}>Log out {isLoading && <ContentLoader />}</LogOutBtn>
             </li>
           </List>
         </ModalWrap>

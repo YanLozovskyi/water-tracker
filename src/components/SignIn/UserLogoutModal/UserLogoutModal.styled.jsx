@@ -10,17 +10,18 @@ export const ModalTitle = styled.h2`
 `;
 
 export const LogOutBtn = styled.button`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  gap: 5px;
   border: none;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.secondaryRed};
   color: ${({ theme }) => theme.color.white};
-  text-align: center;
-  font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px; /* 133.333% */
-  transition: box-shadow ${props => props.theme.transition.main};
+  transition: box-shadow ${({ theme }) => theme.transition.main};
 
   &:is(:hover, :focus) {
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
