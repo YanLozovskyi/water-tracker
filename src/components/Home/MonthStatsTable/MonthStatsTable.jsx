@@ -1,7 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthWater } from '../../../redux/waterData/waterOperations';
-import { selectMonthData, selectWaterVolumePercentage } from '../../../redux/waterData/waterSelectors';
+import {
+  selectMonthData,
+  selectWaterVolumePercentage,
+} from '../../../redux/waterData/waterSelectors';
 import {
   format,
   subMonths,
@@ -32,7 +35,7 @@ export const MonthStatsTable = () => {
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
   const dayRefs = useRef({});
-  const roundedWaterVolumePercentage = useSelector(selectWaterVolumePercentage)
+  const roundedWaterVolumePercentage = useSelector(selectWaterVolumePercentage);
 
   const startDate = format(startOfMonth(selectedMonth), 'yyyy-MM-dd');
   const endDate = format(endOfMonth(selectedMonth), 'yyyy-MM-dd');
@@ -131,8 +134,8 @@ export const MonthStatsTable = () => {
         >
           <ButtonPaginator
             onClick={handlePreviousMonth}
-          // onClick={() => changeMonth('prev')}
-          // active={activeButton === 'next'}
+            // onClick={() => changeMonth('prev')}
+            // active={activeButton === 'next'}
           >
             &lt;
           </ButtonPaginator>
@@ -143,8 +146,8 @@ export const MonthStatsTable = () => {
           <ButtonPaginator
             onClick={handleNextMonth}
             disabled={selectedMonth >= new Date()}
-          // onClick={() => changeMonth('next')}
-          // active={activeButton === 'prev'}
+            // onClick={() => changeMonth('next')}
+            // active={activeButton === 'prev'}
           >
             &gt;
           </ButtonPaginator>

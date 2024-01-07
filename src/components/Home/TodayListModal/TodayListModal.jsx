@@ -2,10 +2,7 @@ import { BaseModalWindow, ContentLoader } from 'components';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import {
-  formatTime,
-  formatTimeForInput,
-} from '../../../helpers/utils/dateUtils';
+import { format, formatISO, parseISO } from 'date-fns';
 import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
   addWatersThunk,
@@ -42,14 +39,11 @@ export const TodayListModal = ({
   const [amount, setAmount] = useState(initialAmount || 0);
   const [time, setTime] = useState(
     isEditing && initialTime
-      ? formatTimeForInput(initialTime)
-      : new Date().toLocaleTimeString([], {
-        hour: '2-digit',
-        minute: '2-digit',
-      }),
+      ? format(new Date(initialTime), 'HH:mm')
+      : format(new Date(), 'HH:mm'),
   );
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(selectIsLoading)
+  const { isLoading } = useSelector(selectIsLoading);
 
   // змінюємо кількість води за допомогою кнопок
   const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
@@ -67,9 +61,9 @@ export const TodayListModal = ({
   };
 
   const handleSubmit = () => {
-    const currentDate = new Date().toISOString().slice(0, 10);
+    const currentDate = formatISO(new Date(), { representation: 'date' });
     const dateTime = `${currentDate}T${time}`;
-    const isoDate = new Date(dateTime).toISOString();
+    const isoDate = formatISO(parseISO(dateTime));
     // console.log(currentDate);
     // console.log(dateTime);
     // console.log(isoDate);
@@ -79,11 +73,11 @@ export const TodayListModal = ({
     };
     // console.log(waterData);
     if (isEditing) {
-      dispatch(
-        editWaterThunk({ _id: existingRecordId, ...waterData }),
-      ).then(data => {
-        if (!data.error) onClose();
-      });
+      dispatch(editWaterThunk({ _id: existingRecordId, ...waterData })).then(
+        data => {
+          if (!data.error) onClose();
+        },
+      );
     } else {
       dispatch(addWatersThunk(waterData)).then(data => {
         if (!data.error) onClose();
@@ -93,7 +87,8 @@ export const TodayListModal = ({
 
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
 
-  const displayTime = isEditing && initialTime ? formatTime(initialTime) : '';
+  const displayTime =
+    isEditing && initialTime ? format(parseISO(initialTime), 'hh:mm aa') : '';
 
   return (
     <BaseModalWindow onClose={onClose} title={title}>
@@ -158,7 +153,9 @@ export const TodayListModal = ({
         </div>
         <FooterModal>
           <span>{amount}ml</span>
-          <AddButtonSave onClick={handleSubmit}>Save {isLoading && <ContentLoader />}</AddButtonSave>
+          <AddButtonSave onClick={handleSubmit}>
+            Save {isLoading && <ContentLoader />}
+          </AddButtonSave>
         </FooterModal>
       </BoxAddModal>
     </BaseModalWindow>
