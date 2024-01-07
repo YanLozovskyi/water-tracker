@@ -14,6 +14,7 @@ export * from './common/TogglerTheme/TogglerTheme';
 export * from './ForgotPasswordForm/ForgotPasswordForm';
 export * from './ForgotPasswordForm/ResetPasswordForm';
 export * from './Header/Header';
+export * from './Footer/Footer';
 
 // Home
 

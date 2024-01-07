@@ -11,6 +11,7 @@ import imgHomeTabl2x from '../../assets/images/background/homePage/tablet/bubble
 export const HomeSection = styled(Section)`
   background-position: center center;
   padding-top: 24px;
+  padding-bottom: 24px;
   background-image: -webkit-image-set(
     url(${imgHomeMob1x}) 1x,
     url(${imgHomeMob2x}) 2x
