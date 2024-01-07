@@ -14,7 +14,8 @@ export const WelcomePageStyle = styled.div`
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     flex-direction: row;
     justify-content: center;
-    align-items: flex-end;
+    align-items: flex-start;
+    padding-bottom: 152px;
 
     gap: 81px;
   }
