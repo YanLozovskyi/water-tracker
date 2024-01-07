@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
-import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg';
+import defaultAvatar from '../../../assets/images/default_avatar.png';
 import {
   editUserInfoThunk,
   updateAvatarThunk,
@@ -109,7 +109,7 @@ export const SettingModal = ({ onClose }) => {
 
     dispatch(editUserInfoThunk(dataSend)).then(data => {
       if (!data.error) onClose();
-    });;
+    });
     actions.resetForm();
   };
 
@@ -227,7 +227,7 @@ export const SettingModal = ({ onClose }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                                touched.outdatedPassword
+                              touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
@@ -264,7 +264,7 @@ export const SettingModal = ({ onClose }) => {
                             name="newPassword"
                             className={
                               (errors.newPassword && touched.newPassword) ||
-                                (values.outdatedPassword && !values.newPassword)
+                              (values.outdatedPassword && !values.newPassword)
                                 ? 'error-input'
                                 : null
                             }

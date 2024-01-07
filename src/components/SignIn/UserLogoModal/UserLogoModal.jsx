@@ -9,14 +9,19 @@ import {
 } from './UserLogoModal.styled';
 
 export const UserLogoModal = ({ setOnShowDropdown, parentRef }) => {
-  const userMenuRef = useRef()
+  const userMenuRef = useRef();
 
   const [isFirstModalOpen, setFirstModalOpen] = useState(false);
   const [isSecondModalOpen, setSecondModalOpen] = useState(false);
 
   useEffect(() => {
     const clickOutside = e => {
-      if (userMenuRef.current && !userMenuRef.current.contains(e.target) && parentRef.current && !parentRef.current.contains(e.target)) {
+      if (
+        userMenuRef.current &&
+        !userMenuRef.current.contains(e.target) &&
+        parentRef.current &&
+        !parentRef.current.contains(e.target)
+      ) {
         setOnShowDropdown(false);
       }
     };
@@ -40,24 +45,46 @@ export const UserLogoModal = ({ setOnShowDropdown, parentRef }) => {
       <StyledLogoModal ref={userMenuRef}>
         <ul>
           <StyledListItem>
-            <IconSettings width="16px" height="16px">
-              <use href={`${sprite}#icon-settings`}></use>
-            </IconSettings>
-            <StyledBtn type="button" onClick={() => { setFirstModalOpen(true) }}>
+            <StyledBtn
+              type="button"
+              onClick={() => {
+                setFirstModalOpen(true);
+              }}
+            >
+              <IconSettings width="16px" height="16px">
+                <use href={`${sprite}#icon-settings`}></use>
+              </IconSettings>
               Setting
             </StyledBtn>
           </StyledListItem>
           <StyledListItem>
-            <IconSettings width="16px" height="16px">
-              <use href={`${sprite}#icon-exit`}></use>
-            </IconSettings>
-            <StyledBtn type="button" onClick={() => { setSecondModalOpen(true) }}>
+            <StyledBtn
+              type="button"
+              onClick={() => {
+                setSecondModalOpen(true);
+              }}
+            >
+              <IconSettings width="16px" height="16px">
+                <use href={`${sprite}#icon-exit`}></use>
+              </IconSettings>
               Log out
             </StyledBtn>
           </StyledListItem>
         </ul>
-        {isFirstModalOpen && <SettingModal onClose={() => { setFirstModalOpen(false) }} />}
-        {isSecondModalOpen && (<UserLogoutModal onClose={() => { setSecondModalOpen(false) }} />)}
+        {isFirstModalOpen && (
+          <SettingModal
+            onClose={() => {
+              setFirstModalOpen(false);
+            }}
+          />
+        )}
+        {isSecondModalOpen && (
+          <UserLogoutModal
+            onClose={() => {
+              setSecondModalOpen(false);
+            }}
+          />
+        )}
       </StyledLogoModal>
     </>
   );
