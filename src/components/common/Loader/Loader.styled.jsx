@@ -5,7 +5,7 @@ export const WrapThreeDotsDiv = styled.div`
   z-index: 20;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  translate: -50% -50%;
 
   @media (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
     width: 60px;
