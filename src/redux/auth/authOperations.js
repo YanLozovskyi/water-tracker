@@ -1,9 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 import {
   editUserInfo,
   logout,
   refreshUser,
   requestPassword,
+  resetPassword,
   signin,
   signup,
   updateAvatar,
@@ -17,6 +19,9 @@ export const registerThunk = createAsyncThunk(
       const data = await signup(credentials);
       return data;
     } catch (error) {
+      if (error.response.status === 409) {
+        toast.error(`User with email - ${credentials.email}, already exist`);
+      }
       return rejectWithValue(error.message);
     }
   },
@@ -29,6 +34,9 @@ export const logInThunk = createAsyncThunk(
       const data = await signin(credentials);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        toast.error(`Email or password is wrong`);
+      }
       return rejectWithValue(error.message);
     }
   },
@@ -51,8 +59,25 @@ export const reqPassThunk = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const email = await requestPassword(credentials);
-      console.log(email);
+      toast.success(
+        `Password reset link has been sent to your email - ${credentials.email}`,
+      );
       return email;
+    } catch (error) {
+      if (error.response.status === 404) {
+        toast.error(`User ${credentials.email} not found`);
+      }
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const resPassThunk = createAsyncThunk(
+  '/auth/reset-pass',
+  async (credentials, { rejectWithValue }) => {
+    try {
+      const data = await resetPassword(credentials);
+      return data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -104,6 +129,9 @@ export const updateAvatarThunk = createAsyncThunk(
       const avatarURL = await updateAvatar(newPhotoFile);
       return avatarURL;
     } catch (error) {
+      if (error.response.status === 400) {
+        toast.error(`Invalide file extention`);
+      }
       return rejectWithValue(error.message);
     }
   },
@@ -116,6 +144,9 @@ export const editUserInfoThunk = createAsyncThunk(
       const data = await editUserInfo(body);
       return data;
     } catch (error) {
+      if (error.response.status === 401) {
+        toast.error(`Current password is incorrect`);
+      }
       return rejectWithValue(error.message);
     }
   },

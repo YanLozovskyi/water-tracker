@@ -1,13 +1,17 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMonthWater } from '../../../redux/waterData/waterOperations';
-import { selectMonthData } from '../../../redux/waterData/waterSelectors';
-import { DaysGeneralStats } from 'components';
+import { selectMonthData, selectWaterVolumePercentage } from '../../../redux/waterData/waterSelectors';
 import {
-  getCurrentMonth,
-  daysInMonth,
-  formatMonth,
-} from '../../../helpers/utils/dateUtils';
+  format,
+  subMonths,
+  addMonths,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+} from 'date-fns';
+import { DaysGeneralStats } from 'components';
+
 import {
   ButtonPaginator,
   DaysButton,
@@ -21,85 +25,74 @@ import {
 export const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const monthData = useSelector(selectMonthData);
-  const [selectedMonth, setSelectedMonth] = useState(getCurrentMonth());
-  const [activeButton, setActiveButton] = useState(null);
+  const [selectedMonth, setSelectedMonth] = useState(new Date());
+  // const [activeButton, setActiveButton] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [dayPosition, setDayPosition] = useState({ top: 0, left: 0, width: 0 });
   const [selectedDayStats, setSelectedDayStats] = useState(null);
   const [isHovering, setIsHovering] = useState(false);
+  const dayRefs = useRef({});
+  const roundedWaterVolumePercentage = useSelector(selectWaterVolumePercentage)
+
+  const startDate = format(startOfMonth(selectedMonth), 'yyyy-MM-dd');
+  const endDate = format(endOfMonth(selectedMonth), 'yyyy-MM-dd');
 
   useEffect(() => {
-    dispatch(getMonthWater(selectedMonth));
-  }, [selectedMonth, dispatch]);
+    dispatch(getMonthWater({ startDate, endDate }));
+  }, [dispatch, endDate, roundedWaterVolumePercentage, startDate]);
 
-  // useMemo для обчислення стану для кожного дня
-  const daysWithData = useMemo(() => {
-    return [...Array(daysInMonth(selectedMonth)).keys()].map(dayIndex => {
-      // Форматуємо дату для пошуку
-      const formattedDay = `${selectedMonth}-${(dayIndex + 1)
-        .toString()
-        .padStart(2, '0')}`;
-      const dayData = monthData.find(data =>
-        data.date.startsWith(formattedDay),
-      );
-      return {
-        day: dayIndex + 1,
-        percentage: dayData ? dayData.waterVolumePercentage : 0,
-        isHighlighted: dayData && dayData.waterVolumePercentage < 100,
-      };
-    });
-  }, [monthData, selectedMonth]);
+  const handlePreviousMonth = () => {
+    setSelectedMonth(subMonths(selectedMonth, 1));
+  };
 
-  // Функція для зміни місяця
-  const changeMonth = direction => {
-    const date = new Date(selectedMonth);
-
-    if (direction === 'prev') {
-      date.setMonth(date.getMonth() - 1);
-    } else {
-      date.setMonth(date.getMonth() + 1);
-    }
-
-    const newMonth = `${date.getFullYear()}-${String(
-      date.getMonth() + 1,
-    ).padStart(2, '0')}`;
-    setSelectedMonth(newMonth);
-
-    // Перевіряємо, чи новий місяць є поточним місяцем
-    const currentMonth = getCurrentMonth();
-    if (newMonth === currentMonth) {
-      setActiveButton(null); // Скидаємо активну кнопку
-    } else {
-      setActiveButton(direction); // Встановлюємо активну кнопку
+  const handleNextMonth = () => {
+    if (selectedMonth < new Date()) {
+      setSelectedMonth(addMonths(selectedMonth, 1));
     }
   };
 
-  // Обробник кліка по дню
+  // Створення списку всіх днів у вибраному місяці
+  const daysOfMonth = eachDayOfInterval({
+    start: startOfMonth(selectedMonth),
+    end: endOfMonth(selectedMonth),
+  });
+
+  // Перетворення масиву даних з Redux в об'єкт для легкого доступу
+  const monthDataMap = monthData.reduce((acc, dayData) => {
+    acc[dayData.date] = dayData;
+    return acc;
+  }, {});
+
   const onDayClick = day => {
-    // Форматуємо дату для пошуку
-    const formattedDay = `${selectedMonth}-${day.toString().padStart(2, '0')}`;
-    const dayData = monthData.find(data => data.date.startsWith(formattedDay));
+    const dayKey = format(day, 'yyyy-MM-dd');
+    const dayData = monthDataMap[dayKey];
 
-    if (dayData) {
-      if (selectedDayStats && selectedDayStats.date === dayData.date) {
-        // Якщо клік по тому ж дню, закриваємо вікно
-        handleCloseModal();
-      } else {
-        // В іншому випадку, відкриваємо вікно з новими даними
-        setSelectedDayStats(dayData);
-        setModalVisible(true);
+    // Визначаємо, чи поточний день є вже вибраним
+    const isSameDaySelected = selectedDayStats?.date === dayKey;
 
-        // Встановлення позиції модального вікна
-        const dayElement = dayRefs.current[day];
-        if (dayElement) {
-          const rect = dayElement.getBoundingClientRect();
-          setDayPosition({
-            top: rect.top + window.scrollY,
-            left: rect.left,
-            width: rect.width,
-          });
-        }
-      }
+    if (isSameDaySelected && modalVisible) {
+      setModalVisible(false);
+      setSelectedDayStats(null);
+    } else {
+      //В іншому випадку оновлюємо вибраний день і показуємо статистику
+      setSelectedDayStats({
+        date: dayKey,
+        waterVolumeSum: dayData ? dayData.waterVolumeSum : 0,
+        drinkCount: dayData ? dayData.drinkCount : 0,
+        waterVolumePercentage: dayData ? dayData.waterVolumePercentage : 0,
+      });
+      setModalVisible(true);
+    }
+
+    //Встановлення позиції модального вікна
+    const dayElement = dayRefs.current[day];
+    if (dayElement) {
+      const rect = dayElement.getBoundingClientRect();
+      setDayPosition({
+        top: rect.top + window.scrollY,
+        left: rect.left,
+        width: rect.width,
+      });
     }
   };
 
@@ -108,15 +101,16 @@ export const MonthStatsTable = () => {
     setSelectedDayStats(null);
   };
 
-  const dayRefs = useRef({});
-
   useEffect(() => {
     const handleClickOutside = event => {
-      if (
-        modalVisible &&
-        !dayRefs.current[selectedDayStats.day]?.contains(event.target)
-      ) {
-        handleCloseModal();
+      if (modalVisible) {
+        const isClickOutside = Object.values(dayRefs.current).every(
+          ref => ref && !ref.contains(event.target),
+        );
+
+        if (isClickOutside) {
+          handleCloseModal();
+        }
       }
     };
 
@@ -136,46 +130,59 @@ export const MonthStatsTable = () => {
           onMouseLeave={() => setIsHovering(false)}
         >
           <ButtonPaginator
-            onClick={() => changeMonth('prev')}
-            active={activeButton === 'next'}
+            onClick={handlePreviousMonth}
+          // onClick={() => changeMonth('prev')}
+          // active={activeButton === 'next'}
           >
             &lt;
           </ButtonPaginator>
-          <span>{formatMonth(selectedMonth)}</span>
-          {isHovering && <Year>{selectedMonth.split('-')[0]}</Year>}
+          <span>{format(selectedMonth, 'MMMM')}</span>
+          {isHovering && (
+            <Year>{format(selectedMonth, 'yyyy').split('-')[0]}</Year>
+          )}
           <ButtonPaginator
-            onClick={() => changeMonth('next')}
-            active={activeButton === 'prev'}
+            onClick={handleNextMonth}
+            disabled={selectedMonth >= new Date()}
+          // onClick={() => changeMonth('next')}
+          // active={activeButton === 'prev'}
           >
             &gt;
           </ButtonPaginator>
         </Paginator>
       </HeaderMonth>
 
-      {selectedDayStats && (
-        <DaysGeneralStats
-          stats={selectedDayStats}
-          position={dayPosition}
-          onClose={handleCloseModal}
-          onShow={modalVisible}
-        />
-      )}
-
       <DaysList>
-        {daysWithData.map(({ day, percentage, isHighlighted }) => (
-          <div key={day}>
-            <DaysPercentage>
-              <DaysButton
-                ref={el => (dayRefs.current[day] = el)}
-                onClick={() => onDayClick(day)}
-                isHighlighted={isHighlighted}
-              >
-                {day}
-              </DaysButton>
-              <span>{Math.round(percentage)}%</span>
-            </DaysPercentage>
-          </div>
-        ))}
+        {daysOfMonth.map(day => {
+          const dayKey = format(day, 'yyyy-MM-dd');
+          const dayData = monthDataMap[dayKey];
+
+          const percentage = dayData ? dayData.waterVolumePercentage : 0;
+          const isHighlighted = dayData && dayData.waterVolumePercentage < 100;
+
+          return (
+            <div key={dayKey}>
+              <DaysPercentage>
+                <DaysButton
+                  ref={el => (dayRefs.current[day] = el)}
+                  onClick={() => onDayClick(day)}
+                  isHighlighted={isHighlighted}
+                >
+                  {format(day, 'd')}
+                </DaysButton>
+                <span>{Math.round(percentage)}%</span>
+              </DaysPercentage>
+            </div>
+          );
+        })}
+
+        {modalVisible && selectedDayStats && (
+          <DaysGeneralStats
+            stats={selectedDayStats}
+            position={dayPosition}
+            onClose={handleCloseModal}
+            onShow={modalVisible}
+          />
+        )}
       </DaysList>
     </div>
   );

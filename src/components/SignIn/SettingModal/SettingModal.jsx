@@ -6,13 +6,14 @@ import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
 import defaultAvatar from '../../../assets/images/default_avatar_to_download.jpg';
 import {
-  updateAvatarThunk,
   editUserInfoThunk,
+  updateAvatarThunk,
 } from '../../../redux/auth/authOperations';
 import { selectUser } from '../../../redux/auth/authSelectors';
 import {
   Avatar,
   DesktopFormWrap,
+  DesktopGenderWrap,
   DesktopPasswordWrap,
   DownloadBtn,
   DownloadBtnText,
@@ -24,7 +25,7 @@ import {
   IconBtn,
   IconDownload,
   Input,
-  LastFormField,
+  LastPasswordFormField,
   ModalWrap,
   PasswordFormField,
   PasswordIcon,
@@ -39,7 +40,6 @@ import {
   StyledErrorMessage,
   StyledErrorText,
   StyledLabel,
-  DesktopGenderWrap,
 } from './SettingModal.styled';
 
 const settingFormValidationSchema = Yup.object().shape({
@@ -98,7 +98,6 @@ export const SettingModal = ({ onClose }) => {
       outdatedPassword,
       newPassword,
     };
-    // console.log('formData', formData);
 
     const dataSend = {};
 
@@ -108,9 +107,9 @@ export const SettingModal = ({ onClose }) => {
       }
     });
 
-    // console.log('dataSend', dataSend);
-
-    dispatch(editUserInfoThunk(dataSend));
+    dispatch(editUserInfoThunk(dataSend)).then(data => {
+      if (!data.error) onClose();
+    });;
     actions.resetForm();
   };
 
@@ -201,7 +200,7 @@ export const SettingModal = ({ onClose }) => {
                         />
                         <StyledErrorMessage component="p" name="name" />
                       </FormField>
-                      <LastFormField>
+                      <div>
                         <StyledLabel htmlFor="email">E-mail</StyledLabel>
                         <Input
                           type="email"
@@ -213,7 +212,7 @@ export const SettingModal = ({ onClose }) => {
                           placeholder={values.email}
                         />
                         <StyledErrorMessage component="p" name="email" />
-                      </LastFormField>
+                      </div>
                     </DesktopGenderWrap>
                     <DesktopPasswordWrap>
                       <PasswordText>Password</PasswordText>
@@ -228,7 +227,7 @@ export const SettingModal = ({ onClose }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                              touched.outdatedPassword
+                                touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
@@ -265,7 +264,7 @@ export const SettingModal = ({ onClose }) => {
                             name="newPassword"
                             className={
                               (errors.newPassword && touched.newPassword) ||
-                              (values.outdatedPassword && !values.newPassword)
+                                (values.outdatedPassword && !values.newPassword)
                                 ? 'error-input'
                                 : null
                             }
@@ -293,7 +292,7 @@ export const SettingModal = ({ onClose }) => {
                         )}
                         <StyledErrorMessage component="p" name="newPassword" />
                       </PasswordFormField>
-                      <LastFormField>
+                      <LastPasswordFormField>
                         <PasswordLabel htmlFor="repeatedPassword">
                           Repeat new password:
                         </PasswordLabel>
@@ -328,7 +327,7 @@ export const SettingModal = ({ onClose }) => {
                           component="p"
                           name="repeatedPassword"
                         />
-                      </LastFormField>
+                      </LastPasswordFormField>
                     </DesktopPasswordWrap>
                   </DesktopFormWrap>
                   <SaveBtn type="submit">Save</SaveBtn>

@@ -23,26 +23,22 @@ export const ModalContent = styled.div`
   left: 50%;
   min-width: 280px;
   max-height: 90vh;
-  background: ${props => props.theme.color.white};
+  background: ${({ theme }) => theme.color.white};
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all ${props => props.theme.transition.modal};
+  transition: all ${({ theme }) => theme.transition.modal};
   overflow: auto;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    min-width: 704px;
+    min-width: 592px;
   }
-
-  /* @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    max-width: 544px;
-  } */
 `;
 
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 24px 12px;
-  color: ${props => props.theme.color.black};
+  color: ${({ theme }) => theme.color.black};
 
   h2 {
     font-weight: 500;
@@ -67,10 +63,10 @@ export const CloseButton = styled.button`
 export const CloseIcon = styled.svg`
   width: 100%;
   height: 100%;
-  stroke: ${props => props.theme.color.accent};
+  stroke: ${({ theme }) => theme.color.accent};
 
   &:hover,
   &:focus {
-    stroke: ${props => props.theme.color.secondaryYellow};
+    stroke: ${({ theme }) => theme.color.secondaryYellow};
   }
 `;

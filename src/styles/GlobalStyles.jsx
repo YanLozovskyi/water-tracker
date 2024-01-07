@@ -1,18 +1,18 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import emotionNormalize from 'emotion-normalize';
-import { theme } from './theme';
 
 import RobotoRegular from '../assets/fonts/Roboto-Regular.ttf';
 import RobotoMedium from '../assets/fonts/Roboto-Medium.ttf';
 import RobotoBold from '../assets/fonts/Roboto-Bold.ttf';
-import fontStarEot from '../assets/fonts/customStars/fontello.eot'
-import fontStarWoff2 from '../assets/fonts/customStars/fontello.woff2'
-import fontStarWoff from '../assets/fonts/customStars/fontello.woff'
-import fontStarTtf from '../assets/fonts/customStars/fontello.ttf'
-import fontStarSvg from '../assets/fonts/customStars/fontello.svg'
+import fontStarEot from '../assets/fonts/customStars/fontello.eot';
+import fontStarWoff2 from '../assets/fonts/customStars/fontello.woff2';
+import fontStarWoff from '../assets/fonts/customStars/fontello.woff';
+import fontStarTtf from '../assets/fonts/customStars/fontello.ttf';
+import fontStarSvg from '../assets/fonts/customStars/fontello.svg';
 
-
-export const GlobalStyles = css`
+export const GlobalStyles = () => {
+  const theme = useTheme();
+  return css`
   ${emotionNormalize}
 
   /* ========================= Reset styles ========================= */
@@ -193,14 +193,15 @@ export const GlobalStyles = css`
     src: url(${RobotoBold}) format('truetype');
   }
 
-   @font-face {
+  @font-face {
     font-family: 'font-stars-password';
-       src: url(${fontStarEot}?59471026);
-  src: url(${fontStarEot}?59471026#iefix) format('embedded-opentype'),
-       url(${fontStarWoff2}?59471026) format('woff2'),
-       url(${fontStarWoff}?59471026) format('woff'),
-       url(${fontStarTtf}?59471026) format('truetype'),
-       url(${fontStarSvg}?59471026#fontello) format('svg');
+    src: url(${fontStarEot}?59471026);
+    src:
+      url(${fontStarEot}?59471026#iefix) format('embedded-opentype'),
+      url(${fontStarWoff2}?59471026) format('woff2'),
+      url(${fontStarWoff}?59471026) format('woff'),
+      url(${fontStarTtf}?59471026) format('truetype'),
+      url(${fontStarSvg}?59471026#fontello) format('svg');
     font-weight: normal;
     font-style: normal;
   }
@@ -231,7 +232,7 @@ export const GlobalStyles = css`
       text-shadow: none;
     }
   }
-  
+
   /* ========================= /Fonts ========================= */
 
   /* ========================= Common styles ========================= */
@@ -248,6 +249,7 @@ export const GlobalStyles = css`
     font-weight: 400;
     color: ${theme.color.black};
     background-color: ${theme.color.white};
+    transition: all 0.5s linear;
   }
   /* ========================= /Common styles ========================= */
 
@@ -272,4 +274,4 @@ export const GlobalStyles = css`
   }
 
   /* ========================= /Scroll styles ========================= */
-`;
+`}

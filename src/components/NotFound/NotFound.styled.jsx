@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ErrorBtn = styled.button`
-  background-color: ${props => props.theme.color.accent};
+  background-color: ${({ theme }) => theme.color.accent};
   color: ${props => props.theme.color.white};
   padding: 10px 20px;
   border-radius: 10px;
@@ -9,7 +9,7 @@ export const ErrorBtn = styled.button`
   height: 44px;
   margin-left: auto;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  transition: background-color ${props => props.theme.transition.main};
+  transition: background-color ${({ theme }) => theme.transition.main};
 
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);

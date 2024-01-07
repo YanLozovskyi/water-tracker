@@ -1,18 +1,19 @@
 import { ResetPasswordForm } from 'components';
-// import { Navigate, useSearchParams } from 'react-router-dom';
+import { ResetPasswordSection } from './ResetPassword.styled';
+import { Navigate, useSearchParams } from 'react-router-dom';
 
 const ResetPassword = () => {
-   // const searchParam = useSearchParams();
+  const searchParam = useSearchParams();
 
-   // if (!searchParam[0].has("token")) {
-   //    return <Navigate to={"/"} />
-   // }
+  if (!searchParam[0].has('resetToken')) {
+    return <Navigate to={'/'} />;
+  }
 
-   return (
-      <section>
-         <ResetPasswordForm />
-      </section>
-   );
+  return (
+    <ResetPasswordSection>
+      <ResetPasswordForm />
+    </ResetPasswordSection>
+  );
 };
 
 export default ResetPassword;

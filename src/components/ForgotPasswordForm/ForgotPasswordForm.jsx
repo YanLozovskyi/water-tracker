@@ -1,13 +1,11 @@
 import { ErrorMessage, Formik } from 'formik';
-// import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-// import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
 import { reqPassThunk } from '../../redux/auth/authOperations';
 import {
   BootleImg,
   ErrorSpan,
-  // EyeSlashIcon,
+  ErrorSvg,
   FormContainer,
   FormTitle,
   SignButton,
@@ -15,6 +13,7 @@ import {
   SignStyledInput,
   SignStyledLabel,
   SignUpContainer,
+  SuccessSvg,
 } from '../SignUp/SignUpForm/SignUpForm.styled';
 import { SignInLink } from '../SignIn/SignInForm/SignInForm.styled';
 
@@ -27,11 +26,6 @@ const validationSchema = Yup.object({
 
 export const ForgotPasswordForm = () => {
   const dispatch = useDispatch();
-  // const [iconStatus, setIconStatus] = useState(false);
-
-  // const iconClick = () => {
-  // setIconStatus(!iconStatus);
-  // };
 
   return (
     <SignUpContainer>
@@ -41,11 +35,16 @@ export const ForgotPasswordForm = () => {
         <Formik
           initialValues={{ email: '' }}
           validationSchema={validationSchema}
-          onSubmit={email => {
+          onSubmit={(email, actions) => {
             dispatch(reqPassThunk(email));
+            actions.resetForm({
+              values: {
+                email: '',
+              },
+            });
           }}
         >
-          {({ errors, isValid, handleReset }) => (
+          {({ errors, isValid, values }) => (
             <SignForm>
               <SignStyledLabel>
                 Enter your email
@@ -56,11 +55,12 @@ export const ForgotPasswordForm = () => {
                   placeholder="E-mail"
                 />
                 <ErrorMessage name="email" component={ErrorSpan} />
+                {errors.email && values.email && <ErrorSvg />}
+                {!errors.email && values.email && <SuccessSvg />}
               </SignStyledLabel>
               <SignButton
                 className={!isValid ? 'button-disabled' : null}
                 type="submit"
-                onSubmit={handleReset}
               >
                 Send
               </SignButton>

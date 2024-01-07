@@ -30,6 +30,8 @@ export const handleRefreshReject = state => {
 
 export const handleReqPass = () => initialState;
 
+export const handleResPass = () => initialState;
+
 export const handlerUpdateWaterRate = (state, { payload }) => {
   state.user.waterRate = payload;
 };
