@@ -1,12 +1,12 @@
 import styled from '@emotion/styled';
 
-export const Wrapper = styled.div`
-  min-height: 100vh;
-  /* display: flex; */
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-`;
+// export const Wrapper = styled.div`
+/* min-height: 100vh; */
+/* display: flex; */
+/* flex-direction: column; */
+/* justify-content: space-between; */
+/* position: relative; */
+// `;
 
 export const FooterBox = styled.footer`
   width: 100%;
@@ -17,7 +17,7 @@ export const FooterBox = styled.footer`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  position: absolute;
+  /* position: absolute; */
   bottom: 0;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
