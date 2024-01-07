@@ -76,6 +76,9 @@ export const getMonthWater = createAsyncThunk(
       const { data } = await fetchMonthWater(rangeDate);
       return data;
     } catch (error) {
+      if (error.response.status === 404) {
+        toast.error(`No water values for this period`);
+      }
       return rejectWithValue(error.message);
     }
   },
