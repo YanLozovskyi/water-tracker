@@ -2016,7 +2016,7 @@ attempted value: ${o}
   height: 24px;
   fill: transparent;
   stroke: ${({theme:e})=>e.color.white};
-`,SP="/assets/default_avatar_to_download-b55e28a7.jpg",dg=S.p`
+`,SP="/assets/default_avatar-88709471.png",dg=S.p`
   color: ${({theme:e})=>e.color.black};
   font-size: 18px;
   font-weight: 500;
@@ -2258,7 +2258,6 @@ attempted value: ${o}
   fill: transparent;
 `,YP=()=>y.jsx("div",{children:y.jsx(Oo,{to:"/signin",children:y.jsxs(VP,{type:"button",children:["Sign in",y.jsx(HP,{children:y.jsx("use",{href:`${we}#icon-user`})})]})})}),GP=S.div`
   position: absolute;
-  z-index: 1;
   left: -120px;
   top: 32px;
   width: 118px;
@@ -2266,36 +2265,44 @@ attempted value: ${o}
   border-radius: 10px;
   background: ${({theme:e})=>e.color.white};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.2);
-  transition: all ${e=>e.theme.transition.modal};
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     top: 34px;
   }
 `,Ok=S.svg`
-  margin-right: 8px;
   fill: none;
   stroke: ${({theme:e})=>e.color.accent};
   stroke-linecap: round;
   stroke-linejoin: round;
 `,Ak=S.button`
+  display: flex;
+  align-items: center;
+  gap: 8px;
   color: ${({theme:e})=>e.color.accent};
-  font-family: Roboto;
   font-size: 16px;
-  font-style: normal;
-  font-weight: 400;
   line-height: 1.25;
   border: none;
   background-color: transparent;
   padding: 0;
-`,Tk=S.li`
-  display: flex;
-  align-items: center;
+  transition: color ${({theme:e})=>e.transition.main};
 
+  &:is(:hover, :focus) {
+    color: ${({theme:e})=>e.color.secondaryYellow};
+  }
+
+  &:is(:hover, :focus) svg {
+    stroke: ${({theme:e})=>e.color.secondaryYellow};
+  }
+`,Tk=S.li`
   &:not(:last-child) {
     margin-bottom: 16px;
   }
 `,KP=S.div`
   position: relative;
+  z-index: 1;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease;
 `,QP=S.div`
   position: relative;
   display: flex;
@@ -2348,7 +2355,7 @@ attempted value: ${o}
   &:focus {
     stroke: ${({theme:e})=>e.color.secondaryYellow};
   }
-`,r$=()=>{const e=w.useRef(),[a,r]=w.useState(!1),{name:n,avatarURL:t}=ea(Hp),i=()=>{r(!a)},o=n?n.charAt(0).toUpperCase():"V",s=()=>n&&t?{userName:n,avatar:t}:n||t?{userName:n||o,avatar:t||o}:{userName:o,avatar:o},{userName:l,avatar:c}=s();return y.jsxs(QP,{children:[y.jsx(XP,{children:l}),y.jsxs(JP,{onClick:i,ref:e,children:[t?y.jsx(ZP,{src:c,alt:"user-avatar"}):y.jsx(e$,{children:c}),y.jsx(a$,{style:{transform:a?"rotate(180deg)":"rotate(0deg)"},children:y.jsx("use",{href:`${we}#icon-arrow-down`})})]}),y.jsx(KP,{children:a&&y.jsx(n$,{setOnShowDropdown:r,parentRef:e})})]})},n$=({setOnShowDropdown:e,parentRef:a})=>{const r=w.useRef(),[n,t]=w.useState(!1),[i,o]=w.useState(!1);return w.useEffect(()=>{const s=c=>{r.current&&!r.current.contains(c.target)&&a.current&&!a.current.contains(c.target)&&e(!1)},l=c=>{c.code==="Escape"&&e(!1)};return window.addEventListener("keydown",l),document.addEventListener("click",s),()=>{document.removeEventListener("click",s),window.removeEventListener("keydown",l)}},[a,e]),y.jsx(y.Fragment,{children:y.jsxs(GP,{ref:r,children:[y.jsxs("ul",{children:[y.jsxs(Tk,{children:[y.jsx(Ok,{width:"16px",height:"16px",children:y.jsx("use",{href:`${we}#icon-settings`})}),y.jsx(Ak,{type:"button",onClick:()=>{t(!0)},children:"Setting"})]}),y.jsxs(Tk,{children:[y.jsx(Ok,{width:"16px",height:"16px",children:y.jsx("use",{href:`${we}#icon-exit`})}),y.jsx(Ak,{type:"button",onClick:()=>{o(!0)},children:"Log out"})]})]}),n&&y.jsx(UP,{onClose:()=>{t(!1)}}),i&&y.jsx(c$,{onClose:()=>{o(!1)}})]})})},t$=S.h2`
+`,r$=()=>{const e=w.useRef(),[a,r]=w.useState(!1),{name:n,avatarURL:t}=ea(Hp),i=()=>{r(!a)},o=n?n.charAt(0).toUpperCase():"V",s=()=>n&&t?{userName:n,avatar:t}:n||t?{userName:n||o,avatar:t||o}:{userName:o,avatar:o},{userName:l,avatar:c}=s();return y.jsxs(QP,{children:[y.jsx(XP,{children:l}),y.jsxs(JP,{onClick:i,ref:e,children:[t?y.jsx(ZP,{src:c,alt:"user-avatar"}):y.jsx(e$,{children:c}),y.jsx(a$,{style:{transform:a?"rotate(180deg)":"rotate(0deg)"},children:y.jsx("use",{href:`${we}#icon-arrow-down`})})]}),y.jsx(KP,{style:{opacity:a?1:0,transform:a?"scale(1)":"scale(0)"},children:a&&y.jsx(n$,{setOnShowDropdown:r,parentRef:e})})]})},n$=({setOnShowDropdown:e,parentRef:a})=>{const r=w.useRef(),[n,t]=w.useState(!1),[i,o]=w.useState(!1);return w.useEffect(()=>{const s=c=>{r.current&&!r.current.contains(c.target)&&a.current&&!a.current.contains(c.target)&&e(!1)},l=c=>{c.code==="Escape"&&e(!1)};return window.addEventListener("keydown",l),document.addEventListener("click",s),()=>{document.removeEventListener("click",s),window.removeEventListener("keydown",l)}},[a,e]),y.jsx(y.Fragment,{children:y.jsxs(GP,{ref:r,children:[y.jsxs("ul",{children:[y.jsx(Tk,{children:y.jsxs(Ak,{type:"button",onClick:()=>{t(!0)},children:[y.jsx(Ok,{width:"16px",height:"16px",children:y.jsx("use",{href:`${we}#icon-settings`})}),"Setting"]})}),y.jsx(Tk,{children:y.jsxs(Ak,{type:"button",onClick:()=>{o(!0)},children:[y.jsx(Ok,{width:"16px",height:"16px",children:y.jsx("use",{href:`${we}#icon-exit`})}),"Log out"]})})]}),n&&y.jsx(UP,{onClose:()=>{t(!1)}}),i&&y.jsx(c$,{onClose:()=>{o(!1)}})]})})},t$=S.h2`
   margin-bottom: 24px;
   color: ${({theme:e})=>e.color.black};
   font-family: Roboto;
@@ -2649,4 +2656,4 @@ attempted value: ${o}
     width: 900px;
     height: 700px;
   }
-`,d$=({children:e})=>{const{lightTheme:a,darkTheme:r}=T7,[n,t]=w.useState(a),i=ea(M0);return w.useEffect(()=>{t(i==="light"?a:r)},[i,r,a]),y.jsx(t1,{theme:n,children:e})},m$="modulepreload",h$=function(e){return"/"+e},Ck={},ut=function(a,r,n){if(!r||r.length===0)return a();const t=document.getElementsByTagName("link");return Promise.all(r.map(i=>{if(i=h$(i),i in Ck)return;Ck[i]=!0;const o=i.endsWith(".css"),s=o?'[rel="stylesheet"]':"";if(!!n)for(let d=t.length-1;d>=0;d--){const u=t[d];if(u.href===i&&(!o||u.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${i}"]${s}`))return;const c=document.createElement("link");if(c.rel=o?"stylesheet":m$,o||(c.as="script",c.crossOrigin=""),c.href=i,document.head.appendChild(c),o)return new Promise((d,u)=>{c.addEventListener("load",d),c.addEventListener("error",()=>u(new Error(`Unable to preload CSS for ${i}`)))})})).then(()=>a()).catch(i=>{const o=new Event("vite:preloadError",{cancelable:!0});if(o.payload=i,window.dispatchEvent(o),!o.defaultPrevented)throw i})},p$=({component:e,redirectTo:a})=>ea(Bc)?y.jsx(e,{}):y.jsx(D0,{to:a}),js=({component:e,redirectTo:a})=>ea(Bc)?y.jsx(D0,{to:a}):e;const g$=()=>y.jsxs(y.Fragment,{children:[y.jsx(tP,{}),y.jsx("main",{children:y.jsx(w.Suspense,{fallback:y.jsx(Bp,{}),children:y.jsx(OS,{})})}),y.jsx(hP,{}),y.jsx(pm,{position:"top-right",autoClose:3e3})]}),f$=w.lazy(()=>ut(()=>import("./Welcome-4080d4ba.js"),["assets/Welcome-4080d4ba.js","assets/Section-401a607b.js"])),b$=w.lazy(()=>ut(()=>import("./Home-f98d1384.js"),["assets/Home-f98d1384.js","assets/Section-401a607b.js","assets/bubbleTablet@2x-6c947164.js"])),y$=w.lazy(()=>ut(()=>import("./SignIn-ad47296b.js"),["assets/SignIn-ad47296b.js","assets/Section-401a607b.js","assets/bubbleTablet@2x-6c947164.js"])),k$=w.lazy(()=>ut(()=>import("./SignUp-28bd87e9.js"),["assets/SignUp-28bd87e9.js","assets/Section-401a607b.js","assets/bubbleTablet@2x-6c947164.js"])),v$=w.lazy(()=>ut(()=>import("./Error-6df6b46d.js"),["assets/Error-6df6b46d.js","assets/Section-401a607b.js"])),w$=w.lazy(()=>ut(()=>import("./ForgotPassword-6b2c8e8a.js"),["assets/ForgotPassword-6b2c8e8a.js","assets/Section-401a607b.js","assets/bubbleTablet@2x-6c947164.js"])),x$=w.lazy(()=>ut(()=>import("./ResetPassword-bb22356b.js"),["assets/ResetPassword-bb22356b.js","assets/Section-401a607b.js","assets/bubbleTablet@2x-6c947164.js"])),j$=()=>{const e=Rr(),a=ea(YS);return w.useEffect(()=>{e(Gs())},[e]),a?y.jsx(Bp,{}):y.jsx(TS,{children:y.jsxs(kr,{path:"/",element:y.jsx(g$,{}),children:[y.jsx(kr,{index:!0,element:y.jsx(js,{component:y.jsx(f$,{}),redirectTo:"/home"})}),y.jsx(kr,{path:"home",element:y.jsx(p$,{component:b$,redirectTo:"/"})}),y.jsx(kr,{path:"signin",element:y.jsx(js,{component:y.jsx(y$,{}),redirectTo:"/home"})}),y.jsx(kr,{path:"signup",element:y.jsx(js,{component:y.jsx(k$,{}),redirectTo:"/home"})}),y.jsx(kr,{path:"forgot-password",element:y.jsx(js,{component:y.jsx(w$,{}),redirectTo:"/signin"})}),y.jsx(kr,{path:"api/auth/reset-pass",element:y.jsx(x$,{})}),y.jsx(kr,{path:"*",element:y.jsx(v$,{})})]})})},z$=hd.createRoot(document.getElementById("root"));z$.render(y.jsx(X.StrictMode,{children:y.jsx(g4,{store:m0,children:y.jsxs(d$,{children:[y.jsx(i1,{styles:A7}),y.jsx(yw,{loading:y.jsx(Bp,{}),persistor:v7,children:y.jsx(DS,{basename:"/",children:y.jsx(j$,{})})})]})})}));export{G$ as $,N$ as A,UR as B,GR as C,A$ as D,Rr as E,ct as F,Wo as G,NR as H,LR as I,F$ as J,M$ as K,KR as L,L$ as M,D$ as N,YR as O,FR as P,rt as Q,u7 as R,U$ as S,MR as T,W$ as U,v8 as V,RR as W,m7 as X,V$ as Y,Y$ as Z,H$ as _,IR as a,K$ as a0,Q$ as a1,X$ as a2,uR as a3,dR as a4,iR as a5,nR as a6,tR as a7,hR as a8,mR as a9,ER as aA,OR as aB,_R as aC,AR as aD,TR as aE,CR as aF,PR as aG,$R as aH,Oo as aI,QR as aJ,XR as aK,_$ as aL,VS as aM,D0 as aN,O$ as aO,G7 as aP,fR as aa,bR as ab,gR as ac,pR as ad,yR as ae,kR as af,vR as ag,wR as ah,xR as ai,c7 as aj,l7 as ak,B$ as al,d7 as am,J$ as an,aR as ao,rR as ap,Z$ as aq,eR as ar,oR as as,sR as at,lR as au,cR as av,jR as aw,SR as ax,qR as ay,zR as az,DR as b,BR as c,WR as d,VR as e,HR as f,Xn as g,ge as h,S$ as i,y as j,ea as k,Hp as l,E$ as m,S as n,C$ as o,jP as p,T$ as q,w as r,we as s,hr as t,Lc as u,x8 as v,P$ as w,$$ as x,R$ as y,I$ as z};
+`,d$=({children:e})=>{const{lightTheme:a,darkTheme:r}=T7,[n,t]=w.useState(a),i=ea(M0);return w.useEffect(()=>{t(i==="light"?a:r)},[i,r,a]),y.jsx(t1,{theme:n,children:e})},m$="modulepreload",h$=function(e){return"/"+e},Ck={},ut=function(a,r,n){if(!r||r.length===0)return a();const t=document.getElementsByTagName("link");return Promise.all(r.map(i=>{if(i=h$(i),i in Ck)return;Ck[i]=!0;const o=i.endsWith(".css"),s=o?'[rel="stylesheet"]':"";if(!!n)for(let d=t.length-1;d>=0;d--){const u=t[d];if(u.href===i&&(!o||u.rel==="stylesheet"))return}else if(document.querySelector(`link[href="${i}"]${s}`))return;const c=document.createElement("link");if(c.rel=o?"stylesheet":m$,o||(c.as="script",c.crossOrigin=""),c.href=i,document.head.appendChild(c),o)return new Promise((d,u)=>{c.addEventListener("load",d),c.addEventListener("error",()=>u(new Error(`Unable to preload CSS for ${i}`)))})})).then(()=>a()).catch(i=>{const o=new Event("vite:preloadError",{cancelable:!0});if(o.payload=i,window.dispatchEvent(o),!o.defaultPrevented)throw i})},p$=({component:e,redirectTo:a})=>ea(Bc)?y.jsx(e,{}):y.jsx(D0,{to:a}),js=({component:e,redirectTo:a})=>ea(Bc)?y.jsx(D0,{to:a}):e;const g$=()=>y.jsxs(y.Fragment,{children:[y.jsx(tP,{}),y.jsx("main",{children:y.jsx(w.Suspense,{fallback:y.jsx(Bp,{}),children:y.jsx(OS,{})})}),y.jsx(hP,{}),y.jsx(pm,{position:"top-right",autoClose:3e3})]}),f$=w.lazy(()=>ut(()=>import("./Welcome-0e2e2d6e.js"),["assets/Welcome-0e2e2d6e.js","assets/Section-f099b454.js"])),b$=w.lazy(()=>ut(()=>import("./Home-dbf5ffe9.js"),["assets/Home-dbf5ffe9.js","assets/Section-f099b454.js","assets/bubbleTablet@2x-6c947164.js"])),y$=w.lazy(()=>ut(()=>import("./SignIn-42f27c17.js"),["assets/SignIn-42f27c17.js","assets/Section-f099b454.js","assets/bubbleTablet@2x-6c947164.js"])),k$=w.lazy(()=>ut(()=>import("./SignUp-1f061efa.js"),["assets/SignUp-1f061efa.js","assets/Section-f099b454.js","assets/bubbleTablet@2x-6c947164.js"])),v$=w.lazy(()=>ut(()=>import("./Error-1414329c.js"),["assets/Error-1414329c.js","assets/Section-f099b454.js"])),w$=w.lazy(()=>ut(()=>import("./ForgotPassword-b47b9676.js"),["assets/ForgotPassword-b47b9676.js","assets/Section-f099b454.js","assets/bubbleTablet@2x-6c947164.js"])),x$=w.lazy(()=>ut(()=>import("./ResetPassword-edc1cfe3.js"),["assets/ResetPassword-edc1cfe3.js","assets/Section-f099b454.js","assets/bubbleTablet@2x-6c947164.js"])),j$=()=>{const e=Rr(),a=ea(YS);return w.useEffect(()=>{e(Gs())},[e]),a?y.jsx(Bp,{}):y.jsx(TS,{children:y.jsxs(kr,{path:"/",element:y.jsx(g$,{}),children:[y.jsx(kr,{index:!0,element:y.jsx(js,{component:y.jsx(f$,{}),redirectTo:"/home"})}),y.jsx(kr,{path:"home",element:y.jsx(p$,{component:b$,redirectTo:"/"})}),y.jsx(kr,{path:"signin",element:y.jsx(js,{component:y.jsx(y$,{}),redirectTo:"/home"})}),y.jsx(kr,{path:"signup",element:y.jsx(js,{component:y.jsx(k$,{}),redirectTo:"/home"})}),y.jsx(kr,{path:"forgot-password",element:y.jsx(js,{component:y.jsx(w$,{}),redirectTo:"/signin"})}),y.jsx(kr,{path:"api/auth/reset-pass",element:y.jsx(x$,{})}),y.jsx(kr,{path:"*",element:y.jsx(v$,{})})]})})},z$=hd.createRoot(document.getElementById("root"));z$.render(y.jsx(X.StrictMode,{children:y.jsx(g4,{store:m0,children:y.jsxs(d$,{children:[y.jsx(i1,{styles:A7}),y.jsx(yw,{loading:y.jsx(Bp,{}),persistor:v7,children:y.jsx(DS,{basename:"/",children:y.jsx(j$,{})})})]})})}));export{G$ as $,N$ as A,UR as B,GR as C,A$ as D,Rr as E,ct as F,Wo as G,NR as H,LR as I,F$ as J,M$ as K,KR as L,L$ as M,D$ as N,YR as O,FR as P,rt as Q,u7 as R,U$ as S,MR as T,W$ as U,v8 as V,RR as W,m7 as X,V$ as Y,Y$ as Z,H$ as _,IR as a,K$ as a0,Q$ as a1,X$ as a2,uR as a3,dR as a4,iR as a5,nR as a6,tR as a7,hR as a8,mR as a9,ER as aA,OR as aB,_R as aC,AR as aD,TR as aE,CR as aF,PR as aG,$R as aH,Oo as aI,QR as aJ,XR as aK,_$ as aL,VS as aM,D0 as aN,O$ as aO,G7 as aP,fR as aa,bR as ab,gR as ac,pR as ad,yR as ae,kR as af,vR as ag,wR as ah,xR as ai,c7 as aj,l7 as ak,B$ as al,d7 as am,J$ as an,aR as ao,rR as ap,Z$ as aq,eR as ar,oR as as,sR as at,lR as au,cR as av,jR as aw,SR as ax,qR as ay,zR as az,DR as b,BR as c,WR as d,VR as e,HR as f,Xn as g,ge as h,S$ as i,y as j,ea as k,Hp as l,E$ as m,S as n,C$ as o,jP as p,T$ as q,w as r,we as s,hr as t,Lc as u,x8 as v,P$ as w,$$ as x,R$ as y,I$ as z};
