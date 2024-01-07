@@ -163,7 +163,7 @@ export const FormResult = styled.div`
   strong {
     font-size: 18px;
     font-weight: 700;
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -172,11 +172,12 @@ export const FormResult = styled.div`
 `;
 
 export const ButtonSave = styled.button`
-  background-color: ${props => props.theme.color.accent};
-  color: ${props => props.theme.color.white};
+  background-color: ${({ theme }) => theme.color.accent};
+  color: ${({ theme }) => theme.color.white};
   display: flex;
   justify-content: center;
   align-items: center;
+  gap: 5px;
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 18px;
@@ -184,7 +185,7 @@ export const ButtonSave = styled.button`
   height: 44px;
   margin-left: auto;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  transition: background-color ${props => props.theme.transition.main};
+  transition: background-color ${({ theme }) => theme.transition.main};
 
   &:hover {
     box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.54);

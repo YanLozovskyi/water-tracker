@@ -1,27 +1,30 @@
-import { useState, useEffect, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from '../../../redux/auth/authSelectors';
-import { updateWaterRateThunk } from '../../../redux/auth/authOperations';
 import PropTypes from 'prop-types';
+import { useCallback, useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateWaterRateThunk } from '../../../redux/auth/authOperations';
+import { selectUser } from '../../../redux/auth/authSelectors';
 
-import { BaseModalWindow } from 'components';
+import { BaseModalWindow, ContentLoader } from 'components';
+import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
-  Formula,
+  BoxModal,
+  ButtonSave,
+  Comment,
   Form,
   FormRadio,
-  TitleModal,
-  Paragraph,
-  Input,
-  ButtonSave,
-  InputRadio,
-  Comment,
-  BoxModal,
   FormResult,
+  Formula,
+  Input,
+  InputRadio,
+  Paragraph,
+  TitleModal,
 } from './DailyNormaModal.styled';
 
 export const DailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const { gender: reduxGender } = useSelector(selectUser);
+  const { isLoading } = useSelector(selectIsLoading)
+
 
   const [gender, setGender] = useState(reduxGender);
   const [weight, setWeight] = useState('');
@@ -58,8 +61,9 @@ export const DailyNormaModal = ({ onClose }) => {
       return;
     }
 
-    dispatch(updateWaterRateThunk(parsedDailyIntake)).unwrap();
-    onClose();
+    dispatch(updateWaterRateThunk(parsedDailyIntake)).then(data => {
+      if (!data.error) onClose();
+    });
   };
 
   return (
@@ -147,7 +151,7 @@ export const DailyNormaModal = ({ onClose }) => {
                   onChange={e => setIntakeGoal(e.target.value)}
                 />
               </div>
-              <ButtonSave onClick={handleSave}>Save</ButtonSave>
+              <ButtonSave onClick={handleSave}>Save {isLoading && <ContentLoader />}</ButtonSave>
             </Form>
           </div>
         }

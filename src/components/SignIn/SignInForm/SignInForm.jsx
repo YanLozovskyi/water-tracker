@@ -1,9 +1,12 @@
+import { ContentLoader } from 'components';
 import { ErrorMessage, Formik } from 'formik';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import PasswordStrengthBar from 'react-password-strength-bar';
+import { useDispatch, useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
 import * as Yup from 'yup';
 import { logInThunk } from '../../../redux/auth/authOperations';
+import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
   BootleImg,
   ErrorSpan,
@@ -19,7 +22,6 @@ import {
   SuccessSvg,
 } from '../../SignUp/SignUpForm/SignUpForm.styled';
 import { SignInLink } from './SignInForm.styled';
-import PasswordStrengthBar from 'react-password-strength-bar';
 
 const validationSchema = Yup.object({
   email: Yup.string('Enter your email')
@@ -33,6 +35,7 @@ const validationSchema = Yup.object({
 
 export const SignInForm = () => {
   const dispatch = useDispatch();
+  const { isLoading } = useSelector(selectIsLoading)
   const [iconStatus, setIconStatus] = useState(false);
 
   const iconClick = () => {
@@ -94,7 +97,7 @@ export const SignInForm = () => {
                 className={!isValid ? 'button-disabled' : null}
                 type="submit"
               >
-                Sign In
+                Sign In {isLoading && <ContentLoader />}
               </SignButton>
             </SignForm>
           )}

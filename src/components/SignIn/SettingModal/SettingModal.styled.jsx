@@ -195,14 +195,16 @@ export const PasswordLabel = styled.label`
 `;
 
 export const SaveBtn = styled.button`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   min-width: 100%;
   padding: 8px 30px;
   border-radius: 10px;
   background: ${({ theme }) => theme.color.accent};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   color: ${({ theme }) => theme.color.white};
-  text-align: center;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25; /* 125% */

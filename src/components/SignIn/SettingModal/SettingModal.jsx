@@ -1,4 +1,4 @@
-import { BaseModalWindow } from 'components';
+import { BaseModalWindow, ContentLoader } from 'components';
 import { Field, Form, Formik } from 'formik';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +10,7 @@ import {
   updateAvatarThunk,
 } from '../../../redux/auth/authOperations';
 import { selectUser } from '../../../redux/auth/authSelectors';
+import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
   Avatar,
   DesktopFormWrap,
@@ -73,6 +74,7 @@ const settingFormValidationSchema = Yup.object().shape({
 export const SettingModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const { avatarURL, email, name, gender } = useSelector(selectUser);
+  const { isLoading } = useSelector(selectIsLoading)
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   const initialValues = {
@@ -330,7 +332,7 @@ export const SettingModal = ({ onClose }) => {
                       </LastPasswordFormField>
                     </DesktopPasswordWrap>
                   </DesktopFormWrap>
-                  <SaveBtn type="submit">Save</SaveBtn>
+                  <SaveBtn type="submit">Save {isLoading && <ContentLoader />}</SaveBtn>
                 </Form>
               )}
             </Formik>
