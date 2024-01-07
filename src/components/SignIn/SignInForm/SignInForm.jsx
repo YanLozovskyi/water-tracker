@@ -49,7 +49,6 @@ export const SignInForm = () => {
           validationSchema={validationSchema}
           onSubmit={({ email, password }) => {
             dispatch(logInThunk({ email, password }));
-            onreset();
           }}
         >
           {({ errors, isValid, values }) => (

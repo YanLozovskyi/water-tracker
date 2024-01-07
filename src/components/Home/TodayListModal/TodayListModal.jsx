@@ -68,11 +68,14 @@ export const TodayListModal = ({
     const currentDate = new Date().toISOString().slice(0, 10);
     const dateTime = `${currentDate}T${time}`;
     const isoDate = new Date(dateTime).toISOString();
-
+    // console.log(currentDate);
+    // console.log(dateTime);
+    // console.log(isoDate);
     const waterData = {
       waterVolume: amount,
       date: isoDate,
     };
+    // console.log(waterData);
     if (isEditing) {
       dispatch(
         editWaterThunk({ _id: existingRecordId, ...waterData }),
