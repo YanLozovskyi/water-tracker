@@ -1,7 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../../../redux/auth/authSelectors';
-import { selectMonthData } from '../../../redux/waterData/waterSelectors';
 import { formatDate } from '../../../helpers/utils/dateUtils';
 import {
   DaysGeneralStatsModal,
@@ -15,7 +14,6 @@ export const DaysGeneralStats = ({ stats, position, onShow }) => {
   const { date, drinkCount, waterVolumePercentage } = stats;
   const modalRef = useRef(null);
   const { waterRate } = useSelector(selectUser);
-  // const monthData = useSelector(selectMonthData);
 
   useEffect(() => {
     if (!modalRef.current) return;
