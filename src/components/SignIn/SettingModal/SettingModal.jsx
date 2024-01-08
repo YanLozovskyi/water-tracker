@@ -71,7 +71,7 @@ const settingFormValidationSchema = Yup.object().shape({
   ),
 });
 
-export const SettingModal = ({ onClose }) => {
+export const SettingModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
   const { avatarURL, email, name, gender } = useSelector(selectUser);
   const { isLoading } = useSelector(selectIsLoading)
@@ -128,7 +128,7 @@ export const SettingModal = ({ onClose }) => {
 
   return (
     <>
-      <BaseModalWindow onClose={onClose} title="Setting">
+      <BaseModalWindow onClose={onClose} onShow={onShow} title="Setting">
         <ModalWrap>
           {
             <Formik
@@ -229,7 +229,7 @@ export const SettingModal = ({ onClose }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                              touched.outdatedPassword
+                                touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
@@ -266,7 +266,7 @@ export const SettingModal = ({ onClose }) => {
                             name="newPassword"
                             className={
                               (errors.newPassword && touched.newPassword) ||
-                              (values.outdatedPassword && !values.newPassword)
+                                (values.outdatedPassword && !values.newPassword)
                                 ? 'error-input'
                                 : null
                             }

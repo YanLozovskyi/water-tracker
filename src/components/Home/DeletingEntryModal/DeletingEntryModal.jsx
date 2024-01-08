@@ -9,7 +9,7 @@ import {
   TextStyle,
 } from './DeletingEntryModal.styled';
 
-export const DeletingEntryModal = ({ onClose, recordId }) => {
+export const DeletingEntryModal = ({ onClose, onShow, recordId }) => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(selectIsLoading)
 
@@ -22,6 +22,7 @@ export const DeletingEntryModal = ({ onClose, recordId }) => {
   return (
     <BaseModalWindow
       onClose={onClose}
+      onShow={onShow}
       title={"Delete Entry"}
     >
       <BoxModal>

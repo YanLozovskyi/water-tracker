@@ -71,20 +71,18 @@ export const UserLogoModal = ({ setOnShowDropdown, parentRef }) => {
             </StyledBtn>
           </StyledListItem>
         </ul>
-        {isFirstModalOpen && (
-          <SettingModal
-            onClose={() => {
-              setFirstModalOpen(false);
-            }}
-          />
-        )}
-        {isSecondModalOpen && (
-          <UserLogoutModal
-            onClose={() => {
-              setSecondModalOpen(false);
-            }}
-          />
-        )}
+        <SettingModal
+          onClose={() => {
+            setFirstModalOpen(false);
+          }}
+          onShow={isFirstModalOpen}
+        />
+        <UserLogoutModal
+          onClose={() => {
+            setSecondModalOpen(false);
+          }}
+          onShow={isSecondModalOpen}
+        />
       </StyledLogoModal>
     </>
   );

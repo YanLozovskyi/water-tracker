@@ -20,7 +20,7 @@ import {
   TitleModal,
 } from './DailyNormaModal.styled';
 
-export const DailyNormaModal = ({ onClose }) => {
+export const DailyNormaModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
   const { gender: reduxGender, waterRate } = useSelector(selectUser);
   const { isLoading } = useSelector(selectIsLoading)
@@ -61,7 +61,7 @@ export const DailyNormaModal = ({ onClose }) => {
   };
 
   return (
-    <BaseModalWindow onClose={onClose} title="My daily norma">
+    <BaseModalWindow onClose={onClose} onShow={onShow} title="My daily norma">
       <BoxModal>
         {
           <div>

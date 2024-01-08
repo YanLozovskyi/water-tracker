@@ -9,6 +9,7 @@ import {
   ModalHeader,
 } from './BaseModalWindow.styled';
 import sprite from 'src/assets/images/sprite/sprite.svg';
+import { CSSTransition } from 'react-transition-group';
 
 export const BaseModalWindow = ({
   onShow = true,
@@ -22,6 +23,8 @@ export const BaseModalWindow = ({
   const backdropRef = useRef(null);
 
   useEffect(() => {
+    if (!onShow) return;
+
     const bodyScroll = disable => {
       document.body.style.overflow = disable ? 'hidden' : 'auto';
     };
@@ -45,19 +48,35 @@ export const BaseModalWindow = ({
   }, [modalRoot.children.length, onShow, onClose]);
 
   return createPortal(
-    <BaseModalStyled onClick={onClose} ref={backdropRef}>
-      <ModalContent onClick={e => e.stopPropagation()} ref={modalContainerRef}>
-        <ModalHeader>
-          <h2>{title}</h2>
-          <CloseButton onClick={onClose}>
-            <CloseIcon>
-              <use href={`${sprite}#icon-outline`}></use>
-            </CloseIcon>
-          </CloseButton>
-        </ModalHeader>
-        <div>{children}</div>
-      </ModalContent>
-    </BaseModalStyled>,
+    <>   <CSSTransition
+      in={onShow}
+      nodeRef={backdropRef}
+      timeout={600}
+      classNames="base-modal"
+      unmountOnExit
+    >
+      <BaseModalStyled onClick={onClose} ref={backdropRef} />
+    </CSSTransition>
+      <CSSTransition
+        in={onShow}
+        ref={modalContainerRef}
+        timeout={600}
+        classNames="modal-content"
+        unmountOnExit
+      >
+        <ModalContent onClick={e => e.stopPropagation()} ref={modalContainerRef}>
+          <ModalHeader>
+            <h2>{title}</h2>
+            <CloseButton onClick={onClose}>
+              <CloseIcon>
+                <use href={`${sprite}#icon-outline`}></use>
+              </CloseIcon>
+            </CloseButton>
+          </ModalHeader>
+          <div>{children}</div>
+        </ModalContent>
+      </CSSTransition></>
+    ,
     modalRoot,
   );
 };
