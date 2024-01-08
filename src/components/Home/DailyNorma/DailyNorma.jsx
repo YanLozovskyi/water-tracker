@@ -31,7 +31,7 @@ export const DailyNorma = () => {
           <p>{waterRateL}</p>
           <button onClick={openModal}>Edit</button>
         </div>
-        {isModalOpen && <DailyNormaModal onClose={closeModal} />}
+        <DailyNormaModal onClose={closeModal} onShow={isModalOpen} />
       </DailyNormaStyled>
       <BackgroundHome />
     </DailyBox>

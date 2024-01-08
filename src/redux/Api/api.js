@@ -43,7 +43,7 @@ export const resetPassword = async body => {
 // User
 
 export const updateWaterRate = async newWaterRate => {
-  const { data } = await axios.post('/waterrate', {
+  const { data } = await axios.patch('/waterrate', {
     waterRate: newWaterRate,
   });
   return data;

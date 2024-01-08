@@ -14,3 +14,19 @@ export const ContainerHeader = styled.div`
     padding-top: 8px;
   }
 `;
+
+export const WrapHeader = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-direction: column;
+
+  @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    gap: 14px;
+    flex-direction: row;
+  }
+
+  @media (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
+    gap: 20px;
+  }
+`;

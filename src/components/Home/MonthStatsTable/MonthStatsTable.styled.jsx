@@ -27,11 +27,12 @@ export const ButtonPaginator = styled.button`
   width: 14px;
   height: 14px;
   background: transparent;
-  color: ${({ theme }) => theme.color.secondaryLightBlue};
+  color: ${({ active, theme }) =>
+    active ? theme.color.accent : theme.color.secondaryLightBlue};
 
-  &:active {
+  /* &:active {
     color: ${({ theme }) => theme.color.accent};
-  }
+  } */
 
   &:hover {
     color: ${({ theme }) => theme.color.accent};
@@ -104,9 +105,7 @@ export const DaysButton = styled.button`
   background-color: ${({ theme }) => theme.color.white};
   border: 1px solid
     ${({ theme, isHighlighted }) =>
-    isHighlighted
-      ? theme.color.secondaryYellow
-      : theme.color.white};
+      isHighlighted ? theme.color.secondaryYellow : theme.color.white};
   color: ${({ theme }) => theme.color.black};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {

@@ -12,6 +12,7 @@ import {
   startOfMonth,
   endOfMonth,
   eachDayOfInterval,
+  isSameMonth,
 } from 'date-fns';
 import { DaysGeneralStats } from 'components';
 
@@ -29,7 +30,7 @@ export const MonthStatsTable = () => {
   const dispatch = useDispatch();
   const monthData = useSelector(selectMonthData);
   const [selectedMonth, setSelectedMonth] = useState(new Date());
-  // const [activeButton, setActiveButton] = useState(null);
+  const [activeButton, setActiveButton] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [dayPosition, setDayPosition] = useState({ top: 0, left: 0, width: 0 });
   const [selectedDayStats, setSelectedDayStats] = useState(null);
@@ -45,22 +46,32 @@ export const MonthStatsTable = () => {
   }, [dispatch, endDate, roundedWaterVolumePercentage, startDate]);
 
   const handlePreviousMonth = () => {
-    setSelectedMonth(subMonths(selectedMonth, 1));
+    const newMonth = subMonths(selectedMonth, 1);
+    setSelectedMonth(newMonth);
+    if (isSameMonth(newMonth, new Date())) {
+      setActiveButton(null);
+    } else {
+      setActiveButton('prev');
+    }
   };
 
   const handleNextMonth = () => {
     if (selectedMonth < new Date()) {
-      setSelectedMonth(addMonths(selectedMonth, 1));
+      const newMonth = addMonths(selectedMonth, 1);
+      setSelectedMonth(newMonth);
+      if (isSameMonth(newMonth, new Date())) {
+        setActiveButton(null);
+      } else {
+        setActiveButton('next');
+      }
     }
   };
 
-  // Створення списку всіх днів у вибраному місяці
   const daysOfMonth = eachDayOfInterval({
     start: startOfMonth(selectedMonth),
     end: endOfMonth(selectedMonth),
   });
 
-  // Перетворення масиву даних з Redux в об'єкт для легкого доступу
   const monthDataMap = monthData.reduce((acc, dayData) => {
     acc[dayData.date] = dayData;
     return acc;
@@ -70,14 +81,12 @@ export const MonthStatsTable = () => {
     const dayKey = format(day, 'yyyy-MM-dd');
     const dayData = monthDataMap[dayKey];
 
-    // Визначаємо, чи поточний день є вже вибраним
     const isSameDaySelected = selectedDayStats?.date === dayKey;
 
     if (isSameDaySelected && modalVisible) {
       setModalVisible(false);
       setSelectedDayStats(null);
     } else {
-      //В іншому випадку оновлюємо вибраний день і показуємо статистику
       setSelectedDayStats({
         date: dayKey,
         waterVolumeSum: dayData ? dayData.waterVolumeSum : 0,
@@ -87,7 +96,6 @@ export const MonthStatsTable = () => {
       setModalVisible(true);
     }
 
-    //Встановлення позиції модального вікна
     const dayElement = dayRefs.current[day];
     if (dayElement) {
       const rect = dayElement.getBoundingClientRect();
@@ -134,8 +142,7 @@ export const MonthStatsTable = () => {
         >
           <ButtonPaginator
             onClick={handlePreviousMonth}
-            // onClick={() => changeMonth('prev')}
-            // active={activeButton === 'next'}
+            active={activeButton === 'next'}
           >
             &lt;
           </ButtonPaginator>
@@ -146,8 +153,7 @@ export const MonthStatsTable = () => {
           <ButtonPaginator
             onClick={handleNextMonth}
             disabled={selectedMonth >= new Date()}
-            // onClick={() => changeMonth('next')}
-            // active={activeButton === 'prev'}
+            active={activeButton === 'prev'}
           >
             &gt;
           </ButtonPaginator>

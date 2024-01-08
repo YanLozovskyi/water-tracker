@@ -10,13 +10,13 @@ import {
   ModalWrap,
 } from './UserLogoutModal.styled';
 
-export const UserLogoutModal = ({ onClose }) => {
+export const UserLogoutModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(selectIsLoading)
 
   return (
     <>
-      <BaseModalWindow onClose={onClose} title="Log out">
+      <BaseModalWindow onClose={onClose} onShow={onShow} title="Log out">
         <ModalWrap>
           <ModalTitle>Do you really want to leave?</ModalTitle>
           <List>

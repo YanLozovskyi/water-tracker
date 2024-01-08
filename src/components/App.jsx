@@ -63,7 +63,7 @@ const App = () => {
             />
           }
         />
-        <Route path="api/auth/reset-pass" element={<ResetPassPage />} />
+        <Route path="reset-pass" element={<ResetPassPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Route>
     </Routes>

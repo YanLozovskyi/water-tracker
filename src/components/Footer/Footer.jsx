@@ -13,7 +13,7 @@ export const Footer = () => {
         <use href={`${sprite}#icon-heart`}></use>
       </IconHeart>
       <FooterBtn onClick={() => { setModalOpen(true) }}>by GoIT Students</FooterBtn>
-      {isModalOpen && <TeamModal onClose={() => setModalOpen(false)} />}
+      <TeamModal onClose={() => setModalOpen(false)} onShow={isModalOpen} />
     </FooterBox>
   );
 };

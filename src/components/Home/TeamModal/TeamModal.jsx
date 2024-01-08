@@ -117,9 +117,9 @@ const backTeam = [
   },
 ];
 
-export const TeamModal = ({ onClose }) => {
+export const TeamModal = ({ onClose, onShow }) => {
   return (
-    <BaseModalWindow onClose={onClose} title="Our team">
+    <BaseModalWindow onClose={onClose} onShow={onShow} title="Our team">
       <TeamBox>
         <Title>Front-end</Title>
         <List>
