@@ -117,6 +117,9 @@ export const updateWaterRateThunk = createAsyncThunk(
       await updateWaterRate(rate);
       return rate;
     } catch (error) {
+      if (error.response.status === 400) {
+        toast.error(`WaterRate" must be greater than or equal to 0`);
+      }
       return rejectWithValue(error.message);
     }
   },
