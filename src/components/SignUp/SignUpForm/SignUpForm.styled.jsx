@@ -132,7 +132,6 @@ export const SignForm = styled(Form)`
 export const FormTitle = styled.h2`
   width: 100%;
   font-size: 26px;
-  font-style: normal;
   font-weight: 500;
   line-height: 32px;
   color: ${({ theme }) => theme.color.black};
@@ -154,7 +153,7 @@ export const SignUpLink = styled(NavLink)`
   font-size: 16px;
   line-height: 20px;
   color: ${({ theme }) => theme.color.accent};
-  
+
   &:hover {
     color: ${({ theme }) => theme.color.secondaryYellow};
   }
