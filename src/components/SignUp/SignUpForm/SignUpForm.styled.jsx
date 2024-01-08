@@ -77,6 +77,30 @@ export const SignButton = styled.button`
   }
 `;
 
+export const GoogleButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 32px;
+    padding: 12px 40px;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: #efede8;
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+
+
+    :hover,
+    :active {
+      background-color: ${({ theme }) => theme.color.accent};
+    }
+
+  svg {
+    min-width: 28px;
+    height: 28px;
+  }
+`;
+
 export const SignStyledLabel = styled.label`
   display: flex;
   flex-direction: column;
