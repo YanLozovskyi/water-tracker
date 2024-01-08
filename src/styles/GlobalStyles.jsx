@@ -15,33 +15,6 @@ export const GlobalStyles = () => {
   return css`
     ${emotionNormalize}
 
-    //toastify//
-
-    .Toastify__toast--error {
-      background: #9ebbff;
-      color: #ffffff;
-      box-shadow: 0 4px 8px rgba(240, 46, 62, 0.742);
-    }
-
-    .Toastify__toast--error .Toastify__close-button {
-      color: red;
-    }
-
-    .Toastify__toast--success {
-      background: #9ebbff;
-      border-color: #008000;
-      color: #ffffff;
-      box-shadow: 0 4px 8px rgba(37, 217, 43, 0.742);
-    }
-
-    .Toastify__progress-bar--error {
-      height: 2px;
-    }
-
-    .Toastify__progress-bar--success {
-      height: 2px;
-    }
-
     /* ========================= Reset styles ========================= */
     html,
     body,
@@ -279,6 +252,34 @@ export const GlobalStyles = () => {
       transition: all 0.5s linear;
     }
     /* ========================= /Common styles ========================= */
+
+    /* ========================= /Toastify ========================= */
+    
+    .Toastify__toast--error {
+      background: #9ebbff;
+      color: #ffffff;
+      box-shadow: 0 4px 8px rgba(240, 46, 62, 0.742);
+    }
+
+    .Toastify__toast--error .Toastify__close-button {
+      color: red;
+    }
+
+    .Toastify__toast--success {
+      background: #9ebbff;
+      border-color: #008000;
+      color: #ffffff;
+      box-shadow: 0 4px 8px rgba(37, 217, 43, 0.742);
+    }
+
+    .Toastify__progress-bar--error {
+      height: 2px;
+    }
+
+    .Toastify__progress-bar--success {
+      height: 2px;
+    }
+    /* ========================= /Toastify ========================= */
 
     /* ========================= /Scroll styles ========================= */
 
