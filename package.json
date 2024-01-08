@@ -19,6 +19,7 @@
     "date-fns": "^3.0.6",
     "emotion-normalize": "^11.0.1",
     "formik": "^2.4.5",
+    "framer-motion": "^10.17.9",
     "modern-normalize": "^2.0.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 export const StyledLogoModal = styled.div`
   position: absolute;
+  z-index: 1;
   left: -120px;
   top: 32px;
   width: 118px;
@@ -52,7 +53,4 @@ export const StyledListItem = styled.li`
 export const UserLogoModalWrap = styled.div`
   position: relative;
   z-index: 1;
-  transition:
-    opacity 0.5s ease,
-    transform 0.5s ease;
 `;
