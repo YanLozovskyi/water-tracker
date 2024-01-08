@@ -272,11 +272,22 @@ export const GlobalStyles = () => {
       box-shadow: 0 4px 8px rgba(37, 217, 43, 0.742);
     }
 
+    .Toastify__toast--warning {
+      background: #9ebbff;
+      border-color: #c9c507;
+      color: #ffffff;
+      box-shadow: 0 4px 8px rgba(195, 216, 8, 0.742);
+    }
+
     .Toastify__progress-bar--error {
       height: 2px;
     }
 
     .Toastify__progress-bar--success {
+      height: 2px;
+    }
+
+    .Toastify__progress-bar--warning {
       height: 2px;
     }
     /* ========================= /Toastify ========================= */
