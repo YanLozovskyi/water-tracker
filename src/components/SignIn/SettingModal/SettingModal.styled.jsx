@@ -97,12 +97,44 @@ export const GenderText = styled(FormText)`
 `;
 
 export const RadioBtn = styled(Field)`
-  border: 1px solid ${({ theme }) => theme.color.accent};
-  width: 14px;
-  height: 14px;
+  opacity: 0;
+  position: absolute;
 
-  &:checked {
-    color: ${({ theme }) => theme.color.accent};
+  + span {
+    display: inline-block;
+    padding-left: 25px;
+    position: relative;
+    cursor: pointer;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid ${props => props.theme.color.accent};
+      background-color: white;
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: ${props => props.theme.color.accent};
+      top: 50%;
+      left: 4px;
+      transform: translate(0, -50%);
+      opacity: 0;
+    }
+  }
+
+  &:checked + span:after {
+    opacity: 1;
   }
 `;
 
@@ -113,7 +145,6 @@ export const RadioBtnWrap = styled.div`
 `;
 
 export const RadioBtnText = styled.span`
-  margin-left: 8px;
   color: ${({ theme }) => theme.color.black};
   font-size: 16px;
   line-height: 1.25; /* 125% */

@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 export const ModalTitle = styled.h2`
   margin-bottom: 24px;
   color: ${({ theme }) => theme.color.black};
-  font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
   line-height: 20px; /* 111.111% */
@@ -51,7 +50,6 @@ export const CancelBtn = styled.button`
   background-color: ${({ theme }) => theme.color.secondaryLightBlue};
   color: ${({ theme }) => theme.color.accent};
   text-align: center;
-  font-family: Roboto;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px; /* 133.333% */
@@ -79,12 +77,16 @@ export const CancelBtn = styled.button`
 `;
 
 export const List = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
+  li {
+    @media screen and (max-width: 767px) {
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    flex-direction: row;
+    display: flex;
     gap: 24px;
     justify-content: end;
   }
