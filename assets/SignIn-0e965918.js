@@ -1,25 +1,25 @@
-import{n as a,j as o,aL as r}from"./index-8a0878a9.js";import{S as i}from"./Section-7f7b0ad6.js";import{i as t,a as s,b as m,c as n,d,e as g}from"./bubbleTablet@2x-6c947164.js";const x=a(i)`
+import{n as a,j as i,aG as n}from"./index-9f6a3471.js";import{S as o}from"./Section-191b2ef3.js";import{i as t,a as r,b as m,c as s,d as g,e as d}from"./bubbleTablet@2x-6c947164.js";const x=a(o)`
   padding-top: 40px;
-  background-position: top;
+  background-position: center center;
   background-image: -webkit-image-set(
     url(${t}) 1x,
-    url(${s}) 2x
+    url(${r}) 2x
   );
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
   width: 100%;
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.tablet}) {
     background-image: -webkit-image-set(
       url(${m}) 1x,
-      url(${n}) 2x
+      url(${s}) 2x
     );
   }
 
   @media screen and (min-width: ${({theme:e})=>e.breakpoint.desktop}) {
     background-image: -webkit-image-set(
-      url(${d}) 1x,
-      url(${g}) 2x
+      url(${g}) 1x,
+      url(${d}) 2x
     );
   }
-`,u=()=>o.jsx(x,{children:o.jsx(r,{})});export{u as default};
+`,k=()=>i.jsx(x,{children:i.jsx(n,{})});export{k as default};
