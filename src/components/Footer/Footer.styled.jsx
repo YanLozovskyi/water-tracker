@@ -11,7 +11,7 @@ import styled from '@emotion/styled';
 export const FooterBox = styled.footer`
   width: 100%;
   height: 40px;
-  background-color: rgba(240, 245, 255, 0.5);
+  background-color: ${({ theme }) => theme.color.footerBackgroundColor};
 
   display: flex;
   align-items: center;
@@ -26,7 +26,7 @@ export const FooterBox = styled.footer`
 `;
 
 export const FooterText = styled.p`
-  color: #2f2f2f;
+  color: ${({ theme }) => theme.color.black};
   font-size: 12px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -35,7 +35,7 @@ export const FooterText = styled.p`
 `;
 
 export const FooterBtn = styled.button`
-  color: #2f2f2f;
+  color: ${({ theme }) => theme.color.black};
   font-size: 12px;
   background-color: transparent;
   padding: 0;

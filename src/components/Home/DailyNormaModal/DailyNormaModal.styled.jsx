@@ -24,7 +24,7 @@ export const Formula = styled.div`
   margin-bottom: 12px;
 
   span {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -41,7 +41,7 @@ export const Form = styled.div`
 
 export const TitleModal = styled.h3`
   margin-bottom: 16px;
-  color: ${props => props.theme.color.black};
+  color: ${({ theme }) => theme.color.black};
   font-size: 18px;
   font-weight: 500;
   line-height: 1.1;
@@ -51,7 +51,7 @@ export const Paragraph = styled.p`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.25;
-  color: ${props => props.theme.color.black};
+  color: ${({ theme }) => theme.color.black};
 `;
 
 export const Comment = styled.div`
@@ -62,11 +62,11 @@ export const Comment = styled.div`
   font-weight: 400;
   line-height: 1.33;
   border-radius: 10px;
-  border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
-  color: ${props => props.theme.color.black};
+  border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
+  color: ${({ theme }) => theme.color.black};
 
   span {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 `;
 
@@ -98,8 +98,8 @@ export const InputRadio = styled.input`
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      border: 1px solid ${props => props.theme.color.accent};
-      background-color: white;
+      border: 1px solid ${({ theme }) => theme.color.accent};
+      background-color: ${({ theme }) => theme.color.white};
     }
 
     &:after {
@@ -108,7 +108,7 @@ export const InputRadio = styled.input`
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: ${props => props.theme.color.accent};
+      background: ${({ theme }) => theme.color.accent};
       top: 50%;
       left: 4px;
       transform: translate(0, -50%);
@@ -122,7 +122,7 @@ export const InputRadio = styled.input`
 `;
 
 export const Input = styled.input`
-  border: 1px solid ${props => props.theme.color.secondaryPowderBlue};
+  border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
   border-radius: 6px;
   display: flex;
   padding: 12px 10px;
@@ -132,25 +132,25 @@ export const Input = styled.input`
   font-size: 16px;
   width: 100%;
   margin-top: 8px;
-  color: ${props => props.theme.color.secondaryLightBlue};
-  background-color: ${props => props.theme.color.white};
+  color: ${({ theme }) => theme.color.secondaryLightBlue};
+  background-color: ${({ theme }) => theme.color.white};
 
   &::placeholder {
-    color: ${props => props.theme.color.secondaryLightBlue};
+    color: ${({ theme }) => theme.color.secondaryLightBlue};
   }
 
   &:hover {
-    color: ${props => props.theme.color.accent};
-    border: 1px solid ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:focus {
     outline: none;
-    border: 1px solid ${props => props.theme.color.accent};
+    border: 1px solid ${({ theme }) => theme.color.accent};
   }
 
   &:not(:placeholder-shown) {
-    color: ${props => props.theme.color.accent};
+    color: ${({ theme }) => theme.color.accent};
   }
 `;
 
@@ -173,7 +173,7 @@ export const FormResult = styled.div`
 
 export const ButtonSave = styled.button`
   background-color: ${({ theme }) => theme.color.accent};
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;

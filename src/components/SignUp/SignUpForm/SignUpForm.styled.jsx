@@ -69,7 +69,7 @@ export const SignButton = styled.button`
   padding: 8px 30px 8px 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   background-color: ${({ theme }) => theme.color.accent};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -127,6 +127,8 @@ export const SignStyledInput = styled(Field)`
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
+  background-color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.black};
 
   &:focus-within {
     outline: none;

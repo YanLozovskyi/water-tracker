@@ -154,7 +154,7 @@ export const AddWaterButton = styled.button`
   border-radius: 10px;
   padding: 6px 76px 6px 76px;
   background-color: ${({ theme }) => theme.color.accent};
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   border: none;
   box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
 
@@ -178,5 +178,5 @@ export const AddIcon = styled.svg`
   width: 24px;
   height: 24px;
   fill: transparent;
-  stroke: ${({ theme }) => theme.color.white};
+  stroke: #fff;
 `;

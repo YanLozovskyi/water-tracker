@@ -8,7 +8,7 @@ export const ButtonStyle = styled.button`
   display: inline-block;
   width: 100%;
   padding: 8px 30px;
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;

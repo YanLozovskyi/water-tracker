@@ -16,7 +16,7 @@ export const LogOutBtn = styled.button`
   border: none;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.secondaryRed};
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px; /* 133.333% */

@@ -68,6 +68,7 @@ export const theme = {
       secondaryLightBlue: '#9ebbff',
       secondaryYellow: '#ff9d43',
       secondaryPowderBlue: '#d7e3ff',
+      footerBackgroundColor: 'rgba(240, 245, 255, 0.50)',
     },
     // Animation (transition) on hover & focus
     boxShadowforButton: {
@@ -101,6 +102,7 @@ export const theme = {
       secondaryLightBlue: '#7FAAFD',
       secondaryYellow: '#DF9E63',
       secondaryPowderBlue: '#283F6C',
+      footerBackgroundColor: 'rgba(69, 91, 134, 0.50)',
     },
     // Animation (transition) on hover & focus
     boxShadowforButton: {
