@@ -14,7 +14,7 @@ import {
 
 import yanLozovskiy from '../../../assets/images/team/yan-lozovskiy.jpg';
 import irynaKarpusenko from '../../../assets/images/team/iryna-karpusenko.jpg';
-import ivannaVaskovets from '../../../assets/images/team/ivanna-vaskovets.jpg';
+import ivannaVaskovets from '../../../assets/images/team/ivanna-vaskovetc.jpg';
 import olesiaKubska from '../../../assets/images/team/olesia-kubska.jpg';
 import annaZubchenko from '../../../assets/images/team/anna-zubchenko.jpg';
 import yanaHalaiko from '../../../assets/images/team/yana-halaiko.jpg';
