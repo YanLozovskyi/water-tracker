@@ -14,6 +14,7 @@ import {
   EyeSlashIcon,
   FormContainer,
   FormTitle,
+  GoogleButton,
   SignButton,
   SignForm,
   SignStyledInput,
@@ -40,6 +41,12 @@ export const SignInForm = () => {
 
   const iconClick = () => {
     setIconStatus(!iconStatus);
+  };
+
+  const onClickGoogleBtn = () => {
+    window.location.assign(
+      'https://watertracker-backend.onrender.com/api/auth/google',
+    );
   };
 
   return (
@@ -99,6 +106,11 @@ export const SignInForm = () => {
               >
                 Sign In {isLoading && <ContentLoader />}
               </SignButton>
+              <GoogleButton type="button" onClick={onClickGoogleBtn}>
+                <svg>
+                  <use href={`${sprite}#icon-google`}></use>
+                </svg>
+              </GoogleButton>
             </SignForm>
           )}
         </Formik>
