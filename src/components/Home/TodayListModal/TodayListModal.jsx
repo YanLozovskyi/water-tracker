@@ -34,6 +34,7 @@ export const TodayListModal = ({
   initialTime,
   isEditing,
   onClose,
+  onShow,
   existingRecordId,
 }) => {
   const [amount, setAmount] = useState(initialAmount || 0);
@@ -91,7 +92,7 @@ export const TodayListModal = ({
     isEditing && initialTime ? format(parseISO(initialTime), 'hh:mm aa') : '';
 
   return (
-    <BaseModalWindow onClose={onClose} title={title}>
+    <BaseModalWindow onClose={onClose} onShow={onShow} title={title}>
       <BoxAddModal>
         {isEditing && (
           <PreviousInfo>
