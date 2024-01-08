@@ -10,12 +10,6 @@ import fontStarWoff from '../assets/fonts/customStars/fontello.woff';
 import fontStarTtf from '../assets/fonts/customStars/fontello.ttf';
 import fontStarSvg from '../assets/fonts/customStars/fontello.svg';
 
-// import { createGlobalStyle } from '@emotion/react';
-
-// export const GlobalStyles = createGlobalStyle`
-
-// `;
-
 export const GlobalStyles = () => {
   const theme = useTheme();
   return css`
