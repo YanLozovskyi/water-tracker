@@ -10,9 +10,6 @@ const Welcome = () => {
   const dispatch = useDispatch();
   const searchParam = useSearchParams();
   const token = searchParam[0].get('token');
-  console.log(searchParam);
-  console.log(searchParam[0]);
-  console.log(searchParam[0].get('token'));
   const navigate = useNavigate();
 
   useEffect(() => {

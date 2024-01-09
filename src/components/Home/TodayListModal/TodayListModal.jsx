@@ -28,6 +28,7 @@ import {
   Label,
   PreviousInfo,
 } from './TodayListModal.styled';
+import { formatCustomTime } from '../../../helpers/utils/dateUtils';
 
 export const TodayListModal = ({
   initialAmount,
@@ -65,11 +66,11 @@ export const TodayListModal = ({
 
   useEffect(() => {
     if (isEditing) {
+      console.log('here');
+      console.log(initialTime);
       setAmount(initialAmount || 0);
       setTime(
-        initialTime
-          ? format(parseISO(initialTime), 'HH:mm')
-          : format(new Date(), 'HH:mm'),
+        formatCustomTime(initialTime, 'HH:mm')
       );
     } else {
       setAmount(0);
@@ -82,11 +83,31 @@ export const TodayListModal = ({
     if (isEditing) {
       // Якщо редагуємо, використовуємо вже встановлений час з існуючого запису
       isoDate = initialTime
-        ? new Date(initialTime).toISOString()
+        ? new Date(initialTime).toISOString().slice(0, 16)
         : new Date().toISOString();
     } else {
       // Якщо створюємо новий запис, використовуємо поточний час
-      isoDate = new Date().toISOString();
+      isoDate = new Date().toISOString().slice(0, 16);
+
+      const currentDate = new Date(isoDate);
+
+      // Создаем новую дату на основе текущей
+      const newDate = new Date(currentDate);
+      newDate.setHours(currentDate.getHours() + 2);
+
+      const formattedNewDate =
+        newDate.getFullYear() +
+        '-' +
+        ('0' + (newDate.getMonth() + 1)).slice(-2) +
+        '-' +
+        ('0' + newDate.getDate()).slice(-2) +
+        'T' +
+        ('0' + newDate.getHours()).slice(-2) +
+        ':' +
+        ('0' + newDate.getMinutes()).slice(-2);
+      console.log("Исходная дата:", isoDate);
+      console.log("Новая дата:", formattedNewDate);
+      isoDate = formattedNewDate;
     }
 
     // console.log(isoDate);
@@ -114,7 +135,8 @@ export const TodayListModal = ({
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
 
   const displayTime =
-    isEditing && initialTime ? format(parseISO(initialTime), 'h:mm aa') : '';
+    isEditing && initialTime ? formatCustomTime(initialTime) : '';
+  console.log('time', time);
 
   return (
     <BaseModalWindow onClose={onClose} onShow={onShow} title={title}>
