@@ -48,10 +48,9 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
 
   const handleIntakeGoalChange = e => {
     const newIntakeGoal = e.target.value;
-    setIntakeGoal(newIntakeGoal);
 
     if (newIntakeGoal !== '') {
-      setDailyIntake(newIntakeGoal);
+      setIntakeGoal(newIntakeGoal);
     }
   };
 
@@ -72,7 +71,7 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
       return;
     }
 
-    dispatch(updateWaterRateThunk(parsedDailyIntake)).then(data => {
+    dispatch(updateWaterRateThunk(intakeGoal ? intakeGoal : parsedDailyIntake)).then(data => {
       if (!data.error) {
         onClose();
         setIntakeGoal('');

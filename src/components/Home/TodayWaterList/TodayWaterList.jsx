@@ -20,7 +20,6 @@ import {
   TodayWrapper,
 } from './TodayWaterList.styled';
 import {
-  getMonthWater,
   getTodayWater,
 } from '../../../redux/waterData/waterOperations';
 
@@ -72,7 +71,7 @@ export const TodayWaterList = () => {
                 <use href={icons.glass}></use>
               </IconGlass>
               <TodayVolume>{record.waterVolume} ml</TodayVolume>
-              <TodayTime>{format(parseISO(record.date), 'hh:mm a')}</TodayTime>
+              <TodayTime>{format(parseISO(record.date), 'h:mm a')}</TodayTime>
             </TodayInfo>
             <TodayTools>
               <ButtonChange onClick={() => openModalToEdit(record)}>
@@ -88,15 +87,13 @@ export const TodayWaterList = () => {
             </TodayTools>
           </TodayItem>
         ))}
-        <li>
-          <AddWaterBtn onClick={openModalToAdd}>
-            <svg>
-              <use href={icons.add}></use>
-            </svg>
-            Add Water
-          </AddWaterBtn>
-        </li>
       </TodayList>
+      <AddWaterBtn onClick={openModalToAdd}>
+        <svg>
+          <use href={icons.add}></use>
+        </svg>
+        Add Water
+      </AddWaterBtn>
       <DeletingEntryModal
         onClose={() => setDeletingModalOpen(false)}
         onShow={isDeletingModalOpen}

@@ -47,7 +47,9 @@ export const TodayListModal = ({
   const { isLoading } = useSelector(selectIsLoading);
 
   // змінюємо кількість води за допомогою кнопок
-  const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
+  const increaseAmount = () => {
+    setAmount(prevAmount => prevAmount + 50)
+  };
   const decreaseAmount = () =>
     setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
 
@@ -55,10 +57,10 @@ export const TodayListModal = ({
     let newValue = e.target.value;
 
     if (newValue.startsWith('0') && newValue.length > 1) {
-      newValue = newValue.substring(1);
+      newValue = parseFloat(newValue.substring(1));
     }
 
-    setAmount(newValue);
+    setAmount(parseFloat(newValue));
   };
 
   useEffect(() => {
@@ -101,7 +103,10 @@ export const TodayListModal = ({
       );
     } else {
       dispatch(addWatersThunk(waterData)).then(data => {
-        if (!data.error) onClose();
+        if (!data.error) {
+          onClose();
+          setAmount(0);
+        }
       });
     }
   };
@@ -109,7 +114,7 @@ export const TodayListModal = ({
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
 
   const displayTime =
-    isEditing && initialTime ? format(parseISO(initialTime), 'hh:mm aa') : '';
+    isEditing && initialTime ? format(parseISO(initialTime), 'h:mm aa') : '';
 
   return (
     <BaseModalWindow onClose={onClose} onShow={onShow} title={title}>
@@ -159,9 +164,7 @@ export const TodayListModal = ({
             type="number"
             value={amount}
             onChange={handleAmountChange}
-            onBlur={() =>
-              setAmount(prevAmount => prevAmount || initialAmount || '')
-            }
+            onBlur={() => setAmount(prevAmount => prevAmount || initialAmount || 0)}
           />
         </div>
         <FooterModal>
