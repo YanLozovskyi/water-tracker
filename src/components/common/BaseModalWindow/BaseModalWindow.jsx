@@ -50,7 +50,6 @@ export const BaseModalWindow = ({
 
   return createPortal(
     <>
-      {' '}
       <CSSTransition
         in={onShow}
         nodeRef={backdropRef}

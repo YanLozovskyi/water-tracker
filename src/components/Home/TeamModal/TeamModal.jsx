@@ -130,8 +130,10 @@ const backTeam = [
 ];
 
 export const TeamModal = ({ onClose, onShow }) => {
+  const stylesPadding = '32px 24px 24px'
+
   return (
-    <BaseModalWindow onClose={onClose} onShow={onShow} title="Our team">
+    <BaseModalWindow onClose={onClose} onShow={onShow} stylesPadding={stylesPadding} title="Our team">
       <TeamBox>
         <Title>Front-end</Title>
         <List>
