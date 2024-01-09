@@ -11,7 +11,7 @@ export const ToggleContainer = styled.div`
 export const TogglerIconLight = styled.svg`
   width: 14px;
   height: 26px;
-  animation: togglerLight 2s linear;
+  animation: togglerLight 0.5s linear;
   transform-origin: center right;
   margin-left: 10px;
 
@@ -30,7 +30,7 @@ export const TogglerIconLight = styled.svg`
 export const TogglerIconDark = styled.svg`
   width: 16px;
   height: 28px;
-  animation: togglerDark 2s linear;
+  animation: togglerDark 0.5s linear;
   transform-origin: center left;
   margin-left: 40px;
 
