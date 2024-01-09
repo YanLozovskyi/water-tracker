@@ -8,6 +8,8 @@ import {
   CancelBtn,
   LogOutBtn,
 } from '../UserLogoutModal/UserLogoutModal.styled';
+import { deleteUserThunk } from '../../../redux/auth/authOperations';
+import { toast } from 'react-toastify';
 
 export const UserDeleteModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
@@ -31,7 +33,9 @@ export const UserDeleteModal = ({ onClose, onShow }) => {
               </CancelBtn>
             </li>
             <li>
-              <LogOutBtn type="button">
+              <LogOutBtn type="button" onClick={() => dispatch(deleteUserThunk()).then(data => {
+                if (!data.error) toast.success(`Your account and all related data have been successfully deleted.`);
+              })}>
                 Delete {isLoading && <ContentLoader />}
               </LogOutBtn>
             </li>

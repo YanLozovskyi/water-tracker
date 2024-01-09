@@ -71,6 +71,10 @@ export const editUserInfo = async body => {
   return data;
 };
 
+export const deleteUser = async () => {
+  await axios.delete('/user/delete-account');
+  unsetToken();
+};
 // Water
 
 export const addWaters = async newWater => {

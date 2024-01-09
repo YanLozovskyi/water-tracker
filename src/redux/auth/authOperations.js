@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import {
+  deleteUser,
   editUserInfo,
   logout,
   refreshUser,
@@ -150,6 +151,18 @@ export const editUserInfoThunk = createAsyncThunk(
       if (error.response.status === 401) {
         toast.error(`Current password is incorrect`);
       }
+      return rejectWithValue(error.message);
+    }
+  },
+);
+
+export const deleteUserThunk = createAsyncThunk(
+  'user/delete',
+  async (_, { rejectWithValue }) => {
+    try {
+      await deleteUser();
+      return;
+    } catch (error) {
       return rejectWithValue(error.message);
     }
   },
