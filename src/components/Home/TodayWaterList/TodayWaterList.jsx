@@ -97,24 +97,20 @@ export const TodayWaterList = () => {
           </AddWaterBtn>
         </li>
       </TodayList>
-
-      {isDeletingModalOpen && (
-        <DeletingEntryModal
-          onClose={() => setDeletingModalOpen(false)}
-          recordId={selectedRecord?._id}
-        />
-      )}
-
-      {isModalOpen && (
-        <TodayListModal
-          initialAmount={selectedRecord?.waterVolume}
-          initialTime={selectedRecord?.date}
-          isEditing={selectedRecord !== null}
-          existingRecordId={selectedRecord?._id}
-          onClose={() => setModalOpen(false)}
-          onUpdate={handleUpdate}
-        />
-      )}
+      <DeletingEntryModal
+        onClose={() => setDeletingModalOpen(false)}
+        onShow={isDeletingModalOpen}
+        recordId={selectedRecord?._id}
+      />
+      <TodayListModal
+        initialAmount={selectedRecord?.waterVolume}
+        initialTime={selectedRecord?.date}
+        isEditing={selectedRecord !== null}
+        existingRecordId={selectedRecord?._id}
+        onClose={() => setModalOpen(false)}
+        onShow={isModalOpen}
+        onUpdate={handleUpdate}
+      />
     </TodayWrapper>
   );
 };

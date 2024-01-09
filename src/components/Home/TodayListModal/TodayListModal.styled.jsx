@@ -118,6 +118,7 @@ export const InputTime = styled.input`
   gap: 10px;
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
+  background-color: ${({ theme }) => theme.color.white};
 
   &::placeholder {
     color: ${({ theme }) => theme.color.secondaryLightBlue};
@@ -150,6 +151,7 @@ export const Input = styled.input`
   gap: 10px;
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.color.secondaryPowderBlue};
+  background-color: ${({ theme }) => theme.color.white};
 
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
@@ -205,7 +207,7 @@ export const AddButtonSave = styled.button`
   justify-content: center;
   gap: 5px;
   background-color: ${({ theme }) => theme.color.accent};
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   padding: 10px 30px;
   border-radius: 10px;
   font-size: 18px;

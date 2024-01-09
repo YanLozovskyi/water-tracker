@@ -70,11 +70,10 @@ export const WaterRatioPanel = () => {
         </AddIcon>
         Add Water
       </AddWaterButton>
-      {isModalOpen && (
-        <TodayListModal
-          onClose={() => setModalOpen(false)}
-        />
-      )}
+      <TodayListModal
+        onClose={() => setModalOpen(false)}
+        onShow={isModalOpen}
+      />
     </WaterRatioPanelContainer>
   );
 };

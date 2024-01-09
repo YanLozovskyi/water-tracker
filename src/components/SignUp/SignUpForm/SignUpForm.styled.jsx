@@ -69,11 +69,35 @@ export const SignButton = styled.button`
   padding: 8px 30px 8px 30px;
   border-radius: 10px;
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   background-color: ${({ theme }) => theme.color.accent};
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 10px 30px 10px 30px;
+  }
+`;
+
+export const GoogleButton = styled.button`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 42px;
+    width: 32px;
+    padding: 12px 40px;
+    gap: 10px;
+    border-radius: 12px;
+    background-color: #efede8;
+    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+
+
+    :hover,
+    :active {
+      background-color: ${({ theme }) => theme.color.accent};
+    }
+
+  svg {
+    min-width: 28px;
+    height: 28px;
   }
 `;
 
@@ -103,6 +127,8 @@ export const SignStyledInput = styled(Field)`
   justify-content: center;
   align-items: flex-start;
   gap: 10px;
+  background-color: ${({ theme }) => theme.color.white};
+  color: ${({ theme }) => theme.color.black};
 
   &:focus-within {
     outline: none;
@@ -132,7 +158,6 @@ export const SignForm = styled(Form)`
 export const FormTitle = styled.h2`
   width: 100%;
   font-size: 26px;
-  font-style: normal;
   font-weight: 500;
   line-height: 32px;
   color: ${({ theme }) => theme.color.black};
@@ -154,7 +179,7 @@ export const SignUpLink = styled(NavLink)`
   font-size: 16px;
   line-height: 20px;
   color: ${({ theme }) => theme.color.accent};
-  
+
   &:hover {
     color: ${({ theme }) => theme.color.secondaryYellow};
   }

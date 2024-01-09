@@ -1,4 +1,5 @@
 import { UserLogoModal } from 'components';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
@@ -61,15 +62,22 @@ export const UserLogo = () => {
           <use href={`${sprite}#icon-arrow-down`}></use>
         </UserModalIcon>
       </UserLogoBtn>
-      <UserLogoModalWrap
-        style={{
-          opacity: modalIsOpen ? 1 : 0,
-          transform: modalIsOpen ? 'scale(1)' : 'scale(0)',
-        }}
-      >
-        {modalIsOpen && (
-          <UserLogoModal setOnShowDropdown={setModalIsOpen} parentRef={myRef} />
-        )}
+      <UserLogoModalWrap>
+        <AnimatePresence>
+          {modalIsOpen && (
+            <motion.div
+              initial={{ opacity: 0, transform: 'scale(0)' }}
+              animate={{ opacity: 1, transform: 'scale(1)' }}
+              exit={{ opacity: 0, transform: 'scale(0)' }}
+              transition={{ ease: 'backOut', duration: 0.7 }}
+            >
+              <UserLogoModal
+                setOnShowDropdown={setModalIsOpen}
+                parentRef={myRef}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </UserLogoModalWrap>
     </UserLogoContainer>
   );
