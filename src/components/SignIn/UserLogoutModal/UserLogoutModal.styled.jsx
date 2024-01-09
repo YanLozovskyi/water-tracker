@@ -13,13 +13,14 @@ export const LogOutBtn = styled.button`
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.secondaryRed};
   color: ${({ theme }) => theme.color.white};
+  box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
   font-size: 18px;
   font-weight: 500;
   line-height: 24px; /* 133.333% */
   transition: box-shadow ${({ theme }) => theme.transition.main};
 
   &:is(:hover, :focus) {
-    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+    box-shadow: ${({ theme }) => theme.boxShadowforButton.hoverButton};
   }
 
   @media screen and (max-width: 767px) {
@@ -45,6 +46,7 @@ export const CancelBtn = styled.button`
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.secondaryLightBlue};
   color: ${({ theme }) => theme.color.accent};
+  box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
   text-align: center;
   font-size: 18px;
   font-weight: 500;
@@ -52,7 +54,7 @@ export const CancelBtn = styled.button`
   transition: box-shadow ${props => props.theme.transition.main};
 
   &:is(:hover, :focus) {
-    box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
+    box-shadow: ${({ theme }) => theme.boxShadowforButton.hoverButton};
   }
 
   @media screen and (max-width: 767px) {

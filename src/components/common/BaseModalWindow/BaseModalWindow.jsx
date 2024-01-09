@@ -16,6 +16,7 @@ export const BaseModalWindow = ({
   children,
   title,
   onClose,
+  stylesPadding,
 }) => {
   const modalRoot = document.querySelector('#modal-root');
 
@@ -48,15 +49,17 @@ export const BaseModalWindow = ({
   }, [modalRoot.children.length, onShow, onClose]);
 
   return createPortal(
-    <>   <CSSTransition
-      in={onShow}
-      nodeRef={backdropRef}
-      timeout={600}
-      classNames="base-modal"
-      unmountOnExit
-    >
-      <BaseModalStyled onClick={onClose} ref={backdropRef} />
-    </CSSTransition>
+    <>
+      {' '}
+      <CSSTransition
+        in={onShow}
+        nodeRef={backdropRef}
+        timeout={600}
+        classNames="base-modal"
+        unmountOnExit
+      >
+        <BaseModalStyled onClick={onClose} ref={backdropRef} />
+      </CSSTransition>
       <CSSTransition
         in={onShow}
         ref={modalContainerRef}
@@ -64,8 +67,11 @@ export const BaseModalWindow = ({
         classNames="modal-content"
         unmountOnExit
       >
-        <ModalContent onClick={e => e.stopPropagation()} ref={modalContainerRef}>
-          <ModalHeader>
+        <ModalContent
+          onClick={e => e.stopPropagation()}
+          ref={modalContainerRef}
+        >
+          <ModalHeader stylesPadding={stylesPadding}>
             <h2>{title}</h2>
             <CloseButton onClick={onClose}>
               <CloseIcon>
@@ -75,8 +81,8 @@ export const BaseModalWindow = ({
           </ModalHeader>
           <div>{children}</div>
         </ModalContent>
-      </CSSTransition></>
-    ,
+      </CSSTransition>
+    </>,
     modalRoot,
   );
 };

@@ -331,6 +331,6 @@ export const DeleteBtn = styled.button`
   }
 
   &:is(:hover, :focus) {
-    color: ${props => props.theme.color.secondaryYellow};
+    color: ${props => props.theme.color.secondaryRed};
   }
 `;

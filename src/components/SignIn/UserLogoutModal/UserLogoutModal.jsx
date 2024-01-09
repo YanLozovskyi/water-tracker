@@ -12,11 +12,17 @@ import {
 
 export const UserLogoutModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(selectIsLoading)
+  const { isLoading } = useSelector(selectIsLoading);
+  const stylesPadding = '32px 24px';
 
   return (
     <>
-      <BaseModalWindow onClose={onClose} onShow={onShow} title="Log out">
+      <BaseModalWindow
+        onClose={onClose}
+        onShow={onShow}
+        stylesPadding={stylesPadding}
+        title="Log out"
+      >
         <ModalWrap>
           <ModalTitle>Do you really want to leave?</ModalTitle>
           <List>
@@ -26,7 +32,9 @@ export const UserLogoutModal = ({ onClose, onShow }) => {
               </CancelBtn>
             </li>
             <li>
-              <LogOutBtn type="button" onClick={() => dispatch(logOutThunk())}>Log out {isLoading && <ContentLoader />}</LogOutBtn>
+              <LogOutBtn type="button" onClick={() => dispatch(logOutThunk())}>
+                Log out {isLoading && <ContentLoader />}
+              </LogOutBtn>
             </li>
           </List>
         </ModalWrap>

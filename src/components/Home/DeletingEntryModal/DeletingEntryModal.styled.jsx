@@ -48,6 +48,7 @@ export const TextStyle = styled.p`
   font-size: 18px;
   color: ${({ theme }) => theme.color.black};
   line-height: 20px;
+  font-weight: 500;
 
   margin-bottom: 24px;
 `;
