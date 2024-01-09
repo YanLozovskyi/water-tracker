@@ -58,7 +58,7 @@ export const refreshUser = async token => {
 export const updateAvatar = async newPhotoFile => {
   const {
     data: { avatarURL },
-  } = await axios.post('/user/avatar', newPhotoFile, {
+  } = await axios.patch('/user/avatar', newPhotoFile, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
