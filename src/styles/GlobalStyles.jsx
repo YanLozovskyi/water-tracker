@@ -254,7 +254,7 @@ export const GlobalStyles = () => {
     /* ========================= /Common styles ========================= */
 
     /* ========================= /Toastify ========================= */
-    
+
     .Toastify__toast--error {
       background: #9ebbff;
       color: #ffffff;
