@@ -17,12 +17,12 @@ export const Loader = () => {
   );
 };
 
-export const ContentLoader = () => {
+export const ContentLoader = ({ width = "18px", height = "18px" }) => {
   return (
     <RotatingLines
       visible={true}
-      height="18"
-      width="18"
+      height={width}
+      width={height}
       strokeColor="white"
       strokeWidth="5"
       animationDuration="0.75"
