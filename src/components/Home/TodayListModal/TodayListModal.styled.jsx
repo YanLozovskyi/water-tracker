@@ -48,46 +48,33 @@ export const AddParagraph = styled.p`
 
 export const AddWater = styled.div`
   margin-bottom: 24px;
+
   div {
     display: flex;
     align-items: center;
-    gap: 10px;
   }
 `;
 
-export const InputWater = styled.input`
-  border-radius: 40px;
-  border: none;
-  background: ${({ theme }) => theme.color.secondaryPowderBlue};
+export const Water = styled.p`
   color: ${({ theme }) => theme.color.accent};
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.33;
-  width: 50px;
+  width: 92px;
   height: 36px;
-  margin-left: 10px;
-
-  ::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
 `;
 
 export const Label = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 40px;
   background: ${({ theme }) => theme.color.secondaryPowderBlue};
-  color: ${({ theme }) => theme.color.accent};
-  font-size: 18px;
-  font-weight: 700;
-
-  span {
-    margin-right: 15px;
-  }
+  padding-left: 10px;
+  padding-right: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 export const ButtonMl = styled.button`

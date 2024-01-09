@@ -24,7 +24,7 @@ import {
   Icon,
   Input,
   InputTime,
-  InputWater,
+  Water,
   Label,
   PreviousInfo,
 } from './TodayListModal.styled';
@@ -62,11 +62,7 @@ export const TodayListModal = ({
   };
 
   const handleSubmit = () => {
-    const currentDate = formatISO(new Date(), { representation: 'date' });
-    const dateTime = `${currentDate}T${time}`;
-    const isoDate = formatISO(parseISO(dateTime));
-    // console.log(currentDate);
-    // console.log(dateTime);
+    const isoDate = new Date().toISOString();
     // console.log(isoDate);
     const waterData = {
       waterVolume: amount,
@@ -115,15 +111,7 @@ export const TodayListModal = ({
               </Icon>
             </ButtonMl>
             <Label>
-              <InputWater
-                type="number"
-                value={amount}
-                onChange={handleAmountChange}
-                onBlur={() =>
-                  setAmount(prevAmount => prevAmount || initialAmount || 0)
-                }
-              />
-              <span>ml</span>
+              <Water>{amount}ml</Water>
             </Label>
             <ButtonMl onClick={increaseAmount}>
               <Icon>
