@@ -1,4 +1,4 @@
-import{n as s,h as r,j as a,aO as o,aP as t}from"./index-2d91d6ef.js";import{S as i}from"./Section-3c166174.js";import{i as m,a as n,b as d,c as g,d as c,e as x}from"./bubbleTablet@2x-6c947164.js";const b=s(i)`
+import{n as s,h as r,j as a,aO as o,aP as t}from"./index-426ba55a.js";import{S as i}from"./Section-16ba9268.js";import{i as m,a as n,b as d,c as g,d as c,e as x}from"./bubbleTablet@2x-6c947164.js";const b=s(i)`
   padding-top: 40px;
   background-position: top;
   background-image: -webkit-image-set(
