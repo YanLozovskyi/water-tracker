@@ -26,10 +26,10 @@ export const DailyNormaModal = ({ onClose }) => {
   const { isLoading } = useSelector(selectIsLoading);
 
   const [gender, setGender] = useState(reduxGender);
-  const [weight, setWeight] = useState('');
-  const [activityTime, setActivityTime] = useState('');
+  const [weight, setWeight] = useState(0);
+  const [activityTime, setActivityTime] = useState(0);
   const [dailyIntake, setDailyIntake] = useState((waterRate / 1000).toFixed(1));
-  const [intakeGoal, setIntakeGoal] = useState('');
+  const [intakeGoal, setIntakeGoal] = useState(0);
 
   const calculateWaterIntake = useCallback(() => {
     if (!weight || !activityTime) return;
@@ -49,7 +49,7 @@ export const DailyNormaModal = ({ onClose }) => {
   const handleSave = () => {
     const parsedDailyIntake = parseFloat(dailyIntake);
 
-    if (parsedDailyIntake === 2) {
+    if (parsedDailyIntake === waterRate / 1000) {
       toast.error('Please perform the calculation before saving.');
       return;
     }

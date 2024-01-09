@@ -24,7 +24,7 @@ import {
   Icon,
   Input,
   InputTime,
-  InputWater,
+  Water,
   Label,
   PreviousInfo,
 } from './TodayListModal.styled';
@@ -34,6 +34,7 @@ export const TodayListModal = ({
   initialTime,
   isEditing,
   onClose,
+  onShow,
   existingRecordId,
 }) => {
   const [amount, setAmount] = useState(initialAmount || 0);
@@ -44,13 +45,11 @@ export const TodayListModal = ({
   );
   const dispatch = useDispatch();
   const { isLoading } = useSelector(selectIsLoading);
-  const [isInputFocused, setIsInputFocused] = useState(false);
-  const [inputWaterAmount, setInputWaterAmount] = useState(initialAmount || 0);
 
-  const increaseAmount = () =>
-    setInputWaterAmount(prevAmount => prevAmount + 50);
+  // змінюємо кількість води за допомогою кнопок
+  const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
   const decreaseAmount = () =>
-    setInputWaterAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
+    setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
 
   const handleAmountChange = e => {
     let newValue = e.target.value;
@@ -60,24 +59,10 @@ export const TodayListModal = ({
     }
 
     setAmount(newValue);
-    setInputWaterAmount(newValue);
-  };
-
-  const handleInputFocus = () => setIsInputFocused(true);
-  const handleInputBlur = () => {
-    setIsInputFocused(false);
-    const newAmount = inputWaterAmount || initialAmount || 0;
-    setAmount(newAmount);
   };
 
   const handleSubmit = () => {
-    const now = new Date();
-    const isoDate = now.toISOString();
-    // const currentDate = formatISO(new Date(), { representation: 'date' });
-    // const dateTime = `${currentDate}T${time}`;
-    // const isoDate = formatISO(parseISO(dateTime));
-    // console.log(currentDate);
-    // console.log(dateTime);
+    const isoDate = new Date().toISOString();
     // console.log(isoDate);
     const waterData = {
       waterVolume: amount,
@@ -103,7 +88,7 @@ export const TodayListModal = ({
     isEditing && initialTime ? format(parseISO(initialTime), 'hh:mm aa') : '';
 
   return (
-    <BaseModalWindow onClose={onClose} title={title}>
+    <BaseModalWindow onClose={onClose} onShow={onShow} title={title}>
       <BoxAddModal>
         {isEditing && (
           <PreviousInfo>
@@ -126,14 +111,7 @@ export const TodayListModal = ({
               </Icon>
             </ButtonMl>
             <Label>
-              <InputWater
-                type="number"
-                value={inputWaterAmount}
-                onChange={e => setInputWaterAmount(e.target.value)}
-                onFocus={handleInputFocus}
-                onBlur={handleInputBlur}
-              />
-              <span>ml</span>
+              <Water>{amount}ml</Water>
             </Label>
             <ButtonMl onClick={increaseAmount}>
               <Icon>
@@ -157,8 +135,9 @@ export const TodayListModal = ({
             type="number"
             value={amount}
             onChange={handleAmountChange}
-            onFocus={handleInputFocus}
-            onBlur={handleInputBlur}
+            onBlur={() =>
+              setAmount(prevAmount => prevAmount || initialAmount || '')
+            }
           />
         </div>
         <FooterModal>
