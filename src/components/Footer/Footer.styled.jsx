@@ -53,6 +53,22 @@ export const IconHeart = styled.svg`
   width: 16px;
   height: 16px;
   fill: transparent;
+  transform: scale(3);
+  animation: pulse 1.2s infinite;
+
+  @keyframes pulse {
+    0% {
+      transform: scale(0.95);
+    }
+
+    70% {
+      transform: scale(1.2);
+    }
+
+    100% {
+      transform: scale(0.95);
+    }
+  }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     width: 20px;
