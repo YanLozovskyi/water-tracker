@@ -20,16 +20,16 @@ import {
   TitleModal,
 } from './DailyNormaModal.styled';
 
-export const DailyNormaModal = ({ onClose }) => {
+export const DailyNormaModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
-  const { gender: reduxGender } = useSelector(selectUser);
+  const { gender: reduxGender, waterRate } = useSelector(selectUser);
   const { isLoading } = useSelector(selectIsLoading)
 
 
   const [gender, setGender] = useState(reduxGender);
   const [weight, setWeight] = useState('');
   const [activityTime, setActivityTime] = useState('');
-  const [dailyIntake, setDailyIntake] = useState('2.0');
+  const [dailyIntake, setDailyIntake] = useState(waterRate);
   const [intakeGoal, setIntakeGoal] = useState('');
 
   const calculateWaterIntake = useCallback(() => {
@@ -47,12 +47,6 @@ export const DailyNormaModal = ({ onClose }) => {
     calculateWaterIntake();
   }, [calculateWaterIntake]);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     setGender(user.gender || 'female');
-  //   }
-  // }, [user]);
-
   const handleSave = () => {
     const parsedDailyIntake = parseFloat(dailyIntake);
 
@@ -67,7 +61,7 @@ export const DailyNormaModal = ({ onClose }) => {
   };
 
   return (
-    <BaseModalWindow onClose={onClose} title="My daily norma">
+    <BaseModalWindow onClose={onClose} onShow={onShow} title="My daily norma">
       <BoxModal>
         {
           <div>
@@ -112,7 +106,7 @@ export const DailyNormaModal = ({ onClose }) => {
                     checked={gender === 'male'}
                     onChange={() => setGender('male')}
                   />
-                  <span>For boy</span>
+                  <span>For man</span>
                 </label>
               </FormRadio>
               <div>

@@ -20,7 +20,7 @@ export const addWatersThunk = createAsyncThunk(
           toast.error(`You can't add water at the same time twice`);
           return rejectWithValue(error.message);
         case 400:
-          toast.error(`You must write at least 1 ml.`);
+          toast.warning(`You must write at least 1 ml.`);
           return rejectWithValue(error.message);
         default:
           return rejectWithValue(error.message);
@@ -38,7 +38,7 @@ export const editWaterThunk = createAsyncThunk(
       return response;
     } catch (error) {
       if (error.response.status === 400) {
-        toast.error(`You must write at least 1 ml.`);
+        toast.warning(`You must write at least 1 ml.`);
       }
       return rejectWithValue(error.message);
     }
@@ -76,9 +76,6 @@ export const getMonthWater = createAsyncThunk(
       const { data } = await fetchMonthWater(rangeDate);
       return data;
     } catch (error) {
-      if (error.response.status === 404) {
-        toast.error(`No water values for this period`);
-      }
       return rejectWithValue(error.message);
     }
   },
