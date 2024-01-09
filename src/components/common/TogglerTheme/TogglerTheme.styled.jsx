@@ -2,54 +2,46 @@ import styled from '@emotion/styled';
 
 export const ToggleContainer = styled.div`
   width: 70px;
-  height: 24px;
+  height: 28px;
   border-radius: 16px;
+  padding: 0px;
+  background: ${({ theme }) => theme.color.themeColor};
+`;
 
-  @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    width: 70px;
-    height: 24px;
-  }
+export const TogglerIconLight = styled.svg`
+  width: 14px;
+  height: 26px;
+  animation: togglerLight 2s linear;
+  transform-origin: center right;
+  margin-left: 10px;
 
-  @media (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    width: 80px;
-    height: 28px;
+  @keyframes togglerLight {
+    0% {
+      transform: translateX(35px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 `;
 
-export const ToggleHandle = styled.div`
-  width: 70px;
-  height: 24px;
-  border-radius: 16px;
-  padding: 0;
-  cursor: pointer;
-  box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
+export const TogglerIconDark = styled.svg`
+  width: 16px;
+  height: 28px;
+  animation: togglerDark 2s linear;
+  transform-origin: center left;
+  margin-left: 40px;
 
-  &:hover {
-    box-shadow: ${({ theme }) => theme.boxShadowforButton.hoverButton};
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    width: 70px;
-    height: 24px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    width: 80px;
-    height: 28px;
-  }
-`;
-
-export const TogglerIcon = styled.svg`
-  width: 70px;
-  height: 24px;
-
-  @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    width: 70px;
-    height: 24px;
-  }
-
-  @media (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    width: 80px;
-    height: 28px;
+  @keyframes togglerDark {
+    0% {
+      transform: translateX(-35px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
   }
 `;
