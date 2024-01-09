@@ -12,17 +12,17 @@ import {
   Title,
 } from './TeamModal.styled';
 
-import yanLozovskiy from '../../../assets/images/team/yan-lozovskiy.jpg';
-import irynaKarpusenko from '../../../assets/images/team/iryna-karpusenko.jpg';
-import ivannaVaskovets from '../../../assets/images/team/ivanna-vaskovetc.jpg';
-import olesiaKubska from '../../../assets/images/team/olesia-kubska.jpg';
-import annaZubchenko from '../../../assets/images/team/anna-zubchenko.jpg';
-import yanaHalaiko from '../../../assets/images/team/yana-halaiko.jpg';
-import yuiiaStepanovych from '../../../assets/images/team/yuiia-stepanovych.jpg';
-import maksymMizernyi from '../../../assets/images/team/maksym-mizernyi.jpg';
-import volodymyrFetisov from '../../../assets/images/team/volodymyr-fetisov.jpg';
-import stanislavBoychuk from '../../../assets/images/team/stanislav-boychuk.png';
-import serhiiKozhanov from '../../../assets/images/team/serhii-kozhanov.jpg';
+import yanLozovskiy from '../../../assets/images/team/yan-lozovskiy.webp';
+import irynaKarpusenko from '../../../assets/images/team/iryna-karpusenko.webp';
+import ivannaVaskovets from '../../../assets/images/team/ivanna-vaskovetc-min.webp';
+import olesiaKubska from '../../../assets/images/team/olesia-kubska.webp';
+import annaZubchenko from '../../../assets/images/team/anna-zubchenko.webp';
+import yanaHalaiko from '../../../assets/images/team/yana-halaiko.webp';
+import yuiiaStepanovych from '../../../assets/images/team/yuiia-stepanovych.webp';
+import maksymMizernyi from '../../../assets/images/team/maksym-mizernyi.webp';
+import volodymyrFetisov from '../../../assets/images/team/volodymyr-fetisov.webp';
+import stanislavBoychuk from '../../../assets/images/team/stanislav-boychuk.webp';
+import serhiiKozhanov from '../../../assets/images/team/serhii-kozhanov.webp';
 
 const frontTeam = [
   {
