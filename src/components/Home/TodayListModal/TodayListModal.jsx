@@ -44,11 +44,13 @@ export const TodayListModal = ({
   );
   const dispatch = useDispatch();
   const { isLoading } = useSelector(selectIsLoading);
+  const [isInputFocused, setIsInputFocused] = useState(false);
+  const [inputWaterAmount, setInputWaterAmount] = useState(initialAmount || 0);
 
-  // змінюємо кількість води за допомогою кнопок
-  const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
+  const increaseAmount = () =>
+    setInputWaterAmount(prevAmount => prevAmount + 50);
   const decreaseAmount = () =>
-    setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
+    setInputWaterAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
 
   const handleAmountChange = e => {
     let newValue = e.target.value;
@@ -58,12 +60,22 @@ export const TodayListModal = ({
     }
 
     setAmount(newValue);
+    setInputWaterAmount(newValue);
+  };
+
+  const handleInputFocus = () => setIsInputFocused(true);
+  const handleInputBlur = () => {
+    setIsInputFocused(false);
+    const newAmount = inputWaterAmount || initialAmount || 0;
+    setAmount(newAmount);
   };
 
   const handleSubmit = () => {
-    const currentDate = formatISO(new Date(), { representation: 'date' });
-    const dateTime = `${currentDate}T${time}`;
-    const isoDate = formatISO(parseISO(dateTime));
+    const now = new Date();
+    const isoDate = now.toISOString();
+    // const currentDate = formatISO(new Date(), { representation: 'date' });
+    // const dateTime = `${currentDate}T${time}`;
+    // const isoDate = formatISO(parseISO(dateTime));
     // console.log(currentDate);
     // console.log(dateTime);
     // console.log(isoDate);
@@ -116,11 +128,10 @@ export const TodayListModal = ({
             <Label>
               <InputWater
                 type="number"
-                value={amount}
-                onChange={handleAmountChange}
-                onBlur={() =>
-                  setAmount(prevAmount => prevAmount || initialAmount || 0)
-                }
+                value={inputWaterAmount}
+                onChange={e => setInputWaterAmount(e.target.value)}
+                onFocus={handleInputFocus}
+                onBlur={handleInputBlur}
               />
               <span>ml</span>
             </Label>
@@ -146,9 +157,8 @@ export const TodayListModal = ({
             type="number"
             value={amount}
             onChange={handleAmountChange}
-            onBlur={() =>
-              setAmount(prevAmount => prevAmount || initialAmount || '')
-            }
+            onFocus={handleInputFocus}
+            onBlur={handleInputBlur}
           />
         </div>
         <FooterModal>

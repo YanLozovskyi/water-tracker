@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateWaterRateThunk } from '../../../redux/auth/authOperations';
 import { selectUser } from '../../../redux/auth/authSelectors';
-
+import { toast } from 'react-toastify';
 import { BaseModalWindow, ContentLoader } from 'components';
 import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
@@ -23,13 +23,12 @@ import {
 export const DailyNormaModal = ({ onClose }) => {
   const dispatch = useDispatch();
   const { gender: reduxGender, waterRate } = useSelector(selectUser);
-  const { isLoading } = useSelector(selectIsLoading)
-
+  const { isLoading } = useSelector(selectIsLoading);
 
   const [gender, setGender] = useState(reduxGender);
   const [weight, setWeight] = useState('');
   const [activityTime, setActivityTime] = useState('');
-  const [dailyIntake, setDailyIntake] = useState(waterRate);
+  const [dailyIntake, setDailyIntake] = useState((waterRate / 1000).toFixed(1));
   const [intakeGoal, setIntakeGoal] = useState('');
 
   const calculateWaterIntake = useCallback(() => {
@@ -49,6 +48,11 @@ export const DailyNormaModal = ({ onClose }) => {
 
   const handleSave = () => {
     const parsedDailyIntake = parseFloat(dailyIntake);
+
+    if (parsedDailyIntake === 2) {
+      toast.error('Please perform the calculation before saving.');
+      return;
+    }
 
     if (isNaN(parsedDailyIntake)) {
       console.error('Daily Intake is not a valid number.');
@@ -112,7 +116,9 @@ export const DailyNormaModal = ({ onClose }) => {
               <div>
                 <Paragraph>Your weight in kilograms:</Paragraph>
                 <Input
-                  type="text"
+                  type="number"
+                  min="0"
+                  max="250"
                   placeholder="0"
                   value={weight}
                   onChange={e => setWeight(e.target.value)}
@@ -124,7 +130,8 @@ export const DailyNormaModal = ({ onClose }) => {
                   with a high physical load:
                 </Paragraph>
                 <Input
-                  type="text"
+                  type="number"
+                  min="0"
                   placeholder="0"
                   value={activityTime}
                   onChange={e => setActivityTime(e.target.value)}
@@ -132,20 +139,23 @@ export const DailyNormaModal = ({ onClose }) => {
               </div>
               <FormResult>
                 The required amount of water in liters per day:{' '}
-                <strong>{dailyIntake}L</strong>
+                <strong>{dailyIntake} L</strong>
               </FormResult>
               <div>
                 <TitleModal>
                   Write down how much water you will drink:
                 </TitleModal>
                 <Input
-                  type="text"
+                  type="number"
+                  min="0"
                   placeholder="0"
                   value={intakeGoal}
                   onChange={e => setIntakeGoal(e.target.value)}
                 />
               </div>
-              <ButtonSave onClick={handleSave}>Save {isLoading && <ContentLoader />}</ButtonSave>
+              <ButtonSave onClick={handleSave}>
+                Save {isLoading && <ContentLoader />}
+              </ButtonSave>
             </Form>
           </div>
         }

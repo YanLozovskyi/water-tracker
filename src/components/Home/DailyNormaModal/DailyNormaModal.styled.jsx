@@ -152,6 +152,14 @@ export const Input = styled.input`
   &:not(:placeholder-shown) {
     color: ${props => props.theme.color.accent};
   }
+
+  &[type='number'] {
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
 `;
 
 export const FormResult = styled.div`

@@ -51,7 +51,6 @@ export const AddWater = styled.div`
   div {
     display: flex;
     align-items: center;
-    gap: 10px;
   }
 `;
 
@@ -66,7 +65,10 @@ export const InputWater = styled.input`
   line-height: 1.33;
   width: 50px;
   height: 36px;
-  margin-left: 10px;
+
+  &:focus {
+    outline: none;
+  }
 
   ::-webkit-outer-spin-button,
   ::-webkit-inner-spin-button {
@@ -84,10 +86,10 @@ export const Label = styled.div`
   color: ${({ theme }) => theme.color.accent};
   font-size: 18px;
   font-weight: 700;
-
-  span {
-    margin-right: 15px;
-  }
+  padding-left: 10px;
+  padding-right: 16px;
+  margin-left: 10px;
+  margin-right: 10px;
 `;
 
 export const ButtonMl = styled.button`
