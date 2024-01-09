@@ -14,6 +14,8 @@ export const handleLogin = (state, { payload }) => {
 
 export const handleLogout = () => initialState;
 
+export const handleDeleteUser = () => initialState;
+
 export const handleRefreshFulfield = (state, { payload }) => {
   state.user = payload;
   state.isRefreshing = false;
