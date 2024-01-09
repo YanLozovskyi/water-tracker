@@ -156,8 +156,8 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
                 />
               </div>
               <FormResult>
-                The required amount of water in liters per day:{' '}
-                <strong>{dailyIntake} L</strong>
+                The required amount of water in liters per day:
+                <strong>{parseFloat(dailyIntake).toFixed(1)} L</strong>
               </FormResult>
               <div>
                 <TitleModal>
