@@ -12,46 +12,58 @@ import {
   Title,
 } from './TeamModal.styled';
 
+import yanLozovskiy from '../../../assets/images/team/yan-lozovskiy.webp';
+import irynaKarpusenko from '../../../assets/images/team/iryna-karpusenko.webp';
+import ivannaVaskovets from '../../../assets/images/team/ivanna-vaskovetc-min.webp';
+import olesiaKubska from '../../../assets/images/team/olesia-kubska.webp';
+import annaZubchenko from '../../../assets/images/team/anna-zubchenko.webp';
+import yanaHalaiko from '../../../assets/images/team/yana-halaiko.webp';
+import yuiiaStepanovych from '../../../assets/images/team/yuiia-stepanovych.webp';
+import maksymMizernyi from '../../../assets/images/team/maksym-mizernyi.webp';
+import volodymyrFetisov from '../../../assets/images/team/volodymyr-fetisov.webp';
+import stanislavBoychuk from '../../../assets/images/team/stanislav-boychuk.webp';
+import serhiiKozhanov from '../../../assets/images/team/serhii-kozhanov.webp';
+
 const frontTeam = [
   {
     name: `Yan Lozovskiy`,
-    photo: `src/assets/images/team/no-photo.png`,
+    photo: yanLozovskiy,
     role: `Team Lead`,
     social: {
-      linkedin: '',
+      linkedin: 'https://www.linkedin.com/in/yanlozovskyi/',
       github: 'https://github.com/YanLozovskyi',
     },
   },
   {
     name: `Iryna Karpusenko`,
-    photo: `src/assets/images/team/no-photo.png`,
+    photo: irynaKarpusenko,
     role: `Scrum Master`,
     social: {
-      linkedin: '',
-      github: '',
+      linkedin: 'https://www.linkedin.com/in/iryna-karpusenko-a851a8289/',
+      github: 'https://github.com/irailcha',
     },
   },
   {
     name: `Ivanna Vaskovets`,
-    photo: `src/assets/images/team/ivanna-vaskovets.jpg`,
+    photo: ivannaVaskovets,
     role: `Developer`,
     social: {
-      linkedin: '',
+      linkedin: 'https://www.linkedin.com/in/mykhalova-ivanna/',
       github: 'https://github.com/Ivano4ka8',
     },
   },
   {
     name: `Olesia Kubska`,
-    photo: `src/assets/images/team/no-photo.png`,
+    photo: olesiaKubska,
     role: `Developer`,
     social: {
-      linkedin: '',
+      linkedin: 'www.linkedin.com/in/olesia-kubska',
       github: 'https://github.com/OlesiaKubska',
     },
   },
   {
     name: `Anna Zubchenko`,
-    photo: 'src/assets/images/team/anna-zubchenko.jpg',
+    photo: annaZubchenko,
     role: `Developer`,
     social: {
       linkedin: 'https://www.linkedin.com/in/anna-zubchenko-b69560286/',
@@ -60,7 +72,7 @@ const frontTeam = [
   },
   {
     name: `Yana Halaiko`,
-    photo: `src/assets/images/team/yana-halaiko.jpg`,
+    photo: yanaHalaiko,
     role: `Developer`,
     social: {
       linkedin: 'https://www.linkedin.com/in/yana-halaiko/',
@@ -69,7 +81,7 @@ const frontTeam = [
   },
   {
     name: `Yuliia Stepanovych`,
-    photo: `src/assets/images/team/yuiia-stepanovych.jpg`,
+    photo: yuiiaStepanovych,
     role: `Developer`,
     social: {
       linkedin: 'https://www.linkedin.com/in/yuliia-stepanovych/',
@@ -77,11 +89,11 @@ const frontTeam = [
     },
   },
   {
-    name: `maxim`,
-    photo: `src/assets/images/team/no-photo.png`,
+    name: `Maksym Mizernyi`,
+    photo: maksymMizernyi,
     role: `Developer`,
     social: {
-      linkedin: '',
+      linkedin: 'https://www.linkedin.com/in/maksym-mizernyi/',
       github: 'https://github.com/MizakaMaks',
     },
   },
@@ -90,7 +102,7 @@ const frontTeam = [
 const backTeam = [
   {
     name: `Volodymyr Fetisov`,
-    photo: `src/assets/images/team/volodymyr-fetisov.jpg`,
+    photo: volodymyrFetisov,
     role: `Team Lead`,
     social: {
       linkedin: 'www.linkedin.com/in/volodymyr-fetisov',
@@ -99,7 +111,7 @@ const backTeam = [
   },
   {
     name: `Stanislav Boychuk`,
-    photo: `src/assets/images/team/stanislav-boychuk.png`,
+    photo: stanislavBoychuk,
     role: `Developer`,
     social: {
       linkedin: 'http://linkedin.com/in/stanislav-boychuk',
@@ -108,7 +120,7 @@ const backTeam = [
   },
   {
     name: `Serhii Kozhanov`,
-    photo: `src/assets/images/team/serhii-kozhanov.jpg`,
+    photo: serhiiKozhanov,
     role: `Developer`,
     social: {
       linkedin: 'https://www.linkedin.com/in/serhii-kozhanov/',

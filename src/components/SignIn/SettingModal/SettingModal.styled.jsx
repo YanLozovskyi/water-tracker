@@ -116,7 +116,7 @@ export const RadioBtn = styled(Field)`
       height: 14px;
       border-radius: 50%;
       border: 1px solid ${props => props.theme.color.accent};
-      background-color: white;
+      background-color: ${({ theme }) => theme.color.white};
     }
 
     &:after {
@@ -172,6 +172,7 @@ export const Input = styled(Field)`
   font-size: 16px;
   line-height: 1.25;
   outline: transparent; /* 125% */
+  background-color: ${({ theme }) => theme.color.white};
 
   &:focus {
     color: ${({ theme }) => theme.color.accent};
@@ -231,7 +232,7 @@ export const SaveBtn = styled.button`
   border-radius: 10px;
   background: ${({ theme }) => theme.color.accent};
   box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.25; /* 125% */
