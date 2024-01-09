@@ -18,7 +18,7 @@ const Welcome = () => {
   useEffect(() => {
     if (token) {
       try {
-        dispatch(setToken(token))
+        dispatch(setToken(token));
         dispatch(refreshUserThunk()).then(data => {
           if (!data.error) navigate('/home');
         });
@@ -26,14 +26,14 @@ const Welcome = () => {
         console.log(error.message);
       }
     }
-  }, [dispatch, navigate, token])
+  }, [dispatch, navigate, token]);
 
   return (
-    <Container>
-      <WelcomeStyle>
+    <WelcomeStyle>
+      <Container>
         <MainContent />
-      </WelcomeStyle>
-    </Container>
+      </Container>
+    </WelcomeStyle>
   );
 };
 
