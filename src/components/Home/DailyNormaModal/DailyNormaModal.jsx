@@ -26,10 +26,10 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
   const { isLoading } = useSelector(selectIsLoading);
 
   const [gender, setGender] = useState(reduxGender);
-  const [weight, setWeight] = useState(0);
-  const [activityTime, setActivityTime] = useState(0);
+  const [weight, setWeight] = useState('');
+  const [activityTime, setActivityTime] = useState('');
   const [dailyIntake, setDailyIntake] = useState((waterRate / 1000).toFixed(1));
-  const [intakeGoal, setIntakeGoal] = useState(0);
+  const [intakeGoal, setIntakeGoal] = useState('');
 
   const calculateWaterIntake = useCallback(() => {
     if (!weight || !activityTime) return;
@@ -46,21 +46,39 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
     calculateWaterIntake();
   }, [calculateWaterIntake]);
 
+  const handleIntakeGoalChange = e => {
+    const newIntakeGoal = e.target.value;
+    setIntakeGoal(newIntakeGoal);
+
+    if (newIntakeGoal !== '') {
+      setDailyIntake(newIntakeGoal);
+    }
+  };
+
   const handleSave = () => {
     const parsedDailyIntake = parseFloat(dailyIntake);
 
-    if (parsedDailyIntake === waterRate / 1000) {
-      toast.error('Please perform the calculation before saving.');
+    const isDataValid = (weight > 0 && activityTime > 0) || intakeGoal > 0;
+
+    if (!isDataValid) {
+      toast.error(
+        'Please fill in all fields or enter your intake goal before saving.',
+      );
       return;
     }
 
-    if (isNaN(parsedDailyIntake)) {
-      console.error('Daily Intake is not a valid number.');
+    if (isNaN(parsedDailyIntake) || parsedDailyIntake <= 0) {
+      toast.error('Please enter a valid intake goal.');
       return;
     }
 
     dispatch(updateWaterRateThunk(parsedDailyIntake)).then(data => {
-      if (!data.error) onClose();
+      if (!data.error) {
+        onClose();
+        setIntakeGoal('');
+        setWeight('');
+        setActivityTime('');
+      }
     });
   };
 
@@ -150,7 +168,7 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
                   min="0"
                   placeholder="0"
                   value={intakeGoal}
-                  onChange={e => setIntakeGoal(e.target.value)}
+                  onChange={handleIntakeGoalChange}
                 />
               </div>
               <ButtonSave onClick={handleSave}>

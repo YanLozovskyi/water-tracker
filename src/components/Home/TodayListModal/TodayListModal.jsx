@@ -1,8 +1,8 @@
 import { BaseModalWindow, ContentLoader } from 'components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { format, formatISO, parseISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
   addWatersThunk,
@@ -61,8 +61,32 @@ export const TodayListModal = ({
     setAmount(newValue);
   };
 
+  useEffect(() => {
+    if (isEditing) {
+      setAmount(initialAmount || 0);
+      setTime(
+        initialTime
+          ? format(parseISO(initialTime), 'HH:mm')
+          : format(new Date(), 'HH:mm'),
+      );
+    } else {
+      setAmount(0);
+      setTime(format(new Date(), 'HH:mm'));
+    }
+  }, [isEditing, initialAmount, initialTime]);
+
   const handleSubmit = () => {
-    const isoDate = new Date().toISOString();
+    let isoDate;
+    if (isEditing) {
+      // Якщо редагуємо, використовуємо вже встановлений час з існуючого запису
+      isoDate = initialTime
+        ? new Date(initialTime).toISOString()
+        : new Date().toISOString();
+    } else {
+      // Якщо створюємо новий запис, використовуємо поточний час
+      isoDate = new Date().toISOString();
+    }
+
     // console.log(isoDate);
     const waterData = {
       waterVolume: amount,
@@ -111,7 +135,7 @@ export const TodayListModal = ({
               </Icon>
             </ButtonMl>
             <Label>
-              <Water>{amount}ml</Water>
+              <Water>{amount} ml</Water>
             </Label>
             <ButtonMl onClick={increaseAmount}>
               <Icon>
