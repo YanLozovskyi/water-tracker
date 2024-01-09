@@ -9,10 +9,6 @@ export const ModalTitle = styled.h2`
 `;
 
 export const LogOutBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-self: center;
-  gap: 5px;
   border: none;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.secondaryRed};
@@ -26,7 +22,7 @@ export const LogOutBtn = styled.button`
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media screen and (max-width: 767px) {
     padding: 8px 30px;
     min-width: 100%;
     height: 36px;
@@ -59,7 +55,7 @@ export const CancelBtn = styled.button`
     box-shadow: 0px 4px 8px 0px rgba(64, 123, 255, 0.34);
   }
 
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media screen and (max-width: 767px) {
     padding: 8px 30px;
     min-width: 100%;
     height: 36px;

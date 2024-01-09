@@ -83,8 +83,8 @@ export const FormField = styled.div`
 `;
 
 export const PasswordFormField = styled(FormField)`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    height: 82px;
+  height: 82px;
+  @media screen and (max-width: 767px) {
     margin-bottom: 28px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -226,10 +226,6 @@ export const PasswordLabel = styled.label`
 `;
 
 export const SaveBtn = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
   min-width: 100%;
   padding: 8px 30px;
   border-radius: 10px;
@@ -246,7 +242,6 @@ export const SaveBtn = styled.button`
   }
 
   @media (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    margin-left: auto;
     min-width: 160px;
     padding: 10px 30px;
     font-size: 18px;
@@ -255,9 +250,8 @@ export const SaveBtn = styled.button`
 `;
 
 export const DesktopFormWrap = styled.div`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
-    margin-bottom: 24px;
-  }
+  margin-bottom: 24px;
+
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     display: flex;
     gap: 24px;
@@ -274,7 +268,7 @@ export const DesktopPasswordWrap = styled.div`
 `;
 
 export const DesktopGenderWrap = styled.div`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media screen and (max-width: 1439px) {
     margin-bottom: 24px;
   }
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
@@ -286,7 +280,7 @@ export const DesktopGenderWrap = styled.div`
 `;
 
 export const LastPasswordFormField = styled.div`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media screen and (max-width: 767px) {
     height: 92px;
   }
 
@@ -296,11 +290,47 @@ export const LastPasswordFormField = styled.div`
 `;
 
 export const GenderFormField = styled.div`
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.mobile}) {
+  @media screen and (max-width: 1439px) {
     margin-bottom: 24px;
   }
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
     margin-bottom: 52px;
+  }
+`;
+
+export const SaveBtnWrap = styled.ul`
+  li {
+    @media screen and (max-width: 767px) {
+      &:not(:last-child) {
+        margin-bottom: 24px;
+      }
+    }
+  }
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+`;
+
+export const DeleteBtn = styled.button`
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: ${props => props.theme.color.secondaryLightBlue};
+  transition: color ${({ theme }) => theme.transition.main};
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    font-size: 16px;
+  }
+
+  &:is(:hover, :focus) {
+    color: ${props => props.theme.color.secondaryYellow};
   }
 `;
