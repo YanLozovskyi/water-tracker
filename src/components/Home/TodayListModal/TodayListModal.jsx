@@ -51,17 +51,6 @@ export const TodayListModal = ({
   const decreaseAmount = () =>
     setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
 
-  useEffect(() => {
-    if (isEditing) {
-      setAmount(initialAmount || 0);
-      setTime(
-        initialTime
-          ? format(parseISO(initialTime), 'HH:mm')
-          : format(new Date(), 'HH:mm'),
-      );
-    }
-  }, [isEditing, initialAmount, initialTime]);
-
   const handleAmountChange = e => {
     let newValue = e.target.value;
 
@@ -72,8 +61,32 @@ export const TodayListModal = ({
     setAmount(newValue);
   };
 
+  useEffect(() => {
+    if (isEditing) {
+      setAmount(initialAmount || 0);
+      setTime(
+        initialTime
+          ? format(parseISO(initialTime), 'HH:mm')
+          : format(new Date(), 'HH:mm'),
+      );
+    } else {
+      setAmount(0);
+      setTime(format(new Date(), 'HH:mm'));
+    }
+  }, [isEditing, initialAmount, initialTime]);
+
   const handleSubmit = () => {
-    const isoDate = new Date().toISOString();
+    let isoDate;
+    if (isEditing) {
+      // Якщо редагуємо, використовуємо вже встановлений час з існуючого запису
+      isoDate = initialTime
+        ? new Date(initialTime).toISOString()
+        : new Date().toISOString();
+    } else {
+      // Якщо створюємо новий запис, використовуємо поточний час
+      isoDate = new Date().toISOString();
+    }
+
     // console.log(isoDate);
     const waterData = {
       waterVolume: amount,
