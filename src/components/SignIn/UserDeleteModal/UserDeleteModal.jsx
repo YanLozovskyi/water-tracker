@@ -1,16 +1,15 @@
 import { BaseModalWindow, ContentLoader } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOutThunk } from '../../../redux/auth/authOperations';
 import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
-  CancelBtn,
-  List,
-  LogOutBtn,
-  ModalTitle,
   ModalWrap,
-} from './UserLogoutModal.styled';
+  ModalTitle,
+  List,
+  CancelBtn,
+  LogOutBtn,
+} from '../UserLogoutModal/UserLogoutModal.styled';
 
-export const UserLogoutModal = ({ onClose, onShow }) => {
+export const UserDeleteModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(selectIsLoading);
   const stylesPadding = '32px 24px';
@@ -21,10 +20,10 @@ export const UserLogoutModal = ({ onClose, onShow }) => {
         onClose={onClose}
         onShow={onShow}
         stylesPadding={stylesPadding}
-        title="Log out"
+        title="Delete account"
       >
         <ModalWrap>
-          <ModalTitle>Do you really want to leave?</ModalTitle>
+          <ModalTitle>Are you sure you want to delete your account?</ModalTitle>
           <List>
             <li>
               <CancelBtn type="button" onClick={onClose}>
@@ -32,8 +31,8 @@ export const UserLogoutModal = ({ onClose, onShow }) => {
               </CancelBtn>
             </li>
             <li>
-              <LogOutBtn type="button" onClick={() => dispatch(logOutThunk())}>
-                Log out {isLoading && <ContentLoader />}
+              <LogOutBtn type="button">
+                Delete {isLoading && <ContentLoader />}
               </LogOutBtn>
             </li>
           </List>

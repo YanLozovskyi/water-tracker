@@ -11,8 +11,8 @@ import {
 
 export const DeletingEntryModal = ({ onClose, onShow, recordId }) => {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(selectIsLoading)
-
+  const { isLoading } = useSelector(selectIsLoading);
+  const stylesPadding = '32px 24px';
 
   const handleDelete = () => {
     dispatch(deleteWaterThunk(recordId)).then(data => {
@@ -23,15 +23,18 @@ export const DeletingEntryModal = ({ onClose, onShow, recordId }) => {
     <BaseModalWindow
       onClose={onClose}
       onShow={onShow}
-      title={"Delete Entry"}
+      stylesPadding={stylesPadding}
+      title={'Delete Entry'}
     >
       <BoxModal>
         <TextStyle>Are you sure you want to delete the entry?</TextStyle>
         <ButtonBox>
-          <ButtonStyle onClick={handleDelete}>Delete {isLoading && <ContentLoader />}</ButtonStyle>
+          <ButtonStyle onClick={handleDelete}>
+            Delete {isLoading && <ContentLoader />}
+          </ButtonStyle>
           <ButtonStyle onClick={onClose}>Cancel</ButtonStyle>
         </ButtonBox>
       </BoxModal>
-    </BaseModalWindow >
+    </BaseModalWindow>
   );
 };

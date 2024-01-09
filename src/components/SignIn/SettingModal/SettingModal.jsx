@@ -11,8 +11,10 @@ import {
 } from '../../../redux/auth/authOperations';
 import { selectUser } from '../../../redux/auth/authSelectors';
 import { selectIsLoading } from '../../../redux/root/rootSelectors';
+import { UserDeleteModal } from '../UserDeleteModal/UserDeleteModal';
 import {
   Avatar,
+  DeleteBtn,
   DesktopFormWrap,
   DesktopGenderWrap,
   DesktopPasswordWrap,
@@ -38,6 +40,7 @@ import {
   RadioBtnText,
   RadioBtnWrap,
   SaveBtn,
+  SaveBtnWrap,
   StyledErrorMessage,
   StyledErrorText,
   StyledLabel,
@@ -74,8 +77,13 @@ const settingFormValidationSchema = Yup.object().shape({
 export const SettingModal = ({ onClose, onShow }) => {
   const dispatch = useDispatch();
   const { avatarURL, email, name, gender } = useSelector(selectUser);
-  const { isLoading } = useSelector(selectIsLoading)
+  const { isLoading } = useSelector(selectIsLoading);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const toggleDeleteModal = () => {
+    setDeleteModalOpen(previsDeleteModalOpen => !previsDeleteModalOpen);
+  };
 
   const initialValues = {
     gender: gender || '',
@@ -229,7 +237,7 @@ export const SettingModal = ({ onClose, onShow }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                                touched.outdatedPassword
+                              touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
@@ -266,7 +274,7 @@ export const SettingModal = ({ onClose, onShow }) => {
                             name="newPassword"
                             className={
                               (errors.newPassword && touched.newPassword) ||
-                                (values.outdatedPassword && !values.newPassword)
+                              (values.outdatedPassword && !values.newPassword)
                                 ? 'error-input'
                                 : null
                             }
@@ -332,13 +340,25 @@ export const SettingModal = ({ onClose, onShow }) => {
                       </LastPasswordFormField>
                     </DesktopPasswordWrap>
                   </DesktopFormWrap>
-                  <SaveBtn type="submit">Save {isLoading && <ContentLoader />}</SaveBtn>
+                  <SaveBtnWrap>
+                    <li>
+                      <SaveBtn type="submit">
+                        Save {isLoading && <ContentLoader />}
+                      </SaveBtn>
+                    </li>
+                    <li>
+                      <DeleteBtn type="button" onClick={toggleDeleteModal}>
+                        Delete your account?
+                      </DeleteBtn>
+                    </li>
+                  </SaveBtnWrap>
                 </Form>
               )}
             </Formik>
           }
         </ModalWrap>
       </BaseModalWindow>
+      <UserDeleteModal onClose={toggleDeleteModal} onShow={isDeleteModalOpen} />
     </>
   );
 };

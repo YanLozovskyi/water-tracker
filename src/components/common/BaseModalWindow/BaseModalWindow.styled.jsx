@@ -16,26 +16,26 @@ export const BaseModalStyled = styled.div`
   z-index: 1;
 
   &.base-modal-enter {
-  opacity: 0;
-}
+    opacity: 0;
+  }
 
-&.base-modal-enter-active {
-  opacity: 1;
-  transition: opacity 300ms ease-in-out;
-}
+  &.base-modal-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+  }
 
-&.base-modal-exit {
-  opacity: 1;
-}
+  &.base-modal-exit {
+    opacity: 1;
+  }
 
-&.base-modal-exit-active {
-  opacity: 0;
-  transition: opacity 300ms ease-in-out 200ms;
-}
+  &.base-modal-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in-out 200ms;
+  }
 `;
 
 export const ModalContent = styled.div`
-   translate: -50% -50%;
+  translate: -50% -50%;
   position: fixed;
   top: 50%;
   left: 50%;
@@ -52,32 +52,37 @@ export const ModalContent = styled.div`
   }
 
   &.modal-content-enter {
-  opacity: 0;
-  scale: 0.5;
-}
+    opacity: 0;
+    scale: 0.5;
+  }
 
-&.modal-content-enter-active {
-  opacity: 1;
-  scale: 1;
-  transition: opacity 300ms ease-in-out 200ms, scale 200ms ease-in-out 200ms;
-}
+  &.modal-content-enter-active {
+    opacity: 1;
+    scale: 1;
+    transition:
+      opacity 300ms ease-in-out 200ms,
+      scale 200ms ease-in-out 200ms;
+  }
 
-&.modal-content-exit {
-  opacity: 1;
-  scale: 1;
-}
+  &.modal-content-exit {
+    opacity: 1;
+    scale: 1;
+  }
 
-&.modal-content-exit-active {
-  opacity: 0;
-  scale: 0.5;
-  transition: opacity 300ms ease-in-out, scale 200ms ease-in-out;
-}
+  &.modal-content-exit-active {
+    opacity: 0;
+    scale: 0.5;
+    transition:
+      opacity 300ms ease-in-out,
+      scale 200ms ease-in-out;
+  }
 `;
 
 export const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 24px 12px;
+  padding: ${({ stylesPadding }) =>
+    stylesPadding ? stylesPadding : '24px 12px'};
   color: ${({ theme }) => theme.color.black};
 
   h2 {
