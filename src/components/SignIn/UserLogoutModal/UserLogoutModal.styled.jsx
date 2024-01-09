@@ -12,7 +12,7 @@ export const LogOutBtn = styled.button`
   border: none;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.color.secondaryRed};
-  color: ${({ theme }) => theme.color.white};
+  color: #fff;
   box-shadow: ${({ theme }) => theme.boxShadowforButton.normalButton};
   font-size: 18px;
   font-weight: 500;

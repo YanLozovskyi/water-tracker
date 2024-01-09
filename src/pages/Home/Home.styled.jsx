@@ -55,6 +55,7 @@ export const HomeStatistics = styled.div`
   box-shadow: 0px 4px 14px 0px rgba(64, 123, 255, 0.3);
   background: ${props => props.theme.color.secondaryWhite};
   max-width: 280px;
+  border-radius: 10px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
     padding: 32px 24px;

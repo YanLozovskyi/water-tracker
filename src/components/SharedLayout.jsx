@@ -3,12 +3,11 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ToastContainer, Zoom } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-// import { Wrapper } from './Footer/Footer.styled';
+import { Wrapper } from './Footer/Footer.styled';
 
 const SharedLayout = () => {
   return (
-    <>
-      {/* <Wrapper> */}
+    <Wrapper>
       <Header />
       <main>
         <Suspense fallback={<Loader />}>
@@ -22,8 +21,7 @@ const SharedLayout = () => {
         draggable={false}
         transition={Zoom}
       />
-      {/* </Wrapper> */}
-    </>
+    </Wrapper>
   );
 };
 
