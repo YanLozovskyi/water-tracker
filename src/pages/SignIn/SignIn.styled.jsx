@@ -15,7 +15,7 @@ export const SignInSection = styled(Section)`
     url(${imgHomeMob1x}) 1x,
     url(${imgHomeMob2x}) 2x
   );
-  background-size: contain;
+  background-size: cover;
   background-repeat: no-repeat;
   width: 100%;
 

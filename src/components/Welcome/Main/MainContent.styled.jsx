@@ -15,7 +15,6 @@ export const WelcomePageStyle = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: flex-start;
-    padding-bottom: 152px;
 
     gap: 81px;
   }
