@@ -1,8 +1,8 @@
 import { BaseModalWindow, ContentLoader } from 'components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import sprite from 'src/assets/images/sprite/sprite.svg';
-import { format, formatISO, parseISO } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { selectIsLoading } from '../../../redux/root/rootSelectors';
 import {
   addWatersThunk,
@@ -50,6 +50,17 @@ export const TodayListModal = ({
   const increaseAmount = () => setAmount(prevAmount => prevAmount + 50);
   const decreaseAmount = () =>
     setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
+
+  useEffect(() => {
+    if (isEditing) {
+      setAmount(initialAmount || 0);
+      setTime(
+        initialTime
+          ? format(parseISO(initialTime), 'HH:mm')
+          : format(new Date(), 'HH:mm'),
+      );
+    }
+  }, [isEditing, initialAmount, initialTime]);
 
   const handleAmountChange = e => {
     let newValue = e.target.value;
@@ -111,7 +122,7 @@ export const TodayListModal = ({
               </Icon>
             </ButtonMl>
             <Label>
-              <Water>{amount}ml</Water>
+              <Water>{amount} ml</Water>
             </Label>
             <ButtonMl onClick={increaseAmount}>
               <Icon>
