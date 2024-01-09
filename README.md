@@ -94,9 +94,9 @@ revolves around tracking your water balance in daily life.
 
 To begin, you need to determine your daily water consumption goal by clicking
 the "Edit" button on the "Daily Norm" element. To do this, input your data
-(gender, height, weight, and physical activity level). Our application
-automatically calculates your daily norm. Alternatively, you can use our
-provided formula to calculate it manually.
+(gender, weight, and physical activity level). Our application automatically
+calculates your daily norm. Alternatively, you can use our provided formula to
+calculate it manually.
 
 Your next step is to enter the amount of water you've consumed into the table
 above the calendar. Specify the quantity in milliliters and the time it was
@@ -186,8 +186,7 @@ To run the application locally, follow these steps:
    ## Technologies Used
 
 - React
-- Redux
-- RTK Query
+- Redux Toolkit
 - React Router
 - Axios (for API requests)
 - Vite
