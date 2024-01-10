@@ -24,7 +24,7 @@ export const DaysGeneralStats = ({ stats, position, onShow }) => {
     const isMobile = window.innerWidth <= 320;
 
     if (isMobile) {
-      modal.style.width = `100%`;
+      modal.style.width = `90%`;
       modal.style.left = '0';
       modal.style.top = `${top - modal.offsetHeight}px`;
       modal.style.transform = `translateX(0)`;

@@ -48,7 +48,7 @@ export const TodayListModal = ({
 
   // змінюємо кількість води за допомогою кнопок
   const increaseAmount = () => {
-    setAmount(prevAmount => prevAmount + 50)
+    setAmount(prevAmount => prevAmount + 50);
   };
   const decreaseAmount = () =>
     setAmount(prevAmount => (prevAmount > 0 ? prevAmount - 50 : 0));
@@ -164,7 +164,9 @@ export const TodayListModal = ({
             type="number"
             value={amount}
             onChange={handleAmountChange}
-            onBlur={() => setAmount(prevAmount => prevAmount || initialAmount || 0)}
+            onBlur={() =>
+              setAmount(prevAmount => prevAmount || initialAmount || 0)
+            }
           />
         </div>
         <FooterModal>
