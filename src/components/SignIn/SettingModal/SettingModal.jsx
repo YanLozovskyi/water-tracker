@@ -80,6 +80,7 @@ export const SettingModal = ({ onClose, onShow }) => {
   const { isLoading } = useSelector(selectIsLoading);
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const [isAvatarLoading, setIsAvatarLoading] = useState(false);
 
   const toggleDeleteModal = () => {
     setDeleteModalOpen(previsDeleteModalOpen => !previsDeleteModalOpen);
@@ -118,9 +119,11 @@ export const SettingModal = ({ onClose, onShow }) => {
     });
 
     dispatch(editUserInfoThunk(dataSend)).then(data => {
-      if (!data.error) onClose();
+      if (!data.error) {
+        onClose()
+        actions.resetForm();
+      }
     });
-    actions.resetForm();
   };
 
   const handlePasswordVisibility = () => {
@@ -131,7 +134,12 @@ export const SettingModal = ({ onClose, onShow }) => {
     let formData = new FormData();
     formData.append('avatar', e.target.files[0]);
 
-    dispatch(updateAvatarThunk(formData));
+    dispatch(updateAvatarThunk(formData)).then(data => {
+      if (!data.error) {
+        setIsAvatarLoading(false)
+      }
+    });
+    setIsAvatarLoading(true);
   };
 
   return (
@@ -149,7 +157,7 @@ export const SettingModal = ({ onClose, onShow }) => {
                   <FormField>
                     <FormText>Your photo</FormText>
                     <DownloadWrap>
-                      {
+                      {isAvatarLoading ? <ContentLoader width={"80px"} height={"80px"} /> :
                         <Avatar
                           src={avatarURL ? avatarURL : defaultAvatar}
                           alt="user avatar"
@@ -237,7 +245,7 @@ export const SettingModal = ({ onClose, onShow }) => {
                             name="outdatedPassword"
                             className={
                               errors.outdatedPassword &&
-                              touched.outdatedPassword
+                                touched.outdatedPassword
                                 ? 'error-input'
                                 : null
                             }
@@ -274,7 +282,7 @@ export const SettingModal = ({ onClose, onShow }) => {
                             name="newPassword"
                             className={
                               (errors.newPassword && touched.newPassword) ||
-                              (values.outdatedPassword && !values.newPassword)
+                                (values.outdatedPassword && !values.newPassword)
                                 ? 'error-input'
                                 : null
                             }
