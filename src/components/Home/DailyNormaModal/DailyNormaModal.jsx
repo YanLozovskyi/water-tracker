@@ -47,10 +47,13 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
   }, [calculateWaterIntake]);
 
   const handleIntakeGoalChange = e => {
-    const newIntakeGoal = e.target.value;
+    const value = e.target.value;
+    const newIntakeGoal = parseFloat(value);
 
-    if (newIntakeGoal !== '') {
+    if (!isNaN(newIntakeGoal) && newIntakeGoal >= 1) {
       setIntakeGoal(newIntakeGoal);
+    } else if (value === '') {
+      setIntakeGoal('');
     }
   };
 
@@ -71,7 +74,9 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
       return;
     }
 
-    dispatch(updateWaterRateThunk(intakeGoal ? intakeGoal : parsedDailyIntake)).then(data => {
+    dispatch(
+      updateWaterRateThunk(intakeGoal ? intakeGoal : parsedDailyIntake),
+    ).then(data => {
       if (!data.error) {
         onClose();
         setIntakeGoal('');
@@ -156,7 +161,7 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
               </div>
               <FormResult>
                 The required amount of water in liters per day:
-                <strong>{parseFloat(dailyIntake).toFixed(1)} L</strong>
+                <strong> {parseFloat(dailyIntake).toFixed(1)}L</strong>
               </FormResult>
               <div>
                 <TitleModal>
@@ -164,7 +169,6 @@ export const DailyNormaModal = ({ onClose, onShow }) => {
                 </TitleModal>
                 <Input
                   type="number"
-                  min="0"
                   placeholder="0"
                   value={intakeGoal}
                   onChange={handleIntakeGoalChange}

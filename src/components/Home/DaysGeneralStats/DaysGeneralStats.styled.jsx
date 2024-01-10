@@ -6,7 +6,8 @@ export const DaysGeneralStatsModal = styled.div`
   border-radius: 10px;
   padding: 24px 16px;
   transform: translate(-50% -50%);
-  width: 280px;
+  width: 80%;
+  max-width: 280px;
   box-shadow: 0px 4px 4px 0px rgba(64, 123, 255, 0.3);
   background-color: ${({ theme }) => theme.color.white};
   border-radius: 10px;
@@ -22,6 +23,11 @@ export const DaysGeneralStatsList = styled.ul`
 export const DaysGeneralStatsItem = styled.li`
   display: flex;
   gap: 6px;
+  font-size: 14px;
+
+  @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
+    font-size: 16px;
+  }
 `;
 
 export const DaysGeneralStatsInfo = styled.span`
@@ -29,6 +35,7 @@ export const DaysGeneralStatsInfo = styled.span`
   font-size: 16px;
   font-weight: 500;
 `;
+
 export const DaysGeneralStatsData = styled.p`
   color: ${({ theme }) => theme.color.accent};
 `;

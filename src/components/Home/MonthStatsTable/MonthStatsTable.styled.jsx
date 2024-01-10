@@ -30,10 +30,6 @@ export const ButtonPaginator = styled.button`
   color: ${({ active, theme }) =>
     active ? theme.color.accent : theme.color.secondaryLightBlue};
 
-  /* &:active {
-    color: ${({ theme }) => theme.color.accent};
-  } */
-
   &:hover {
     color: ${({ theme }) => theme.color.accent};
   }
@@ -63,19 +59,18 @@ export const Year = styled.p`
 `;
 
 export const DaysList = styled.div`
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(6, 50px);
   justify-content: space-between;
   gap: 16px;
+  height: 446px;
 
   @media screen and (min-width: ${({ theme }) => theme.breakpoint.tablet}) {
-    column-gap: 34px;
-    row-gap: 20px;
-    height: 275px;
-  }
-
-  @media screen and (min-width: ${({ theme }) => theme.breakpoint.desktop}) {
-    column-gap: 20px;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(4, 50px);
+    gap: 20px;
+    height: 268px;
   }
 `;
 
