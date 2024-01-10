@@ -17,13 +17,13 @@ export const Loader = () => {
   );
 };
 
-export const ContentLoader = ({ width = "18px", height = "18px" }) => {
+export const ContentLoader = ({ width = "18px", height = "18px", strokeColor = "white" }) => {
   return (
     <RotatingLines
       visible={true}
       height={width}
       width={height}
-      strokeColor="white"
+      strokeColor={strokeColor}
       strokeWidth="5"
       animationDuration="0.75"
       ariaLabel="rotating-lines-loading"

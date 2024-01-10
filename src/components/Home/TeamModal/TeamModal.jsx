@@ -57,7 +57,7 @@ const frontTeam = [
     photo: olesiaKubska,
     role: `Developer`,
     social: {
-      linkedin: 'www.linkedin.com/in/olesia-kubska',
+      linkedin: 'https://www.linkedin.com/in/olesia-kubska',
       github: 'https://github.com/OlesiaKubska',
     },
   },
@@ -105,7 +105,7 @@ const backTeam = [
     photo: volodymyrFetisov,
     role: `Team Lead`,
     social: {
-      linkedin: 'www.linkedin.com/in/volodymyr-fetisov',
+      linkedin: 'https://www.linkedin.com/in/volodymyr-fetisov/',
       github: 'https://github.com/Fetivol',
     },
   },
@@ -114,7 +114,7 @@ const backTeam = [
     photo: stanislavBoychuk,
     role: `Developer`,
     social: {
-      linkedin: 'http://linkedin.com/in/stanislav-boychuk',
+      linkedin: 'https://www.linkedin.com/in/stanislav-boychuk',
       github: 'https://github.com/Fasten-belts',
     },
   },

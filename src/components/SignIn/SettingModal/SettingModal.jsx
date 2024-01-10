@@ -157,7 +157,7 @@ export const SettingModal = ({ onClose, onShow }) => {
                   <FormField>
                     <FormText>Your photo</FormText>
                     <DownloadWrap>
-                      {isAvatarLoading ? <ContentLoader width={"80px"} height={"80px"} /> :
+                      {isAvatarLoading ? <ContentLoader width={"80px"} height={"80px"} strokeColor={"#407bff"} /> :
                         <Avatar
                           src={avatarURL ? avatarURL : defaultAvatar}
                           alt="user avatar"
