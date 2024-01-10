@@ -66,8 +66,8 @@ export const TodayListModal = ({
 
   useEffect(() => {
     if (isEditing) {
-      console.log('here');
-      console.log(initialTime);
+      // console.log('here');
+      // console.log(initialTime);
       setAmount(initialAmount || 0);
       setTime(formatCustomTime(initialTime, 'HH:mm'));
     } else {
@@ -87,17 +87,17 @@ export const TodayListModal = ({
       // Якщо створюємо новий запис і час вибрано користувачем
       const currentDate = new Date();
       const [hours, minutes] = time.split(':');
-      currentDate.setHours(hours, minutes);
-      isoDate = currentDate.toISOString().slice(0, 16);
-    } else {
-      // Якщо створюємо новий запис, використовуємо поточний час
-      const currentDate = new Date(isoDate);
+      // console.log('time: 1-й if', time); //14:40
+      currentDate.setHours(hours, minutes); // Wed Jan 10 2024 14:41:34 GMT+0200 (Восточная Европа, стандартное время)
+      // console.log(currentDate);
+      isoDate = currentDate.toISOString().slice(0, 16); // 2024-01-10T12:41
+      // console.log('Исходная дата: 1-й if', isoDate);
 
-      isoDate = new Date().toISOString().slice(0, 16);
+      const currentDate2 = new Date(isoDate);
 
       // Создаем новую дату на основе текущей
-      const newDate = new Date(currentDate);
-      newDate.setHours(currentDate.getHours() + 2);
+      const newDate = new Date(currentDate2);
+      newDate.setHours(currentDate2.getHours() + 2);
 
       const formattedNewDate =
         newDate.getFullYear() +
@@ -109,12 +109,11 @@ export const TodayListModal = ({
         ('0' + newDate.getHours()).slice(-2) +
         ':' +
         ('0' + newDate.getMinutes()).slice(-2);
-      console.log('Исходная дата:', isoDate);
-      console.log('Новая дата:', formattedNewDate);
+      // console.log('Исходная дата: финальный', isoDate);
+      // console.log('Новая дата: финальный', formattedNewDate);
       isoDate = formattedNewDate;
     }
 
-    // console.log(isoDate);
     const waterData = {
       waterVolume: amount,
       date: isoDate,
@@ -136,14 +135,23 @@ export const TodayListModal = ({
     }
   };
 
+  const handleOnClose = () => {
+    if (isEditing) {
+      onClose();
+      return
+    }
+    onClose();
+    setAmount(0);
+  }
+
   const title = isEditing ? 'Edit the entered amount of water' : 'Add water';
 
   const displayTime =
     isEditing && initialTime ? formatCustomTime(initialTime) : '';
-  console.log('time', time);
+  // console.log('time', time);
 
   return (
-    <BaseModalWindow onClose={onClose} onShow={onShow} title={title}>
+    <BaseModalWindow onClose={handleOnClose} onShow={onShow} title={title}>
       <BoxAddModal>
         {isEditing && (
           <PreviousInfo>
