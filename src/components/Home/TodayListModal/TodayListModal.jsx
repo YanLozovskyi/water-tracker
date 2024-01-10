@@ -69,9 +69,7 @@ export const TodayListModal = ({
       console.log('here');
       console.log(initialTime);
       setAmount(initialAmount || 0);
-      setTime(
-        formatCustomTime(initialTime, 'HH:mm')
-      );
+      setTime(formatCustomTime(initialTime, 'HH:mm'));
     } else {
       setAmount(0);
       setTime(format(new Date(), 'HH:mm'));
@@ -85,11 +83,17 @@ export const TodayListModal = ({
       isoDate = initialTime
         ? new Date(initialTime).toISOString().slice(0, 16)
         : new Date().toISOString();
+    } else if (time) {
+      // Якщо створюємо новий запис і час вибрано користувачем
+      const currentDate = new Date();
+      const [hours, minutes] = time.split(':');
+      currentDate.setHours(hours, minutes);
+      isoDate = currentDate.toISOString().slice(0, 16);
     } else {
       // Якщо створюємо новий запис, використовуємо поточний час
-      isoDate = new Date().toISOString().slice(0, 16);
-
       const currentDate = new Date(isoDate);
+
+      isoDate = new Date().toISOString().slice(0, 16);
 
       // Создаем новую дату на основе текущей
       const newDate = new Date(currentDate);
@@ -105,8 +109,8 @@ export const TodayListModal = ({
         ('0' + newDate.getHours()).slice(-2) +
         ':' +
         ('0' + newDate.getMinutes()).slice(-2);
-      console.log("Исходная дата:", isoDate);
-      console.log("Новая дата:", formattedNewDate);
+      console.log('Исходная дата:', isoDate);
+      console.log('Новая дата:', formattedNewDate);
       isoDate = formattedNewDate;
     }
 
