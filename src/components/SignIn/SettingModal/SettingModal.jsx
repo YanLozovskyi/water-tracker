@@ -351,7 +351,7 @@ export const SettingModal = ({ onClose, onShow }) => {
                   <SaveBtnWrap>
                     <li>
                       <SaveBtn type="submit">
-                        Save {isLoading && <ContentLoader />}
+                        Save {isLoading && !isAvatarLoading && <ContentLoader />}
                       </SaveBtn>
                     </li>
                     <li>
