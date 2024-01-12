@@ -28,7 +28,7 @@ import {
   Label,
   PreviousInfo,
 } from './TodayListModal.styled';
-import { formatCustomTime } from '../../../helpers/utils/dateUtils';
+import { formatCustomTime, formatDate } from '../../../helpers/utils/dateUtils';
 
 export const TodayListModal = ({
   initialAmount,
@@ -87,31 +87,15 @@ export const TodayListModal = ({
       // Якщо створюємо новий запис і час вибрано користувачем
       const currentDate = new Date();
       const [hours, minutes] = time.split(':');
-      // console.log('time: 1-й if', time); //14:40
-      currentDate.setHours(hours, minutes); // Wed Jan 10 2024 14:41:34 GMT+0200 (Восточная Европа, стандартное время)
+      // console.log('time: 1-й if', time); //18:57
+      currentDate.setHours(hours, minutes); // Fri Jan 12 2024 18:57:37 GMT+0200 (Восточная Европа, стандартное время)
       // console.log(currentDate);
-      isoDate = currentDate.toISOString().slice(0, 16); // 2024-01-10T12:41
-      // console.log('Исходная дата: 1-й if', isoDate);
+      isoDate = currentDate.toISOString(); // 2024-01-12T16:57:37.834Z
+      // console.log(isoDate);
+      const formattedDate = isoDate.replace(/(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}).*/, '$1Z'); // 2024-01-12T16:57:37Z
 
-      const currentDate2 = new Date(isoDate);
-
-      // Создаем новую дату на основе текущей
-      const newDate = new Date(currentDate2);
-      newDate.setHours(currentDate2.getHours() + 2);
-
-      const formattedNewDate =
-        newDate.getFullYear() +
-        '-' +
-        ('0' + (newDate.getMonth() + 1)).slice(-2) +
-        '-' +
-        ('0' + newDate.getDate()).slice(-2) +
-        'T' +
-        ('0' + newDate.getHours()).slice(-2) +
-        ':' +
-        ('0' + newDate.getMinutes()).slice(-2);
-      // console.log('Исходная дата: финальный', isoDate);
-      // console.log('Новая дата: финальный', formattedNewDate);
-      isoDate = formattedNewDate;
+      // console.log('Новая дата: финальный', formattedDate);
+      isoDate = formattedDate;
     }
 
     const waterData = {
@@ -213,3 +197,33 @@ export const TodayListModal = ({
     </BaseModalWindow>
   );
 };
+
+
+// // Якщо створюємо новий запис і час вибрано користувачем
+// const currentDate = new Date();
+// const [hours, minutes] = time.split(':');
+// // console.log('time: 1-й if', time); //14:40
+// currentDate.setHours(hours, minutes); // Wed Jan 10 2024 14:41:34 GMT+0200 (Восточная Европа, стандартное время)
+// // console.log(currentDate);
+// isoDate = currentDate.toISOString().slice(0, 16); // 2024-01-10T12:41
+// // console.log('Исходная дата: 1-й if', isoDate);
+
+// const currentDate2 = new Date(isoDate);
+
+// // Создаем новую дату на основе текущей
+// const newDate = new Date(currentDate2);
+// newDate.setHours(currentDate2.getHours() + 2);
+
+// const formattedNewDate =
+//   newDate.getFullYear() +
+//   '-' +
+//   ('0' + (newDate.getMonth() + 1)).slice(-2) +
+//   '-' +
+//   ('0' + newDate.getDate()).slice(-2) +
+//   'T' +
+//   ('0' + newDate.getHours()).slice(-2) +
+//   ':' +
+//   ('0' + newDate.getMinutes()).slice(-2);
+// // console.log('Исходная дата: финальный', isoDate);
+// // console.log('Новая дата: финальный', formattedNewDate);
+// isoDate = formattedNewDate;
